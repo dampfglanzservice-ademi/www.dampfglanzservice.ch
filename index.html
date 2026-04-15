@@ -1,283 +1,186 @@
 <!DOCTYPE html>
-<html lang="de-CH">
+<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dampfglanzservice Ademi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dampfglanz Service Ademi</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+    body{background:#f7f9fb;color:#1e1e1e;line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
+    /* Header */
+    header{
+      position:fixed;top:0;left:0;width:100%;
+      background:#0f172a;color:white;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 20px;z-index:1000;
+    }
+    header img{height:45px;}
+    nav a{margin:0 10px;color:#e2e8f0;font-size:14px;}
 
-body{
-font-family:Arial;
-background:linear-gradient(145deg,#ffffff,#f5f5f5);
-color:#111;
-}
+    /* Hero */
+    .hero{
+      height:90vh;
+      background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('banner.png') center/cover;
+      display:flex;align-items:center;justify-content:center;
+      text-align:center;color:white;padding:20px;
+    }
+    .hero h1{font-size:42px;margin-bottom:10px;}
+    .hero p{font-size:18px;max-width:700px;}
+    .btn{
+      display:inline-block;margin-top:20px;
+      padding:12px 20px;background:#22c55e;color:white;
+      border-radius:8px;font-weight:bold;
+    }
 
-/* HEADER */
-header{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(255,255,255,0.9);
-backdrop-filter:blur(10px);
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-z-index:1000;
-}
+    /* Sections */
+    section{padding:80px 20px;max-width:1200px;margin:auto;}
+    h2{margin-bottom:20px;font-size:28px;}
 
-.banner{
-width:100%;
-max-height:120px;
-object-fit:cover;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:15px;
+    }
+    .card{
+      background:white;padding:15px;border-radius:12px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    }
+    img,video{width:100%;border-radius:10px;}
 
-.header-bar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:10px 20px;
-}
+    /* Fixed buttons */
+    .fixed-buttons{
+      position:fixed;right:20px;bottom:20px;
+      display:flex;flex-direction:column;gap:10px;
+      z-index:1000;
+    }
+    .fixed-buttons a{
+      padding:12px 14px;border-radius:50px;
+      color:white;font-weight:bold;text-align:center;
+    }
+    .whatsapp{background:#25D366;}
+    .call{background:#2563eb;}
 
-.logo{height:50px;}
+    /* Footer */
+    footer{
+      background:#0f172a;color:white;
+      padding:40px 20px;
+    }
+    footer a{color:#93c5fd;}
 
-.title{font-weight:bold;font-size:20px;}
-
-/* HERO */
-.hero{
-margin-top:160px;
-text-align:center;
-padding:60px 20px;
-}
-
-.hero img{
-width:200px;
-filter:drop-shadow(0 10px 20px rgba(0,0,0,0.2));
-}
-
-/* SECTION */
-.section{
-padding:60px 20px;
-max-width:1200px;
-margin:auto;
-}
-
-/* CARDS */
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.card{
-background:white;
-padding:25px;
-margin:15px;
-border-radius:20px;
-width:280px;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-10px) scale(1.03);
-}
-
-/* GALLERY */
-.gallery{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-text-align:center;
-}
-
-.gallery img, .gallery video{
-width:280px;
-margin:10px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* FORM */
-input, textarea{
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-button{
-padding:12px 25px;
-background:#d40000;
-color:white;
-border:none;
-border-radius:8px;
-}
-
-/* FLOAT BUTTON */
-.float{
-position:fixed;
-right:20px;
-bottom:20px;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.float a{
-padding:15px;
-border-radius:50%;
-color:white;
-font-size:20px;
-text-align:center;
-}
-
-.whatsapp{background:#25D366;}
-.phone{background:#000;}
-
-/* FOOTER */
-footer{
-background:#111;
-color:#ddd;
-padding:40px;
-font-size:14px;
-}
-
-</style>
+    .legal{
+      font-size:14px;color:#cbd5e1;
+      max-width:900px;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-<img src="banner.png" class="banner">
-
-<div class="header-bar">
-<img src="logo.png" class="logo">
-<div class="title">Reinigungsfirma</div>
-</div>
+  <img src="logo.png" alt="Logo" />
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#gallery">Bilder</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Kontakt</a>
+    <a href="#legal">Rechtliches</a>
+  </nav>
 </header>
 
-<section class="hero">
-<img src="logo.png">
-<h1>Dampfglanzservice Ademi</h1>
-<p>Professionelle Reinigung in der ganzen Schweiz</p>
+<div class="hero">
+  <div>
+    <h1>Dampfglanz Service Ademi</h1>
+    <p>Professionelle Reinigungsdienstleistungen für Wohnungen, Häuser und Fahrzeuge – gründlich, zuverlässig und modern.</p>
+    <a class="btn" href="#contact">Jetzt Kontakt aufnehmen</a>
+  </div>
+</div>
+
+<section id="services">
+  <h2>Unsere Dienstleistungen</h2>
+  <div class="grid">
+    <div class="card">Wohnungsreinigung – gründlich und hygienisch bis ins Detail.</div>
+    <div class="card">Teppich- & Polsterreinigung – schonend und effektiv.</div>
+    <div class="card">Fensterreinigung – streifenfrei und klar.</div>
+    <div class="card">Umzugsreinigung – Abnahmegarantie möglich.</div>
+  </div>
 </section>
 
-<section class="section">
-<h2>Unsere Dienstleistungen</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>🚗 Autoreinigung</h3>
-<p>Innen- und Aussenreinigung ab 99 CHF.</p>
-<p>Abholservice +40 CHF inkl. 40 km.</p>
-<p>Ersatzauto inklusive.</p>
-</div>
-
-<div class="card">
-<h3>🏠 Wohnungsreinigung</h3>
-<p>Gründliche Reinigung inkl. Küche, Bad und Böden.</p>
-<p>Endreinigung mit Abnahmegarantie möglich.</p>
-</div>
-
-<div class="card">
-<h3>🏢 Gewerbereinigung</h3>
-<p>Büros, Lager, Küchen und Geschäftsräume.</p>
-</div>
-
-</div>
+<section id="gallery">
+  <h2>Unsere Arbeiten (Bilder)</h2>
+  <p>Eine Auswahl unserer realisierten Reinigungsprojekte in Wohnräumen und Objekten.</p>
+  <div class="grid">
+    <img src="wohn1.jpeg" alt="Wohnung 1 Reinigung" />
+    <img src="wohn2.jpeg" alt="Wohnung 2 Reinigung" />
+    <img src="wohn3.jpeg" alt="Wohnung 3 Reinigung" />
+    <img src="wohn4.jpeg" alt="Wohnung 4 Reinigung" />
+    <img src="wohn5.jpeg" alt="Wohnung 5 Reinigung" />
+    <img src="wohn6.jpeg" alt="Wohnung 6 Reinigung" />
+    <img src="wohn7.jpeg" alt="Wohnung 7 Reinigung" />
+    <img src="wohn8.jpeg" alt="Wohnung 8 Reinigung" />
+    <img src="flyer.png" alt="Flyer Design" />
+    <img src="banner.png" alt="Banner Design" />
+  </div>
 </section>
 
-<!-- WOHNUNG -->
-<section class="section">
-<h2>Wohnungsreinigung</h2>
-<p>Professionelle und gründliche Reinigung für Wohnungen jeder Grösse.</p>
-
-<div class="gallery">
-<img src="wohn1.jpg"><p>Küche gereinigt</p>
-<img src="wohn2.jpg"><p>Bad hygienisch sauber</p>
-<img src="wohn3.jpg"><p>Wohnzimmer gepflegt</p>
-<img src="wohn4.jpg"><p>Staubfreie Oberflächen</p>
-<img src="wohn5.jpg"><p>Fenster gereinigt</p>
-<img src="wohn6.jpg"><p>Bodenpflege</p>
-<img src="wohn7.jpg"><p>Detailarbeit</p>
-<img src="wohn8.jpg"><p>Endreinigung komplett</p>
-</div>
+<section id="videos">
+  <h2>Unsere Arbeiten (Videos)</h2>
+  <p>Vorher-Nachher Eindrücke unserer professionellen Reinigung in Aktion.</p>
+  <div class="grid">
+    <video controls src="video1.mp4"></video>
+    <video controls src="video2.mp4"></video>
+  </div>
 </section>
 
-<!-- AUTO -->
-<section class="section">
-<h2>Autoreinigung</h2>
-
-<div class="gallery">
-<img src="auto1.jpg"><p>Innenreinigung</p>
-<img src="auto2.jpg"><p>Aussenreinigung</p>
-</div>
+<section id="contact">
+  <h2>Kontakt</h2>
+  <p>Telefon: 076 502 49 98</p>
+  <p>Email: info@dampfglanzservice-ademi.ch</p>
+  <p>Wir sind jederzeit für Offerten und Anfragen erreichbar.</p>
 </section>
 
-<!-- VIDEO -->
-<section class="section">
-<h2>Autoreinigung Videos</h2>
+<section id="legal">
+  <h2>Rechtliches</h2>
 
-<div class="gallery">
-<video controls>
-<source src="video1.mp4">
-</video>
-<p>Innenreinigung</p>
+  <h3>Impressum</h3>
+  <div class="legal">
+    Dampfglanz Service Ademi
+    <br/>Adresse: Schweiz
+    <br/>Telefon: 076 502 49 98
+    <br/>E-Mail: info@dampfglanzservice-ademi.ch
+    <br/><br/>
+    Verantwortlich für den Inhalt dieser Website ist der Betreiber von Dampfglanz Service Ademi. Alle Inhalte dienen der Information über angebotene Dienstleistungen im Bereich professioneller Reinigung.
+  </div>
 
-<video controls>
-<source src="video2.mp4">
-</video>
-<p>Politur</p>
-</div>
-</section>
+  <h3>Datenschutzerklärung</h3>
+  <div class="legal">
+    Der Schutz Ihrer persönlichen Daten ist uns wichtig. Wir behandeln personenbezogene Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften der Schweiz.
+    <br/><br/>
+    Beim Besuch dieser Website können technische Daten (IP-Adresse, Browserinformationen) automatisch erfasst werden. Diese Daten dienen ausschließlich der Sicherstellung eines stabilen Betriebs.
+    <br/><br/>
+    Kontaktanfragen über Telefon oder E-Mail werden nur zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+  </div>
 
-<!-- FLYER -->
-<section class="section">
-<h2>Unser Flyer</h2>
-<div class="gallery">
-<img src="flyer.png">
-</div>
-</section>
-
-<!-- FORM -->
-<section class="section">
-<h2>Kontaktformular</h2>
-
-<form action="https://formspree.io/f/DEINCODE" method="POST">
-<input type="text" name="name" placeholder="Name" required>
-<input type="tel" name="telefon" placeholder="Telefon" required>
-<input type="email" name="email" placeholder="E-Mail" required>
-<textarea name="nachricht" placeholder="Ihre Anfrage"></textarea>
-<button type="submit">Anfrage senden</button>
-</form>
-
-</section>
-
-<section class="section">
-<h2>Kontakt</h2>
-<p>📞 076 502 4998</p>
-<p>✉️ info@dampfglanzservice-ademi.ch</p>
-<p>📍 Rorschach, Schweiz</p>
+  <h3>AGB</h3>
+  <div class="legal">
+    Unsere allgemeinen Geschäftsbedingungen regeln die Zusammenarbeit zwischen Dampfglanz Service Ademi und unseren Kunden.
+    <br/><br/>
+    1. Leistungen werden individuell vereinbart und bestätigt.
+    <br/>2. Preise richten sich nach Objektgröße und Aufwand.
+    <br/>3. Stornierungen müssen mindestens 24 Stunden vorher erfolgen.
+    <br/>4. Für Schäden durch höhere Gewalt übernehmen wir keine Haftung.
+    <br/><br/>
+    Mit der Buchung einer Dienstleistung akzeptiert der Kunde diese Bedingungen.
+  </div>
 </section>
 
 <footer>
-
-<h3>Impressum</h3>
-<p>Dampfglanzservice Ademi<br>Rorschach, Schweiz</p>
-
-<h3>AGB</h3>
-<p>Dienstleistungen werden fachgerecht ausgeführt. Absage 24h vorher.</p>
-
-<h3>Datenschutz</h3>
-<p>Daten werden vertraulich behandelt.</p>
-
+  <p>&copy; 2026 Dampfglanz Service Ademi</p>
 </footer>
 
-<div class="float">
-<a href="https://wa.me/41765024998" class="whatsapp">💬</a>
-<a href="tel:0765024998" class="phone">📞</a>
+<div class="fixed-buttons">
+  <a class="whatsapp" href="https://wa.me/41765024998" target="_blank">WhatsApp</a>
+  <a class="call" href="tel:+41765024998">Anrufen</a>
 </div>
 
 </body>
