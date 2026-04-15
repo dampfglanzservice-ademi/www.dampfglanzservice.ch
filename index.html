@@ -40,7 +40,6 @@
     .logo{
       display:flex;
       align-items:center;
-      gap:10px;
     }
 
     .logo img{
@@ -52,7 +51,7 @@
 
     nav{
       display:flex;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
     }
 
@@ -60,6 +59,11 @@
       color:#e2e8f0;
       font-size:13px;
       padding:6px 8px;
+      border-radius:6px;
+    }
+
+    nav a:hover{
+      background:#1f2937;
     }
 
     /* HERO */
@@ -74,15 +78,8 @@
       padding:20px;
     }
 
-    .hero h1{
-      font-size:40px;
-      margin-bottom:10px;
-    }
-
-    .hero p{
-      font-size:16px;
-      max-width:700px;
-    }
+    .hero h1{font-size:40px;margin-bottom:10px;}
+    .hero p{font-size:16px;max-width:700px;}
 
     .btn{
       display:inline-block;
@@ -102,23 +99,25 @@
     }
 
     h2{
-      font-size:24px;
+      font-size:26px;
       margin-bottom:15px;
     }
+
+    h3{margin-top:20px;margin-bottom:10px;}
 
     p{margin-bottom:10px;}
 
     /* GRID */
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
       gap:12px;
     }
 
     .card{
       background:white;
       border-radius:12px;
-      padding:12px;
+      padding:14px;
       box-shadow:0 2px 10px rgba(0,0,0,0.06);
     }
 
@@ -126,6 +125,17 @@
       width:100%;
       border-radius:10px;
       display:block;
+    }
+
+    /* REVIEWS */
+    .review{
+      font-size:14px;
+      color:#374151;
+    }
+
+    .stars{
+      color:#fbbf24;
+      margin-bottom:6px;
     }
 
     /* FIXED BUTTONS */
@@ -165,13 +175,11 @@
       max-width:900px;
     }
 
-    /* MOBILE OPTIMIZATION */
+    /* MOBILE */
     @media(max-width:768px){
       .hero h1{font-size:28px;}
       nav{display:none;}
-      header{
-        justify-content:center;
-      }
+      header{justify-content:center;}
     }
 
   </style>
@@ -182,43 +190,87 @@
   <div class="logo">
     <img src="logo.png" alt="Dampfglanzservice-Ademi Logo" />
   </div>
+
+  <nav>
+    <a href="#uber-uns">Über Uns</a>
+    <a href="#services">Leistungen</a>
+    <a href="#rezensionen">Rezensionen</a>
+    <a href="#gallery">Bilder</a>
+    <a href="#videos">Videos</a>
+    <a href="#rechtliches">Rechtliches</a>
+  </nav>
 </header>
 
 <div class="hero">
   <div>
     <h1>Dampfglanzservice-Ademi</h1>
-    <p>Professionelle Reinigungsdienstleistungen für Wohnungen, Fahrzeuge und Objekte – zuverlässig, gründlich und modern umgesetzt.</p>
+    <p>Professionelle Reinigungsdienstleistungen für Wohnungen, Fahrzeuge und Objekte – sauber, zuverlässig und hochwertig.</p>
     <a class="btn" href="#contact">Kontakt aufnehmen</a>
   </div>
 </div>
 
+<!-- ÜBER UNS -->
+<section id="uber-uns">
+  <h2>Über Uns</h2>
+  <p>
+    Dampfglanzservice-Ademi steht für Qualität, Zuverlässigkeit und gründliche Reinigung.
+    Unser Ziel ist es, Wohnräume, Fahrzeuge und Objekte wieder in einen perfekten Zustand zu bringen.
+    Wir arbeiten mit modernen Methoden und viel Erfahrung im Bereich professioneller Reinigung.
+  </p>
+</section>
+
+<!-- LEISTUNGEN -->
 <section id="services">
-  <h2>Unsere Dienstleistungen</h2>
+  <h2>Unsere Leistungen</h2>
   <div class="grid">
-    <div class="card">Wohnungsreinigung – gründlich und hygienisch.</div>
-    <div class="card">Polster- & Teppichreinigung.</div>
-    <div class="card">Fensterreinigung – streifenfrei.</div>
-    <div class="card">Umzugsreinigung mit Abnahme.</div>
+    <div class="card">Wohnungsreinigung – gründlich & hygienisch</div>
+    <div class="card">Polster- & Teppichreinigung</div>
+    <div class="card">Fensterreinigung streifenfrei</div>
+    <div class="card">Umzugsreinigung mit Abnahme</div>
   </div>
 </section>
 
+<!-- REZENSIONEN -->
+<section id="rezensionen">
+  <h2>Rezensionen unserer Kunden</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="stars">★★★★★</div>
+      <div class="review">Sehr professionelle Arbeit, alles sauber und schnell erledigt!</div>
+    </div>
+
+    <div class="card">
+      <div class="stars">★★★★★</div>
+      <div class="review">Top Service, sehr freundlich und zuverlässig.</div>
+    </div>
+
+    <div class="card">
+      <div class="stars">★★★★★</div>
+      <div class="review">Meine Wohnung war noch nie so sauber – absolut empfehlenswert!</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BILDER -->
 <section id="gallery">
   <h2>Bilder unserer Arbeit</h2>
-  <p>Einblick in unsere professionellen Reinigungsarbeiten bei Kundenobjekten.</p>
   <div class="grid">
-    <img src="wohn1.jpeg" alt="Reinigung Objekt 1" />
-    <img src="wohn2.jpeg" alt="Reinigung Objekt 2" />
-    <img src="wohn3.jpeg" alt="Reinigung Objekt 3" />
-    <img src="wohn4.jpeg" alt="Reinigung Objekt 4" />
-    <img src="wohn5.jpeg" alt="Reinigung Objekt 5" />
-    <img src="wohn6.jpeg" alt="Reinigung Objekt 6" />
-    <img src="wohn7.jpeg" alt="Reinigung Objekt 7" />
-    <img src="wohn8.jpeg" alt="Reinigung Objekt 8" />
-    <img src="flyer.png" alt="Flyer Design" />
-    <img src="banner.png" alt="Banner Design" />
+    <img src="wohn1.jpeg" />
+    <img src="wohn2.jpeg" />
+    <img src="wohn3.jpeg" />
+    <img src="wohn4.jpeg" />
+    <img src="wohn5.jpeg" />
+    <img src="wohn6.jpeg" />
+    <img src="wohn7.jpeg" />
+    <img src="wohn8.jpeg" />
+    <img src="flyer.png" />
+    <img src="banner.png" />
   </div>
 </section>
 
+<!-- VIDEOS -->
 <section id="videos">
   <h2>Videos unserer Arbeiten</h2>
   <p>Aufnahmen von Fahrzeugreinigungen unserer Kundenfahrzeuge.</p>
@@ -228,15 +280,17 @@
   </div>
 </section>
 
+<!-- KONTAKT -->
 <section id="contact">
   <h2>Kontakt</h2>
   <p>Telefon: 076 502 49 98</p>
   <p>Email: info@dampfglanzservice-ademi.ch</p>
-  <p>Wir freuen uns auf Ihre Anfrage.</p>
 </section>
 
-<section id="legal">
-  <h2>Rechtliches</h2>
+<!-- RECHTLICHES -->
+<section id="rechtliches">
+
+  <h2>Allgemeines & Rechtliches</h2>
 
   <h3>Impressum</h3>
   <div class="legal">
@@ -244,22 +298,23 @@
     Schweiz<br/>
     Telefon: 076 502 49 98<br/>
     Email: info@dampfglanzservice-ademi.ch<br/><br/>
-    Verantwortlich: Betreiber dieser Website ist Dampfglanzservice-Ademi. Diese Website dient der Präsentation von Reinigungsdienstleistungen.
+    Diese Website dient der Präsentation unserer Reinigungsdienstleistungen.
   </div>
 
   <h3>Datenschutz</h3>
   <div class="legal">
-    Der Schutz Ihrer Daten ist uns wichtig. Personenbezogene Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.
-    Technische Daten werden nur zur Verbesserung der Website genutzt.
+    Wir behandeln personenbezogene Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften.
+    Daten werden nur zur Bearbeitung von Anfragen genutzt und nicht an Dritte weitergegeben.
   </div>
 
   <h3>AGB</h3>
   <div class="legal">
     Leistungen werden individuell vereinbart.
-    Preise richten sich nach Aufwand.
-    Stornierungen mindestens 24h vorher.
+    Preise richten sich nach Aufwand und Objekt.
+    Stornierungen mindestens 24 Stunden vorher.
     Keine Haftung bei höherer Gewalt.
   </div>
+
 </section>
 
 <footer>
