@@ -1,295 +1,140 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dampfglanzservice-Ademi</title>
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial,Helvetica,sans-serif;
-    }
-
-    body{
-      background:linear-gradient(180deg,#f6f8fb,#eef2f7);
-      color:#1e1e1e;
-      line-height:1.6;
-      padding-top:70px;
-    }
-
-    a{text-decoration:none;color:inherit;}
-
-    header{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:65px;
-      background:#ffffff;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 14px;
-      z-index:1000;
-      box-shadow:0 6px 20px rgba(0,0,0,0.12);
-    }
-
-    .logo img{
-      height:40px;
-      width:auto;
-      object-fit:contain;
-    }
-
-    nav{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    nav a{
-      color:#111827;
-      font-size:12px;
-      padding:6px 8px;
-      border-radius:8px;
-      font-weight:600;
-    }
-
-    nav a:hover{background:#f3f4f6;}
-
-    .hero{
-      min-height:40vh;
-      background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('banner.png') center/cover no-repeat;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:white;
-      padding:15px;
-    }
-
-    .hero h1{font-size:22px;margin-bottom:6px;}
-    .hero p{font-size:13px;max-width:600px;}
-
-    .hero-btn{
-      display:inline-block;
-      margin-top:12px;
-      padding:12px 18px;
-      background:#22c55e;
-      color:white;
-      border-radius:10px;
-      font-weight:bold;
-      box-shadow:0 6px 15px rgba(34,197,94,0.25);
-    }
-
-    section{
-      padding:40px 14px;
-      max-width:1100px;
-      margin:auto;
-    }
-
-    h2{font-size:20px;margin-bottom:12px;}
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-      gap:14px;
-    }
-
-    .card{
-      background:linear-gradient(145deg,#ffffff,#e6e9ef);
-      border-radius:14px;
-      padding:12px;
-      box-shadow:6px 6px 15px rgba(0,0,0,0.12),-6px -6px 15px rgba(255,255,255,0.8);
-    }
-
-    img,video{
-      width:100%;
-      border-radius:12px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
-      display:block;
-    }
-
-    video{max-height:150px;object-fit:cover;}
-
-    .stars{color:#fbbf24;font-size:15px;margin-bottom:6px;}
-
-    .legal-box{
-      background:#fff;
-      border-radius:14px;
-      padding:14px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.08);
-      color:#000;
-      margin-bottom:12px;
-    }
-
-    .fixed-buttons{
-      position:fixed;
-      right:15px;
-      bottom:15px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      z-index:1000;
-    }
-
-    .fixed-buttons a{
-      padding:18px 22px;
-      border-radius:50px;
-      color:white;
-      font-weight:bold;
-      font-size:16px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.35);
-    }
-
-    .whatsapp{background:#25D366;}
-    .call{background:#2563eb;}
-
-    .cookie{
-      position:fixed;
-      bottom:0;
-      left:0;
-      width:100%;
-      background:#111827;
-      color:white;
-      padding:18px;
-      z-index:2000;
-      font-size:13px;
-    }
-
-    .cookie button{
-      margin-top:10px;
-      padding:10px 14px;
-      border:none;
-      border-radius:8px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .accept{background:#22c55e;color:#fff;}
-    .reject{background:#ef4444;color:#fff;}
-
-    footer{
-      background:#0f172a;
-      color:white;
-      padding:25px 14px;
-      text-align:center;
-      font-size:13px;
-    }
-
-    @media(max-width:768px){
-      .hero{min-height:35vh;}
-      nav{display:none;}
-      header{justify-content:center;}
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dampfglanzservice-Ademi</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{background:#f4f7fb;color:#111;padding-top:70px;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+header{position:fixed;top:0;width:100%;height:70px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;box-shadow:0 6px 20px rgba(0,0,0,0.1);z-index:1000;}
+.logo img{height:60px;object-fit:contain;}
+nav{display:flex;gap:10px;font-size:12px;font-weight:600;}
+nav a{padding:6px 8px;border-radius:8px;}
+nav a:hover{background:#eee;}
+.hero{min-height:35vh;background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('banner.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:20px;}
+.hero h1{font-size:22px;}
+.hero p{font-size:13px;}
+.cta{margin-top:10px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn{padding:12px 14px;border-radius:10px;font-weight:bold;font-size:13px;}
+.green{background:#22c55e;color:#fff;}
+.blue{background:#2563eb;color:#fff;}
+section{padding:40px 14px;max-width:1100px;margin:auto;}
+h2{font-size:20px;margin-bottom:12px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.card{background:#fff;border-radius:14px;padding:12px;box-shadow:0 10px 25px rgba(0,0,0,0.08);}
+img,video{width:100%;border-radius:10px;}
+.slider{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;}
+.slide{min-width:260px;scroll-snap-align:start;background:#fff;padding:14px;border-radius:14px;box-shadow:0 10px 20px rgba(0,0,0,0.08);}
+.stars{color:#fbbf24;}
+.fixed-buttons{position:fixed;right:15px;bottom:15px;display:flex;flex-direction:column;gap:12px;z-index:9999;}
+.fixed-buttons a{padding:18px 22px;border-radius:50px;font-weight:bold;font-size:15px;color:#fff;}
+.wa{background:#25D366;}
+.call{background:#2563eb;}
+.cookie{position:fixed;bottom:0;width:100%;background:#111827;color:#fff;padding:14px;z-index:9999;}
+.cookie button{padding:10px 12px;border:none;border-radius:8px;margin-right:10px;}
+.ok{background:#22c55e;color:#fff;}
+.no{background:#ef4444;color:#fff;}
+@media(max-width:768px){nav{display:none}.hero{min-height:30vh}.logo img{height:50px}}
+</style>
 </head>
 <body>
 
 <header>
-  <div class="logo">
-    <img src="logo.png" />
-  </div>
-
-  <nav>
-    <a href="#services">Leistungen</a>
-    <a href="#uber-uns">Über Uns</a>
-    <a href="#rezensionen">Rezensionen</a>
-    <a href="#gallery">Bilder</a>
-    <a href="#videos">Videos</a>
-    <a href="#rechtliches">Rechtliches</a>
-  </nav>
+<div class="logo"><img src="logo.png" alt="logo"></div>
 </header>
 
 <div class="hero">
-  <div>
-    <h1>Dampfglanzservice-Ademi</h1>
-    <p>Professionelle Reinigung für Wohnungen & Fahrzeuge</p>
-    <a class="hero-btn" href="mailto:info@dampfglanzservice-ademi.ch">Reinigung anfragen</a>
-  </div>
+<div>
+<h1>Dampfglanzservice-Ademi</h1>
+<p>Professionelle Reinigung für Wohnungen & Fahrzeuge</p>
+<div class="cta">
+<a class="btn green" href="mailto:info@dampfglanzservice-ademi.ch">Reinigung anfragen</a>
+<a class="btn blue" href="#contact">Leistung anfragen</a>
+</div>
+</div>
 </div>
 
-<section id="services">
-  <h2>Leistungen</h2>
-  <div class="grid">
-    <div class="card">Wohnungsreinigung</div>
-    <div class="card">Fensterreinigung</div>
-    <div class="card">Umzugsreinigung</div>
-    <div class="card">Auto Innen- & Aussenreinigung</div>
-  </div>
+<section>
+<h2>Leistungen</h2>
+<div class="grid">
+<div class="card">Wohnungsreinigung</div>
+<div class="card">Fensterreinigung</div>
+<div class="card">Umzugsreinigung</div>
+<div class="card">Auto Innen- & Aussenreinigung</div>
+<div class="card">Büroreinigung</div>
+</div>
 </section>
 
-<section id="uber-uns">
-  <h2>Über Uns</h2>
-  <p>Wir stehen für Qualität und professionelle Reinigung auf höchstem Niveau.</p>
+<section>
+<h2>Über Uns</h2>
+<div class="card">Wir sind spezialisiert auf hochwertige Reinigung für Privat & Gewerbe. Qualität, Vertrauen und Zufriedenheit stehen im Mittelpunkt.</div>
 </section>
 
-<section id="rezensionen">
-  <h2>Rezensionen</h2>
-  <div class="grid">
-    <div class="card"><div class="stars">★★★★★</div><p>Ich bin absolut zufrieden. Service war top. – Alessio Colacchio</p></div>
-    <div class="card"><div class="stars">★★★★★</div><p>Mega empfehlenswert 🙏🏻 – Adnann fnbr</p></div>
-    <div class="card"><div class="stars">★★★★★</div><p>Auto nicht wiederzuerkennen – Omer Nuhija</p></div>
-  </div>
+<section>
+<h2>Leitbild</h2>
+<div class="card">Sauberkeit, Respekt, Qualität und Verlässlichkeit bestimmen unsere tägliche Arbeit.</div>
 </section>
 
-<section id="gallery">
-  <h2>Bilder</h2>
-  <div class="grid">
-    <div class="card"><img src="wohn1.jpeg"/></div>
-    <div class="card"><img src="wohn2.jpeg"/></div>
-    <div class="card"><img src="wohn3.jpeg"/></div>
-    <div class="card"><img src="wohn4.jpeg"/></div>
-    <div class="card"><img src="wohn5.jpeg"/></div>
-    <div class="card"><img src="wohn6.jpeg"/></div>
-    <div class="card"><img src="wohn7.jpeg"/></div>
-    <div class="card"><img src="wohn8.jpeg"/></div>
-  </div>
+<section>
+<h2>Warum wir?</h2>
+<div class="grid">
+<div class="card">Zuverlässig</div>
+<div class="card">Fair</div>
+<div class="card">Qualität</div>
+<div class="card">Flexibel</div>
+</div>
 </section>
 
-<section id="videos">
-  <h2>Videos</h2>
-  <div class="grid">
-    <div class="card"><video controls src="video1.mp4"></video></div>
-    <div class="card"><video controls src="video2.mp4"></video></div>
-  </div>
+<section>
+<h2>Rezensionen</h2>
+<div class="slider">
+<div class="slide"><div class="stars">★★★★★</div>Top Service – Alessio Colacchio</div>
+<div class="slide"><div class="stars">★★★★★</div>Mega Service – Adnann fnbr</div>
+<div class="slide"><div class="stars">★★★★★</div>Auto wie neu – Omer Nuhija</div>
+</div>
 </section>
 
-<section id="rechtliches">
-  <h2>Rechtliches</h2>
+<section>
+<h2>FAQ</h2>
+<div class="card"><b>Wohnungsbesichtigung kostenlos?</b><br>Ja meist kostenlos.<br><br><b>Unzufrieden?</b><br>Wir bessern nach bis zufrieden.</div>
+</section>
 
-  <div class="legal-box">
-    <h3>Impressum</h3>
-    Dampfglanzservice-Ademi – vollständiger rechtlicher Anbieter der Website. Verantwortlich für Inhalte, Kontakt: 076 502 49 98, info@dampfglanzservice-ademi.ch. Sämtliche Inhalte dienen der Unternehmensdarstellung.
-  </div>
+<section id="contact">
+<h2>Kontakt</h2>
+<div class="card">
+<form onsubmit="window.location='mailto:info@dampfglanzservice-ademi.ch';return false;">
+<input placeholder="Name" required><br><br>
+<input placeholder="Telefon"><br><br>
+<textarea placeholder="Nachricht" required></textarea><br><br>
+<button class="btn green">Absenden</button>
+</form>
+</div>
+</section>
 
-  <div class="legal-box">
-    <h3>Datenschutz</h3>
-    Personenbezogene Daten werden gemäss geltendem Datenschutzrecht verarbeitet. Keine Weitergabe an Dritte. Speicherung nur zur Bearbeitung von Anfragen.
-  </div>
+<section>
+<h2>Preise</h2>
+<div class="card">Preise abhängig von Aufwand, Verschmutzung und Budget – fair & transparent.</div>
+</section>
 
-  <div class="legal-box">
-    <h3>AGB</h3>
-    Dienstleistungen werden individuell vereinbart. Preise abhängig vom Aufwand. Storno 24h vorher. Keine Haftung bei höherer Gewalt. Mit Auftragserteilung Zustimmung.
-  </div>
+<section>
+<h2>Rechtliches</h2>
+<div class="card"><b>Impressum</b><br>Dampfglanzservice-Ademi, Schweiz, Tel: 076 502 49 98, info@dampfglanzservice-ademi.ch<br><br><b>Datenschutz</b><br>Daten werden nur zur Bearbeitung genutzt.<br><br><b>AGB</b><br>Individuelle Vereinbarung, Storno 24h, keine Haftung bei höherer Gewalt.</div>
 </section>
 
 <footer>&copy; 2026 Dampfglanzservice-Ademi</footer>
 
 <div class="fixed-buttons">
-  <a class="whatsapp" href="https://wa.me/41765024998">WhatsApp</a>
-  <a class="call" href="tel:+41765024998">Anrufen</a>
+<a class="wa" href="https://wa.me/41765024998">WhatsApp</a>
+<a class="call" href="tel:+41765024998">Anrufen</a>
 </div>
 
 <div class="cookie" id="cookie">
-  <strong>Cookie Zustimmung</strong><br>
-  Diese Website verwendet Cookies für optimale Nutzung.
-  <div style="display:flex;gap:10px;">
-    <button class="accept" onclick="document.getElementById('cookie').style.display='none'">Akzeptieren</button>
-    <button class="reject" onclick="document.getElementById('cookie').style.display='none'">Ablehnen</button>
-  </div>
+Cookies verwenden wir für bessere Erfahrung.
+<br><br>
+<button class="ok" onclick="document.getElementById('cookie').style.display='none'">Akzeptieren</button>
+<button class="no" onclick="document.getElementById('cookie').style.display='none'">Ablehnen</button>
 </div>
 
 </body>
