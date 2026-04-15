@@ -7,16 +7,16 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
-body{background:#f5f7fb;color:#111;line-height:1.6;padding-top:80px;}
+body{background:#f5f7fb;color:#111;line-height:1.6;padding-top:85px;}
 a{text-decoration:none;color:inherit;}
 
 /* HEADER */
 header{
-position:fixed;top:0;left:0;width:100%;height:80px;background:#fff;
+position:fixed;top:0;left:0;width:100%;height:85px;background:#fff;
 display:flex;align-items:center;justify-content:space-between;
 padding:0 14px;box-shadow:0 6px 20px rgba(0,0,0,0.08);z-index:9999;
 }
-.logo img{height:70px;width:auto;object-fit:contain;}
+.logo img{height:72px;object-fit:contain;}
 
 nav{display:flex;gap:10px;font-size:12px;font-weight:600;}
 nav a{padding:6px 8px;border-radius:8px;}
@@ -30,41 +30,40 @@ display:flex;align-items:center;justify-content:center;text-align:center;
 color:#fff;padding:20px;
 }
 .hero h1{font-size:22px;}
-.hero p{font-size:13px;margin-top:5px;}
+.hero p{font-size:13px;margin-top:6px;}
 
-.cta-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
-.btn{padding:12px 14px;border-radius:10px;font-weight:bold;font-size:13px;}
+.hero-buttons{
+display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px;
+}
+.btn{
+padding:12px 14px;border-radius:12px;font-weight:bold;font-size:13px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
 .green{background:#22c55e;color:#fff;}
 .blue{background:#2563eb;color:#fff;}
 .dark{background:#111827;color:#fff;}
 
 section{padding:45px 14px;max-width:1100px;margin:auto;}
-h2{font-size:20px;margin-bottom:12px;}
+h2{font-size:20px;margin-bottom:14px;}
 
-/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
 .card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 10px 25px rgba(0,0,0,0.08);}
 img,video{width:100%;border-radius:10px;}
 
-/* SLIDER ANIMATION */
-.slider{
-display:flex;overflow:hidden;position:relative;
-}
-.slide-track{
-display:flex;width:calc(300px * 10);
-animation:scroll 18s linear infinite;
-}
-.slide{
-width:300px;margin:10px;
-background:#fff;padding:14px;border-radius:14px;
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
-flex-shrink:0;
-}
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
-}
+/* CHECK ICON */
+.check{color:#22c55e;font-weight:bold;font-size:15px;text-shadow:0 2px 4px rgba(0,0,0,0.2);}
+
+/* SLIDER */
+.slider{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;}
+.slide{min-width:260px;background:#fff;padding:14px;border-radius:14px;box-shadow:0 10px 20px rgba(0,0,0,0.08);scroll-snap-align:start;}
 .stars{color:#fbbf24;}
+
+/* CONTACT FORM */
+.form-card{background:#fff;padding:18px;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,0.08);}
+input,select,textarea{
+width:100%;padding:10px;margin-top:8px;border-radius:10px;border:1px solid #ddd;font-size:13px;
+}
+textarea{min-height:100px;}
 
 /* FIXED BUTTONS */
 .fixed-buttons{
@@ -77,6 +76,10 @@ box-shadow:0 10px 25px rgba(0,0,0,0.35);
 .wa{background:#25D366;}
 .call{background:#2563eb;}
 
+/* BEFORE AFTER */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ba-title{font-weight:bold;margin-bottom:6px;}
+
 /* COOKIE */
 .cookie{
 position:fixed;bottom:0;width:100%;background:#111827;color:#fff;padding:16px;z-index:99999;
@@ -85,12 +88,11 @@ position:fixed;bottom:0;width:100%;background:#111827;color:#fff;padding:16px;z-
 .ok{background:#22c55e;color:#fff;}
 .no{background:#ef4444;color:#fff;}
 
-/* MOBILE */
 @media(max-width:768px){
 nav{display:none;}
 .hero{min-height:30vh;}
-.logo img{height:55px;}
-.fixed-buttons a{padding:22px 26px;font-size:17px;}
+.logo img{height:58px;}
+.ba-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -98,147 +100,198 @@ nav{display:none;}
 <body>
 
 <header>
-<div class="logo"><img src="logo.png" alt="Dampfglanzservice" /></div>
+<div class="logo"><img src="logo.png"></div>
 </header>
 
+<!-- HERO -->
 <div class="hero">
 <div>
 <h1>Dampfglanzservice-Ademi</h1>
-<p>Reinigung auf höchstem Niveau für Wohnungen & Fahrzeuge</p>
+<p>Reinigung auf höchstem Niveau – Wohnungen & Fahrzeuge</p>
 
-<div class="cta-row">
-<a class="btn green" href="mailto:info@dampfglanzservice-ademi.ch">Jetzt kostenloses Angebot</a>
+<div class="hero-buttons">
+<a class="btn green" href="mailto:info@dampfglanzservice-ademi.ch">Jetzt Angebot</a>
 <a class="btn blue" href="#contact">Leistung anfragen</a>
-<a class="btn dark" href="tel:+41765024998">Sofort anrufen</a>
+<a class="btn dark" href="tel:+41765024998">Anrufen</a>
 </div>
 </div>
 </div>
 
+<!-- LEISTUNGEN -->
 <section>
 <h2>Leistungen</h2>
 <div class="grid">
-<div class="card">Wohnungsreinigung</div>
-<div class="card">Fensterreinigung</div>
-<div class="card">Umzugsreinigung</div>
-<div class="card">Auto Innen- & Aussenreinigung</div>
-<div class="card">Büroreinigung</div>
-<div class="card">Grundreinigung</div>
+<div class="card"><span class="check">✔</span> Wohnungsreinigung</div>
+<div class="card"><span class="check">✔</span> Fensterreinigung</div>
+<div class="card"><span class="check">✔</span> Umzugsreinigung</div>
+<div class="card"><span class="check">✔</span> Auto Innen- & Aussenreinigung</div>
+<div class="card"><span class="check">✔</span> Büroreinigung</div>
+<div class="card"><span class="check">✔</span> Sonstige Reinigung</div>
 </div>
 </section>
 
+<!-- ÜBER UNS -->
 <section>
 <h2>Über Uns</h2>
 <div class="card">
-Wir sind Dampfglanzservice-Ademi – spezialisiert auf professionelle Reinigung von Wohnungen, Fahrzeugen und Gewerbeflächen. Unser Fokus liegt auf Qualität, Vertrauen und nachhaltiger Kundenzufriedenheit.
+Dampfglanzservice-Ademi ist ein professionelles Reinigungsunternehmen mit Hauptsitz in <b>Rorschach, St. Gallen</b>. 
+Wir sind spezialisiert auf Wohnungs-, Auto- und Gewerbereinigungen.
+Unser Ziel ist höchste Qualität, Zuverlässigkeit und Kundenzufriedenheit in der ganzen Ostschweiz.
+Wir arbeiten mit geschultem Personal, modernen Reinigungsmethoden und nachhaltigen Produkten.
 </div>
 </section>
 
+<!-- LEITBILD -->
 <section>
-<h2>Leitbild</h2>
+<h2>Unser Leitbild</h2>
 <div class="card">
-Wir arbeiten sauber, ehrlich und effizient. Unser Ziel ist höchste Qualität, respektvoller Umgang mit Kunden und konstante Verbesserung unserer Leistungen.
+✔ Qualität vor Quantität<br>
+✔ Respektvoller Umgang mit Kunden<br>
+✔ Saubere & effiziente Arbeitsweise<br>
+✔ Nachhaltige Reinigungslösungen<br>
+✔ Verlässlichkeit & Transparenz
 </div>
 </section>
 
+<!-- WARUM WIR -->
 <section>
 <h2>Warum uns wählen?</h2>
 <div class="grid">
-<div class="card">✔ Qualität & Präzision</div>
-<div class="card">✔ Faire & transparente Preise</div>
-<div class="card">✔ Zuverlässigkeit</div>
-<div class="card">✔ Flexible Termine</div>
+<div class="card"><span class="check">✔</span> 100% Zuverlässigkeit</div>
+<div class="card"><span class="check">✔</span> Faire Preise</div>
+<div class="card"><span class="check">✔</span> Hohe Qualität</div>
+<div class="card"><span class="check">✔</span> Flexible Termine</div>
 </div>
 </section>
 
+<!-- QUALITÄT -->
 <section>
 <h2>Qualitätskriterien</h2>
 <div class="card">
-✔ Transparente Offerten
-<br>✔ Klare Arbeitsdefinition
-<br>✔ Kontrolle nach Reinigung
-<br>✔ Kundenzufriedenheit im Fokus
-<br>✔ Nachhaltige Reinigungslösungen
+✔ Transparente Offerte<br>
+✔ Klare Arbeitsdefinition<br>
+✔ Endkontrolle nach Reinigung<br>
+✔ Kundenzufriedenheit im Fokus<br>
+✔ Professionelle Ausführung
 </div>
 </section>
 
+<!-- PREISE -->
 <section>
 <h2>Preise</h2>
 <div class="card">
-Unsere Preise richten sich nach Verschmutzungsgrad, Aufwand und Kundenbudget. Wir arbeiten fair, sozial und transparent nach Marktstandards.
+Unsere Preise richten sich nach Verschmutzungsgrad, Aufwand und Kundenbudget. 
+Wir arbeiten fair, sozial und nach marktüblichen Richtwerten.
 </div>
 </section>
 
+<!-- BEFORE AFTER -->
 <section>
-<h2>FAQ</h2>
+<h2>Vorher / Nachher Ergebnisse</h2>
+<div class="ba-grid">
 <div class="card">
-<b>Ist eine Besichtigung kostenlos?</b><br>Ja, in der Regel kostenlos.<br><br>
-<b>Was wenn ich nicht zufrieden bin?</b><br>Wir bieten Nachbesserung bis zur vollständigen Zufriedenheit.
+<div class="ba-title">Vorher Bad</div>
+<img src="bad-vorher.png">
+</div>
+<div class="card">
+<div class="ba-title">Nachher Bad</div>
+<img src="bad-nachher.png">
+</div>
+
+<div class="card"><img src="vorher-kuechenschublade.png"></div>
+<div class="card"><img src="nachher-kuechenschublade.png"></div>
+<div class="card"><img src="vorher-duschboden.png"></div>
+<div class="card"><img src="nachher-duschboden.png"></div>
+<div class="card"><img src="vorher-heizung.png"></div>
+<div class="card"><img src="nachher-heizung.png"></div>
+<div class="card"><img src="vorher-badzimmer.png"></div>
+<div class="card"><img src="nachher-badzimmer.png"></div>
 </div>
 </section>
 
-<section>
-<h2>Rezensionen</h2>
-<div class="slider">
-<div class="slide-track">
-<div class="slide"><div class="stars">★★★★★</div>Top Service – Alessio Colacchio</div>
-<div class="slide"><div class="stars">★★★★★</div>Mega Service – Adnann fnbr</div>
-<div class="slide"><div class="stars">★★★★★</div>Auto wie neu – Omer Nuhija</div>
-<div class="slide"><div class="stars">★★★★★</div>Sehr professionell & sauber</div>
-</div>
-</div>
-</section>
-
+<!-- PARTNER -->
 <section>
 <h2>Partner</h2>
 <div class="slider">
-<div class="slide-track">
-<div class="slide">entity["company","Comparis","Swiss comparison platform"] – Vergleich & Vertrauen</div>
-<div class="slide">entity["company","top_offerten","Swiss lead platform"] – Offerten Plattform</div>
-<div class="slide">entity["company","Ofri","Swiss service marketplace"] – Aufträge & Dienstleistungen</div>
-</div>
+<div class="slide"><img src="comparis.jpeg"></div>
+<div class="slide"><img src="top-offerten.jpeg"></div>
+<div class="slide"><img src="ofri.jpeg"></div>
 </div>
 </section>
 
+<!-- FAQ -->
+<section>
+<h2>FAQ – Häufige Fragen</h2>
+<div class="card">
+<b>Ist Wohnungsbesichtigung kostenlos?</b><br>Ja, meistens kostenlos.<br><br>
+<b>Was wenn ich nicht zufrieden bin?</b><br>Wir führen kostenlose Nachbesserungen durch bis Zufriedenheit erreicht ist.<br><br>
+<b>Wie schnell erhalte ich eine Offerte?</b><br>In der Regel innerhalb von 24 Stunden.<br><br>
+<b>Welche Reinigungen bieten Sie an?</b><br>Wohnung, Auto, Büro, Fenster, Umzug und Spezialreinigungen.<br><br>
+<b>Arbeiten Sie auch am Wochenende?</b><br>Ja, flexible Termine sind möglich.
+</div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
 <h2>Kontaktformular</h2>
-<div class="card">
+<div class="form-card">
 <form onsubmit="window.location='mailto:info@dampfglanzservice-ademi.ch';return false;">
-<select required>
+
+<label>Ich interessiere mich für:</label>
+<select>
 <option>Autoreinigung</option>
 <option>Wohnungsreinigung</option>
 <option>Fensterreinigung</option>
-<option>Weiteres Interesse</option>
-</select><br><br>
-<input placeholder="Name" required><br><br>
-<input placeholder="Telefon"><br><br>
-<textarea placeholder="Nachricht" required></textarea><br><br>
+<option>Sonstige</option>
+</select>
+
+<label>Name</label>
+<input required>
+
+<label>Telefon</label>
+<input>
+
+<label>Nachricht</label>
+<textarea></textarea>
+
+<label>Kontakt bevorzugt</label>
 <select>
-<option>Kontakt per Telefon</option>
-<option>Kontakt per Email</option>
-</select><br><br>
-<button class="btn green">Absenden</button>
+<option>Telefon</option>
+<option>Email</option>
+</select>
+
+<br>
+<button class="btn green">Anfrage senden</button>
 </form>
 </div>
 </section>
 
+<!-- RECHTLICHES -->
 <section>
 <h2>Rechtliches</h2>
 <div class="card">
-<b>Impressum</b><br>Dampfglanzservice-Ademi, Schweiz, Tel: 076 502 49 98, info@dampfglanzservice-ademi.ch<br><br>
-<b>Datenschutz</b><br>Personendaten werden vertraulich behandelt und nur zur Bearbeitung verwendet.<br><br>
-<b>AGB</b><br>Individuelle Vereinbarung, Zahlung nach Absprache, Storno 24h vorher, keine Haftung bei höherer Gewalt.
+<b>Impressum</b><br>
+Dampfglanzservice-Ademi, Rorschach SG, Schweiz<br>
+Tel: 076 502 49 98<br>
+info@dampfglanzservice-ademi.ch<br><br>
+<b>Datenschutz</b><br>
+Personendaten werden vertraulich behandelt und nur für Anfragen genutzt.<br><br>
+<b>AGB</b><br>
+Individuelle Vereinbarungen, Zahlung nach Absprache, Storno 24h, keine Haftung bei höherer Gewalt.
 </div>
 </section>
 
 <footer>&copy; 2026 Dampfglanzservice-Ademi</footer>
 
+<!-- FIXED BUTTONS -->
 <div class="fixed-buttons">
 <a class="wa" href="https://wa.me/41765024998">WhatsApp</a>
 <a class="call" href="tel:+41765024998">Anrufen</a>
 </div>
 
+<!-- COOKIE -->
 <div class="cookie" id="cookie">
-<b>Cookies Zustimmung</b> Diese Website nutzt Cookies für optimale Nutzung.
+<b>Cookies Zustimmung</b> Diese Website nutzt Cookies.
 <br><br>
 <button class="ok" onclick="document.getElementById('cookie').style.display='none'">Akzeptieren</button>
 <button class="no" onclick="document.getElementById('cookie').style.display='none'">Ablehnen</button>
