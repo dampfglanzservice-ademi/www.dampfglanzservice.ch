@@ -224,6 +224,33 @@
     .fab-phone:hover { box-shadow: 0 15px 35px rgba(169,15,26,0.6); }
     .fab svg { width: 30px; height: 30px; fill: white; }
 
+    /* COOKIE BANNER (3D Glasmorphismus) */
+    .cookie-banner {
+      position: fixed;
+      bottom: -150%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92%, 800px);
+      background: linear-gradient(145deg, rgba(20,20,22,0.92), rgba(10,10,12,0.95));
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-lg);
+      padding: 25px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 30px rgba(169,15,26,0.15);
+      backdrop-filter: blur(20px);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: bottom 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .cookie-banner.show { bottom: 30px; }
+    .cookie-content { flex: 1; }
+    .cookie-content h4 { margin-bottom: 8px; font-size: 1.2rem; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .cookie-content p { margin: 0; font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+    .cookie-content a { color: var(--accent); text-decoration: underline; font-weight: 600; }
+    .cookie-buttons { display: flex; gap: 12px; }
+    .cookie-buttons .btn { flex: 1; min-height: 48px; }
+
     /* Footer & Socials */
     footer { padding: 60px 0 40px; border-top: 1px solid rgba(255,255,255,0.08); background: #050506; margin-top: 60px; position: relative; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
@@ -257,6 +284,14 @@
       .fab-container { bottom: 20px; right: 20px; }
       .fab { width: 50px; height: 50px; }
       .fab svg { width: 24px; height: 24px; }
+      .cookie-banner { bottom: -200%; padding: 20px; width: calc(100% - 40px); left: 20px; transform: none; }
+      .cookie-banner.show { bottom: 20px; }
+      .cookie-buttons { flex-direction: column; }
+    }
+    @media (min-width: 768px) {
+      .cookie-banner { flex-direction: row; align-items: center; justify-content: space-between; }
+      .cookie-buttons { flex: 0 0 auto; flex-direction: row; }
+      .cookie-buttons .btn { padding: 0 24px; }
     }
   </style>
 </head>
@@ -511,7 +546,7 @@
                 Telefon / WhatsApp
               </h3>
               <p>Rufen Sie uns an oder schreiben Sie uns direkt über WhatsApp für eine schnelle Antwort.</p>
-              <a href="https://wa.me/41765024998" target="_blank" class="btn btn-dark" style="width: 100%; border-color: rgba(37,211,102,0.4);">
+              <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="btn btn-dark" style="width: 100%; border-color: rgba(37,211,102,0.4);">
                 <span style="color: #25D366; margin-right: 8px;">WhatsApp:</span> 076 502 4998
               </a>
             </div>
@@ -562,7 +597,7 @@
         <h4>Rechtliches & Service</h4>
         <ul class="footer-links">
           <li><a href="#impressum">Impressum</a></li>
-          <li><a href="#datenschutz">Datenschutzerklärung</a></li>
+          <li><a href="#datenschutz" id="datenschutz-link">Datenschutzerklärung</a></li>
           <li><a href="#agb">Allgemeine Geschäftsbedingungen (AGB)</a></li>
         </ul>
       </div>
@@ -581,8 +616,20 @@
     </a>
   </div>
 
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-content">
+      <h4>🍪 Wir verwenden Cookies</h4>
+      <p>Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Weitere Informationen erhalten Sie in unserer <a href="#datenschutz">Datenschutzerklärung</a>.</p>
+    </div>
+    <div class="cookie-buttons">
+      <button id="cookie-accept" class="btn btn-primary">Akzeptieren</button>
+      <button id="cookie-decline" class="btn btn-dark">Ablehnen</button>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // 1. Vorher/Nachher Slider Logik
       const containers = document.querySelectorAll('.ba-container');
       containers.forEach(container => {
         const slider = container.querySelector('.ba-slider');
@@ -594,6 +641,31 @@
           afterImage.style.clipPath = `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
           line.style.left = `${val}%`;
         });
+      });
+
+      // 2. Cookie Banner Logik
+      const cookieBanner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cookie-accept');
+      const declineBtn = document.getElementById('cookie-decline');
+
+      // Prüfen, ob der User bereits eine Auswahl getroffen hat
+      if (!localStorage.getItem('cookieConsent')) {
+        // Banner nach einer kurzen Verzögerung einblenden
+        setTimeout(() => {
+          cookieBanner.classList.add('show');
+        }, 1200);
+      }
+
+      // Klick auf "Akzeptieren"
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieBanner.classList.remove('show');
+      });
+
+      // Klick auf "Ablehnen"
+      declineBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        cookieBanner.classList.remove('show');
       });
     });
   </script>
