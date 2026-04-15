@@ -18,8 +18,10 @@
       --muted-2: #9ca3ab;
       --accent: #a90f1a;
       --accent-soft: rgba(169,15,26,0.14);
+      --whatsapp: #25D366;
       --shadow: 0 20px 60px rgba(0,0,0,0.35);
       --shadow-soft: 0 12px 28px rgba(0,0,0,0.22);
+      --shadow-glow: 0 0 25px rgba(169,15,26,0.4);
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 18px;
@@ -50,59 +52,20 @@
       z-index: 2;
     }
 
-    .bubbles,
-    .glow,
-    .grid-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .grid-overlay {
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.5;
-    }
-
-    .glow::before,
-    .glow::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.16;
-    }
-
-    .glow::before {
-      width: 32vw;
-      height: 32vw;
-      left: -8vw;
-      top: -8vw;
-      background: rgba(255,255,255,0.16);
-    }
-
-    .glow::after {
-      width: 26vw;
-      height: 26vw;
-      right: -6vw;
-      top: 18vh;
-      background: rgba(169,15,26,0.15);
-    }
+    /* Hintergründe & Animationen */
+    .bubbles, .glow, .grid-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .grid-overlay { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.5; }
+    .glow::before, .glow::after { content: ""; position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.16; }
+    .glow::before { width: 32vw; height: 32vw; left: -8vw; top: -8vw; background: rgba(255,255,255,0.16); }
+    .glow::after { width: 26vw; height: 26vw; right: -6vw; top: 18vh; background: rgba(169,15,26,0.15); }
 
     .bubbles span {
-      position: absolute;
-      bottom: -100px;
-      border-radius: 50%;
+      position: absolute; bottom: -100px; border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.16);
       background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), rgba(255,255,255,0.03));
       box-shadow: inset 0 0 20px rgba(255,255,255,0.08), 0 0 16px rgba(255,255,255,0.05);
-      animation: bubbleUp linear infinite;
-      backdrop-filter: blur(2px);
+      animation: bubbleUp linear infinite; backdrop-filter: blur(2px);
     }
-
     .bubbles span:nth-child(1) { left: 7%; width: 62px; height: 62px; animation-duration: 18s; }
     .bubbles span:nth-child(2) { left: 18%; width: 18px; height: 18px; animation-duration: 11s; animation-delay: -3s; }
     .bubbles span:nth-child(3) { left: 31%; width: 34px; height: 34px; animation-duration: 14s; animation-delay: -5s; }
@@ -111,578 +74,189 @@
     .bubbles span:nth-child(6) { left: 74%; width: 26px; height: 26px; animation-duration: 13s; animation-delay: -1s; }
     .bubbles span:nth-child(7) { left: 88%; width: 66px; height: 66px; animation-duration: 20s; animation-delay: -6s; }
 
-    @keyframes bubbleUp {
-      0% { transform: translateY(0) scale(0.9); opacity: 0; }
-      15% { opacity: 0.75; }
-      100% { transform: translateY(-120vh) scale(1.1); opacity: 0; }
-    }
+    @keyframes bubbleUp { 0% { transform: translateY(0) scale(0.9); opacity: 0; } 15% { opacity: 0.75; } 100% { transform: translateY(-120vh) scale(1.1); opacity: 0; } }
+    @keyframes floatCard { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+    @keyframes shine { 0% { transform: translateX(-140%) skewX(-18deg); } 100% { transform: translateX(240%) skewX(-18deg); } }
 
-    @keyframes floatCard {
-      0%,100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-
-    @keyframes shine {
-      0% { transform: translateX(-140%) skewX(-18deg); }
-      100% { transform: translateX(240%) skewX(-18deg); }
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .section {
-      padding: 92px 0;
-      position: relative;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.10);
-      color: var(--muted);
-      font-size: 0.88rem;
-      letter-spacing: 0.02em;
-      margin-bottom: 18px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(169,15,26,0.65);
-    }
-
+    /* Typografie & Layout */
+    .section { padding: 92px 0; position: relative; }
+    .eyebrow { display: inline-flex; gap: 10px; align-items: center; padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.10); color: var(--muted); font-size: 0.88rem; letter-spacing: 0.02em; margin-bottom: 18px; box-shadow: var(--shadow-soft); }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(169,15,26,0.65); }
     h1, h2, h3, h4 { margin: 0 0 16px; line-height: 1.08; }
     h1 { font-size: clamp(2.5rem, 5vw, 5.4rem); letter-spacing: -0.04em; }
     h2 { font-size: clamp(2rem, 3vw, 3.25rem); letter-spacing: -0.03em; }
     h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); }
     p { margin: 0 0 16px; color: var(--muted); line-height: 1.7; }
+    .lead { font-size: clamp(1.02rem, 1.4vw, 1.18rem); max-width: 760px; }
 
-    .lead {
-      font-size: clamp(1.02rem, 1.4vw, 1.18rem);
-      max-width: 760px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 80;
-      backdrop-filter: blur(18px);
-      background: rgba(8,8,10,0.74);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 12px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .brand-logo {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.16);
-      box-shadow: var(--shadow-soft);
-      flex: 0 0 auto;
-    }
-
-    .brand-text {
-      min-width: 0;
-    }
-
-    .brand-text strong {
-      display: block;
-      font-size: 1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .brand-text span {
-      display: block;
-      color: var(--muted-2);
-      font-size: 0.9rem;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.95rem;
-      transition: 0.25s ease;
-    }
-
+    /* Header */
+    header { position: sticky; top: 0; z-index: 80; backdrop-filter: blur(18px); background: rgba(8,8,10,0.74); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .brand-logo { width: 54px; height: 54px; border-radius: 16px; overflow: hidden; background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.16); box-shadow: var(--shadow-soft); flex: 0 0 auto; }
+    .brand-text { min-width: 0; }
+    .brand-text strong { display: block; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand-text span { display: block; color: var(--muted-2); font-size: 0.9rem; }
+    .nav-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; }
+    .nav-links a { color: var(--muted); font-size: 0.95rem; transition: 0.25s ease; }
     .nav-links a:hover { color: #fff; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+    /* Buttons */
+    .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.14); background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06)); color: #fff; box-shadow: var(--shadow-soft); transition: 0.25s ease; overflow: hidden; cursor: pointer; font-weight: 700; text-align: center; }
+    .btn::after { content: ""; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent); animation: shine 4.8s linear infinite; pointer-events: none; }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
+    .btn-primary { background: linear-gradient(180deg, #c21624 0%, #8f0f19 100%); border-color: rgba(255,255,255,0.10); }
+    .btn-dark { background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05)); }
 
-    .btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 18px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-      color: #fff;
-      box-shadow: var(--shadow-soft);
-      transition: 0.25s ease;
-      overflow: hidden;
-      cursor: pointer;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      width: 40%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
-      animation: shine 4.8s linear infinite;
-      pointer-events: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.22);
-    }
-
-    .btn-primary {
-      background: linear-gradient(180deg, #c21624 0%, #8f0f19 100%);
-      border-color: rgba(255,255,255,0.10);
-    }
-
-    .btn-dark {
-      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
-    }
-
-    .btn-ghost {
-      background: rgba(255,255,255,0.04);
-    }
-
-    .hero {
-      padding: 62px 0 34px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .hero-copy {
-      position: relative;
-    }
-
+    /* Hero */
+    .hero { padding: 62px 0 34px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
     .hero-copy h1 span { color: #f2f2f2; }
+    .hero-actions, .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .badge { padding: 12px 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; color: var(--muted); font-size: 0.95rem; box-shadow: var(--shadow-soft); }
+    .hero-card { padding: 28px; border-radius: var(--radius-xl); background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.14); box-shadow: var(--shadow); animation: floatCard 5.2s ease-in-out infinite; }
+    .hero-visual { display: grid; gap: 16px; }
+    .pricing-chip, .service-chip { padding: 16px; border-radius: 18px; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.10); }
+    .price-big { font-size: 2rem; font-weight: 900; color: #fff; }
+    .tick-list li, .hero-list li { display: flex; gap: 10px; color: var(--muted); align-items: flex-start; margin-bottom: 8px;}
+    .tick-list li::before, .hero-list li::before { content: "✓"; width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--accent-soft); color: #fff; font-weight: 800; flex-shrink: 0; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .stat { padding: 16px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); text-align: center; }
 
-    .hero-copy .lead strong {
-      color: #fff;
-      font-weight: 800;
-    }
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
 
-    .hero-actions,
-    .cta-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 22px;
-    }
+    /* Cards */
+    .card { padding: 24px; border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.12); box-shadow: var(--shadow-soft); }
+    .icon-badge { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.14); margin-bottom: 16px; font-size: 1.35rem; }
 
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .badge {
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 16px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .hero-card {
-      position: relative;
-      padding: 28px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      animation: floatCard 5.2s ease-in-out infinite;
-      transform-style: preserve-3d;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 34%);
-      pointer-events: none;
-    }
-
-    .hero-visual {
-      display: grid;
-      gap: 16px;
-    }
-
-    .pricing-chip,
-    .service-chip {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.18);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-    }
-
-    .pricing-chip strong,
-    .service-chip strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-
-    .price-big {
-      font-size: 2rem;
-      font-weight: 900;
-      color: #fff;
-    }
-
-    .hero-list {
-      display: grid;
-      gap: 10px;
-      margin: 18px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .hero-list li,
-    .tick-list li {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: var(--muted);
-    }
-
-    .hero-list li::before,
-    .tick-list li::before {
-      content: "✓";
-      flex: 0 0 auto;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      display: inline-grid;
-      place-items: center;
-      background: var(--accent-soft);
-      color: #fff;
-      font-weight: 800;
-      margin-top: 1px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.09);
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.45rem;
-      margin-bottom: 6px;
-    }
-
-    .grid-2,
-    .grid-3,
-    .grid-4 {
-      display: grid;
-      gap: 18px;
-    }
-
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-    .card {
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-      transform-style: preserve-3d;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: auto -20% 100% auto;
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);
-      opacity: 0.16;
-    }
-
-    .icon-badge {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
-      border: 1px solid rgba(255,255,255,0.14);
-      margin-bottom: 16px;
-      font-size: 1.35rem;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .service-card {
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-
-    .service-card p { margin-bottom: 14px; }
-    .service-card .btn { margin-top: auto; }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .tick-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 12px;
-    }
-
-    /* 3D Before/After Styles */
-    .ba-container {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/10;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transform: perspective(1000px) rotateX(0) rotateY(0);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      background: #000;
-      cursor: ew-resize;
-    }
-    
-    .ba-container:hover {
-      transform: perspective(1000px) translateY(-5px) rotateX(1deg) rotateY(-1deg);
-      box-shadow: 0 25px 50px rgba(169,15,26,0.25);
-    }
-
-    .ba-image {
-      position: absolute;
-      top: 0; left: 0; 
-      width: 100%; height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
+    /* Before/After Slider */
+    .ba-container { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); transform: perspective(1000px); transition: transform 0.4s ease, box-shadow 0.4s ease; background: #000; cursor: ew-resize; }
+    .ba-container:hover { transform: perspective(1000px) translateY(-5px) rotateX(1deg) rotateY(-1deg); box-shadow: 0 25px 50px rgba(169,15,26,0.25); }
+    .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
     .ba-before { z-index: 1; }
-    .ba-after {
-      z-index: 2;
-      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-    }
-
-    .ba-slider {
-      position: absolute;
-      appearance: none;
-      -webkit-appearance: none;
-      width: 100%; height: 100%;
-      background: transparent;
-      outline: none;
-      margin: 0;
-      top: 0; left: 0;
-      z-index: 3;
-    }
-
-    .ba-slider::-webkit-slider-thumb {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 4px; height: 100vh;
-      background: transparent;
-      cursor: ew-resize;
-    }
-
-    .ba-line {
-      position: absolute;
-      top: 0; left: 50%;
-      width: 4px; height: 100%;
-      background: #fff;
-      z-index: 2;
-      pointer-events: none;
-      box-shadow: 0 0 15px rgba(0,0,0,0.8);
-      transform: translateX(-50%);
-    }
-
-    .ba-line::after {
-      content: "↔️";
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 36px; height: 36px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-weight: bold;
-      font-size: 1.1rem;
-      border: 3px solid #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    .ba-label {
-      position: absolute;
-      bottom: 15px;
-      padding: 6px 14px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.2);
-      pointer-events: none;
-    }
-
+    .ba-after { z-index: 2; clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
+    .ba-slider { position: absolute; appearance: none; -webkit-appearance: none; width: 100%; height: 100%; background: transparent; outline: none; margin: 0; top: 0; left: 0; z-index: 3; }
+    .ba-slider::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 4px; height: 100vh; background: transparent; cursor: ew-resize; }
+    .ba-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: #fff; z-index: 2; pointer-events: none; box-shadow: 0 0 15px rgba(0,0,0,0.8); transform: translateX(-50%); }
+    .ba-line::after { content: "↔️"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: var(--accent); color: #fff; border-radius: 50%; display: grid; place-items: center; font-weight: bold; border: 3px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+    .ba-label { position: absolute; bottom: 15px; padding: 6px 14px; background: rgba(0,0,0,0.6); color: #fff; border-radius: 20px; font-size: 0.85rem; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2); pointer-events: none; }
     .label-before { left: 15px; z-index: 1; }
     .label-after { right: 15px; z-index: 3; }
 
     /* Media & Partners */
-    .media-card {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-soft);
-    }
-    .media-card video, .media-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .media-card { border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow-soft); transition: transform 0.3s; }
+    .media-card:hover { transform: scale(1.02); }
+    .media-card video, .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .media-card video { aspect-ratio: 16/9; }
+    .partner-logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.03); border-radius: var(--radius-xl); border: 1px solid rgba(255,255,255,0.08); }
+    .partner-logos img { height: 60px; border-radius: 12px; object-fit: contain; background: #fff; padding: 8px 16px; opacity: 0.85; transition: all 0.3s ease; box-shadow: var(--shadow-soft); }
+    .partner-logos img:hover { opacity: 1; transform: translateY(-3px) scale(1.05); }
 
-    .partner-logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 40px;
-      padding: 30px;
-      background: rgba(255,255,255,0.03);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.08);
+    /* Google Reviews 3D Swipe */
+    .reviews-scroll { display: flex; gap: 24px; overflow-x: auto; padding: 30px 10px; scroll-snap-type: x mandatory; perspective: 1200px; -webkit-overflow-scrolling: touch; }
+    .reviews-scroll::-webkit-scrollbar { height: 8px; }
+    .reviews-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+    .review-3d-card {
+      min-width: 320px; max-width: 380px; scroll-snap-align: center; flex: 0 0 auto;
+      background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 25px;
+      transform-style: preserve-3d; transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: rotateY(15deg) scale(0.9); opacity: 0.8; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .partner-logos img {
-      height: 60px;
-      border-radius: 12px;
-      object-fit: contain;
-      background: #fff;
-      padding: 8px 16px;
-      opacity: 0.85;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-soft);
-    }
-    .partner-logos img:hover {
-      opacity: 1;
-      transform: translateY(-3px) scale(1.05);
-    }
+    .reviews-scroll:hover .review-3d-card { opacity: 0.5; transform: rotateY(15deg) scale(0.9); }
+    .reviews-scroll .review-3d-card:hover { opacity: 1; transform: rotateY(0deg) scale(1.05) translateZ(30px); box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 0 1px var(--accent); z-index: 10; }
+    .review-stars { color: #FFD700; font-size: 1.2rem; margin-bottom: 10px; letter-spacing: 2px; }
+    .review-author { display: flex; align-items: center; gap: 12px; margin-top: 15px; }
+    .review-author-img { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; font-weight: bold; }
+    .review-google-icon { width: 24px; height: 24px; margin-left: auto; }
 
-    /* Restliche Styles aus dem Original... */
-    .faq { display: grid; gap: 14px; margin-top: 22px; }
-    .faq-item { border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); overflow: hidden; box-shadow: var(--shadow-soft); }
-    .faq-item summary { cursor: pointer; list-style: none; padding: 20px 22px; font-weight: 700; position: relative; }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--muted-2); font-size: 1.4rem; }
-    .faq-item[open] summary::after { content: "−"; }
-    .faq-item .faq-body { padding: 0 22px 22px; }
+    /* --- KONTAKT FORMULAR REDESIGN --- */
+    .contact-wrapper { display: grid; grid-template-columns: 1.3fr 0.8fr; gap: 40px; align-items: stretch; margin-top: 30px; }
+    
+    .form-3d-card {
+      background: linear-gradient(145deg, rgba(20,20,22,0.9), rgba(10,10,12,0.95));
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+      position: relative; overflow: hidden; backdrop-filter: blur(20px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease; transform-style: preserve-3d;
+    }
+    .form-3d-card:hover { transform: translateY(-5px) rotateX(1deg); box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(169,15,26,0.15); }
+    .form-3d-card::before { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transform: skewX(-20deg); animation: shine 6s infinite; pointer-events: none; }
+    
+    .form-group { position: relative; margin-bottom: 24px; }
+    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); transition: color 0.3s; }
+    .form-group:focus-within label { color: #fff; }
+    
+    .form-control {
+      width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; border-radius: 14px; padding: 16px 18px; font-size: 1rem;
+      transition: all 0.3s ease; outline: none; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(169,15,26,0.2), inset 0 2px 10px rgba(0,0,0,0.3); background: rgba(0,0,0,0.6); }
+    textarea.form-control { min-height: 140px; resize: vertical; }
+    select.form-control option { background: #111; color: #fff; }
 
-    footer { padding: 36px 0 54px; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.18); margin-top: 60px; }
-    .footer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr; gap: 22px; }
-    .subtle { color: var(--muted-2); font-size: 0.92rem; }
+    .btn-submit {
+      width: 100%; padding: 18px; font-size: 1.1rem; border-radius: 14px; border: none;
+      background: linear-gradient(135deg, #c21624, #8f0f19); color: white; font-weight: bold;
+      cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 20px rgba(169,15,26,0.3); text-transform: uppercase; letter-spacing: 1px;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(169,15,26,0.5); background: linear-gradient(135deg, #d81a29, #a3111d); }
+
+    .contact-info-panel { display: flex; flex-direction: column; gap: 20px; }
+    .info-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 30px; transition: 0.3s; }
+    .info-card:hover { background: rgba(255,255,255,0.06); transform: translateX(5px); border-color: rgba(255,255,255,0.15); }
+    .info-card h3 { display: flex; align-items: center; gap: 10px; color: #fff; margin-bottom: 12px; }
+    .info-card p { color: var(--muted); line-height: 1.6; margin-bottom: 15px; }
+
+    /* Floating Action Buttons (FABs) */
+    .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 100; }
+    .fab { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .fab:hover { transform: scale(1.15) translateY(-5px); }
+    .fab-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+    .fab-whatsapp:hover { box-shadow: 0 15px 35px rgba(37,211,102,0.6); }
+    .fab-phone { background: linear-gradient(135deg, #c21624, #8f0f19); }
+    .fab-phone:hover { box-shadow: 0 15px 35px rgba(169,15,26,0.6); }
+    .fab svg { width: 30px; height: 30px; fill: white; }
+
+    /* Footer & Socials */
+    footer { padding: 60px 0 40px; border-top: 1px solid rgba(255,255,255,0.08); background: #050506; margin-top: 60px; position: relative; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 1.2rem; margin-bottom: 20px; }
+    .footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .footer-links a { color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+    .social-btn { width: 45px; height: 45px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; justify-content: center; align-items: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+    .social-btn svg { width: 22px; height: 22px; fill: #fff; transition: 0.3s; }
+    .social-btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+    .footer-bottom { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--muted-2); font-size: 0.85rem; }
+
     .anchor-offset { scroll-margin-top: 90px; }
 
+    /* Responsive */
     @media (max-width: 1080px) {
-      .hero-grid, .split, .footer-grid, .grid-4 { grid-template-columns: 1fr 1fr; }
+      .hero-grid, .split, .grid-4 { grid-template-columns: 1fr 1fr; }
       .grid-3 { grid-template-columns: 1fr 1fr; }
-      .nav { flex-wrap: wrap; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
-
     @media (max-width: 760px) {
       .section { padding: 74px 0; }
-      .hero { padding-top: 34px; }
-      .hero-grid, .grid-2, .grid-3, .grid-4, .split, .footer-grid, .form-grid { grid-template-columns: 1fr; }
+      .hero-grid, .grid-2, .grid-3, .split, .footer-grid { grid-template-columns: 1fr; }
       .nav-links { order: 3; width: 100%; justify-content: flex-start; overflow-x: auto; padding-bottom: 6px; }
       .nav-actions { width: 100%; justify-content: flex-start; }
       .stats { grid-template-columns: 1fr; }
-      .btn { width: 100%; }
-      .hero-actions .btn, .cta-row .btn { width: auto; flex: 1 1 240px; }
       .partner-logos img { height: 45px; }
-      h1 { font-size: 2.55rem; }
+      .form-3d-card { padding: 25px; }
+      .fab-container { bottom: 20px; right: 20px; }
+      .fab { width: 50px; height: 50px; }
+      .fab svg { width: 24px; height: 24px; }
     }
   </style>
 </head>
@@ -701,20 +275,18 @@
         </div>
         <div class="brand-text">
           <strong>Dampfglanzservice-Ademi</strong>
-          <span>Reinigungsfirma aus Rorschach, St. Gallen</span>
+          <span>Reinigungsfirma Rorschach</span>
         </div>
       </a>
       <nav class="nav-links" aria-label="Hauptnavigation">
         <a href="#leistungen">Leistungen</a>
         <a href="#ueber-uns">Über uns</a>
-        <a href="#leitbild">Leitbild</a>
         <a href="#galerie">Galerie</a>
+        <a href="#bewertungen">Bewertungen</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
-
       <div class="nav-actions">
         <a class="btn btn-dark" href="tel:+41765024998">📞 076 502 4998</a>
-        <a class="btn btn-primary" href="https://wa.me/41765024998" target="_blank" rel="noopener">💬 WhatsApp</a>
       </div>
     </div>
   </header>  
@@ -726,20 +298,16 @@
           <div class="eyebrow">Schweizweit nach Vereinbarung · Sauberkeit mit System</div>
           <h1>Reinheit, die man sieht. <span>Qualität, die bleibt.</span></h1>
           <p class="lead">
-            <strong>Dampfglanzservice-Ademi</strong> ist Ihre Reinigungsfirma aus Rorschach für <strong>Autoreinigung, Wohnungsreinigung, Endreinigung mit Abnahmegarantie, Hausreinigung, Fensterreinigung sowie Gewerbereinigung</strong>.
-            Wir arbeiten sauber, zuverlässig, kundenorientiert und mit hohem Anspruch an Hygiene, Werterhalt und Resultat.
+            <strong>Dampfglanzservice-Ademi</strong> ist Ihre Reinigungsfirma aus Rorschach für <strong>Autoreinigung, Wohnungsreinigung, Endreinigung mit Abnahmegarantie, Hausreinigung, Fenster- und Gewerbereinigung</strong>.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#kontakt">Jetzt kostenloses Angebot anfordern</a>
+            <a class="btn btn-primary" href="#kontakt">Kostenlose Offerte anfordern</a>
             <a class="btn btn-dark" href="#leistungen">Leistungen ansehen</a>
-            <a class="btn btn-ghost" href="https://wa.me/41765024998" target="_blank" rel="noopener">Jetzt per WhatsApp anfragen</a>
           </div>
-
           <div class="hero-badges">
             <div class="badge">Autoreinigung ab CHF 99</div>
             <div class="badge">Abholservice + CHF 40</div>
-            <div class="badge">Ersatzauto inklusive · bis 40 km</div>
-            <div class="badge">Kostenlose Offerte</div>
+            <div class="badge">Ersatzauto inkl. · bis 40 km</div>
           </div>
         </div>
 
@@ -748,29 +316,16 @@
             <div class="pricing-chip">
               <strong>Autoreinigung mit Dampfglanz-Finish</strong>
               <div class="price-big">ab CHF 99</div>
-              <p>Innen- und Aussenreinigung mit sorgfältigem Vorgehen, je nach Verschmutzungsgrad und Aufwand.</p>
             </div>
-
             <ul class="hero-list">
               <li>Auto Innen- & Aussenbereich</li>
-              <li>Wohnungen & Häuser</li>
-              <li>Endreinigung mit Abnahmegarantie</li>
-              <li>Büro, Lager, Küche und weitere Gewerberäume</li>
-              <li>Fenster, Glasflächen und Detailreinigung</li>
+              <li>Wohnungen & Umzugsreinigung (Abnahmegarantie)</li>
+              <li>Büro, Lager & Gewerbe</li>
             </ul>
-
             <div class="stats">
-              <div class="stat"><strong>100%</strong><span class="subtle">Fokus auf Kundenzufriedenheit</span></div>
-              <div class="stat"><strong>24h</strong><span class="subtle">schnelle Offerten in vielen Fällen</span></div>
-              <div class="stat"><strong>CH</strong><span class="subtle">Einsätze in der Schweiz nach Vereinbarung</span></div>
-            </div>
-          </div>
-
-          <div class="service-chip">
-            <strong>Warum Kundinnen und Kunden anfragen</strong>
-            <p>Transparente Offerten, direkte Kommunikation, präzise Ausführung, faire Preisgestaltung und eine Arbeitsweise mit viel Liebe zum Detail.</p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="#kontakt">Jetzt anfragen</a>
+              <div class="stat"><strong>100%</strong><span class="subtle">Zufriedenheit</span></div>
+              <div class="stat"><strong>24h</strong><span class="subtle">Offerten</span></div>
+              <div class="stat"><strong>CH</strong><span class="subtle">Einsatzgebiet</span></div>
             </div>
           </div>
         </div>
@@ -781,65 +336,13 @@
       <div class="container">
         <div class="eyebrow">Leistungen</div>
         <h2>Unsere Reinigungsleistungen im Überblick</h2>
-        <p class="lead">Ob Auto, Wohnung, Haus oder Gewerberäume: Wir bieten Ihnen eine saubere, gut organisierte und transparente Ausführung – angepasst an Ihren Bedarf.</p>
-
         <div class="grid-3" style="margin-top:28px;">
-          <article class="card service-card">
-            <div class="icon-badge">🚗</div>
-            <h3>Autoreinigung innen & aussen</h3>
-            <p>Gründliche Fahrzeuginnenreinigung, Aussenreinigung, Polster- und Oberflächenpflege, Felgen, Details und sichtbare Auffrischung für Ihr Fahrzeug.</p>
-            <ul class="tick-list">
-              <li>Autoreinigung ab CHF 99</li>
-              <li>Abholservice zusätzlich CHF 40</li>
-              <li>Ersatzauto inklusive und bis 40 km berücksichtigt</li>
-            </ul>
-            <div class="cta-row"><a class="btn btn-dark" href="#kontakt">Leistung anfragen</a></div>
-          </article>
-
-          <article class="card service-card">
-            <div class="icon-badge">🏠</div>
-            <h3>Wohnungsreinigung & Endreinigung</h3>
-            <p>Regelmässige oder einmalige Reinigung von Wohnungen inklusive Zusatzoption für Endreinigung mit Abnahmegarantie.</p>
-            <ul class="tick-list">
-              <li>Wohnungsreinigung nach Bedarf</li>
-              <li>Umzugs- und Endreinigung</li>
-              <li>Abnahmegarantie nach Vereinbarung</li>
-            </ul>
-            <div class="cta-row"><a class="btn btn-dark" href="#kontakt">Jetzt kostenloses Angebot anfordern</a></div>
-          </article>
-
-          <article class="card service-card">
-            <div class="icon-badge">🏢</div>
-            <h3>Gewerbereinigung</h3>
-            <p>Saubere Arbeitsumgebungen für Büro, Lager, Praxis, Küche und weitere Gewerbeflächen – gründlich, termintreu und klar abgesprochen.</p>
-            <ul class="tick-list">
-              <li>Büroreinigung</li>
-              <li>Lager- und Nutzflächen</li>
-              <li>Küchen und Aufenthaltsbereiche</li>
-            </ul>
-            <div class="cta-row"><a class="btn btn-dark" href="#kontakt">Abklären, ob wir es machen</a></div>
-          </article>
-
-          <article class="card service-card">
-            <div class="icon-badge">🪟</div>
-            <h3>Fenster- & Glasreinigung</h3>
-            <p>Saubere Fenster, Glasfronten und Rahmen für private und gewerbliche Objekte – klar, gepflegt und repräsentativ.</p>
-            <div class="cta-row"><a class="btn btn-dark" href="#kontakt">Fensterreinigung anfragen</a></div>
-          </article>
-
-          <article class="card service-card">
-            <div class="icon-badge">🛋️</div>
-            <h3>Polster- & Detailreinigung</h3>
-            <p>Reinigung von Polstern, Oberflächen und schwer erreichbaren Bereichen mit genauer Arbeitsweise und Fokus auf Hygiene und Frische.</p>
-            <div class="cta-row"><a class="btn btn-dark" href="#kontakt">Weitere Leistung anfragen</a></div>
-          </article>
-
-          <article class="card service-card">
-            <div class="icon-badge">✨</div>
-            <h3>Weitere Reinigungen</h3>
-            <p>Sie benötigen eine spezielle Reinigung? Schreiben Sie uns kurz Ihr Anliegen. Wir prüfen Ihren Bedarf und sagen Ihnen ehrlich, ob und wie wir helfen können.</p>
-            <div class="cta-row"><a class="btn btn-primary" href="#kontakt">Leistung abfragen</a></div>
-          </article>
+          <article class="card"><div class="icon-badge">🚗</div><h3>Autoreinigung</h3><p>Gründliche Innen- & Aussenreinigung, Polsterpflege und Detailaufbereitung.</p></article>
+          <article class="card"><div class="icon-badge">🏠</div><h3>Wohnungsreinigung</h3><p>Regelmässige Reinigung oder Endreinigung inkl. garantierter Wohnungsabgabe.</p></article>
+          <article class="card"><div class="icon-badge">🏢</div><h3>Gewerbereinigung</h3><p>Büros, Praxen und Lagerflächen – stets ein sauberes Arbeitsumfeld.</p></article>
+          <article class="card"><div class="icon-badge">🪟</div><h3>Fensterreinigung</h3><p>Streifenfreie Glasfronten und Rahmen für den perfekten Durchblick.</p></article>
+          <article class="card"><div class="icon-badge">🛋️</div><h3>Polsterreinigung</h3><p>Tiefenreinigung für Sofas, Sitze und Textilien aller Art.</p></article>
+          <article class="card"><div class="icon-badge">✨</div><h3>Spezialreinigungen</h3><p>Auf Anfrage prüfen wir gerne individuelle Reinigungswünsche für Sie.</p></article>
         </div>
       </div>
     </section>
@@ -848,70 +351,18 @@
       <div class="container split">
         <div>
           <div class="eyebrow">Über uns</div>
-          <h2>Wer wir sind und worauf wir spezialisiert sind</h2>
-          <p>Dampfglanzservice-Ademi ist eine Reinigungsfirma mit Sitz in Rorschach, St. Gallen. Wir betreuen Privat- und Geschäftskundschaft mit einem klaren Anspruch: saubere Resultate, faire Kommunikation und zuverlässig eingehaltene Abmachungen.</p>
-          <p>Unsere Spezialisierung liegt auf der professionellen Reinigung von <strong>Autos, Wohnungen, Häusern, Fenstern und Gewerberäumen</strong>. Besonders wichtig sind uns dabei Sorgfalt, Hygiene, Detailarbeit und ein Resultat, das sichtbar überzeugt.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#kontakt">Jetzt anfragen</a>
-            <a class="btn btn-dark" href="#leitbild">Unser Leitbild</a>
-          </div>
+          <h2>Wer wir sind & unsere Philosophie</h2>
+          <p>Dampfglanzservice-Ademi ist ein Reinigungsunternehmen aus Rorschach, SG. Wir stehen für kompromisslose Sauberkeit, Termintreue und transparente Kommunikation.</p>
+          <p>Egal ob Ihr Fahrzeug neuen Glanz benötigt oder Ihre Wohnung übergabebereit gemacht werden muss: Wir arbeiten detailversessen und mit höchstem Respekt vor Ihrem Eigentum.</p>
+          <ul class="tick-list" style="margin-top: 20px;">
+            <li>Transparente Preisgestaltung ohne versteckte Kosten</li>
+            <li>Höchste Sorgfalt bis ins letzte Detail</li>
+            <li>Persönlicher Kundenkontakt & direkte Erreichbarkeit</li>
+          </ul>
         </div>
-
         <div class="grid-2">
-          <div class="card">
-            <div class="icon-badge">🎯</div>
-            <h3>Warum uns wählen?</h3>
-            <ul class="tick-list">
-              <li>Direkte Kommunikation</li>
-              <li>Gründliche & saubere Arbeit</li>
-              <li>Faire Offerten</li>
-              <li>Flexibilität & Qualität</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="icon-badge">🤝</div>
-            <h3>Was uns wichtig ist</h3>
-            <ul class="tick-list">
-              <li>Saubere Ergebnisse</li>
-              <li>Ehrliches Arbeiten</li>
-              <li>Faire Preisgestaltung</li>
-              <li>Langfristige Zufriedenheit</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="eyebrow">Qualitätskriterien</div>
-        <h2>5 Punkte, nach denen wir arbeiten</h2>
-        <div class="grid-3 quality-grid" style="margin-top:28px;">
-          <article class="card">
-            <div class="icon-badge">1</div>
-            <h3>Transparente Beschreibung</h3>
-            <p>Wir beschreiben unsere Leistungen klar, offen und ohne versteckte Bedingungen, damit Sie genau wissen, was Sie erhalten.</p>
-          </article>
-          <article class="card">
-            <div class="icon-badge">2</div>
-            <h3>Faire Preisgestaltung</h3>
-            <p>Unsere Preise richten sich stets nach dem tatsächlichen Aufwand und dem Verschmutzungsgrad. Faire und transparente Kosten für erstklassige Arbeit.</p>
-          </article>
-          <article class="card">
-            <div class="icon-badge">3</div>
-            <h3>Höchste Sorgfalt</h3>
-            <p>Wir reinigen nicht nur oberflächlich, sondern mit viel Liebe zum Detail. Auch schwer zugängliche Stellen werden gründlich gereinigt.</p>
-          </article>
-          <article class="card">
-            <div class="icon-badge">4</div>
-            <h3>Termintreue & Zuverlässigkeit</h3>
-            <p>Wenn wir einen Termin vereinbaren, halten wir uns daran. Sie können sich auf eine fristgerechte und professionelle Ausführung verlassen.</p>
-          </article>
-          <article class="card">
-            <div class="icon-badge">5</div>
-            <h3>Abnahmegarantie</h3>
-            <p>Bei Endreinigungen (z.B. Umzug) garantieren wir eine problemlose Wohnungsabgabe. Wir sind bei der Übergabe dabei und bessern kostenlos nach, falls nötig.</p>
-          </article>
+          <div class="card"><div class="icon-badge">🎯</div><h3>Unsere Mission</h3><p>Makellose Resultate abliefern, die den Werterhalt Ihrer Objekte sichern.</p></div>
+          <div class="card"><div class="icon-badge">🤝</div><h3>Unser Versprechen</h3><p>Wir gehen erst, wenn das Ergebnis zu 100% unseren Qualitätskriterien entspricht.</p></div>
         </div>
       </div>
     </section>
@@ -920,51 +371,34 @@
       <div class="container">
         <div class="eyebrow">Resultate, die überzeugen</div>
         <h2>Vorher / Nachher Vergleiche</h2>
-        <p class="lead">Ziehen Sie den Schieberegler nach links oder rechts, um den Unterschied in 3D zu erleben.</p>
-
+        <p class="lead">Ziehen Sie den Schieberegler nach links oder rechts.</p>
         <div class="grid-2" style="margin-top:28px;">
           <div class="ba-container">
-            <img src="vorher-kuechenschublade.png" alt="Vorher Küchenschublade" class="ba-image ba-before" />
-            <img src="nachher-kuechenschublade.png" alt="Nachher Küchenschublade" class="ba-image ba-after" />
+            <img src="vorher-kuechenschublade.png" alt="Vorher" class="ba-image ba-before" />
+            <img src="nachher-kuechenschublade.png" alt="Nachher" class="ba-image ba-after" />
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div>
-            <div class="ba-label label-after">Nachher</div>
+            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" />
           </div>
-
           <div class="ba-container">
-            <img src="vorher-heizung.png" alt="Vorher Heizung" class="ba-image ba-before" />
-            <img src="nachher-heizung.png" alt="Nachher Heizung" class="ba-image ba-after" />
+            <img src="vorher-heizung.png" alt="Vorher" class="ba-image ba-before" />
+            <img src="nachher-heizung.png" alt="Nachher" class="ba-image ba-after" />
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div>
-            <div class="ba-label label-after">Nachher</div>
+            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" />
           </div>
-
           <div class="ba-container">
-            <img src="vorher-duschboden.png" alt="Vorher Duschboden" class="ba-image ba-before" />
-            <img src="nachher-duschboden.png" alt="Nachher Duschboden" class="ba-image ba-after" />
+            <img src="vorher-duschboden.png" alt="Vorher" class="ba-image ba-before" />
+            <img src="nachher-duschboden.png" alt="Nachher" class="ba-image ba-after" />
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div>
-            <div class="ba-label label-after">Nachher</div>
+            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" />
           </div>
-
           <div class="ba-container">
-            <img src="vorher-badzimmer.png" alt="Vorher Badezimmer" class="ba-image ba-before" />
-            <img src="nachher-badzimmer.png" alt="Nachher Badezimmer" class="ba-image ba-after" />
+            <img src="bad-vorher.png" alt="Vorher" class="ba-image ba-before" />
+            <img src="bad-nachher.png" alt="Nachher" class="ba-image ba-after" />
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div>
-            <div class="ba-label label-after">Nachher</div>
-            <input type="range" min="0" max="100" value="50" class="ba-slider" />
-          </div>
-
-          <div class="ba-container">
-            <img src="bad-vorher.png" alt="Vorher Bad" class="ba-image ba-before" />
-            <img src="bad-nachher.png" alt="Nachher Bad" class="ba-image ba-after" />
-            <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div>
-            <div class="ba-label label-after">Nachher</div>
+            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" />
           </div>
         </div>
@@ -973,33 +407,63 @@
 
     <section class="section">
       <div class="container">
-        <div class="eyebrow">Einblicke in unsere Arbeit</div>
-        <h2>Videos & Flyer</h2>
-        
-        <div class="media-grid">
-          <div class="media-card">
-            <video controls poster="flyer.png">
-              <source src="video1.mp4" type="video/mp4">
-              Ihr Browser unterstützt dieses Video nicht.
-            </video>
-          </div>
-          <div class="media-card">
-            <video controls poster="flyer.png">
-              <source src="video2.mp4" type="video/mp4">
-              Ihr Browser unterstützt dieses Video nicht.
-            </video>
-          </div>
-          <div class="media-card">
-            <a href="flyer.png" target="_blank">
-              <img src="flyer.png" alt="Dampfglanzservice Ademi Flyer" style="object-fit: cover;" />
-            </a>
-          </div>
+        <div class="eyebrow">Einblicke</div>
+        <h2>Videos & Zertifizierungen</h2>
+        <div class="grid-3 media-grid">
+          <div class="media-card"><video controls poster="flyer.png"><source src="video1.mp4" type="video/mp4"></video></div>
+          <div class="media-card"><video controls poster="flyer.png"><source src="video2.mp4" type="video/mp4"></video></div>
+          <div class="media-card"><a href="flyer.png" target="_blank"><img src="flyer.png" alt="Flyer" /></a></div>
         </div>
-
         <div class="partner-logos">
-          <img src="top-offerten.jpeg" alt="Top Offerten Partner" />
-          <img src="ofri.jpeg" alt="Ofri Partner" />
-          <img src="comparis.jpeg" alt="Comparis Partner" />
+          <img src="top-offerten.jpeg" alt="Top Offerten" />
+          <img src="ofri.jpeg" alt="Ofri" />
+          <img src="comparis.jpeg" alt="Comparis" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section anchor-offset" id="bewertungen">
+      <div class="container">
+        <div class="eyebrow">Kundenstimmen</div>
+        <h2>Das sagen unsere Kunden</h2>
+        
+        <div class="reviews-scroll">
+          <div class="review-3d-card">
+            <div class="review-stars">★★★★★</div>
+            <p>"Absolut hervorragender Service! Das Auto sah nach der Reinigung aus wie frisch aus dem Showroom. Sehr freundlich und hochprofessionell. Gerne wieder!"</p>
+            <div class="review-author">
+              <div class="review-author-img">M</div>
+              <div><strong>Michael S.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 2 Wochen</span></div>
+              <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </div>
+          </div>
+          <div class="review-3d-card">
+            <div class="review-stars">★★★★★</div>
+            <p>"Endreinigung der Wohnung mit Abnahmegarantie lief perfekt. Die Verwaltung war begeistert, keine einzige Beanstandung. Sehr zuverlässiges Team!"</p>
+            <div class="review-author">
+              <div class="review-author-img" style="background:#8f0f19;">S</div>
+              <div><strong>Sarah K.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 1 Monat</span></div>
+              <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </div>
+          </div>
+          <div class="review-3d-card">
+            <div class="review-stars">★★★★★</div>
+            <p>"Wir lassen regelmässig unser Büro reinigen. Immer pünktlich, sehr genau und absolut diskret. Klare Empfehlung für jedes Gewerbe."</p>
+            <div class="review-author">
+              <div class="review-author-img" style="background:#25D366;">T</div>
+              <div><strong>Thomas M.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 3 Monaten</span></div>
+              <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </div>
+          </div>
+          <div class="review-3d-card">
+            <div class="review-stars">★★★★★</div>
+            <p>"Die Fensterreinigung war exzellent. Selbst die schwer zugänglichen Wintergarten-Fenster strahlen wieder. Sehr faires Preis-Leistungs-Verhältnis."</p>
+            <div class="review-author">
+              <div class="review-author-img" style="background:#555;">E</div>
+              <div><strong>Elena P.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 4 Monaten</span></div>
+              <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1008,22 +472,23 @@
       <div class="container">
         <div class="eyebrow">Kontakt</div>
         <h2>Senden Sie uns Ihre Anfrage</h2>
-        <div class="grid-2" style="margin-top: 28px;">
-          <div class="card">
+        
+        <div class="contact-wrapper">
+          <div class="form-3d-card">
             <form action="#" method="POST">
-              <div class="form-grid">
-                <div class="field">
+              <div class="grid-2">
+                <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" id="name" required placeholder="Ihr Name" />
+                  <input type="text" id="name" class="form-control" required placeholder="Ihr vollständiger Name" />
                 </div>
-                <div class="field">
+                <div class="form-group">
                   <label for="tel">Telefon</label>
-                  <input type="tel" id="tel" required placeholder="Ihre Nummer" />
+                  <input type="tel" id="tel" class="form-control" required placeholder="Ihre Telefonnummer" />
                 </div>
               </div>
-              <div class="field">
+              <div class="form-group">
                 <label for="dienstleistung">Gewünschte Dienstleistung</label>
-                <select id="dienstleistung">
+                <select id="dienstleistung" class="form-control">
                   <option>Autoreinigung</option>
                   <option>Wohnungs- / Endreinigung</option>
                   <option>Gewerbereinigung</option>
@@ -1031,22 +496,31 @@
                   <option>Anderes</option>
                 </select>
               </div>
-              <div class="field">
+              <div class="form-group">
                 <label for="nachricht">Ihre Nachricht</label>
-                <textarea id="nachricht" placeholder="Beschreiben Sie kurz Ihr Anliegen..."></textarea>
+                <textarea id="nachricht" class="form-control" placeholder="Beschreiben Sie kurz Ihr Anliegen, Verschmutzungsgrad oder Wunschtermin..."></textarea>
               </div>
-              <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Anfrage kostenlos senden</button>
+              <button type="submit" class="btn-submit">Anfrage kostenlos senden</button>
             </form>
           </div>
-          <div class="contact-box">
-            <div class="contact-item">
-              <h3>Telefon / WhatsApp</h3>
+
+          <div class="contact-info-panel">
+            <div class="info-card">
+              <h3>
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                Telefon / WhatsApp
+              </h3>
               <p>Rufen Sie uns an oder schreiben Sie uns direkt über WhatsApp für eine schnelle Antwort.</p>
-              <a href="https://wa.me/41765024998" target="_blank" class="btn btn-dark" style="width: 100%;">076 502 4998</a>
+              <a href="https://wa.me/41765024998" target="_blank" class="btn btn-dark" style="width: 100%; border-color: rgba(37,211,102,0.4);">
+                <span style="color: #25D366; margin-right: 8px;">WhatsApp:</span> 076 502 4998
+              </a>
             </div>
-            <div class="contact-item">
-              <h3>Standort & Einsatzgebiet</h3>
-              <p>Unser Sitz ist in <strong>Rorschach, St. Gallen</strong>. Wir sind für Sie schweizweit nach Vereinbarung im Einsatz.</p>
+            <div class="info-card">
+              <h3>
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Standort & Einsatzgebiet
+              </h3>
+              <p>Unser Sitz ist in <strong>Rorschach, St. Gallen</strong>.<br>Wir sind für Sie <strong>schweizweit nach Vereinbarung</strong> im Einsatz. Ersatzauto bis 40km inklusive.</p>
             </div>
           </div>
         </div>
@@ -1056,37 +530,60 @@
 
   <footer>
     <div class="container footer-grid">
-      <div>
-        <div class="brand-logo" style="width: 40px; height: 40px; margin-bottom: 15px;">
+      <div class="footer-col">
+        <div class="brand-logo" style="width: 45px; height: 45px; margin-bottom: 15px;">
           <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" alt="Logo" />
         </div>
-        <strong>Dampfglanzservice-Ademi</strong>
-        <p class="subtle" style="margin-top: 10px;">Ihre zuverlässige Reinigungsfirma für Auto, Haus und Gewerbe. Reinheit, die man sieht.</p>
+        <h4>Dampfglanzservice-Ademi</h4>
+        <p class="subtle">Ihre zuverlässige Reinigungsfirma für Auto, Haus und Gewerbe. Kompromisslose Reinheit, die man sieht.</p>
+        
+        <div class="social-icons">
+          <a href="https://www.instagram.com/dampfglanzservice/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@dampfglanzservice?lang=en-GB" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+        </div>
       </div>
-      <div>
-        <h4 style="color: #fff;">Navigation</h4>
-        <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
-          <li><a href="#leistungen" class="subtle">Leistungen</a></li>
-          <li><a href="#ueber-uns" class="subtle">Über uns</a></li>
-          <li><a href="#galerie" class="subtle">Vorher/Nachher</a></li>
-          <li><a href="#kontakt" class="subtle">Kontakt</a></li>
+      
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#leistungen">Dienstleistungen</a></li>
+          <li><a href="#ueber-uns">Unternehmensprofil</a></li>
+          <li><a href="#galerie">Vorher / Nachher Galerie</a></li>
+          <li><a href="#bewertungen">Kundenbewertungen</a></li>
+          <li><a href="#kontakt">Kontakt & Offerte</a></li>
         </ul>
       </div>
-      <div>
-        <h4 style="color: #fff;">Rechtliches</h4>
-        <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
-          <li><a href="#" class="subtle">Impressum</a></li>
-          <li><a href="#" class="subtle">Datenschutz</a></li>
-          <li><a href="#" class="subtle">AGB</a></li>
+      
+      <div class="footer-col">
+        <h4>Rechtliches & Service</h4>
+        <ul class="footer-links">
+          <li><a href="#impressum">Impressum</a></li>
+          <li><a href="#datenschutz">Datenschutzerklärung</a></li>
+          <li><a href="#agb">Allgemeine Geschäftsbedingungen (AGB)</a></li>
         </ul>
       </div>
     </div>
+    <div class="container footer-bottom">
+      &copy; 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.
+    </div>
   </footer>
+
+  <div class="fab-container">
+    <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="fab fab-whatsapp" aria-label="WhatsApp Nachricht senden">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="tel:+41765024998" class="fab fab-phone" aria-label="Jetzt anrufen">
+      <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+    </a>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const containers = document.querySelectorAll('.ba-container');
-      
       containers.forEach(container => {
         const slider = container.querySelector('.ba-slider');
         const afterImage = container.querySelector('.ba-after');
@@ -1094,9 +591,7 @@
         
         slider.addEventListener('input', (e) => {
           const val = e.target.value;
-          // Aktualisiert den sichtbaren Bereich des "Nachher" Bildes
           afterImage.style.clipPath = `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
-          // Verschiebt die weiße Trennlinie
           line.style.left = `${val}%`;
         });
       });
