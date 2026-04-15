@@ -46,6 +46,21 @@ img{width:100%;border-radius:12px}
 
 .cookie{position:fixed;bottom:0;width:100%;background:#111;color:#fff;padding:16px}
 
+
+/* SPEED IMPROVEMENTS */
+.track{animation:scroll 10s linear infinite}
+.partner-track{animation:scroll 8s linear infinite}
+
+/* REVIEWS SLIDER */
+.review-track{display:flex;animation:scroll 16s linear infinite}
+.review{min-width:260px;margin:10px;background:#fff;padding:14px;border-radius:14px;box-shadow:0 10px 20px rgba(0,0,0,.08)}
+.stars{color:#fbbf24}
+
+/* COOKIE CONSENT BUTTONS */
+.cookie button{margin-top:10px;padding:10px 14px;border:none;border-radius:8px;margin-right:8px}
+.accept{background:#22c55e;color:#fff}
+.decline{background:#ef4444;color:#fff}
+
 </style>
 </head>
 <body>
@@ -136,6 +151,18 @@ Dampfglanzservice-Ademi ist ein Familienunternehmen mit Sitz in Rorschach (St. G
 </section>
 
 <section>
+<h2>Rezensionen</h2>
+<div class="slider">
+<div class="review-track">
+<div class="review"><div class="stars">★★★★★</div>Ich bin absolut zufrieden. Service war top und Ergebnis hat meine Erwartungen übertroffen. – Alessio Colacchio</div>
+<div class="review"><div class="stars">★★★★★</div>Mega empfehlenswert bester Service 🙏🏻 – Adnann fnbr</div>
+<div class="review"><div class="stars">★★★★★</div>Dank dem Service konnte ich mein Auto nicht wieder erkennen – Omer nuhija</div>
+<div class="review"><div class="stars">★★★★★</div>Sehr professionell, sauber und zuverlässig. Jederzeit wieder.</div>
+</div>
+</div>
+</section>
+
+<section>
 <h2>Rechtliches (Schweiz DSG)</h2>
 <div class="card">
 <b>Datenschutz</b><br>
@@ -156,8 +183,11 @@ Falls Analyse-Tools (z.B. Google Analytics) verwendet werden, erfolgt dies anony
 <a class="call" href="tel:+41765024998">Anrufen</a>
 </div>
 
-<div class="cookie">
-Diese Website verwendet Cookies gemäss DSG.
+<div class="cookie" id="cookieBox">
+Diese Website verwendet Cookies gemäss Schweizer DSG. Sie können entscheiden, ob Sie Cookies akzeptieren oder ablehnen.
+<br>
+<button class="accept" onclick="document.getElementById('cookieBox').style.display='none'">Akzeptieren</button>
+<button class="decline" onclick="document.getElementById('cookieBox').style.display='none'">Ablehnen</button>
 </div>
 
 </body>
