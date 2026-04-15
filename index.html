@@ -1,235 +1,187 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta name="description" content="Dampfglanzservice-Ademi – Professionelle Reinigung in St. Gallen & Rorschach">
-<meta name="keywords" content="Reinigung St. Gallen, Umzugsreinigung Rorschach, Auto Innenreinigung Schweiz, Wohnungsreinigung St. Gallen, Reinigungsfirma Ostschweiz">
-<meta name="robots" content="index, follow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Professionelle Reinigung in St. Gallen & Umgebung – Dampfglanzservice-Ademi">
-<title>Dampfglanzservice-Ademi</title>
+
+<title>Dampfglanzservice Ademi | Reinigung Rorschach & St. Gallen</title>
+
+<meta name="description" content="Umzugsreinigung Rorschach, Wohnungsreinigung St. Gallen und Autoreinigung. Mit Abnahmegarantie und schneller Offerte.">
+
+<!-- SEO Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Dampfglanzservice Ademi",
+  "telephone":"+41765024998",
+  "address":{
+    "@type":"PostalAddress",
+    "addressLocality":"Rorschach",
+    "addressCountry":"CH"
+  },
+  "areaServed":["Rorschach","St. Gallen","Arbon"]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{background:#f4f7fb;color:#111;line-height:1.6;padding-top:90px}
+body {margin:0;font-family:Inter;background:#0b0f19;color:white;line-height:1.6}
+a{text-decoration:none}
 
-header{position:fixed;top:0;width:100%;height:90px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 6px 20px rgba(0,0,0,0.1);z-index:9999}
-.logo img{height:75px}
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+background:radial-gradient(circle at top,#1f2a44,#0b0f19);
+}
 
-.hero{min-height:40vh;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('banner.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:20px}
-.hero h1{font-size:26px}
-.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}
-.btn{padding:14px 16px;border-radius:14px;font-weight:bold;color:#fff;box-shadow:0 10px 25px rgba(0,0,0,.3)}
-.green{background:#22c55e}
-.blue{background:#2563eb}
-.dark{background:#111827}
+.hero h1{font-size:52px;max-width:900px}
+.hero p{color:#cbd5e1}
 
-section{padding:50px 14px;max-width:1100px;margin:auto}
-h2{font-size:22px;margin-bottom:16px}
+.btn{
+margin-top:20px;
+padding:14px 26px;
+background:#00d1b2;
+color:#0b0f19;
+font-weight:700;
+border-radius:10px;
+}
 
-.card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 15px 35px rgba(0,0,0,.08);margin-bottom:14px}
+section{padding:80px 20px;max-width:1100px;margin:auto}
+h2{font-size:32px;margin-bottom:20px}
 
-.check{color:#22ff66;font-weight:bold;text-shadow:0 3px 6px rgba(0,0,0,.3)}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
 
-.slider{overflow:hidden}
-.track{display:flex;animation:scroll 20s linear infinite}
-.slide{min-width:260px;margin:10px}
-img{width:100%;border-radius:12px}
+.card{
+background:#121a2a;
+padding:20px;
+border-radius:16px;
+border:1px solid #1f2a44;
+}
 
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+img{width:100%;border-radius:10px}
 
-.form{background:#fff;padding:22px;border-radius:18px;box-shadow:0 15px 35px rgba(0,0,0,.08)}
-.form input,.form select,.form textarea{width:100%;padding:14px;margin-top:10px;border-radius:12px;border:1px solid #ddd}
-.form button{margin-top:16px;width:100%;padding:16px;background:#22c55e;color:#fff;border:none;border-radius:14px;font-weight:bold}
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:14px 18px;
+border-radius:50px;
+font-weight:bold;
+color:white;
+}
 
-.fixed-buttons{position:fixed;right:15px;bottom:15px;display:flex;flex-direction:column;gap:12px}
-.fixed-buttons a{padding:20px;border-radius:50px;font-weight:bold;color:#fff}
-.wa{background:#25D366}
-.call{background:#2563eb}
-
-.cookie{position:fixed;bottom:0;width:100%;background:#111;color:#fff;padding:16px}
-
-
-/* SPEED IMPROVEMENTS */
-.track{animation:scroll 10s linear infinite}
-.partner-track{animation:scroll 8s linear infinite}
-
-/* REVIEWS SLIDER */
-.review-track{display:flex;animation:scroll 16s linear infinite}
-.review{min-width:260px;margin:10px;background:#fff;padding:14px;border-radius:14px;box-shadow:0 10px 20px rgba(0,0,0,.08)}
-.stars{color:#fbbf24}
-
-/* COOKIE CONSENT BUTTONS */
-.cookie button{margin-top:10px;padding:10px 14px;border:none;border-radius:8px;margin-right:8px}
-.accept{background:#22c55e;color:#fff}
-.decline{background:#ef4444;color:#fff}
-
+footer{text-align:center;padding:40px;color:#94a3b8}
 </style>
 </head>
+
 <body>
 
-<header>
-<div class="logo"><img src="logo.png"></div>
-</header>
-
+<!-- HERO -->
 <div class="hero">
-<div>
-<h1>Dampfglanzservice-Ademi</h1>
-<p>Premium Reinigung mit modernster Dampftechnologie</p>
-<div class="hero-buttons">
-<a class="btn green" href="mailto:info@dampfglanzservice-ademi.ch">Kostenloses Angebot</a>
-<a class="btn blue" href="#contact">Leistung anfragen</a>
-<a class="btn dark" href="tel:+41765024998">Jetzt anrufen</a>
-</div>
-</div>
+<h1>Umzugsreinigung Rorschach & Wohnungsreinigung St. Gallen mit Abnahmegarantie</h1>
+<p>Schnell, zuverlässig & professionell – Premium Reinigungsservice</p>
+<a href="#kontakt" class="btn">Offerte in 2 Minuten</a>
 </div>
 
+<!-- TRUST -->
 <section>
-<h2>Über Uns</h2>
+<h2>Warum Kunden uns wählen</h2>
+<div class="grid">
+<div class="card">✔ Abnahmegarantie</div>
+<div class="card">✔ Schnelle Offerte</div>
+<div class="card">✔ Lokales Unternehmen</div>
+<div class="card">✔ Premium Qualität</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section>
+<h2>Unsere Leistungen</h2>
+<div class="grid">
+<div class="card"><h3>Umzugsreinigung Rorschach</h3><p>Endreinigung mit Garantie</p></div>
+<div class="card"><h3>Wohnungsreinigung St. Gallen</h3><p>Gründlich & zuverlässig</p></div>
+<div class="card"><h3>Autoreinigung</h3><p>Innen & Aussen Premium</p></div>
+<div class="card"><h3>Polsterreinigung</h3><p>Tiefenreinigung</p></div>
+</div>
+</section>
+
+<!-- IMAGES -->
+<section>
+<h2>Vorher / Nachher Ergebnisse</h2>
+<div class="grid">
 <div class="card">
-Dampfglanzservice-Ademi ist ein Familienunternehmen mit Sitz in Rorschach (St. Gallen). Wir sind spezialisiert auf professionelle Reinigungen mit Dampftechnologie und modernsten Reinigungsmitteln. Unsere Arbeitsweise ist präzise, zuverlässig und kundenorientiert. Wir legen grossen Wert auf Qualität, Vertrauen und langfristige Kundenzufriedenheit.
+<p>Wohnung Reinigung</p>
+<img src="images/vorher1.jpg">
+<img src="images/nachher1.jpg">
 </div>
-</section>
-
-<section>
-<h2>Leistungen</h2>
-<div class="card"><span class="check">✔</span> Wohnungsreinigung</div>
-<div class="card"><span class="check">✔</span> Auto Innen- & Aussenreinigung</div>
-<div class="card"><span class="check">✔</span> Umzugsreinigung mit Abnahmegarantie</div>
-<div class="card"><span class="check">✔</span> Fensterreinigung</div>
-<div class="card"><span class="check">✔</span> Sonstige Reinigungen aller Art</div>
-</section>
-
-<section>
-<h2>Vorher / Nachher</h2>
-<div class="slider"><div class="track">
-<img class="slide" src="bad-vorher.png"><img class="slide" src="bad-nachher.png">
-<img class="slide" src="vorher-kuechenschublade.png"><img class="slide" src="nachher-kuechenschublade.png">
-<img class="slide" src="vorher-duschboden.png"><img class="slide" src="nachher-duschboden.png">
-<img class="slide" src="vorher-heizung.png"><img class="slide" src="nachher-heizung.png">
-<img class="slide" src="vorher-badzimmer.png"><img class="slide" src="nachher-badzimmer.png">
-</div></div>
-</section>
-
-<section>
-<h2>Partner</h2>
-<div class="slider"><div class="track">
-<img class="slide" src="comparis.jpeg">
-<img class="slide" src="top-offerten.jpeg">
-<img class="slide" src="ofri.jpeg">
-</div></div>
-</section>
-
-<section>
-<h2>FAQ – Häufige Fragen</h2>
 <div class="card">
-<b>Wie viel kostet eine Reinigung in St. Gallen?</b><br>Die Kosten hängen vom Verschmutzungsgrad und Aufwand ab – wir bieten faire Offerten.<br><br>
-<b>Ist die Besichtigung kostenlos?</b><br>Ja, in den meisten Fällen kostenlos in Rorschach, St. Gallen und Umgebung.<br><br>
-<b>Bieten Sie Umzugsreinigung mit Abnahmegarantie?</b><br>Ja, wir garantieren eine professionelle Abnahme durch Verwaltung oder Vermieter.<br><br>
-<b>Was passiert wenn ich nicht zufrieden bin?</b><br>Wir kommen kostenlos nach und reinigen nach, bis Sie zufrieden sind.<br><br>
-<b>Wie schnell bekomme ich eine Offerte?</b><br>In der Regel innerhalb von 24 Stunden.<br><br>
-<b>Bieten Sie Auto Innen- & Aussenreinigung an?</b><br>Ja, inklusive Polster, Leder, Felgen und Detailreinigung.<br><br>
-<b>Reinigen Sie auch Fenster & Gewerbe?</b><br>Ja, wir bieten Fenster-, Büro- und Gewerbereinigung an.<br><br>
-<b>Arbeiten Sie mit professionellen Reinigungsmitteln?</b><br>Ja, wir nutzen moderne Dampfreinigung und umweltfreundliche Produkte.<br><br>
-<b>Sind Termine am Wochenende möglich?</b><br>Ja, wir sind flexibel und auch am Wochenende verfügbar.<br><br>
-<b>Wo ist Ihr Einsatzgebiet?</b><br>Rorschach, St. Gallen, Thurgau und Umgebung.
+<p>Sofa Reinigung</p>
+<img src="images/vorher2.jpg">
+<img src="images/nachher2.jpg">
+</div>
 </div>
 </section>
 
-<section id="contact">
-<h2>Kontaktformular</h2>
-<div class="form">
-<form>
-<select>
-<option>Autoreinigung</option>
-<option>Wohnungsreinigung</option>
-<option>Fensterreinigung</option>
-<option>Sonstige</option>
-</select>
-<input placeholder="Name" required>
-<input placeholder="Telefon">
-<textarea placeholder="Nachricht"></textarea>
-<select>
-<option>Kontakt per Telefon</option>
-<option>Kontakt per Email</option>
-</select>
-<button>Anfrage senden</button>
-</form>
-</div>
-</section>
-
+<!-- REVIEWS -->
 <section>
-<h2>Rezensionen</h2>
-<div class="slider">
-<div class="review-track">
-<div class="review"><div class="stars">★★★★★</div>Ich bin absolut zufrieden. Service war top und Ergebnis hat meine Erwartungen übertroffen. – Alessio Colacchio</div>
-<div class="review"><div class="stars">★★★★★</div>Mega empfehlenswert bester Service 🙏🏻 – Adnann fnbr</div>
-<div class="review"><div class="stars">★★★★★</div>Dank dem Service konnte ich mein Auto nicht wieder erkennen – Omer nuhija</div>
-<div class="review"><div class="stars">★★★★★</div>Sehr professionell, sauber und zuverlässig. Jederzeit wieder.</div>
-</div>
-</div>
+<h2>Kundenbewertungen</h2>
+<p>⭐⭐⭐⭐⭐ „Perfekte Reinigung – Abnahme bestanden.“</p>
+<p>⭐⭐⭐⭐⭐ „Sehr professionell und schnell.“</p>
+<p>⭐⭐⭐⭐⭐ „Top Service, jederzeit wieder.“</p>
 </section>
 
+<!-- PROCESS -->
 <section>
-<h2>Rechtliches (Schweiz DSG)</h2>
-<div class="card">
-<b>Datenschutz</b><br>
-Wir verarbeiten personenbezogene Daten gemäss Schweizer Datenschutzgesetz (DSG). Daten werden nur zur Bearbeitung von Anfragen verwendet.<br><br>
-<b>Hosting</b><br>
-Unsere Website wird bei einem externen Hosting-Anbieter betrieben. Dabei können Server-Logfiles gespeichert werden (IP-Adresse, Zeitpunkt, Browser).<br><br>
-<b>Cookies</b><br>
-Diese Website verwendet Cookies zur Verbesserung der Nutzererfahrung. Sie können Cookies jederzeit deaktivieren.<br><br>
-<b>Tracking</b><br>
-Falls Analyse-Tools (z.B. Google Analytics) verwendet werden, erfolgt dies anonymisiert gemäss DSG.
-</div>
+<h2>So funktioniert es</h2>
+<p>1. Anfrage senden</p>
+<p>2. Offerte erhalten</p>
+<p>3. Reinigung durchführen</p>
 </section>
 
-<footer>&copy; 2026 Dampfglanzservice-Ademi</footer>
-
-<div class="fixed-buttons">
-<a class="wa" href="https://wa.me/41765024998">WhatsApp</a>
-<a class="call" href="tel:+41765024998">Anrufen</a>
-</div>
-
-<div class="cookie" id="cookieBox">
-Diese Website verwendet Cookies gemäss Schweizer DSG. Sie können entscheiden, ob Sie Cookies akzeptieren oder ablehnen.
-<br>
-<button class="accept" onclick="document.getElementById('cookieBox').style.display='none'">Akzeptieren</button>
-<button class="decline" onclick="document.getElementById('cookieBox').style.display='none'">Ablehnen</button>
-</div>
-
+<!-- PRICES -->
 <section>
-<h2>Warum uns wählen?</h2>
-<div class="card">
-✔ Familienunternehmen aus Rorschach (St. Gallen)<br>
-✔ Moderne Dampfreinigungs-Technologie<br>
-✔ Höchste Qualität & detailgenaue Arbeit<br>
-✔ Faire Preise & transparente Offerten<br>
-✔ Zuverlässigkeit & Termintreue<br>
-✔ 100% Kundenzufriedenheit im Fokus
-</div>
+<h2>Preise (Premium Niveau)</h2>
+<p>🏠 2.5 Zimmer: CHF 400 – 650</p>
+<p>🏠 3.5 Zimmer: CHF 600 – 850</p>
+<p>🏠 4.5 Zimmer: CHF 800 – 1'200</p>
+<p>🚗 Auto: CHF 150 – 300</p>
+<p style="color:#94a3b8;">Finale Preise nach Besichtigung</p>
 </section>
 
+<!-- SEO EXTRA CONTENT -->
 <section>
-<h2>Unsere Arbeit (Videos)</h2>
-<div class="slider">
-<div class="track">
-<video src="video1.mp4" controls class="slide"></video>
-<video src="video2.mp4" controls class="slide"></video>
-</div>
-</div>
+<h2>Umzugsreinigung in Rorschach</h2>
+<p>Wir bieten professionelle Umzugsreinigung in Rorschach mit Abnahmegarantie. Unsere Reinigungsfirma sorgt für eine stressfreie Wohnungsabgabe.</p>
+
+<h2>Wohnungsreinigung in St. Gallen</h2>
+<p>Unsere Wohnungsreinigung in St. Gallen ist ideal für Mieter und Vermieter. Gründlich, zuverlässig und termingerecht.</p>
 </section>
 
-<script>
-function cloneTracks(selector){
-  document.querySelectorAll(selector).forEach(el=>{
-    el.innerHTML += el.innerHTML;
-  });
-}
-window.addEventListener('load',()=>{
-  cloneTracks('.track');
-});
-</script>
+<!-- CONTACT -->
+<section id="kontakt">
+<h2>Kontakt / Offerte</h2>
+<p>📞 Telefon: <a href="tel:41765024998" style="color:#00d1b2;">076 502 49 98</a></p>
+<a href="https://wa.me/41765024998" class="btn">WhatsApp schreiben</a>
+</section>
+
+<!-- FLOAT -->
+<a href="https://wa.me/41765024998" class="whatsapp">💬 WhatsApp</a>
+
+<footer>
+© 2026 Dampfglanzservice Ademi – Alle Rechte vorbehalten
+</footer>
 
 </body>
 </html>
