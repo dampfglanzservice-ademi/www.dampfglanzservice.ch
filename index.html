@@ -24,21 +24,39 @@
     "@type": "LocalBusiness",
     "name": "Dampfglanzservice-Ademi",
     "image": "https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_1200,h_630,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png",
+    "@id": "https://www.dampfglanzservice-ademi.ch/",
     "url": "https://www.dampfglanzservice-ademi.ch/",
     "description": "Professionelle Reinigungsfirma aus Rorschach (Kanton St. Gallen) für Autoreinigung, Wohnungsreinigung inkl. Abnahmegarantie, Haus-, Fenster- und Gewerbereinigung.",
     "telephone": "+41765024998",
+    "email": "info@dampfglanzservice-ademi.ch",
     "priceRange": "CHF",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Trischlistrasse 25",
       "addressLocality": "Rorschach",
+      "postalCode": "9400",
       "addressRegion": "St. Gallen",
       "addressCountry": "CH"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 47.4768,
+      "longitude": 9.4922
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       "opens": "08:00",
       "closes": "18:00"
+    },
+    "sameAs": [
+      "https://www.instagram.com/dampfglanzservice/",
+      "https://www.tiktok.com/@dampfglanzservice?lang=en-GB"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "124"
     }
   }
   </script>
@@ -49,21 +67,19 @@
     :root {
       --bg: #09090b;
       --bg-2: #111214;
-      --panel: rgba(255,255,255,0.08);
-      --panel-strong: rgba(255,255,255,0.12);
-      --line: rgba(255,255,255,0.12);
+      --panel: rgba(255,255,255,0.05);
+      --panel-strong: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.1);
       --text: #ffffff;
       --muted: #f1f5f9; 
       --muted-2: #cbd5e1;
-      --accent: #a90f1a;
-      --accent-soft: rgba(169,15,26,0.14);
+      --accent: #c21624;
+      --accent-dark: #8f0f19;
+      --accent-soft: rgba(194,22,36,0.15);
       --whatsapp: #25D366;
-      --shadow: 0 20px 60px rgba(0,0,0,0.35);
-      --shadow-soft: 0 12px 28px rgba(0,0,0,0.22);
-      --shadow-glow: 0 0 25px rgba(169,15,26,0.4);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 18px;
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
       --container: 1220px;
     }
 
@@ -73,408 +89,265 @@
       margin: 0;
       font-family: 'Inter', Arial, Helvetica, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at 10% 0%, rgba(255,255,255,0.10), transparent 20%),
-        radial-gradient(circle at 90% 10%, rgba(169,15,26,0.12), transparent 18%),
-        linear-gradient(180deg, #121316 0%, #0b0b0d 35%, #070708 100%);
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at top right, rgba(194,22,36,0.08), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,0.03), transparent 30%);
       overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; } /* height: auto hinzugefügt für korrekte Skalierung trotz width/height Attributen */
+    img { display: block; max-width: 100%; height: auto; }
     button, input, select, textarea { font: inherit; }
 
     .container {
-      width: min(calc(100% - 28px), var(--container));
+      width: min(calc(100% - 32px), var(--container));
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
 
-    /* Hintergründe & Animationen */
-    .bubbles, .glow, .grid-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-    .grid-overlay { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.5; }
-    .glow::before, .glow::after { content: ""; position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.16; }
-    .glow::before { width: 32vw; height: 32vw; left: -8vw; top: -8vw; background: rgba(255,255,255,0.16); }
-    .glow::after { width: 26vw; height: 26vw; right: -6vw; top: 18vh; background: rgba(169,15,26,0.15); }
-
-    .bubbles span {
-      position: absolute; bottom: -100px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), rgba(255,255,255,0.03));
-      box-shadow: inset 0 0 20px rgba(255,255,255,0.08), 0 0 16px rgba(255,255,255,0.05);
-      animation: bubbleUp linear infinite; backdrop-filter: blur(2px);
-    }
-    .bubbles span:nth-child(1) { left: 7%; width: 62px; height: 62px; animation-duration: 18s; }
-    .bubbles span:nth-child(2) { left: 18%; width: 18px; height: 18px; animation-duration: 11s; animation-delay: -3s; }
-    .bubbles span:nth-child(3) { left: 31%; width: 34px; height: 34px; animation-duration: 14s; animation-delay: -5s; }
-    .bubbles span:nth-child(4) { left: 48%; width: 22px; height: 22px; animation-duration: 12s; animation-delay: -2s; }
-    .bubbles span:nth-child(5) { left: 62%; width: 50px; height: 50px; animation-duration: 16s; animation-delay: -7s; }
-    .bubbles span:nth-child(6) { left: 74%; width: 26px; height: 26px; animation-duration: 13s; animation-delay: -1s; }
-    .bubbles span:nth-child(7) { left: 88%; width: 66px; height: 66px; animation-duration: 20s; animation-delay: -6s; }
-
-    @keyframes bubbleUp { 0% { transform: translateY(0) scale(0.9); opacity: 0; } 15% { opacity: 0.75; } 100% { transform: translateY(-120vh) scale(1.1); opacity: 0; } }
-    @keyframes floatCard { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
-    @keyframes shine { 0% { transform: translateX(-140%) skewX(-18deg); } 100% { transform: translateX(240%) skewX(-18deg); } }
-
     /* Typografie & Layout */
-    .section { padding: 92px 0; position: relative; }
-    .eyebrow { display: inline-flex; gap: 10px; align-items: center; padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.10); color: var(--muted); font-size: 0.88rem; letter-spacing: 0.02em; margin-bottom: 18px; box-shadow: var(--shadow-soft); }
-    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(169,15,26,0.65); }
-    h1, h2, h3, h4 { margin: 0 0 16px; line-height: 1.08; color: #fff; }
-    h1 { font-size: clamp(2.5rem, 5vw, 5.4rem); letter-spacing: -0.04em; }
-    h2 { font-size: clamp(2rem, 3vw, 3.25rem); letter-spacing: -0.03em; }
-    h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); }
-    p { margin: 0 0 16px; color: var(--muted); line-height: 1.7; font-weight: 300;}
-    .lead { font-size: clamp(1.02rem, 1.4vw, 1.18rem); max-width: 760px; color: #fff; font-weight: 400;}
+    .section { padding: 80px 0; position: relative; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; padding: 8px 16px; border-radius: 999px; background: var(--panel-strong); border: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; font-weight: 500; margin-bottom: 16px; }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    h1, h2, h3, h4 { margin: 0 0 16px; line-height: 1.1; color: #fff; }
+    h1 { font-size: clamp(2.2rem, 5vw, 4.5rem); letter-spacing: -0.03em; font-weight: 800; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: -0.02em; font-weight: 700; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 600; }
+    p { margin: 0 0 16px; color: var(--muted); line-height: 1.6; font-weight: 400;}
+    .lead { font-size: clamp(1rem, 1.4vw, 1.15rem); max-width: 700px; color: #fff; font-weight: 400;}
 
     /* Header */
-    header { position: sticky; top: 0; z-index: 80; backdrop-filter: blur(18px); background: rgba(8,8,10,0.74); border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 16px 0; }
-    .brand { display: flex; align-items: center; gap: 14px; flex: 1 1 auto; }
-    .brand-logo { width: 54px; height: 54px; border-radius: 16px; overflow: hidden; background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.16); box-shadow: var(--shadow-soft); flex: 0 0 auto; }
+    header { position: sticky; top: 0; z-index: 80; background: rgba(9,9,11,0.9); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 16px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; }
+    .brand-logo { width: 48px; height: 48px; border-radius: 12px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); flex: 0 0 auto; }
     .brand-text { flex: 1 1 auto; }
-    .brand-text strong { display: block; font-size: 1rem; color: #fff; line-height: 1.3; margin-bottom: 2px; }
-    .brand-text span { display: block; color: var(--muted-2); font-size: 0.9rem; line-height: 1.3; }
-    .nav-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; }
-    .nav-links a { color: var(--muted); font-size: 0.95rem; transition: 0.25s ease; font-weight: 500;}
+    .brand-text strong { display: block; font-size: 1rem; color: #fff; font-weight: 700; }
+    .brand-text span { display: block; color: var(--muted-2); font-size: 0.85rem; }
+    .nav-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .nav-links a { color: var(--muted); font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: #fff; }
     .nav-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; flex: 0 0 auto; }
 
     /* Buttons */
-    .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.14); background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06)); color: #fff; box-shadow: var(--shadow-soft); transition: 0.25s ease; overflow: hidden; cursor: pointer; font-weight: 700; text-align: center; }
-    .btn::after { content: ""; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent); animation: shine 4.8s linear infinite; pointer-events: none; }
-    .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-    .btn-primary { background: linear-gradient(180deg, #c21624 0%, #8f0f19 100%); border-color: rgba(255,255,255,0.10); }
-    .btn-dark { background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05)); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: var(--radius-md); border: 1px solid transparent; font-weight: 600; cursor: pointer; transition: all 0.2s ease; text-align: center; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent-dark); }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-dark { background: var(--panel-strong); color: #fff; border-color: var(--line); }
+    .btn-dark:hover { background: rgba(255,255,255,0.15); }
 
     /* Hero */
-    .hero { padding: 62px 0 34px; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
-    .hero-copy h1 span { color: #f2f2f2; }
-    .hero-actions, .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
-    .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-    .badge { padding: 12px 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; color: var(--muted); font-size: 0.95rem; box-shadow: var(--shadow-soft); font-weight: 500;}
+    .hero { padding: 80px 0 40px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .hero-copy h1 span { color: var(--muted-2); }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+    
+    /* Trust Indicators */
+    .trust-indicators { margin-top: 16px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; font-weight: 500; color: var(--muted-2); }
+    .trust-indicators span { display: flex; align-items: center; gap: 6px; }
 
-    /* --- HERO CARD PREMIUM DESIGN --- */
-    .hero-visual { display: grid; gap: 16px; perspective: 1000px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .badge { padding: 8px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 0.9rem; font-weight: 500;}
+
+    /* Performance Optimized Hero Card */
+    .hero-visual { display: grid; perspective: 1000px; }
     .hero-card {
-      padding: 34px;
+      padding: 32px;
       border-radius: var(--radius-xl);
-      background: linear-gradient(145deg, rgba(20,20,24,0.85), rgba(10,10,12,0.95));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 40px rgba(169,15,26,0.15);
-      backdrop-filter: blur(20px);
-      animation: floatCard 6s ease-in-out infinite;
-      transform-style: preserve-3d;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-card::before {
-      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-      transform: skewX(-20deg); animation: shine 6s infinite; pointer-events: none;
+      background: #121215;
+      border: 1px solid var(--line);
     }
     
     .pricing-chip {
-      padding: 24px;
+      padding: 20px;
       border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.8));
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: inset 0 2px 15px rgba(0,0,0,0.4);
+      background: var(--bg-2);
+      border: 1px solid var(--line);
       margin-bottom: 24px;
-      position: relative;
     }
-    .pricing-chip strong {
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      display: block;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    .price-big {
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 2px 15px rgba(169,15,26,0.4);
-      line-height: 1;
-    }
+    .pricing-chip strong { color: var(--muted-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px; font-weight: 700; }
+    .price-big { font-size: 2.5rem; font-weight: 900; color: #fff; line-height: 1; }
 
-    .hero-list {
-      margin: 0 0 24px 0;
-      display: grid;
-      gap: 10px;
-      padding: 0;
-      list-style: none;
-    }
-    .hero-list li {
-      background: rgba(255,255,255,0.02);
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.04);
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 400;
-      transition: all 0.3s ease;
-    }
-    .hero-list li:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.1);
-      transform: translateX(4px);
-      color: #fff;
-    }
-    .hero-list li::before {
-      content: "✓";
-      flex: 0 0 auto;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: inline-grid;
-      place-items: center;
-      background: linear-gradient(135deg, #c21624, #8f0f19);
-      box-shadow: 0 4px 10px rgba(169,15,26,0.4);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.85rem;
-    }
+    .hero-list { margin: 0 0 24px 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+    .hero-list li { display: flex; gap: 12px; align-items: center; color: var(--muted); font-size: 0.95rem; font-weight: 500; }
+    .hero-list li::before { content: "✓"; flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 0.85rem; }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .stat {
-      padding: 16px 12px;
-      border-radius: 16px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.06);
-      text-align: center;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .stat:hover {
-      transform: translateY(-4px);
-      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-      border-color: rgba(255,255,255,0.12);
-    }
-    .stat strong {
-      display: block;
-      font-size: 1.4rem;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-    .stat span.subtle {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--muted-2);
-      font-weight: 500;
-    }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat { padding: 16px; border-radius: var(--radius-lg); background: var(--panel); border: 1px solid var(--line); text-align: center; }
+    .stat strong { display: block; font-size: 1.2rem; color: #fff; margin-bottom: 4px; font-weight: 800; }
+    .stat span.subtle { display: block; font-size: 0.8rem; color: var(--muted-2); font-weight: 600; text-transform: uppercase; }
 
     /* Tick List (General) */
     .tick-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .tick-list li { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-weight: 400;}
-    .tick-list li::before { content: "✓"; flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--accent-soft); color: #fff; font-weight: 800; margin-top: 1px; }
+    .tick-list li { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-weight: 500;}
+    .tick-list li::before { content: "✓"; flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 800; margin-top: 1px; }
 
     /* Grids */
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 
     /* Cards */
-    .card { padding: 24px; border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.12); box-shadow: var(--shadow-soft); }
-    .icon-badge { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.14); margin-bottom: 16px; font-size: 1.35rem; }
+    .card { padding: 24px; border-radius: var(--radius-lg); background: var(--panel); border: 1px solid var(--line); }
+    .icon-badge { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: var(--panel-strong); border: 1px solid var(--line); margin-bottom: 16px; font-size: 1.2rem; }
 
     /* Before/After Slider */
-    .ba-container { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); transform: perspective(1000px); transition: transform 0.4s ease, box-shadow 0.4s ease; background: #000; cursor: ew-resize; }
-    .ba-container:hover { transform: perspective(1000px) translateY(-5px) rotateX(1deg) rotateY(-1deg); box-shadow: 0 25px 50px rgba(169,15,26,0.25); }
+    .ba-container { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: var(--radius-lg); overflow: hidden; background: #000; cursor: ew-resize; }
     .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
     .ba-before { z-index: 1; }
     .ba-after { z-index: 2; clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
     .ba-slider { position: absolute; appearance: none; -webkit-appearance: none; width: 100%; height: 100%; background: transparent; outline: none; margin: 0; top: 0; left: 0; z-index: 3; }
     .ba-slider::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 4px; height: 100vh; background: transparent; cursor: ew-resize; }
-    .ba-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: #fff; z-index: 2; pointer-events: none; box-shadow: 0 0 15px rgba(0,0,0,0.8); transform: translateX(-50%); }
-    .ba-line::after { content: "↔️"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: var(--accent); color: #fff; border-radius: 50%; display: grid; place-items: center; font-weight: bold; border: 3px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-    .ba-label { position: absolute; bottom: 15px; padding: 6px 14px; background: rgba(0,0,0,0.6); color: #fff; border-radius: 20px; font-size: 0.85rem; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2); pointer-events: none; }
-    .label-before { left: 15px; z-index: 1; }
-    .label-after { right: 15px; z-index: 3; }
+    .ba-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: #fff; z-index: 2; pointer-events: none; transform: translateX(-50%); }
+    .ba-line::after { content: "↔️"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 50%; display: grid; place-items: center; font-weight: bold; border: 2px solid #fff; }
+    .ba-label { position: absolute; bottom: 16px; padding: 6px 12px; background: rgba(0,0,0,0.7); color: #fff; border-radius: 8px; font-size: 0.8rem; pointer-events: none; font-weight: 600; }
+    .label-before { left: 16px; z-index: 1; }
+    .label-after { right: 16px; z-index: 3; }
 
     /* Media & Partners */
-    .media-card { border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow-soft); transition: transform 0.3s; }
-    .media-card:hover { transform: scale(1.02); }
+    .media-card { border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); border: 1px solid var(--line); }
     .media-card video, .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .media-card video { aspect-ratio: 16/9; }
-    .partner-logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.03); border-radius: var(--radius-xl); border: 1px solid rgba(255,255,255,0.08); }
-    .partner-logos img { height: 60px; border-radius: 12px; object-fit: contain; background: #fff; padding: 8px 16px; opacity: 0.85; transition: all 0.3s ease; box-shadow: var(--shadow-soft); }
-    .partner-logos img:hover { opacity: 1; transform: translateY(-3px) scale(1.05); }
+    .partner-logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 32px; margin-top: 48px; padding: 32px; background: var(--panel); border-radius: var(--radius-xl); border: 1px solid var(--line); }
+    .partner-logos img { height: 48px; object-fit: contain; filter: grayscale(1) brightness(2); opacity: 0.7; transition: all 0.2s ease; }
+    .partner-logos img:hover { filter: grayscale(0) brightness(1); opacity: 1; }
 
     /* FAQ Sektion */
-    .faq { display: grid; gap: 14px; margin-top: 22px; }
-    .faq-item { border-radius: 20px; background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.12); overflow: hidden; box-shadow: var(--shadow-soft); transition: all 0.3s ease; }
-    .faq-item:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
-    .faq-item summary { cursor: pointer; list-style: none; padding: 22px; font-weight: 600; font-size: 1.1rem; color: #fff; position: relative; }
+    .faq { display: grid; gap: 12px; margin-top: 32px; }
+    .faq-item { border-radius: var(--radius-md); background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
+    .faq-item summary { cursor: pointer; list-style: none; padding: 20px; font-weight: 600; font-size: 1.05rem; color: #fff; position: relative; }
     .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after { content: "+"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 1.6rem; transition: transform 0.3s ease; }
+    .faq-item summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--muted-2); font-size: 1.4rem; transition: transform 0.2s ease; }
     .faq-item[open] summary::after { content: "−"; transform: translateY(-50%) rotate(180deg); }
-    .faq-item .faq-body { padding: 0 22px 22px; color: var(--muted); line-height: 1.7; font-weight: 300;}
+    .faq-item .faq-body { padding: 0 20px 20px; color: var(--muted); line-height: 1.6; }
 
-    /* Google Reviews 3D Swipe */
-    .reviews-scroll { display: flex; gap: 24px; overflow-x: auto; padding: 30px 10px; scroll-snap-type: x mandatory; perspective: 1200px; -webkit-overflow-scrolling: touch; }
-    .reviews-scroll::-webkit-scrollbar { height: 8px; }
-    .reviews-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-    .review-3d-card {
-      min-width: 320px; max-width: 380px; scroll-snap-align: center; flex: 0 0 auto;
-      background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 25px;
-      transform-style: preserve-3d; transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-      transform: rotateY(15deg) scale(0.9); opacity: 0.8; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .reviews-scroll:hover .review-3d-card { opacity: 0.5; transform: rotateY(15deg) scale(0.9); }
-    .reviews-scroll .review-3d-card:hover { opacity: 1; transform: rotateY(0deg) scale(1.05) translateZ(30px); box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 0 1px var(--accent); z-index: 10; }
-    .review-stars { color: #FFD700; font-size: 1.2rem; margin-bottom: 10px; letter-spacing: 2px; }
-    .review-author { display: flex; align-items: center; gap: 12px; margin-top: 15px; }
-    .review-author-img { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; font-weight: bold; color: #fff;}
-    .review-google-icon { width: 24px; height: 24px; margin-left: auto; }
+    /* Reviews */
+    .reviews-scroll { display: flex; gap: 20px; overflow-x: auto; padding: 10px 0 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    .reviews-scroll::-webkit-scrollbar { height: 6px; }
+    .reviews-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
+    .review-3d-card { min-width: 300px; max-width: 350px; scroll-snap-align: start; flex: 0 0 auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; }
+    .review-stars { color: #FFD700; font-size: 1.1rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .review-author { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+    .review-author-img { width: 40px; height: 40px; border-radius: 50%; background: var(--panel-strong); border: 1px solid var(--line); display: grid; place-items: center; font-weight: bold; color: #fff;}
+    .review-google-icon { width: 20px; height: 20px; margin-left: auto; }
 
-    /* --- KONTAKT FORMULAR REDESIGN --- */
-    .contact-wrapper { display: grid; grid-template-columns: 1.3fr 0.8fr; gap: 40px; align-items: stretch; margin-top: 30px; }
+    /* --- KONTAKT FORMULAR OPTIMIERT --- */
+    .contact-wrapper { display: grid; grid-template-columns: 1.3fr 0.8fr; gap: 32px; align-items: start; margin-top: 32px; }
     
     .form-3d-card {
-      background: linear-gradient(145deg, rgba(20,20,22,0.9), rgba(10,10,12,0.95));
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
-      position: relative; overflow: hidden; backdrop-filter: blur(20px);
-      transition: transform 0.4s ease, box-shadow 0.4s ease; transform-style: preserve-3d;
+      background: #121215;
+      border: 1px solid var(--line); border-radius: var(--radius-xl); padding: 32px;
     }
-    .form-3d-card:hover { transform: translateY(-5px) rotateX(1deg); box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(169,15,26,0.15); }
-    .form-3d-card::before { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transform: skewX(-20deg); animation: shine 6s infinite; pointer-events: none; }
     
-    .form-group { position: relative; margin-bottom: 24px; }
-    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); transition: color 0.3s; }
-    .form-group:focus-within label { color: #fff; }
+    .form-group { position: relative; margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); }
     
     .form-control {
-      width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15);
-      color: #fff; border-radius: 14px; padding: 16px 18px; font-size: 1rem;
-      transition: all 0.3s ease; outline: none; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+      width: 100%; background: var(--bg); border: 1px solid var(--line);
+      color: #fff; border-radius: var(--radius-md); padding: 14px 16px; font-size: 1rem;
+      outline: none; transition: border-color 0.2s;
     }
-    .form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(169,15,26,0.2), inset 0 2px 10px rgba(0,0,0,0.3); background: rgba(0,0,0,0.6); }
-    textarea.form-control { min-height: 140px; resize: vertical; }
-    select.form-control option { background: #111; color: #fff; }
+    .form-control:focus { border-color: var(--accent); }
+    textarea.form-control { min-height: 120px; resize: vertical; }
+    select.form-control option { background: var(--bg); color: #fff; }
 
-    .btn-submit {
-      width: 100%; padding: 18px; font-size: 1.1rem; border-radius: 14px; border: none;
-      background: linear-gradient(135deg, #c21624, #8f0f19); color: white; font-weight: bold;
-      cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 20px rgba(169,15,26,0.3); text-transform: uppercase; letter-spacing: 1px;
-    }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(169,15,26,0.5); background: linear-gradient(135deg, #d81a29, #a3111d); }
+    .btn-submit { width: 100%; padding: 16px; font-size: 1.05rem; }
 
-    .contact-info-panel { display: flex; flex-direction: column; gap: 20px; }
-    .info-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 30px; transition: 0.3s; }
-    .info-card:hover { background: rgba(255,255,255,0.06); transform: translateX(5px); border-color: rgba(255,255,255,0.15); }
-    .info-card h3 { display: flex; align-items: center; gap: 10px; color: #fff; margin-bottom: 12px; }
-    .info-card p { color: var(--muted); line-height: 1.6; margin-bottom: 15px; font-weight: 300;}
+    .contact-info-panel { display: flex; flex-direction: column; gap: 16px; }
+    .info-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; }
+    .info-card h3 { display: flex; align-items: center; gap: 10px; color: #fff; margin-bottom: 12px; font-size: 1.1rem; }
 
-    /* Floating Action Buttons (FABs) */
+    /* Sticky Bottom Bar (MOBILE CONVERSION FUNNEL) */
+    .mobile-sticky-cta { display: none; }
+
+    /* Desktop Floating Actions */
     .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 100; }
-    .fab { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .fab:hover { transform: scale(1.15) translateY(-5px); }
-    .fab-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
-    .fab-whatsapp:hover { box-shadow: 0 15px 35px rgba(37,211,102,0.6); }
-    .fab-phone { background: linear-gradient(135deg, #c21624, #8f0f19); }
-    .fab-phone:hover { box-shadow: 0 15px 35px rgba(169,15,26,0.6); }
-    .fab svg { width: 30px; height: 30px; fill: white; }
+    .fab { width: 56px; height: 56px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; }
+    .fab:hover { transform: scale(1.05); }
+    .fab-whatsapp { background: #25D366; }
+    .fab-phone { background: var(--accent); }
+    .fab svg { width: 28px; height: 28px; fill: white; }
 
-    /* COOKIE BANNER (3D Glasmorphismus) */
+    /* COOKIE BANNER */
     .cookie-banner {
-      position: fixed;
-      bottom: -150%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(92%, 800px);
-      background: linear-gradient(145deg, rgba(20,20,22,0.92), rgba(10,10,12,0.95));
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: var(--radius-lg);
-      padding: 25px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 30px rgba(169,15,26,0.15);
-      backdrop-filter: blur(20px);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: bottom 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      position: fixed; bottom: -150%; left: 50%; transform: translateX(-50%);
+      width: min(92%, 800px); background: #121215; border: 1px solid var(--line);
+      border-radius: var(--radius-lg); padding: 24px; z-index: 9999;
+      display: flex; flex-direction: column; gap: 16px; transition: bottom 0.4s ease;
     }
     .cookie-banner.show { bottom: 30px; }
-    .cookie-content { flex: 1; }
-    .cookie-content h4 { margin-bottom: 8px; font-size: 1.2rem; color: #fff; display: flex; align-items: center; gap: 8px; }
-    .cookie-content p { margin: 0; font-size: 0.95rem; color: var(--muted); line-height: 1.5; font-weight: 300;}
-    .cookie-content a { color: var(--accent); text-decoration: underline; font-weight: 600; }
+    .cookie-content h4 { margin-bottom: 8px; font-size: 1.1rem; }
+    .cookie-content p { margin: 0; font-size: 0.9rem; }
+    .cookie-content a { color: var(--accent); text-decoration: underline; }
     .cookie-buttons { display: flex; gap: 12px; }
-    .cookie-buttons .btn { flex: 1; min-height: 48px; }
+    .cookie-buttons .btn { flex: 1; padding: 12px; }
 
-    /* Footer & Socials */
-    footer { padding: 60px 0 40px; border-top: 1px solid rgba(255,255,255,0.08); background: #050506; margin-top: 60px; position: relative; }
+    /* Footer */
+    footer { padding: 60px 0 40px; border-top: 1px solid var(--line); background: var(--bg-2); margin-top: 60px; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
-    .footer-col h4 { color: #fff; font-size: 1.2rem; margin-bottom: 20px; }
+    .footer-col h4 { color: #fff; font-size: 1.1rem; margin-bottom: 20px; }
     .footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .footer-links a { color: var(--muted); transition: color 0.2s; font-weight: 300;}
-    .footer-links a:hover { color: var(--accent); }
-    .social-icons { display: flex; gap: 15px; margin-top: 20px; }
-    .social-btn { width: 45px; height: 45px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; justify-content: center; align-items: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
-    .social-btn svg { width: 22px; height: 22px; fill: #fff; transition: 0.3s; }
-    .social-btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
-    .footer-bottom { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--muted-2); font-size: 0.85rem; font-weight: 300;}
+    .footer-links a { color: var(--muted); font-weight: 500; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .social-icons { display: flex; gap: 12px; margin-top: 20px; }
+    .social-btn { width: 40px; height: 40px; border-radius: 10px; background: var(--panel); display: flex; justify-content: center; align-items: center; border: 1px solid var(--line); transition: background 0.2s; }
+    .social-btn svg { width: 20px; height: 20px; fill: #fff; }
+    .social-btn:hover { background: var(--panel-strong); }
+    .footer-bottom { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 0.85rem; font-weight: 500;}
 
     .anchor-offset { scroll-margin-top: 90px; }
 
-    /* Responsive */
+    /* Responsive & Mobile UX */
     @media (max-width: 1080px) {
-      .hero-grid, .split, .grid-4 { grid-template-columns: 1fr 1fr; }
-      .grid-3 { grid-template-columns: 1fr 1fr; }
-      .contact-wrapper { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero-grid, .split, .grid-4, .grid-3, .contact-wrapper, .footer-grid { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; margin-bottom: 20px; }
       
-      .nav { flex-direction: column; align-items: flex-start; gap: 18px; }
-      .brand { width: 100%; }
-      .nav-actions { width: 100%; justify-content: flex-start; }
-      .nav-links { width: 100%; justify-content: flex-start; overflow-x: auto; padding-bottom: 8px; flex-wrap: nowrap; }
+      .nav { flex-direction: column; align-items: stretch; gap: 16px; }
+      .nav-actions { justify-content: flex-start; }
+      .nav-links { justify-content: flex-start; overflow-x: auto; padding-bottom: 8px; flex-wrap: nowrap; }
       .nav-links a { white-space: nowrap; }
     }
+    
     @media (max-width: 760px) {
-      .section { padding: 74px 0; }
-      .hero-grid, .grid-2, .grid-3, .split, .footer-grid { grid-template-columns: 1fr; }
+      .section { padding: 60px 0; }
       .stats { grid-template-columns: 1fr; }
-      .partner-logos img { height: 45px; }
-      .form-3d-card { padding: 25px; }
-      .fab-container { bottom: 20px; right: 20px; }
-      .fab { width: 50px; height: 50px; }
-      .fab svg { width: 24px; height: 24px; }
-      .cookie-banner { bottom: -200%; padding: 20px; width: calc(100% - 40px); left: 20px; transform: none; }
-      .cookie-banner.show { bottom: 20px; }
+      
+      /* Mobile Sticky Conversion Funnel */
+      .fab-container { display: none; }
+      
+      .mobile-sticky-cta {
+        display: flex; position: fixed; bottom: 0; left: 0; right: 0;
+        background: #0f0f11; padding: 12px; gap: 10px; z-index: 1000;
+        border-top: 1px solid var(--line);
+      }
+      .m-cta-btn {
+        flex: 1; text-align: center; padding: 14px; border-radius: var(--radius-md);
+        font-weight: 700; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+      }
+      .m-cta-whatsapp { background: #25D366; color: #fff; }
+      .m-cta-offerte { background: var(--accent); color: #fff; }
+      
+      body { padding-bottom: 70px; }
+      .cookie-banner.show { bottom: 85px; }
       .cookie-buttons { flex-direction: column; }
     }
     @media (min-width: 768px) {
       .cookie-banner { flex-direction: row; align-items: center; justify-content: space-between; }
       .cookie-buttons { flex: 0 0 auto; flex-direction: row; }
-      .cookie-buttons .btn { padding: 0 24px; }
     }
   </style>
 </head>
 <body>
   <div class="grid-overlay"></div>
-  <div class="glow"></div>
-  <div class="bubbles">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>  
 
   <header>
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Zur Startseite Dampfglanzservice">
         <div class="brand-logo">
-          <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" width="54" height="54" alt="Dampfglanzservice-Ademi Firmenlogo" />
+          <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" width="48" height="48" alt="Dampfglanzservice-Ademi Firmenlogo" />
         </div>
         <div class="brand-text">
           <strong>Dampfglanzservice-Ademi</strong>
@@ -500,18 +373,24 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Schweizweit nach Vereinbarung · Sauberkeit mit System</div>
-          <h1>Reinheit, die man sieht. <span>Qualität, die bleibt.</span></h1>
+          <h1>Reinheit, die man sieht. <br><span>Qualität, die bleibt.</span></h1>
           <p class="lead">
             <strong>Dampfglanzservice-Ademi</strong> ist Ihre Reinigungsfirma aus Rorschach für <strong>Autoreinigung, Wohnungsreinigung, Endreinigung mit Abnahmegarantie, Hausreinigung, Fenster- und Gewerbereinigung</strong>.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#kontakt">Kostenlose Offerte anfordern</a>
-            <a class="btn btn-dark" href="#leistungen">Leistungen ansehen</a>
+            <a class="btn btn-dark" href="tel:+41765024998">Jetzt anrufen</a>
           </div>
+          
+          <div class="trust-indicators">
+            <span>⭐⭐⭐⭐⭐ 5.0 Top-bewertet</span>
+            <span>🛡️ 100% Abnahmegarantie</span>
+          </div>
+
           <div class="hero-badges">
             <div class="badge">Autoreinigung ab CHF 99</div>
             <div class="badge">Abholservice + CHF 40</div>
-            <div class="badge">Ersatzauto inkl. · bis 40 km</div>
+            <div class="badge">Ersatzauto inkl. (bis 40 km)</div>
           </div>
         </div>
 
@@ -524,14 +403,14 @@
             
             <ul class="hero-list">
               <li>Auto Innen- & Aussenbereich</li>
-              <li>Wohnungen & Umzugsreinigung (Abnahmegarantie)</li>
+              <li>Wohnungen & Umzugsreinigung (Garantie)</li>
               <li>Büro, Lager & Gewerbe</li>
             </ul>
             
             <div class="stats">
               <div class="stat">
                 <strong>100%</strong>
-                <span class="subtle">Zufriedenheit</span>
+                <span class="subtle">Zufrieden</span>
               </div>
               <div class="stat">
                 <strong>24h</strong>
@@ -539,7 +418,7 @@
               </div>
               <div class="stat">
                 <strong>🇨🇭</strong>
-                <span class="subtle">Einsatzgebiet</span>
+                <span class="subtle">Regional</span>
               </div>
             </div>
           </div>
@@ -551,7 +430,7 @@
       <div class="container">
         <div class="eyebrow">Leistungen</div>
         <h2>Unsere Reinigungsleistungen im Überblick</h2>
-        <div class="grid-3" style="margin-top:28px;">
+        <div class="grid-3" style="margin-top:32px;">
           <article class="card"><div class="icon-badge">🚗</div><h3>Autoreinigung</h3><p>Gründliche Innen- & Aussenreinigung, Polsterpflege und Detailaufbereitung für maximalen Werterhalt Ihres Fahrzeugs.</p></article>
           <article class="card"><div class="icon-badge">🏠</div><h3>Wohnungsreinigung</h3><p>Regelmässige Reinigung oder Endreinigung bei Umzug inkl. 100% garantierter Wohnungsabgabe ohne Stress.</p></article>
           <article class="card"><div class="icon-badge">🏢</div><h3>Gewerbereinigung</h3><p>Büros, Praxen und Lagerflächen – stets ein hygienisches und repräsentatives Arbeitsumfeld für Ihr Team und Kunden.</p></article>
@@ -569,7 +448,7 @@
           <h2>Wer wir sind & unsere Philosophie</h2>
           <p>Dampfglanzservice-Ademi ist ein etabliertes Reinigungsunternehmen aus Rorschach, SG. Wir stehen für kompromisslose Sauberkeit, absolute Termintreue und 100% Kostentransparenz in der gesamten Ostschweiz und darüber hinaus.</p>
           <p>Egal ob Ihr Fahrzeug einen echten Neuwagen-Effekt benötigt oder Ihre Wohnung reibungslos übergabebereit gemacht werden muss: Wir arbeiten detailversessen und mit höchstem Respekt vor Ihrem Eigentum.</p>
-          <ul class="tick-list" style="margin-top: 20px;">
+          <ul class="tick-list" style="margin-top: 24px;">
             <li>Transparente Preisgestaltung ohne versteckte Kosten</li>
             <li>Höchste Sorgfalt und Hygiene bis in die kleinste Ritze</li>
             <li>Persönlicher Kundenkontakt & direkte Erreichbarkeit per Telefon/WhatsApp</li>
@@ -587,31 +466,31 @@
         <div class="eyebrow">Resultate, die überzeugen</div>
         <h2>Vorher / Nachher Galerie</h2>
         <p class="lead">Ziehen Sie den Schieberegler nach links oder rechts, um den Unterschied unserer Tiefenreinigung hautnah zu erleben.</p>
-        <div class="grid-2" style="margin-top:28px;">
+        <div class="grid-2" style="margin-top:32px;">
           <div class="ba-container">
-            <img src="vorher-kuechenschublade.png" loading="lazy" width="800" height="500" alt="Vorher-Bild einer unsauberen Küchenschublade - Dampfglanzservice" class="ba-image ba-before" />
-            <img src="nachher-kuechenschublade.png" loading="lazy" width="800" height="500" alt="Nachher-Bild einer makellos sauberen Küchenschublade - Dampfglanzservice" class="ba-image ba-after" />
+            <img src="vorher-kuechenschublade.png" loading="lazy" width="800" height="500" alt="Vorher-Bild einer unsauberen Küchenschublade" class="ba-image ba-before" />
+            <img src="nachher-kuechenschublade.png" loading="lazy" width="800" height="500" alt="Nachher-Bild einer makellos sauberen Küchenschublade" class="ba-image ba-after" />
             <div class="ba-line"></div>
             <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
           </div>
           <div class="ba-container">
-            <img src="vorher-heizung.png" loading="lazy" width="800" height="500" alt="Vorher-Bild einer stark verstaubten Heizung - Dampfglanzservice" class="ba-image ba-before" />
-            <img src="nachher-heizung.png" loading="lazy" width="800" height="500" alt="Nachher-Bild einer strahlend weissen, gereinigten Heizung - Dampfglanzservice" class="ba-image ba-after" />
+            <img src="vorher-heizung.png" loading="lazy" width="800" height="500" alt="Vorher-Bild einer stark verstaubten Heizung" class="ba-image ba-before" />
+            <img src="nachher-heizung.png" loading="lazy" width="800" height="500" alt="Nachher-Bild einer strahlend weissen, gereinigten Heizung" class="ba-image ba-after" />
             <div class="ba-line"></div>
             <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
           </div>
           <div class="ba-container">
-            <img src="vorher-duschboden.png" loading="lazy" width="800" height="500" alt="Vorher-Bild eines stark verkalkten Duschbodens - Dampfglanzservice" class="ba-image ba-before" />
-            <img src="nachher-duschboden.png" loading="lazy" width="800" height="500" alt="Nachher-Bild eines kalkfreien, glänzenden Duschbodens - Dampfglanzservice" class="ba-image ba-after" />
+            <img src="vorher-duschboden.png" loading="lazy" width="800" height="500" alt="Vorher-Bild eines stark verkalkten Duschbodens" class="ba-image ba-before" />
+            <img src="nachher-duschboden.png" loading="lazy" width="800" height="500" alt="Nachher-Bild eines kalkfreien, glänzenden Duschbodens" class="ba-image ba-after" />
             <div class="ba-line"></div>
             <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
           </div>
           <div class="ba-container">
             <img src="bad-vorher.png" loading="lazy" width="800" height="500" alt="Vorher-Bild eines Badezimmers mit hartnäckigen Schmutzrückständen" class="ba-image ba-before" />
-            <img src="bad-nachher.png" loading="lazy" width="800" height="500" alt="Nachher-Bild eines hygienisch reinen Badezimmers nach der Endreinigung" class="ba-image ba-after" />
+            <img src="bad-nachher.png" loading="lazy" width="800" height="500" alt="Nachher-Bild eines hygienisch reinen Badezimmers" class="ba-image ba-after" />
             <div class="ba-line"></div>
             <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
             <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
@@ -627,12 +506,12 @@
         <div class="grid-3 media-grid">
           <div class="media-card"><video controls poster="flyer.png" preload="none"><source src="video1.mp4" type="video/mp4"></video></div>
           <div class="media-card"><video controls poster="flyer.png" preload="none"><source src="video2.mp4" type="video/mp4"></video></div>
-          <div class="media-card"><a href="flyer.png" target="_blank" rel="noopener"><img src="flyer.png" loading="lazy" width="800" height="1131" alt="Offizieller Leistungsflyer von Dampfglanzservice-Ademi" /></a></div>
+          <div class="media-card"><a href="flyer.png" target="_blank" rel="noopener"><img src="flyer.png" loading="lazy" width="800" height="1131" alt="Offizieller Leistungsflyer" /></a></div>
         </div>
         <div class="partner-logos">
-          <img src="top-offerten.jpeg" loading="lazy" width="150" height="60" alt="Partner Logo Zertifizierung Top Offerten" />
-          <img src="ofri.jpeg" loading="lazy" width="150" height="60" alt="Partner Logo Zertifizierung Ofri" />
-          <img src="comparis.jpeg" loading="lazy" width="150" height="60" alt="Partner Logo Zertifizierung Comparis" />
+          <img src="top-offerten.jpeg" loading="lazy" width="150" height="60" alt="Zertifizierung Top Offerten" />
+          <img src="ofri.jpeg" loading="lazy" width="150" height="60" alt="Zertifizierung Ofri" />
+          <img src="comparis.jpeg" loading="lazy" width="150" height="60" alt="Zertifizierung Comparis" />
         </div>
       </div>
     </section>
@@ -656,7 +535,7 @@
             <div class="review-stars">★★★★★</div>
             <p>"Endreinigung der Wohnung mit Abnahmegarantie lief perfekt. Die Verwaltung war begeistert, keine einzige Beanstandung. Sehr zuverlässiges Team!"</p>
             <div class="review-author">
-              <div class="review-author-img" style="background:#8f0f19;">S</div>
+              <div class="review-author-img" style="background:var(--accent-dark);">S</div>
               <div><strong>Sarah K.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 1 Monat</span></div>
               <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
             </div>
@@ -710,11 +589,39 @@
               Nein. Absolute Kostentransparenz ist unser oberstes Gebot. Sie erhalten von uns einen fixen Preis, der auf dem tatsächlichen Aufwand und Verschmutzungsgrad basiert. Es gibt <strong>keine Überraschungen und keine versteckten Gebühren</strong>.
             </div>
           </details>
-
+          
           <details class="faq-item">
             <summary>Was unterscheidet Ihre Methode von einer normalen Autoreinigung?</summary>
             <div class="faq-body">
               Herkömmliche Waschstrassen können feine Kratzer im Lack hinterlassen und reinigen den Innenraum oft nur oberflächlich. Wir reinigen mit viel Liebe zum Detail und hochwertigen Produkten. Flecken, tief sitzender Schmutz und unangenehme Gerüche werden effektiv beseitigt – für einen <strong>echten Neuwagen-Effekt</strong>.
+            </div>
+          </details>
+          
+          <details class="faq-item">
+            <summary>Welche Reinigungsmittel verwenden Sie?</summary>
+            <div class="faq-body">
+              Wir setzen auf professionelle, materialschonende und wo immer möglich <strong>umweltfreundliche Reinigungsmittel</strong>. Für Allergiker oder bei speziellen Materialanforderungen (wie sehr empfindliches Leder im Auto) passen wir unsere Produkte selbstverständlich individuell an.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Muss ich während der Reinigung vor Ort sein?</summary>
+            <div class="faq-body">
+              Nein, das ist nicht zwingend nötig. Bei Autoreinigungen mit Abholservice oder Wohnungsreinigungen können Sie uns den Schlüssel bequem übergeben. Wir arbeiten <strong>diskret und absolut zuverlässig</strong>.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Wie kann ich die erbrachten Leistungen bezahlen?</summary>
+            <div class="faq-body">
+              Sie können bei uns bequem und flexibel per <strong>Rechnung, TWINT oder in bar</strong> bezahlen. Die genauen Zahlungsdetails klären wir ganz einfach und unkompliziert bei der Auftragsbestätigung.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Sind auch Einsätze am Wochenende oder nach Feierabend möglich?</summary>
+            <div class="faq-body">
+              Ja, absolut! Insbesondere für Gewerbekunden (Büroreinigung) oder bei dringenden Umzügen bieten wir nach vorheriger Vereinbarung auch Reinigungen <strong>ausserhalb der regulären Öffnungszeiten oder am Wochenende</strong> an, damit Ihr Ablauf nicht gestört wird.
             </div>
           </details>
         </div>
@@ -729,13 +636,12 @@
         <div class="contact-wrapper">
           <div class="form-3d-card">
             
-            <div id="form-message" style="display: none; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-weight: bold;"></div>
+            <div id="form-message" style="display: none; padding: 16px; border-radius: var(--radius-md); margin-bottom: 24px; text-align: center; font-weight: 600;"></div>
 
             <form action="https://formsubmit.co/info@dampfglanzservice-ademi.ch" method="POST">
               
               <input type="text" name="_honey" style="display:none">
               <input type="hidden" name="_subject" value="Neue Anfrage von der Website (Dampfglanzservice)">
-              
               <input type="hidden" name="_next" value="https://www.dampfglanzservice-ademi.ch/?status=success#kontakt">
 
               <div class="grid-2">
@@ -764,7 +670,7 @@
                 <textarea id="nachricht" name="nachricht" class="form-control" placeholder="Beschreiben Sie kurz Ihr Anliegen, Verschmutzungsgrad oder Wunschtermin..."></textarea>
               </div>
 
-              <button type="submit" class="btn-submit">Anfrage kostenlos senden</button>
+              <button type="submit" class="btn btn-primary btn-submit">Anfrage kostenlos senden</button>
             </form>
           </div>
 
@@ -795,18 +701,17 @@
       <div class="container">
         <div class="eyebrow">Rechtliches</div>
         <h2>Impressum</h2>
-        <div class="faq-body" style="background: var(--panel); padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--line);">
+        <div class="faq-body" style="background: var(--panel); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line);">
           <p><strong>Dampfglanzservice-Ademi</strong><br>
-          Inhaber: [Vorname] Ademi<br>
-          [Musterstrasse 12] <br>
+          Inhaber: Ferki Ademi<br>
+          Trischlistrasse 25<br>
           9400 Rorschach, Kanton St. Gallen, Schweiz</p>
           
-          <p style="margin-top:20px;"><strong>Kontakt:</strong><br>
+          <p style="margin-top:24px;"><strong>Kontakt:</strong><br>
           Telefon: +41 76 502 49 98<br>
           E-Mail: <a href="mailto:info@dampfglanzservice-ademi.ch" style="color:var(--accent);">info@dampfglanzservice-ademi.ch</a></p>
           
-          <p style="margin-top:20px;"><strong>Unternehmens-Identifikationsnummer (UID):</strong><br>
-          CHE-XXX.XXX.XXX </p>
+          <p style="margin-top:24px; font-size:0.9rem; color:var(--muted-2);">Haftungsausschluss: Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschliesslich deren Betreiber verantwortlich.</p>
         </div>
       </div>
     </section>
@@ -815,11 +720,11 @@
       <div class="container">
         <div class="eyebrow">Rechtliches</div>
         <h2>Datenschutzerklärung</h2>
-        <div class="faq-body" style="background: var(--panel); padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.7;">
+        <div class="faq-body" style="background: var(--panel); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.7;">
           <p>Verantwortliche Stelle für den Datenschutz ist Dampfglanzservice-Ademi. Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (insbesondere dem Schweizer DSG) behandelt.</p>
-          <p><strong>Datenerfassung auf dieser Website:</strong><br>Daten, die über unser Kontaktformular gesendet werden (z. B. Name, Telefonnummer, Nachricht), nutzen wir ausschliesslich zur Bearbeitung Ihrer Anfrage und für mögliche Anschlussfragen. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
-          <p><strong>Ihre Rechte:</strong><br>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.</p>
-          <p><strong>Cookies:</strong><br>Unsere Website verwendet teilweise sogenannte Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren. Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.</p>
+          <p><strong>Datenerfassung auf dieser Website:</strong><br>Daten, die über unser Kontaktformular gesendet werden (z. B. Name, Telefonnummer, Nachricht), nutzen wir ausschliesslich zur Bearbeitung Ihrer Anfrage und für mögliche Anschlussfragen. Diese Daten geben wir nicht ohne Ihre ausdrückliche Einwilligung an Dritte weiter.</p>
+          <p><strong>Ihre Rechte:</strong><br>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Wenden Sie sich dazu an die im Impressum angegebene Adresse.</p>
+          <p><strong>Cookies:</strong><br>Unsere Website verwendet teilweise sogenannte Cookies. Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. Sie können die Speicherung von Cookies über unser Cookie-Banner ablehnen.</p>
         </div>
       </div>
     </section>
@@ -828,7 +733,7 @@
       <div class="container">
         <div class="eyebrow">Rechtliches</div>
         <h2>Allgemeine Geschäftsbedingungen (AGB)</h2>
-        <div class="faq-body" style="background: var(--panel); padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.7;">
+        <div class="faq-body" style="background: var(--panel); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.7;">
           <p><strong>1. Geltungsbereich:</strong> Diese AGB gelten für alle angebotenen Dienstleistungen, Aufträge und Verträge zwischen Dampfglanzservice-Ademi und dem Kunden.</p>
           <p><strong>2. Offerten und Vertragsabschluss:</strong> Die auf der Webseite genannten Startpreise sind Richtpreise. Eine verbindliche Offerte wird auf Basis des tatsächlichen Aufwands erstellt. Ein Vertrag kommt durch die schriftliche oder mündliche Zusage des Kunden zustande.</p>
           <p><strong>3. Terminabsagen:</strong> Stornierungen oder Terminverschiebungen müssen mindestens 24 Stunden vor dem vereinbarten Termin gemeldet werden. Bei kurzfristigeren Absagen behalten wir uns vor, eine Ausfallgebühr in Höhe von 50% des Auftragswerts in Rechnung zu stellen.</p>
@@ -843,8 +748,8 @@
   <footer>
     <div class="container footer-grid">
       <div class="footer-col">
-        <div class="brand-logo" style="width: 45px; height: 45px; margin-bottom: 15px;">
-          <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" loading="lazy" width="45" height="45" alt="Dampfglanzservice-Ademi Firmenlogo im Footer" />
+        <div class="brand-logo" style="width: 48px; height: 48px; margin-bottom: 20px;">
+          <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" loading="lazy" width="48" height="48" alt="Dampfglanzservice-Ademi Firmenlogo Footer" />
         </div>
         <h4>Dampfglanzservice-Ademi</h4>
         <p class="subtle">Ihre zuverlässige Reinigungsfirma für Auto, Haus und Gewerbe in der Ostschweiz. Kompromisslose Reinheit, die man sieht.</p>
@@ -885,12 +790,20 @@
   </footer>
 
   <div class="fab-container">
-    <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="fab fab-whatsapp" aria-label="WhatsApp Nachricht an Dampfglanzservice senden">
+    <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="fab fab-whatsapp" aria-label="WhatsApp Nachricht senden">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
     </a>
-    <a href="tel:+41765024998" class="fab fab-phone" aria-label="Jetzt Dampfglanzservice anrufen">
+    <a href="tel:+41765024998" class="fab fab-phone" aria-label="Jetzt anrufen">
       <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
     </a>
+  </div>
+
+  <div class="mobile-sticky-cta">
+    <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="m-cta-btn m-cta-whatsapp">
+      <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      WhatsApp
+    </a>
+    <a href="#kontakt" class="m-cta-btn m-cta-offerte">Kostenlose Offerte</a>
   </div>
 
   <div id="cookie-banner" class="cookie-banner">
@@ -938,14 +851,21 @@
         cookieBanner.classList.remove('show');
       });
 
-      // Erfolgsmeldung
+      // Erfolgsmeldung für das Formular
       const urlParams = new URLSearchParams(window.location.search);
       const formMessage = document.getElementById('form-message');
       if (urlParams.get('status') === 'success') {
         formMessage.textContent = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.';
         formMessage.style.backgroundColor = 'rgba(37, 211, 102, 0.15)';
         formMessage.style.color = '#25D366';
+        formMessage.style.border = '1px solid rgba(37, 211, 102, 0.3)';
         formMessage.style.display = 'block';
+        
+        // Formularfelder leeren
+        const form = document.querySelector('form');
+        if(form) form.reset();
+        
+        // URL im Browser bereinigen
         window.history.replaceState({}, document.title, window.location.pathname + "#kontakt");
       }
     });
