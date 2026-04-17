@@ -197,8 +197,10 @@
     .media-card video, .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .media-card video { aspect-ratio: 16/9; }
     .partner-logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 32px; margin-top: 48px; padding: 32px; background: var(--panel); border-radius: var(--radius-xl); border: 1px solid var(--line); }
-    .partner-logos img { height: 48px; object-fit: contain; filter: grayscale(1) brightness(2); opacity: 0.7; transition: all 0.2s ease; }
-    .partner-logos img:hover { filter: grayscale(0) brightness(1); opacity: 1; }
+    
+    /* Farbig dargestellte Logos */
+    .partner-logos img { height: 48px; object-fit: contain; background: #fff; padding: 6px 12px; border-radius: 8px; transition: all 0.2s ease; }
+    .partner-logos img:hover { transform: scale(1.05); }
 
     /* FAQ */
     .faq { display: grid; gap: 12px; margin-top: 32px; }
@@ -436,7 +438,7 @@
         <div>
           <div class="eyebrow">Über uns</div>
           <h2>Wer wir sind & unsere Philosophie</h2>
-          <p>Dampfglanzservice-Ademi ist ein etabliertes Reinigungsunternehmen aus Rorschach, SG. Wir stehen für kompromisslose Sauberkeit, absolute Termintreue und 100% Kostentransparenz in der gesamten Ostschweiz und darüber hinaus.</p>
+          <p>Dampfglanzservice-Ademi ist ein etabliertes Reinigungsunternehmen aus Rorschach, SG. Wir stehen für kompromisslose Sauberkeit, absolute Termintreue und 100% Kostentransparenz in der entire Ostschweiz und darüber hinaus.</p>
           <p>Egal ob Ihr Fahrzeug einen echten Neuwagen-Effekt benötigt oder Ihre Wohnung reibungslos übergabebereit gemacht werden muss: Wir arbeiten detailversessen und mit höchstem Respekt vor Ihrem Eigentum.</p>
           <ul class="tick-list" style="margin-top: 24px;">
             <li>Transparente Preisgestaltung ohne versteckte Kosten</li>
