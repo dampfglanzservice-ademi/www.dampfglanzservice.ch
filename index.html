@@ -4,6 +4,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dampfglanzservice-Ademi | Reinigungsfirma aus Rorschach</title>
   <meta name="description" content="Dampfglanzservice-Ademi – Reinigungsfirma aus Rorschach für Auto-, Wohnungs-, Haus-, Fenster- und Gewerbereinigung. Jetzt kostenlose Offerte anfragen." />
+  
+  <meta property="og:title" content="Dampfglanzservice-Ademi | Reinigungsfirma aus Rorschach" />
+  <meta property="og:description" content="Dampfglanzservice-Ademi – Reinigungsfirma aus Rorschach für Auto-, Wohnungs-, Haus-, Fenster- und Gewerbereinigung. Jetzt kostenlose Offerte anfragen." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/" />
+  <meta property="og:image" content="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" />
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Dampfglanzservice-Ademi",
+    "image": "https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png",
+    "description": "Dampfglanzservice-Ademi – Reinigungsfirma aus Rorschach für Auto-, Wohnungs-, Haus-, Fenster- und Gewerbereinigung.",
+    "telephone": "+41765024998",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rorschach",
+      "addressRegion": "St. Gallen",
+      "addressCountry": "CH"
+    }
+  }
+  </script>
+
   <meta name="theme-color" content="#0c0c0d" />
   <meta name="robots" content="index,follow" />  
   <style>
@@ -14,7 +38,6 @@
       --panel-strong: rgba(255,255,255,0.12);
       --line: rgba(255,255,255,0.12);
       --text: #ffffff;
-      /* Schriftfarben deutlich heller gemacht für besseren Kontrast */
       --muted: #f1f5f9; 
       --muted-2: #cbd5e1;
       --accent: #a90f1a;
@@ -705,20 +728,23 @@
         
         <div class="contact-wrapper">
           <div class="form-3d-card">
-            <form action="#" method="POST">
+            
+            <div id="form-message" style="display: none; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; font-weight: bold;"></div>
+
+            <form action="mailer.php" method="POST">
               <div class="grid-2">
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" id="name" class="form-control" required placeholder="Ihr vollständiger Name" />
+                  <input type="text" id="name" name="name" class="form-control" required placeholder="Ihr vollständiger Name" />
                 </div>
                 <div class="form-group">
                   <label for="tel">Telefon</label>
-                  <input type="tel" id="tel" class="form-control" required placeholder="Ihre Telefonnummer" />
+                  <input type="tel" id="tel" name="telefon" class="form-control" required placeholder="Ihre Telefonnummer" />
                 </div>
               </div>
               <div class="form-group">
                 <label for="dienstleistung">Gewünschte Dienstleistung</label>
-                <select id="dienstleistung" class="form-control">
+                <select id="dienstleistung" name="dienstleistung" class="form-control">
                   <option>Autoreinigung</option>
                   <option>Wohnungs- / Endreinigung</option>
                   <option>Gewerbereinigung</option>
@@ -728,7 +754,7 @@
               </div>
               <div class="form-group">
                 <label for="nachricht">Ihre Nachricht</label>
-                <textarea id="nachricht" class="form-control" placeholder="Beschreiben Sie kurz Ihr Anliegen, Verschmutzungsgrad oder Wunschtermin..."></textarea>
+                <textarea id="nachricht" name="nachricht" class="form-control" placeholder="Beschreiben Sie kurz Ihr Anliegen, Verschmutzungsgrad oder Wunschtermin..."></textarea>
               </div>
               <button type="submit" class="btn-submit">Anfrage kostenlos senden</button>
             </form>
@@ -754,6 +780,30 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section anchor-offset" id="impressum">
+      <div class="container">
+        <div class="eyebrow">Rechtliches</div>
+        <h2>Impressum</h2>
+        <p><strong>Dampfglanzservice-Ademi</strong><br>Rorschach, St. Gallen, Schweiz<br>Telefon: 076 502 49 98</p>
+      </div>
+    </section>
+
+    <section class="section anchor-offset" id="datenschutz">
+      <div class="container">
+        <div class="eyebrow">Rechtliches</div>
+        <h2>Datenschutzerklärung</h2>
+        <p>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften behandelt. Daten, die über unser Kontaktformular gesendet werden, nutzen wir ausschliesslich zur Bearbeitung Ihrer Anfrage.</p>
+      </div>
+    </section>
+
+    <section class="section anchor-offset" id="agb">
+      <div class="container">
+        <div class="eyebrow">Rechtliches</div>
+        <h2>Allgemeine Geschäftsbedingungen (AGB)</h2>
+        <p>Hier finden Sie in Kürze unsere Allgemeinen Geschäftsbedingungen (AGB). Bei konkreten Fragen zu Haftung, Stornierungsbedingungen oder unseren Reinigungsverträgen kontaktieren Sie uns bitte vorab direkt.</p>
       </div>
     </section>
   </main>
@@ -811,17 +861,6 @@
     </a>
   </div>
 
-  <div id="cookie-banner" class="cookie-banner">
-    <div class="cookie-content">
-      <h4>🍪 Wir verwenden Cookies</h4>
-      <p>Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Weitere Informationen erhalten Sie in unserer <a href="#datenschutz">Datenschutzerklärung</a>.</p>
-    </div>
-    <div class="cookie-buttons">
-      <button id="cookie-accept" class="btn btn-primary">Akzeptieren</button>
-      <button id="cookie-decline" class="btn btn-dark">Ablehnen</button>
-    </div>
-  </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // 1. Vorher/Nachher Slider Logik
@@ -843,25 +882,48 @@
       const acceptBtn = document.getElementById('cookie-accept');
       const declineBtn = document.getElementById('cookie-decline');
 
-      // Prüfen, ob der User bereits eine Auswahl getroffen hat
       if (!localStorage.getItem('cookieConsent')) {
-        // Banner nach einer kurzen Verzögerung einblenden
         setTimeout(() => {
           cookieBanner.classList.add('show');
         }, 1200);
       }
 
-      // Klick auf "Akzeptieren"
       acceptBtn.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'accepted');
         cookieBanner.classList.remove('show');
       });
 
-      // Klick auf "Ablehnen"
       declineBtn.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'declined');
         cookieBanner.classList.remove('show');
       });
+
+      // 3. HIER IST DAS NEUE SCRIPT FÜR DIE ERFOLGSMELDUNG NACH DEM SENDEN
+      const urlParams = new URLSearchParams(window.location.search);
+      const formMessage = document.getElementById('form-message');
+      
+      if (urlParams.get('status') === 'success') {
+        formMessage.textContent = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.';
+        formMessage.style.backgroundColor = 'rgba(37, 211, 102, 0.15)';
+        formMessage.style.color = '#25D366';
+        formMessage.style.border = '1px solid rgba(37, 211, 102, 0.4)';
+        formMessage.style.display = 'block';
+        
+        // Formularfelder leeren
+        document.querySelector('form').reset();
+        
+        // Die saubere URL wiederherstellen (ohne ?status=success)
+        window.history.replaceState({}, document.title, window.location.pathname + "#kontakt");
+        
+      } else if (urlParams.get('status') === 'error') {
+        formMessage.textContent = 'Es gab leider ein Problem beim Senden. Bitte rufen Sie uns an oder nutzen Sie WhatsApp.';
+        formMessage.style.backgroundColor = 'rgba(169, 15, 26, 0.15)';
+        formMessage.style.color = '#ff4d4d';
+        formMessage.style.border = '1px solid rgba(169, 15, 26, 0.4)';
+        formMessage.style.display = 'block';
+        
+        window.history.replaceState({}, document.title, window.location.pathname + "#kontakt");
+      }
     });
   </script>
 </body>
