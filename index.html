@@ -1,834 +1,2397 @@
-<!DOCTYPE html><html lang="de-CH">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dampfglanzservice-Ademi | Reinigungsfirma aus Rorschach</title>
-  
-  <meta name="description" content="Dampfglanzservice-Ademi – Ihre Reinigungsfirma aus Rorschach, St. Gallen für Auto-, Wohnungs-, Haus-, Fenster- und Gewerbereinigung. Jetzt kostenlose Offerte anfragen." />
-  <meta name="keywords" content="Reinigungsfirma, Rorschach, Autoreinigung, Wohnungsreinigung, Endreinigung, Abnahmegarantie, Hausreinigung, Fensterreinigung, Gewerbereinigung, St. Gallen" />
-  <link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/" />
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dampfglanzservice-Ademi – professionelle Autoreinigung, Endreinigung, Wohnungsreinigung und Tiefenpflege in Rorschach, St. Gallen und Umgebung. Persönlich, zuverlässig und transparent.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/">
+  <title>Dampfglanzservice-Ademi | Professionelle Reinigung in Rorschach & St. Gallen</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <meta property="og:title" content="Dampfglanzservice-Ademi | Reinigungsfirma aus Rorschach" />
-  <meta property="og:description" content="Dampfglanzservice-Ademi – Reinigungsfirma aus Rorschach für Auto-, Wohnungs-, Haus-, Fenster- und Gewerbereinigung. 100% Abnahmegarantie." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/" />
-  <meta property="og:image" content="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_1200,h_630,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" />
-  
+
+  <style>
+    :root {
+      --red: #c1121f;
+      --red-dark: #8f0d16;
+      --black: #0b0b0d;
+      --dark: #121216;
+      --dark-2: #1a1a20;
+      --white: #ffffff;
+      --text: #17171b;
+      --muted: #686873;
+      --light: #f6f6f8;
+      --border: #e5e5e9;
+      --shadow: 0 15px 45px rgba(0,0,0,.10);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 95px 0;
+    }
+
+    .section-light {
+      background: var(--light);
+    }
+
+    .section-dark {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto 55px;
+      text-align: center;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      margin-bottom: 18px;
+      letter-spacing: -.04em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .section-dark .section-heading p {
+      color: #b8b8c2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 23px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 750;
+      transition: .2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(193,18,31,.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      background: #222228;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,.25);
+      color: #fff;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+      color: var(--black);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      line-height: 1.05;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .brand-text span {
+      color: var(--red);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      font-size: .9rem;
+      font-weight: 650;
+      color: #303038;
+      transition: .2s ease;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* HERO */
+    .hero {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(193,18,31,.10), transparent 28%),
+        linear-gradient(180deg,#fff 0%,#fafafa 100%);
+      padding: 90px 0 85px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.8rem, 6vw, 5.4rem);
+      line-height: .98;
+      letter-spacing: -.065em;
+      margin: 15px 0 25px;
+      max-width: 780px;
+    }
+
+    .hero-copy h1 span {
+      color: var(--red);
+    }
+
+    .lead {
+      max-width: 680px;
+      color: #5f5f69;
+      font-size: 1.12rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .trust-indicators {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 25px;
+      font-size: .88rem;
+      font-weight: 700;
+      color: #45454e;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .badge {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 650;
+      box-shadow: 0 5px 18px rgba(0,0,0,.04);
+    }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: #62626c;
+      font-size: .83rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg,#111116,#1c1c22);
+      border-radius: 28px;
+      padding: 35px;
+      color: #fff;
+      box-shadow: 0 30px 80px rgba(0,0,0,.20);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -120px;
+      top: -120px;
+      border-radius: 50%;
+      background: rgba(193,18,31,.17);
+    }
+
+    .pricing-chip {
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      padding-bottom: 25px;
+      margin-bottom: 25px;
+    }
+
+    .pricing-chip strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .price-big {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 850;
+      letter-spacing: -.04em;
+    }
+
+    .hero-list {
+      list-style: none;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 13px;
+      margin-bottom: 30px;
+    }
+
+    .hero-list li {
+      padding-left: 28px;
+      position: relative;
+      color: #dedee4;
+    }
+
+    .hero-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .stats {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 22px;
+      gap: 10px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+
+    .subtle {
+      color: #96969f;
+      font-size: .75rem;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.05);
+      transition: .25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(193,18,31,.09);
+      color: var(--red);
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-bottom: 20px;
+    }
+
+    .service-card ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: #44444d;
+      font-size: .88rem;
+    }
+
+    .service-card li {
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .service-card li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    /* PROCESS */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 18px;
+    }
+
+    .process-card {
+      padding: 28px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      position: relative;
+    }
+
+    .process-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--black);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: .8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .process-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .process-card p {
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    /* BEFORE AFTER */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 24px;
+    }
+
+    .ba-container {
+      position: relative;
+      height: 360px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: var(--shadow);
+      user-select: none;
+    }
+
+    .ba-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ba-before {
+      z-index: 1;
+    }
+
+    .ba-after {
+      z-index: 2;
+      clip-path: polygon(50% 0,100% 0,100% 100%,50% 100%);
+    }
+
+    .ba-label {
+      position: absolute;
+      top: 15px;
+      z-index: 5;
+      padding: 7px 11px;
+      border-radius: 7px;
+      background: rgba(0,0,0,.72);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .ba-label.before {
+      left: 15px;
+    }
+
+    .ba-label.after {
+      right: 15px;
+    }
+
+    .ba-line {
+      position: absolute;
+      z-index: 6;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #fff;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(0,0,0,.3);
+      pointer-events: none;
+    }
+
+    .ba-slider {
+      position: absolute;
+      z-index: 8;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: ew-resize;
+      margin: 0;
+    }
+
+    /* MEDIA */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .media-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    }
+
+    .media-card video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* PARTNER */
+    .partner-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 35px;
+      margin-top: 30px;
+    }
+
+    .partner-grid img {
+      width: 150px;
+      height: 60px;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: .75;
+      transition: .2s ease;
+    }
+
+    .partner-grid img:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    /* REVIEWS */
+    .review-note {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .review-stars {
+      color: #fff;
+      letter-spacing: 3px;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .review-note p {
+      color: #c5c5cd;
+      font-size: .95rem;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .contact-copy h2 {
+      font-size: clamp(2rem,4vw,3.4rem);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+      margin: 12px 0 20px;
+    }
+
+    .contact-copy > p {
+      color: #676771;
+      max-width: 520px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+    }
+
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border-radius: 11px;
+      background: rgba(193,18,31,.09);
+      color: var(--red);
+      display: grid;
+      place-items: center;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: .9rem;
+      margin-bottom: 2px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .contact-form {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 15px;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 7px;
+    }
+
+    .form-group.full {
+      grid-column: 1/-1;
+    }
+
+    .form-group label {
+      font-size: .78rem;
+      font-weight: 750;
+      color: #37373f;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      border: 1px solid #dcdce2;
+      background: #fafafd;
+      border-radius: 10px;
+      padding: 13px 14px;
+      outline: none;
+      transition: .2s ease;
+    }
+
+    .form-group textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--red);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(193,18,31,.08);
+    }
+
+    .form-message {
+      display: none;
+      padding: 12px 14px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      font-size: .85rem;
+    }
+
+    .form-submit {
+      margin-top: 18px;
+      width: 100%;
+    }
+
+    .privacy-note {
+      margin-top: 13px;
+      color: #8a8a93;
+      font-size: .72rem;
+      text-align: center;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      max-width: 850px;
+      margin: 0 auto;
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 750;
+      list-style: none;
+      position: relative;
+      padding-right: 30px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      font-size: 1.3rem;
+      color: var(--red);
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: .9rem;
+    }
+
+    /* LEGAL */
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+
+    .legal-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 27px;
+    }
+
+    .legal-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .legal-card p,
+    .legal-card li {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .legal-card ul {
+      padding-left: 18px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #09090b;
+      color: #fff;
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 45px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .footer-brand strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .footer-brand span {
+      color: #d8d8df;
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .footer-description {
+      color: #9999a3;
+      max-width: 420px;
+      font-size: .84rem;
+      line-height: 1.8;
+    }
+
+    .socials {
+      display: flex;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 10px;
+      color: #fff;
+      font-size: .78rem;
+      transition: .2s ease;
+    }
+
+    .social-btn:hover {
+      background: #fff;
+      color: #111;
+    }
+
+    .footer-col h4 {
+      font-size: .9rem;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .footer-links a {
+      color: #9999a3;
+      font-size: .8rem;
+      transition: .2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.09);
+      padding-top: 20px;
+      color: #777780;
+      font-size: .72rem;
+    }
+
+    /* FLOATING BUTTONS */
+    .fab-container {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .fab {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,.2);
+      transition: .2s ease;
+    }
+
+    .fab:hover {
+      transform: translateY(-3px);
+    }
+
+    .fab svg,
+    .m-cta-btn svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+    }
+
+    .fab-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .fab-phone {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .mobile-sticky-cta {
+      display: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .section {
+        padding: 70px 0;
+      }
+
+      .hero {
+        padding: 60px 0 65px;
+      }
+
+      .brand-text {
+        display: none;
+      }
+
+      .nav-actions .btn {
+        min-height: 43px;
+        padding: 0 14px;
+        font-size: .75rem;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .trust-indicators,
+      .trust-strip {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .hero-card {
+        padding: 25px;
+      }
+
+      .services-grid,
+      .process-grid,
+      .ba-grid,
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ba-container {
+        height: 270px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .contact-form {
+        padding: 22px;
+      }
+
+      .fab-container {
+        display: none;
+      }
+
+      .mobile-sticky-cta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        padding: 8px;
+        gap: 7px;
+        background: rgba(255,255,255,.96);
+        border-top: 1px solid rgba(0,0,0,.08);
+        backdrop-filter: blur(12px);
+      }
+
+      .m-cta-btn {
+        min-height: 47px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-weight: 800;
+        font-size: .84rem;
+      }
+
+      .m-cta-whatsapp {
+        background: #25D366;
+        color: #fff;
+      }
+
+      .m-cta-call {
+        background: var(--black);
+        color: #fff;
+      }
+
+      footer {
+        padding-bottom: 95px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .nav-actions .btn {
+        font-size: .7rem;
+        padding: 0 11px;
+      }
+
+      .hero-card {
+        border-radius: 20px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Dampfglanzservice-Ademi",
-    "image": "https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_1200,h_630,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png",
-    "@id": "https://www.dampfglanzservice-ademi.ch/",
     "url": "https://www.dampfglanzservice-ademi.ch/",
-    "description": "Professionelle Reinigungsfirma aus Rorschach (Kanton St. Gallen) für Autoreinigung, Wohnungsreinigung inkl. Abnahmegarantie, Haus-, Fenster- und Gewerbereinigung.",
     "telephone": "+41765024998",
     "email": "info@dampfglanzservice-ademi.ch",
-    "priceRange": "CHF",
+    "description": "Professionelle Autoreinigung, Endreinigung, Wohnungsreinigung und Tiefenpflege in Rorschach, St. Gallen und Umgebung.",
+    "areaServed": [
+      "Rorschach",
+      "St. Gallen",
+      "Goldach",
+      "Horn",
+      "Arbon"
+    ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Trischlistrasse 25",
       "addressLocality": "Rorschach",
-      "postalCode": "9400",
       "addressRegion": "St. Gallen",
       "addressCountry": "CH"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 47.4768,
-      "longitude": 9.4922
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "08:00",
-      "closes": "18:00"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "124"
-    }
+    "sameAs": [
+      "https://www.instagram.com/dampfglanzservice/",
+      "https://www.tiktok.com/@dampfglanzservice"
+    ]
   }
   </script>
-
-  <meta name="theme-color" content="#0c0c0d" />
-  <style>
-    :root {
-      --bg: #09090b;
-      --bg-2: #111214;
-      --panel: rgba(255,255,255,0.05);
-      --panel-strong: rgba(255,255,255,0.08);
-      --line: rgba(255,255,255,0.1);
-      --text: #ffffff;
-      --muted: #f1f5f9; 
-      --muted-2: #cbd5e1;
-      --accent: #c21624;
-      --accent-dark: #8f0f19;
-      --accent-soft: rgba(194,22,36,0.15);
-      --radius-xl: 24px;
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --container: 1220px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Inter', Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background-color: var(--bg);
-      background-image: 
-        radial-gradient(circle at top right, rgba(194,22,36,0.08), transparent 40%),
-        radial-gradient(circle at bottom left, rgba(255,255,255,0.03), transparent 30%);
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
-    button, input, select, textarea { font: inherit; }
-
-    .container { width: min(calc(100% - 32px), var(--container)); margin: 0 auto; position: relative; z-index: 2; }
-
-    /* Globale Animationen */
-    .bubbles, .glow, .grid-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-    .grid-overlay { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.5; }
-    .glow::before, .glow::after { content: ""; position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.16; }
-    .glow::before { width: 32vw; height: 32vw; left: -8vw; top: -8vw; background: rgba(255,255,255,0.16); }
-    .glow::after { width: 26vw; height: 26vw; right: -6vw; top: 18vh; background: rgba(169,15,26,0.15); }
-    
-    .bubbles span { position: absolute; bottom: -100px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.16); background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), rgba(255,255,255,0.03)); box-shadow: inset 0 0 20px rgba(255,255,255,0.08), 0 0 16px rgba(255,255,255,0.05); animation: bubbleUp linear infinite; backdrop-filter: blur(2px); }
-    .bubbles span:nth-child(1) { left: 7%; width: 62px; height: 62px; animation-duration: 18s; }
-    .bubbles span:nth-child(2) { left: 18%; width: 18px; height: 18px; animation-duration: 11s; animation-delay: -3s; }
-    .bubbles span:nth-child(3) { left: 31%; width: 34px; height: 34px; animation-duration: 14s; animation-delay: -5s; }
-    .bubbles span:nth-child(4) { left: 48%; width: 22px; height: 22px; animation-duration: 12s; animation-delay: -2s; }
-    .bubbles span:nth-child(5) { left: 62%; width: 50px; height: 50px; animation-duration: 16s; animation-delay: -7s; }
-    @keyframes bubbleUp { 0% { transform: translateY(0) scale(0.9); opacity: 0; } 15% { opacity: 0.75; } 100% { transform: translateY(-120vh) scale(1.1); opacity: 0; } }
-    @keyframes floatCard { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
-    @keyframes shine { 0% { transform: translateX(-140%) skewX(-18deg); } 100% { transform: translateX(240%) skewX(-18deg); } }
-
-    /* Typografie & Layout */
-    .section { padding: 80px 0; position: relative; }
-    .eyebrow { display: inline-flex; gap: 8px; align-items: center; padding: 8px 16px; border-radius: 999px; background: var(--panel-strong); border: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; font-weight: 500; margin-bottom: 16px; }
-    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    h1, h2, h3, h4 { margin: 0 0 16px; line-height: 1.1; color: #fff; }
-    h1 { font-size: clamp(2.2rem, 5vw, 4.5rem); letter-spacing: -0.03em; font-weight: 800; }
-    h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: -0.02em; font-weight: 700; }
-    h3 { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 600; }
-    p { margin: 0 0 16px; color: var(--muted); line-height: 1.6; font-weight: 400;}
-    .lead { font-size: clamp(1rem, 1.4vw, 1.15rem); max-width: 700px; color: #fff; font-weight: 400;}
-
-    /* Header */
-    header { position: sticky; top: 0; z-index: 80; background: rgba(9,9,11,0.95); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; }
-    .brand { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
-    .brand-logo { width: 48px; height: 48px; border-radius: 12px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); }
-    .brand-text strong { display: block; font-size: 1rem; color: #fff; font-weight: 700; }
-    .brand-text span { display: block; color: var(--muted-2); font-size: 0.85rem; }
-    .nav-links { display: flex; align-items: center; gap: 24px; flex: 1; justify-content: center; }
-    .nav-links a { color: var(--muted); font-size: 0.95rem; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
-    .nav-links a:hover { color: #fff; }
-    .nav-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
-
-    /* Buttons */
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all 0.2s ease; text-align: center; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: var(--accent); color: #fff !important; border: 1px solid var(--accent-dark); }
-    .btn-primary:hover { background: var(--accent-dark); }
-    .btn-dark { background: var(--panel-strong); color: #fff !important; border: 1px solid var(--line); }
-    .btn-dark:hover { background: rgba(255,255,255,0.15); }
-
-    /* Hero */
-    .hero { padding: 80px 0 40px; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
-    .hero-copy h1 span { color: var(--muted-2); }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-    .trust-indicators { margin-top: 16px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; font-weight: 500; color: var(--muted-2); }
-    .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-    .badge { padding: 8px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 0.9rem; font-weight: 500;}
-
-    /* Hero Card (3D) */
-    .hero-visual { display: grid; perspective: 1000px; }
-    .hero-card { padding: 32px; border-radius: var(--radius-xl); background: linear-gradient(145deg, rgba(20,20,24,0.85), rgba(10,10,12,0.95)); border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 40px rgba(169,15,26,0.15); backdrop-filter: blur(20px); animation: floatCard 6s ease-in-out infinite; transform-style: preserve-3d; position: relative; overflow: hidden; }
-    .hero-card::before { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transform: skewX(-20deg); animation: shine 6s infinite; pointer-events: none; }
-    .pricing-chip { padding: 20px; border-radius: var(--radius-lg); background: var(--bg-2); border: 1px solid var(--line); margin-bottom: 24px; position: relative; }
-    .pricing-chip strong { color: var(--muted-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px; font-weight: 700; }
-    .price-big { font-size: 2.5rem; font-weight: 900; color: #fff; line-height: 1; }
-    .hero-list { margin: 0 0 24px 0; padding: 0; list-style: none; display: grid; gap: 12px; }
-    .hero-list li { display: flex; gap: 12px; align-items: center; color: var(--muted); font-size: 0.95rem; font-weight: 500; }
-    .hero-list li::before { content: "✓"; flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 0.85rem; }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .stat { padding: 16px; border-radius: var(--radius-lg); background: var(--panel); border: 1px solid var(--line); text-align: center; }
-    .stat strong { display: block; font-size: 1.2rem; color: #fff; margin-bottom: 4px; font-weight: 800; }
-    .stat span.subtle { display: block; font-size: 0.8rem; color: var(--muted-2); font-weight: 600; text-transform: uppercase; }
-
-    /* Grids & Cards */
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    .card { padding: 24px; border-radius: var(--radius-lg); background: var(--panel); border: 1px solid var(--line); }
-    .icon-badge { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: var(--panel-strong); border: 1px solid var(--line); margin-bottom: 16px; font-size: 1.2rem; }
-    .tick-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .tick-list li { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-weight: 500;}
-    .tick-list li::before { content: "✓"; flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 800; margin-top: 1px; }
-
-    /* Before/After Slider */
-    .ba-container { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: var(--radius-lg); overflow: hidden; background: #000; cursor: ew-resize; box-shadow: var(--shadow); transform: perspective(1000px); transition: transform 0.4s ease; }
-    .ba-container:hover { transform: perspective(1000px) translateY(-5px) rotateX(1deg) rotateY(-1deg); }
-    .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-    .ba-before { z-index: 1; }
-    .ba-after { z-index: 2; clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
-    .ba-slider { position: absolute; appearance: none; -webkit-appearance: none; width: 100%; height: 100%; background: transparent; outline: none; margin: 0; top: 0; left: 0; z-index: 3; }
-    .ba-slider::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 4px; height: 100vh; background: transparent; cursor: ew-resize; }
-    .ba-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: #fff; z-index: 2; pointer-events: none; transform: translateX(-50%); }
-    .ba-line::after { content: "↔️"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 50%; display: grid; place-items: center; font-weight: bold; border: 2px solid #fff; }
-    .ba-label { position: absolute; bottom: 16px; padding: 6px 12px; background: rgba(0,0,0,0.7); color: #fff; border-radius: 8px; font-size: 0.8rem; pointer-events: none; font-weight: 600; }
-    .label-before { left: 16px; z-index: 1; }
-    .label-after { right: 16px; z-index: 3; }
-
-    /* Media & Partners */
-    .media-card { border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); border: 1px solid var(--line); }
-    .media-card video, .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .media-card video { aspect-ratio: 16/9; }
-    .partner-logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 32px; margin-top: 48px; padding: 32px; background: var(--panel); border-radius: var(--radius-xl); border: 1px solid var(--line); }
-    
-    /* Farbig dargestellte Logos */
-    .partner-logos img { height: 48px; object-fit: contain; background: #fff; padding: 6px 12px; border-radius: 8px; transition: all 0.2s ease; }
-    .partner-logos img:hover { transform: scale(1.05); }
-
-    /* FAQ */
-    .faq { display: grid; gap: 12px; margin-top: 32px; }
-    .faq-item { border-radius: var(--radius-md); background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
-    .faq-item summary { cursor: pointer; list-style: none; padding: 20px; font-weight: 600; font-size: 1.05rem; color: #fff; position: relative; }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--muted-2); font-size: 1.4rem; transition: transform 0.2s ease; }
-    .faq-item[open] summary::after { content: "−"; transform: translateY(-50%) rotate(180deg); }
-    .faq-item .faq-body { padding: 0 20px 20px; color: var(--muted); line-height: 1.6; }
-
-    /* Reviews */
-    .reviews-scroll { display: flex; gap: 20px; overflow-x: auto; padding: 10px 0 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-    .reviews-scroll::-webkit-scrollbar { height: 6px; }
-    .reviews-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
-    .review-3d-card { min-width: 300px; max-width: 350px; scroll-snap-align: start; flex: 0 0 auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; }
-    .review-stars { color: #FFD700; font-size: 1.1rem; margin-bottom: 12px; letter-spacing: 2px; }
-    .review-author { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
-    .review-author-img { width: 40px; height: 40px; border-radius: 50%; background: var(--panel-strong); border: 1px solid var(--line); display: grid; place-items: center; font-weight: bold; color: #fff;}
-    .review-google-icon { width: 20px; height: 20px; margin-left: auto; }
-
-    /* Kontakt */
-    .contact-wrapper { display: grid; grid-template-columns: 1.3fr 0.8fr; gap: 32px; align-items: start; margin-top: 32px; }
-    .form-3d-card { background: #121215; border: 1px solid var(--line); border-radius: var(--radius-xl); padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
-    .form-group { position: relative; margin-bottom: 20px; }
-    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); }
-    .form-control { width: 100%; background: var(--bg); border: 1px solid var(--line); color: #fff; border-radius: var(--radius-md); padding: 14px 16px; font-size: 1rem; outline: none; transition: border-color 0.2s; }
-    .form-control:focus { border-color: var(--accent); }
-    textarea.form-control { min-height: 120px; resize: vertical; }
-    select.form-control option { background: var(--bg); color: #fff; }
-    .btn-submit { width: 100%; padding: 16px; font-size: 1.05rem; }
-    .contact-info-panel { display: flex; flex-direction: column; gap: 16px; }
-    .info-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; }
-    .info-card h3 { display: flex; align-items: center; gap: 10px; color: #fff; margin-bottom: 12px; font-size: 1.1rem; }
-
-    /* Desktop FABs */
-    .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 100; }
-    .fab { width: 56px; height: 56px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.2s; box-shadow: 0 10px 25px rgba(0,0,0,0.5);}
-    .fab:hover { transform: scale(1.05); }
-    .fab-whatsapp { background: #25D366; }
-    .fab-phone { background: var(--accent); }
-    .fab svg { width: 28px; height: 28px; fill: white; }
-
-    /* Mobile Sticky CTA */
-    .mobile-sticky-cta { display: none; }
-
-    /* Cookie Banner (mit hohem z-index und !important um Wix zu überschreiben) */
-    .cookie-banner {
-      position: fixed !important; bottom: -200% !important; left: 50% !important; transform: translateX(-50%) !important;
-      width: min(92%, 600px) !important; background: #121215 !important; border: 1px solid var(--line) !important;
-      border-radius: var(--radius-lg) !important; padding: 24px !important; z-index: 2147483647 !important;
-      display: flex !important; flex-direction: column !important; gap: 16px !important; 
-      transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.9) !important;
-    }
-    .cookie-banner.show { bottom: 30px !important; }
-    .cookie-content h4 { margin: 0 0 8px 0 !important; font-size: 1.1rem !important; color: #fff !important;}
-    .cookie-content p { margin: 0 !important; font-size: 0.9rem !important; color: #cbd5e1 !important; line-height: 1.5 !important;}
-    .cookie-content a { color: var(--accent) !important; text-decoration: underline !important; }
-    .cookie-buttons { display: flex !important; gap: 12px !important; }
-    .cookie-buttons .btn { flex: 1 !important; padding: 12px !important; text-align: center !important;}
-
-    /* Footer */
-    footer { padding: 60px 0 40px; border-top: 1px solid var(--line); background: var(--bg-2); margin-top: 60px; }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
-    .footer-col h4 { color: #fff; font-size: 1.1rem; margin-bottom: 20px; }
-    .footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .footer-links a { color: var(--muted); font-weight: 500; transition: color 0.2s; }
-    .footer-links a:hover { color: #fff; }
-    .social-icons { display: flex; gap: 12px; margin-top: 20px; }
-    .social-btn { width: 40px; height: 40px; border-radius: 10px; background: var(--panel); display: flex; justify-content: center; align-items: center; border: 1px solid var(--line); transition: background 0.2s; }
-    .social-btn svg { width: 20px; height: 20px; fill: #fff; }
-    .social-btn:hover { background: var(--panel-strong); }
-    .footer-bottom { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 0.85rem; font-weight: 500;}
-
-    .anchor-offset { scroll-margin-top: 90px; }
-
-    /* --- RESPONSIVE & PERFEKTE MOBILE ANSICHT --- */
-    @media (max-width: 1080px) {
-      .hero-grid, .split, .grid-4, .grid-3, .contact-wrapper, .footer-grid { grid-template-columns: 1fr; }
-    }
-    
-    @media (max-width: 760px) {
-      .section { padding: 50px 0; }
-      .stats { grid-template-columns: 1fr; }
-      
-      /* Mobile Nav: Zentriert & Scrollbar */
-      .nav { flex-direction: column; align-items: center; gap: 15px; padding: 16px 0; }
-      .brand { width: 100%; justify-content: center; margin-bottom: 5px; }
-      .nav-links { 
-        width: 100%; justify-content: flex-start; overflow-x: auto; 
-        padding-bottom: 5px; gap: 20px; -webkit-overflow-scrolling: touch; 
-      }
-      .nav-links::-webkit-scrollbar { display: none; }
-      .nav-actions { display: none; } /* Oben ausblenden, da Sticky Footer kommt */
-      
-      /* Mobile Hero Text */
-      .hero-copy { text-align: center; }
-      .hero-actions, .trust-indicators, .hero-badges { justify-content: center; }
-      .lead { margin-left: auto; margin-right: auto; }
-      
-      /* Desktop FABs ausblenden */
-      .fab-container { display: none !important; }
-      
-      /* Mobile Sticky Conversion Funnel (Garantiert sichtbar über Wix-CSS!) */
-      .mobile-sticky-cta {
-        display: flex !important; position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important;
-        background: #0f0f11 !important; padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)) 12px !important; 
-        gap: 12px !important; z-index: 2147483646 !important; border-top: 1px solid rgba(255,255,255,0.1) !important;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.8) !important;
-      }
-      .m-cta-btn {
-        flex: 1 !important; text-align: center !important; padding: 14px 10px !important; border-radius: 12px !important;
-        font-weight: 700 !important; font-size: 1rem !important; text-decoration: none !important; 
-        display: flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important;
-      }
-      .m-cta-whatsapp { background-color: #25D366 !important; color: #ffffff !important; }
-      .m-cta-call { background-color: #c21624 !important; color: #ffffff !important; }
-      .m-cta-btn svg { width: 22px !important; height: 22px !important; fill: #ffffff !important; }
-      
-      /* Platzhalter für den Sticky CTA unten */
-      body { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)) !important; }
-      
-      /* Cookie Banner auf Mobile höher ansetzen */
-      .cookie-banner.show { bottom: calc(95px + env(safe-area-inset-bottom, 0px)) !important; }
-      .cookie-buttons { flex-direction: column !important; }
-    }
-  </style>
 </head>
+
 <body>
-  <div class="grid-overlay"></div>
-  <div class="glow"></div>
-  <div class="bubbles">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>  
 
   <header>
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="Zur Startseite Dampfglanzservice">
-        <div class="brand-logo">
-          <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" width="48" height="48" alt="Dampfglanzservice-Ademi Firmenlogo" />
-        </div>
+      <a href="#top" class="brand" aria-label="Dampfglanzservice-Ademi Startseite">
+        <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png"
+             width="48"
+             height="48"
+             alt="Dampfglanzservice-Ademi Firmenlogo">
         <div class="brand-text">
           <strong>Dampfglanzservice-Ademi</strong>
-          <span>Reinigungsfirma Rorschach</span>
+          <span>Reinigung & Tiefenpflege</span>
         </div>
       </a>
-      <nav class="nav-links" aria-label="Hauptnavigation">
+
+      <nav aria-label="Hauptnavigation">
         <a href="#leistungen">Leistungen</a>
-        <a href="#ueber-uns">Über uns</a>
+        <a href="#ablauf">Ablauf</a>
         <a href="#galerie">Galerie</a>
         <a href="#bewertungen">Bewertungen</a>
         <a href="#faq">FAQ</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
+
       <div class="nav-actions">
-        <a class="btn btn-dark" href="tel:+41765024998" aria-label="Rufen Sie uns an">📞 076 502 49 98</a>
+        <a class="btn btn-dark"
+           href="tel:+41765024998"
+           aria-label="Rufen Sie uns an">
+          📞 076 502 49 98
+        </a>
       </div>
     </div>
-  </header>  
+  </header>
 
   <main id="top">
+
+    <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
+
         <div class="hero-copy">
-          <div class="eyebrow">Schweizweit nach Vereinbarung · Sauberkeit mit System</div>
-          <h1>Reinheit, die man sieht. <br><span>Qualität, die bleibt.</span></h1>
-          <p class="lead">
-            <strong>Dampfglanzservice-Ademi</strong> ist Ihre Reinigungsfirma aus Rorschach für <strong>Autoreinigung, Wohnungsreinigung, Endreinigung mit Abnahmegarantie, Hausreinigung, Fenster- und Gewerbereinigung</strong>.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#kontakt">Kostenlose Offerte anfordern</a>
-            <a class="btn btn-dark" href="tel:+41765024998">Jetzt anrufen</a>
+
+          <div class="eyebrow">
+            Rorschach · St. Gallen · Ostschweiz
           </div>
-          
+
+          <h1>
+            Professionelle Reinigung.<br>
+            <span>Sauber, zuverlässig & persönlich.</span>
+          </h1>
+
+          <p class="lead">
+            <strong>Dampfglanzservice-Ademi</strong> ist Ihr persönlicher Ansprechpartner
+            für <strong>Autoreinigung und Endreinigung</strong> sowie weitere
+            Reinigungsarbeiten in Rorschach, St. Gallen und Umgebung.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#kontakt">
+              Offerte anfragen
+            </a>
+
+            <a class="btn btn-dark" href="tel:+41765024998">
+              Jetzt anrufen
+            </a>
+          </div>
+
           <div class="trust-indicators">
-            <span>⭐⭐⭐⭐⭐ 5.0 Top-bewertet</span>
-            <span>🛡️ 100% Abnahmegarantie</span>
+            <span>★★★★★ Google-Bewertungen</span>
+            <span>🛡️ Abnahmegarantie bei Endreinigungen</span>
           </div>
 
           <div class="hero-badges">
-            <div class="badge">Autoreinigung ab CHF 99</div>
-            <div class="badge">Abholservice + CHF 40</div>
-            <div class="badge">Ersatzauto inkl. (bis 40 km)</div>
+            <div class="badge">Abholung Ihres Fahrzeugs möglich</div>
+            <div class="badge">Persönliche Beratung</div>
+            <div class="badge">Transparente Offerte</div>
           </div>
+
+          <div class="trust-strip">
+            <span>
+              📍 <strong>Rorschach</strong> · St. Gallen & Umgebung
+            </span>
+
+            <span>
+              📞 <strong>076 502 49 98</strong>
+            </span>
+
+            <span>
+              💬 WhatsApp verfügbar
+            </span>
+          </div>
+
         </div>
 
         <div class="hero-visual">
+
           <div class="hero-card">
+
             <div class="pricing-chip">
               <strong>Autoreinigung durch Dampfglanzservice-Ademi</strong>
-              <div class="price-big">ab CHF 99</div>
+              <div class="price-big">
+                Individuelle Offerte
+              </div>
             </div>
-            
+
             <ul class="hero-list">
-              <li>Auto Innen- & Aussenbereich</li>
-              <li>Wohnungen & Umzugsreinigung (Garantie)</li>
-              <li>Büro, Lager & Gewerbe</li>
+              <li>Auto Innen- & Aussenreinigung</li>
+              <li>Endreinigung mit Abnahmegarantie</li>
+              <li>Wohnung, Fenster & Gewerbe</li>
             </ul>
-            
+
             <div class="stats">
               <div class="stat">
-                <strong>100%</strong>
-                <span class="subtle">Zufrieden</span>
+                <strong>Direkt</strong>
+                <span class="subtle">Erreichbar</span>
               </div>
+
               <div class="stat">
-                <strong>24h</strong>
+                <strong>Fair</strong>
                 <span class="subtle">Offerten</span>
               </div>
+
               <div class="stat">
-                <strong>🇨🇭</strong>
-                <span class="subtle">Regional</span>
+                <strong>SG</strong>
+                <span class="subtle">Region</span>
               </div>
             </div>
+
           </div>
+
         </div>
+
       </div>
     </section>
 
-    <section class="section anchor-offset" id="leistungen">
+    <!-- LEISTUNGEN -->
+    <section class="section section-light" id="leistungen">
+
       <div class="container">
-        <div class="eyebrow">Leistungen</div>
-        <h2>Unsere Reinigungsleistungen im Überblick</h2>
-        <div class="grid-3" style="margin-top:32px;">
-          <article class="card"><div class="icon-badge">🚗</div><h3>Autoreinigung</h3><p>Gründliche Innen- & Aussenreinigung, Polsterpflege und Detailaufbereitung für maximalen Werterhalt Ihres Fahrzeugs.</p></article>
-          <article class="card"><div class="icon-badge">🏠</div><h3>Wohnungsreinigung</h3><p>Regelmässige Reinigung oder Endreinigung bei Umzug inkl. 100% garantierter Wohnungsabgabe ohne Stress.</p></article>
-          <article class="card"><div class="icon-badge">🏢</div><h3>Gewerbereinigung</h3><p>Büros, Praxen und Lagerflächen – stets ein hygienisches und repräsentatives Arbeitsumfeld für Ihr Team und Kunden.</p></article>
-          <article class="card"><div class="icon-badge">🪟</div><h3>Fensterreinigung</h3><p>Streifenfreie Glasfronten und intensiv gereinigte Fensterrahmen für den perfekten, ungetrübten Durchblick.</p></article>
-          <article class="card"><div class="icon-badge">🛋️</div><h3>Polsterreinigung</h3><p>Tiefenreinigung für Sofas, Autositze und Textilien aller Art, um hartnäckige Bakterien und Gerüche zu entfernen.</p></article>
-          <article class="card"><div class="icon-badge">✨</div><h3>Spezialreinigungen</h3><p>Auf Anfrage prüfen wir gerne individuelle Reinigungswünsche für Sie – transparent, fair und lösungsorientiert.</p></article>
+
+        <div class="section-heading">
+          <div class="eyebrow">Unsere Leistungen</div>
+
+          <h2>
+            Reinigung, die zum Auftrag passt.
+          </h2>
+
+          <p>
+            Von der gründlichen Autoreinigung bis zur Wohnungsabgabe:
+            Wir besprechen den Auftrag persönlich und erstellen eine passende Offerte.
+          </p>
         </div>
+
+        <div class="services-grid">
+
+          <article class="service-card">
+
+            <div class="service-icon">🚗</div>
+
+            <h3>Autoreinigung</h3>
+
+            <p>
+              Gründliche Innen- und Aussenreinigung für private Fahrzeuge.
+            </p>
+
+            <ul>
+              <li>Innenreinigung</li>
+              <li>Sitze & Polster</li>
+              <li>Teppiche & Fussmatten</li>
+              <li>Aussenwäsche</li>
+              <li>Abholung des Fahrzeugs möglich</li>
+            </ul>
+
+          </article>
+
+          <article class="service-card">
+
+            <div class="service-icon">🏠</div>
+
+            <h3>Endreinigung</h3>
+
+            <p>
+              Sorgfältige Reinigung vor der Wohnungsabgabe mit klarer Absprache
+              des Leistungsumfangs.
+            </p>
+
+            <ul>
+              <li>Wohnungsreinigung</li>
+              <li>Küche & Badezimmer</li>
+              <li>Fenster nach Vereinbarung</li>
+              <li>Detailreinigung</li>
+              <li>Abnahmegarantie</li>
+            </ul>
+
+          </article>
+
+          <article class="service-card">
+
+            <div class="service-icon">✨</div>
+
+            <h3>Tiefenpflege</h3>
+
+            <p>
+              Intensive Reinigung für Bereiche, die eine normale Reinigung
+              nicht ausreichend erfasst.
+            </p>
+
+            <ul>
+              <li>Polster-Tiefenpflege</li>
+              <li>Textilien</li>
+              <li>Hartnäckige Verschmutzungen</li>
+              <li>Dampfbehandlung</li>
+              <li>Individuelle Beratung</li>
+            </ul>
+
+          </article>
+
+        </div>
+
       </div>
+
     </section>
 
-    <section class="section anchor-offset" id="ueber-uns">
-      <div class="container split">
-        <div>
-          <div class="eyebrow">Über uns</div>
-          <h2>Wer wir sind & unsere Philosophie</h2>
-          <p>Dampfglanzservice-Ademi ist ein etabliertes Reinigungsunternehmen aus Rorschach, SG. Wir stehen für kompromisslose Sauberkeit, absolute Termintreue und 100% Kostentransparenz in der entire Ostschweiz und darüber hinaus.</p>
-          <p>Egal ob Ihr Fahrzeug einen echten Neuwagen-Effekt benötigt oder Ihre Wohnung reibungslos übergabebereit gemacht werden muss: Wir arbeiten detailversessen und mit höchstem Respekt vor Ihrem Eigentum.</p>
-          <ul class="tick-list" style="margin-top: 24px;">
-            <li>Transparente Preisgestaltung ohne versteckte Kosten</li>
-            <li>Höchste Sorgfalt und Hygiene bis in die kleinste Ritze</li>
-            <li>Persönlicher Kundenkontakt & direkte Erreichbarkeit per Telefon/WhatsApp</li>
-          </ul>
-        </div>
-        <div class="grid-2">
-          <div class="card"><div class="icon-badge">🎯</div><h3>Unsere Mission</h3><p>Makellose Resultate abliefern, die den Werterhalt Ihrer Immobilien und Fahrzeuge langfristig sichern.</p></div>
-          <div class="card"><div class="icon-badge">🤝</div><h3>Unser Versprechen</h3><p>Wir gehen erst, wenn das Ergebnis zu 100% unseren – und vor allem Ihren – Qualitätskriterien entspricht.</p></div>
-        </div>
-      </div>
-    </section>
+    <!-- ABLAUF -->
+    <section class="section" id="ablauf">
 
-    <section class="section anchor-offset" id="galerie">
       <div class="container">
-        <div class="eyebrow">Resultate, die überzeugen</div>
-        <h2>Vorher / Nachher Galerie</h2>
-        <p class="lead">Ziehen Sie den Schieberegler nach links oder rechts, um den Unterschied unserer Tiefenreinigung hautnah zu erleben.</p>
-        <div class="grid-2" style="margin-top:32px;">
+
+        <div class="section-heading">
+          <div class="eyebrow">So funktioniert es</div>
+
+          <h2>
+            Einfach, direkt und transparent.
+          </h2>
+
+          <p>
+            Kein komplizierter Ablauf. Sie schildern uns kurz Ihren Auftrag
+            und wir besprechen gemeinsam die passende Lösung.
+          </p>
+        </div>
+
+        <div class="process-grid">
+
+          <div class="process-card">
+            <div class="process-number">01</div>
+            <h3>Anfrage senden</h3>
+            <p>
+              Kontaktieren Sie uns telefonisch, per WhatsApp oder über das Formular.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">02</div>
+            <h3>Auftrag besprechen</h3>
+            <p>
+              Wir klären Umfang, Zustand, Fahrzeug oder Objekt und Ihre Wünsche.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">03</div>
+            <h3>Offerte erhalten</h3>
+            <p>
+              Sie erhalten eine transparente Preisangabe passend zu Ihrem Auftrag.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">04</div>
+            <h3>Reinigung</h3>
+            <p>
+              Zum vereinbarten Termin führen wir die Arbeiten sorgfältig aus.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- GALERIE -->
+    <section class="section section-light" id="galerie">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">Vorher & Nachher</div>
+
+          <h2>
+            Der Unterschied ist sichtbar.
+          </h2>
+
+          <p>
+            Einige Beispiele unserer Reinigungsarbeiten.
+          </p>
+        </div>
+
+        <div class="ba-grid">
+
           <div class="ba-container">
-            <img src="vorher-kuechenschublade.png" loading="lazy" width="800" height="500" alt="Vorher-Bild einer unsauberen Küchenschublade" class="ba-image ba-before" />
-            <img src="nachher-kuechenschublade.png" loading="lazy" width="800" height="500" alt="Nachher-Bild einer makellos sauberen Küchenschublade" class="ba-image ba-after" />
+            <img src="vorher-kuechenschublade.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Vorher-Bild einer unsauberen Küchenschublade"
+                 class="ba-image ba-before">
+
+            <img src="nachher-kuechenschublade.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Nachher-Bild einer gereinigten Küchenschublade"
+                 class="ba-image ba-after">
+
+            <span class="ba-label before">Vorher</span>
+            <span class="ba-label after">Nachher</span>
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
-            <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
+
+            <input
+              type="range"
+              class="ba-slider"
+              min="0"
+              max="100"
+              value="50"
+              aria-label="Vorher-Nachher Vergleich">
           </div>
+
           <div class="ba-container">
-            <img src="vorher-heizung.png" loading="lazy" width="800" height="500" alt="Vorher-Bild einer stark verstaubten Heizung" class="ba-image ba-before" />
-            <img src="nachher-heizung.png" loading="lazy" width="800" height="500" alt="Nachher-Bild einer strahlend weissen, gereinigten Heizung" class="ba-image ba-after" />
+            <img src="vorher-heizung.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Vorher-Bild einer verstaubten Heizung"
+                 class="ba-image ba-before">
+
+            <img src="nachher-heizung.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Nachher-Bild einer gereinigten Heizung"
+                 class="ba-image ba-after">
+
+            <span class="ba-label before">Vorher</span>
+            <span class="ba-label after">Nachher</span>
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
-            <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
+
+            <input
+              type="range"
+              class="ba-slider"
+              min="0"
+              max="100"
+              value="50"
+              aria-label="Vorher-Nachher Vergleich">
           </div>
+
           <div class="ba-container">
-            <img src="vorher-duschboden.png" loading="lazy" width="800" height="500" alt="Vorher-Bild eines stark verkalkten Duschbodens" class="ba-image ba-before" />
-            <img src="nachher-duschboden.png" loading="lazy" width="800" height="500" alt="Nachher-Bild eines kalkfreien, glänzenden Duschbodens" class="ba-image ba-after" />
+            <img src="vorher-duschboden.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Vorher-Bild eines verschmutzten Duschbodens"
+                 class="ba-image ba-before">
+
+            <img src="nachher-duschboden.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Nachher-Bild eines gereinigten Duschbodens"
+                 class="ba-image ba-after">
+
+            <span class="ba-label before">Vorher</span>
+            <span class="ba-label after">Nachher</span>
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
-            <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
+
+            <input
+              type="range"
+              class="ba-slider"
+              min="0"
+              max="100"
+              value="50"
+              aria-label="Vorher-Nachher Vergleich">
           </div>
+
           <div class="ba-container">
-            <img src="bad-vorher.png" loading="lazy" width="800" height="500" alt="Vorher-Bild eines Badezimmers mit hartnäckigen Schmutzrückständen" class="ba-image ba-before" />
-            <img src="bad-nachher.png" loading="lazy" width="800" height="500" alt="Nachher-Bild eines hygienisch reinen Badezimmers" class="ba-image ba-after" />
+            <img src="bad-vorher.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Vorher-Bild eines verschmutzten Badezimmers"
+                 class="ba-image ba-before">
+
+            <img src="bad-nachher.png"
+                 loading="lazy"
+                 width="800"
+                 height="500"
+                 alt="Nachher-Bild eines gereinigten Badezimmers"
+                 class="ba-image ba-after">
+
+            <span class="ba-label before">Vorher</span>
+            <span class="ba-label after">Nachher</span>
             <div class="ba-line"></div>
-            <div class="ba-label label-before">Vorher</div><div class="ba-label label-after">Nachher</div>
-            <input type="range" min="0" max="100" value="50" class="ba-slider" aria-label="Vorher Nachher Slider" />
+
+            <input
+              type="range"
+              class="ba-slider"
+              min="0"
+              max="100"
+              value="50"
+              aria-label="Vorher-Nachher Vergleich">
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <section class="section">
+    <!-- VIDEOS -->
+    <section class="section" id="medien">
+
       <div class="container">
-        <div class="eyebrow">Einblicke</div>
-        <h2>Videos & Zertifizierungen</h2>
-        <div class="grid-3 media-grid">
-          <div class="media-card"><video controls poster="flyer.png" preload="none"><source src="video1.mp4" type="video/mp4"></video></div>
-          <div class="media-card"><video controls poster="flyer.png" preload="none"><source src="video2.mp4" type="video/mp4"></video></div>
-          <div class="media-card"><a href="flyer.png" target="_blank" rel="noopener"><img src="flyer.png" loading="lazy" width="800" height="1131" alt="Offizieller Leistungsflyer" /></a></div>
+
+        <div class="section-heading">
+          <div class="eyebrow">Einblicke</div>
+
+          <h2>
+            Unsere Arbeit in Bildern & Videos.
+          </h2>
+
+          <p>
+            Echte Einblicke schaffen mehr Vertrauen als grosse Versprechen.
+          </p>
         </div>
-        <div class="partner-logos">
-          <img src="top-offerten.jpeg" loading="lazy" width="150" height="60" alt="Zertifizierung Top Offerten" />
-          <img src="ofri.jpeg" loading="lazy" width="150" height="60" alt="Zertifizierung Ofri" />
-          <img src="comparis.jpeg" loading="lazy" width="150" height="60" alt="Zertifizierung Comparis" />
+
+        <div class="media-grid">
+
+          <div class="media-card">
+            <video controls poster="flyer.png" preload="none">
+              <source src="video1.mp4" type="video/mp4">
+              Ihr Browser unterstützt dieses Video nicht.
+            </video>
+          </div>
+
+          <div class="media-card">
+            <video controls poster="flyer.png" preload="none">
+              <source src="video2.mp4" type="video/mp4">
+              Ihr Browser unterstützt dieses Video nicht.
+            </video>
+          </div>
+
+          <div class="media-card">
+            <a href="flyer.png" target="_blank" rel="noopener">
+              <img src="flyer.png"
+                   loading="lazy"
+                   width="800"
+                   height="1131"
+                   alt="Offizieller Leistungsflyer von Dampfglanzservice-Ademi">
+            </a>
+          </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <section class="section anchor-offset" id="bewertungen">
+    <!-- PARTNER -->
+    <section class="section section-light">
+
       <div class="container">
-        <div class="eyebrow">Kundenstimmen</div>
-        <h2>Das sagen unsere Kunden</h2>
-        
-        <div class="reviews-scroll">
-          <div class="review-3d-card">
-            <div class="review-stars">★★★★★</div>
-            <p>"Absolut hervorragender Service! Das Auto sah nach der Reinigung aus wie frisch aus dem Showroom. Sehr freundlich und hochprofessionell. Gerne wieder!"</p>
-            <div class="review-author">
-              <div class="review-author-img">M</div>
-              <div><strong>Michael S.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 2 Wochen</span></div>
-              <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-            </div>
-          </div>
-          <div class="review-3d-card">
-            <div class="review-stars">★★★★★</div>
-            <p>"Endreinigung der Wohnung mit Abnahmegarantie lief perfekt. Die Verwaltung war begeistert, keine einzige Beanstandung. Sehr zuverlässiges Team!"</p>
-            <div class="review-author">
-              <div class="review-author-img" style="background:var(--accent-dark);">S</div>
-              <div><strong>Sarah K.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 1 Monat</span></div>
-              <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-            </div>
-          </div>
-          <div class="review-3d-card">
-            <div class="review-stars">★★★★★</div>
-            <p>"Wir lassen regelmässig unser Büro reinigen. Immer pünktlich, sehr genau und absolut diskret. Klare Empfehlung für jedes Gewerbe."</p>
-            <div class="review-author">
-              <div class="review-author-img" style="background:#25D366;">T</div>
-              <div><strong>Thomas M.</strong><br><span style="font-size: 0.8rem; color: var(--muted-2);">vor 3 Monaten</span></div>
-              <svg class="review-google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-            </div>
-          </div>
+
+        <div class="section-heading">
+          <div class="eyebrow">Online vertreten</div>
+
+          <h2>
+            Finden Sie uns auch auf Plattformen.
+          </h2>
+
+          <p>
+            Unsere Profile auf verschiedenen Schweizer Plattformen.
+          </p>
         </div>
+
+        <div class="partner-grid">
+
+          <img src="top-offerten.jpeg"
+               loading="lazy"
+               width="150"
+               height="60"
+               alt="TopOfferten – Profil">
+
+          <img src="ofri.jpeg"
+               loading="lazy"
+               width="150"
+               height="60"
+               alt="Ofri – Profil">
+
+          <img src="comparis.jpeg"
+               loading="lazy"
+               width="150"
+               height="60"
+               alt="Comparis – Profil">
+
+        </div>
+
       </div>
+
     </section>
 
-    <section class="section anchor-offset" id="faq">
+    <!-- GOOGLE -->
+    <section class="section section-dark" id="bewertungen">
+
       <div class="container">
-        <div class="eyebrow">Häufige Fragen</div>
-        <h2>Gute Gründe für Dampfglanzservice-Ademi</h2>
-        <p class="lead">Transparenz schafft Vertrauen. Hier beantworten wir die wichtigsten Fragen zu unseren Leistungen.</p>
-        
-        <div class="faq">
-          <details class="faq-item">
-            <summary>Warum sollte ich Sie für meine Endreinigung (Umzug) wählen?</summary>
-            <div class="faq-body">
-              Wir bieten Ihnen eine <strong>100% Abnahmegarantie</strong>. Bei der Wohnungsübergabe an Ihre Verwaltung sind wir persönlich vor Ort. Sollte es wider Erwarten etwas zu bemängeln geben, bessern wir sofort und kostenlos nach. Sie haben keinerlei Stress und null finanzielles Risiko.
-            </div>
-          </details>
-          <details class="faq-item">
-            <summary>Bieten Sie auch einen Abholservice für mein Auto an?</summary>
-            <div class="faq-body">
-              Ja, absolut! Für nur CHF 40.– holen wir Ihr Fahrzeug bei Ihnen zu Hause oder am Arbeitsplatz ab und bringen es strahlend sauber zurück. Bis zu einem Umkreis von 40 km stellen wir Ihnen für diese Zeit sogar <strong>kostenlos ein Ersatzauto</strong> zur Verfügung. Sie verlieren keine wertvolle Zeit!
-            </div>
-          </details>
-          <details class="faq-item">
-            <summary>Sind in Ihren Offerten versteckte Kosten enthalten?</summary>
-            <div class="faq-body">
-              Nein. Absolute Kostentransparenz ist unser oberstes Gebot. Sie erhalten von uns einen fixen Preis, der auf dem tatsächlichen Aufwand und Verschmutzungsgrad basiert. Es gibt <strong>keine Überraschungen und keine versteckten Gebühren</strong>.
-            </div>
-          </details>
-          <details class="faq-item">
-            <summary>Was unterscheidet Ihre Methode von einer normalen Autoreinigung?</summary>
-            <div class="faq-body">
-              Herkömmliche Waschstrassen können feine Kratzer im Lack hinterlassen und reinigen den Innenraum oft nur oberflächlich. Wir reinigen mit viel Liebe zum Detail und hochwertigen Produkten. Flecken, tief sitzender Schmutz und unangenehme Gerüche werden effektiv beseitigt – für einen <strong>echten Neuwagen-Effekt</strong>.
-            </div>
-          </details>
-          <details class="faq-item">
-            <summary>Welche Reinigungsmittel verwenden Sie?</summary>
-            <div class="faq-body">
-              Wir setzen auf professionelle, materialschonende und wo immer möglich <strong>umweltfreundliche Reinigungsmittel</strong>. Für Allergiker oder bei speziellen Materialanforderungen passen wir unsere Produkte selbstverständlich individuell an.
-            </div>
-          </details>
-          <details class="faq-item">
-            <summary>Muss ich während der Reinigung vor Ort sein?</summary>
-            <div class="faq-body">
-              Nein, das ist nicht zwingend nötig. Bei Autoreinigungen mit Abholservice oder Wohnungsreinigungen können Sie uns den Schlüssel bequem übergeben. Wir arbeiten <strong>diskret und absolut zuverlässig</strong>.
-            </div>
-          </details>
+
+        <div class="section-heading">
+
+          <div class="eyebrow">
+            Kundenfeedback
+          </div>
+
+          <h2>
+            Echte Bewertungen sind uns wichtig.
+          </h2>
+
+          <p>
+            Wir möchten langfristig durch gute Arbeit und zufriedene Kunden
+            überzeugen.
+          </p>
+
         </div>
+
+        <div class="review-note">
+
+          <div class="review-stars">
+            ★★★★★
+          </div>
+
+          <p>
+            Sie finden unsere aktuellen Google-Bewertungen direkt über unser
+            Google-Profil. Wir freuen uns über jedes ehrliche Feedback zu unserer Arbeit.
+          </p>
+
+          <br>
+
+          <a class="btn btn-outline"
+             href="https://www.google.com/maps/search/?api=1&query=Dampfglanzservice-Ademi%20Rorschach"
+             target="_blank"
+             rel="noopener">
+            Google-Bewertungen ansehen
+          </a>
+
+        </div>
+
       </div>
+
     </section>
 
-    <section class="section anchor-offset" id="kontakt">
-      <div class="container">
-        <div class="eyebrow">Kontakt</div>
-        <h2>Senden Sie uns Ihre Anfrage</h2>
-        
-        <div class="contact-wrapper">
-          <div class="form-3d-card">
-            
-            <div id="form-message" style="display: none; padding: 16px; border-radius: var(--radius-md); margin-bottom: 24px; text-align: center; font-weight: 600;"></div>
+    <!-- KONTAKT -->
+    <section class="section" id="kontakt">
 
-            <form action="https://formsubmit.co/info@dampfglanzservice-ademi.ch" method="POST">
-              <input type="text" name="_honey" style="display:none">
-              <input type="hidden" name="_subject" value="Neue Anfrage von der Website (Dampfglanzservice)">
-              <input type="hidden" name="_next" value="https://www.dampfglanzservice-ademi.ch/?status=success#kontakt">
+      <div class="container contact-grid">
 
-              <div class="grid-2">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" name="name" class="form-control" required placeholder="Ihr vollständiger Name" />
-                </div>
-                <div class="form-group">
-                  <label for="tel">Telefon</label>
-                  <input type="tel" id="tel" name="telefon" class="form-control" required placeholder="Ihre Telefonnummer" pattern="[\+0-9\s\-\(\)]{9,25}" title="Bitte geben Sie eine gültige Telefonnummer ein" />
-                </div>
+        <div class="contact-copy">
+
+          <div class="eyebrow">
+            Kontakt
+          </div>
+
+          <h2>
+            Sprechen wir über Ihren Auftrag.
+          </h2>
+
+          <p>
+            Beschreiben Sie kurz, was gereinigt werden soll. Wir melden uns
+            persönlich bei Ihnen und besprechen den nächsten Schritt.
+          </p>
+
+          <div class="contact-list">
+
+            <div class="contact-item">
+
+              <div class="contact-item-icon">
+                📞
               </div>
+
+              <div>
+                <strong>Telefon</strong>
+                <a href="tel:+41765024998">
+                  076 502 49 98
+                </a>
+              </div>
+
+            </div>
+
+            <div class="contact-item">
+
+              <div class="contact-item-icon">
+                💬
+              </div>
+
+              <div>
+                <strong>WhatsApp</strong>
+                <a href="https://wa.me/41765024998"
+                   target="_blank"
+                   rel="noopener">
+                  Nachricht senden
+                </a>
+              </div>
+
+            </div>
+
+            <div class="contact-item">
+
+              <div class="contact-item-icon">
+                ✉️
+              </div>
+
+              <div>
+                <strong>E-Mail</strong>
+                <a href="mailto:info@dampfglanzservice-ademi.ch">
+                  info@dampfglanzservice-ademi.ch
+                </a>
+              </div>
+
+            </div>
+
+            <div class="contact-item">
+
+              <div class="contact-item-icon">
+                📍
+              </div>
+
+              <div>
+                <strong>Region</strong>
+                <span>
+                  Rorschach · St. Gallen · Umgebung
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <br>
+
+          <a class="btn btn-dark"
+             href="https://www.google.com/maps/search/?api=1&query=Dampfglanzservice-Ademi%20Rorschach"
+             target="_blank"
+             rel="noopener">
+            Google-Profil ansehen
+          </a>
+
+        </div>
+
+        <div class="contact-form">
+
+          <div id="form-message" class="form-message"></div>
+
+          <form action="https://formsubmit.co/info@dampfglanzservice-ademi.ch"
+                method="POST">
+
+            <input type="hidden"
+                   name="_subject"
+                   value="Neue Anfrage über Dampfglanzservice-Ademi">
+
+            <input type="hidden"
+                   name="_captcha"
+                   value="false">
+
+            <input type="hidden"
+                   name="_template"
+                   value="table">
+
+            <input type="hidden"
+                   name="_next"
+                   value="https://www.dampfglanzservice-ademi.ch/?status=success">
+
+            <div class="form-grid">
+
               <div class="form-group">
-                <label for="dienstleistung">Gewünschte Dienstleistung</label>
-                <select id="dienstleistung" name="dienstleistung" class="form-control" required>
-                  <option value="" disabled selected>Bitte wählen...</option>
+                <label for="name">Name *</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Ihr Name"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Telefon *</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="076 ..."
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="ihre@email.ch">
+              </div>
+
+              <div class="form-group">
+                <label for="service">Leistung</label>
+
+                <select id="service" name="service">
+                  <option value="">Bitte auswählen</option>
                   <option value="Autoreinigung">Autoreinigung</option>
-                  <option value="Wohnungs- / Endreinigung">Wohnungs- / Endreinigung</option>
-                  <option value="Gewerbereinigung">Gewerbereinigung</option>
+                  <option value="Endreinigung">Endreinigung</option>
+                  <option value="Wohnungsreinigung">Wohnungsreinigung</option>
+                  <option value="Polster-Tiefenpflege">Polster-Tiefenpflege</option>
                   <option value="Fensterreinigung">Fensterreinigung</option>
-                  <option value="Anderes">Anderes</option>
+                  <option value="Gewerbereinigung">Gewerbereinigung</option>
+                  <option value="Andere Anfrage">Andere Anfrage</option>
                 </select>
+
               </div>
-              <div class="form-group">
-                <label for="nachricht">Ihre Nachricht</label>
-                <textarea id="nachricht" name="nachricht" class="form-control" placeholder="Beschreiben Sie kurz Ihr Anliegen, Verschmutzungsgrad oder Wunschtermin..."></textarea>
+
+              <div class="form-group full">
+                <label for="message">Ihre Nachricht *</label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Was soll gereinigt werden? Bei einem Fahrzeug gerne Marke/Modell und gewünschte Reinigung angeben."
+                  required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary btn-submit">Anfrage kostenlos senden</button>
-            </form>
+
+            </div>
+
+            <button class="btn btn-primary form-submit"
+                    type="submit">
+              Anfrage senden
+            </button>
+
+            <p class="privacy-note">
+              Mit dem Absenden stimmen Sie der Bearbeitung Ihrer Angaben
+              zur Bearbeitung Ihrer Anfrage zu.
+            </p>
+
+          </form>
+
+          <br>
+
+          <a href="https://wa.me/41765024998"
+             target="_blank"
+             rel="noopener"
+             class="btn btn-dark"
+             style="width:100%; border-color:rgba(37,211,102,.4);">
+            💬 Direkt per WhatsApp anfragen
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-light" id="faq">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow">
+            Häufige Fragen
           </div>
 
-          <div class="contact-info-panel">
-            <div class="info-card">
-              <h3>
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-                Telefon / WhatsApp
-              </h3>
-              <p>Rufen Sie uns an oder schreiben Sie uns direkt über WhatsApp für eine schnelle Antwort.</p>
-              <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="btn btn-dark" style="width: 100%; border-color: rgba(37,211,102,0.4);">
-                <span style="color: #25D366; margin-right: 8px;">WhatsApp:</span> 076 502 49 98
+          <h2>
+            Noch etwas unklar?
+          </h2>
+
+          <p>
+            Hier finden Sie Antworten auf häufige Fragen.
+          </p>
+
+        </div>
+
+        <div class="faq-grid">
+
+          <details>
+            <summary>
+              In welcher Region arbeiten Sie?
+            </summary>
+
+            <p>
+              Unser Schwerpunkt liegt in Rorschach, St. Gallen und Umgebung.
+              Für weitere Orte können Sie uns gerne anfragen.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Kann mein Fahrzeug abgeholt werden?
+            </summary>
+
+            <p>
+              Ja. Eine Abholung Ihres Fahrzeugs ist nach Absprache möglich.
+              Die Details und allfällige Zusatzkosten werden vorab besprochen.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Was kostet eine Autoreinigung?
+            </summary>
+
+            <p>
+              Der Preis hängt vom Fahrzeug, Zustand und gewünschten
+              Leistungsumfang ab. Für eine genaue Offerte können Sie uns
+              telefonisch, per WhatsApp oder über das Kontaktformular kontaktieren.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Bieten Sie eine Abnahmegarantie an?
+            </summary>
+
+            <p>
+              Bei vereinbarten Endreinigungen bieten wir eine Abnahmegarantie.
+              Sollte bei der offiziellen Wohnungsabgabe ein berechtigter
+              Reinigungsmangel festgestellt werden, bessern wir die betreffende
+              Stelle nach Absprache nach.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Kann ich kurzfristig einen Termin bekommen?
+            </summary>
+
+            <p>
+              Je nach Auslastung sind auch kurzfristige Termine möglich.
+              Fragen Sie uns einfach direkt an.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Wie kann ich eine Offerte erhalten?
+            </summary>
+
+            <p>
+              Am einfachsten telefonisch, per WhatsApp oder über unser
+              Anfrageformular. Je mehr Informationen Sie uns geben, desto
+              genauer können wir den Auftrag einschätzen.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RECHTLICHES -->
+    <section class="section" id="rechtliches">
+
+      <div class="container">
+
+        <div class="legal-grid">
+
+          <div class="legal-card" id="impressum">
+
+            <h3>Impressum</h3>
+
+            <p>
+              <strong>Dampfglanzservice-Ademi</strong><br>
+              Professionelle Reinigung & Tiefenpflege<br>
+              Rorschach / St. Gallen, Schweiz
+            </p>
+
+            <br>
+
+            <p>
+              Telefon:
+              <a href="tel:+41765024998">
+                076 502 49 98
               </a>
-            </div>
-            <div class="info-card">
-              <h3>
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                Standort & Einsatzgebiet
-              </h3>
-              <p>Unser Sitz ist in <strong>Rorschach, St. Gallen</strong>.<br>Wir sind für Sie <strong>schweizweit nach Vereinbarung</strong> im Einsatz. Ersatzauto bis 40km inklusive.</p>
-            </div>
+            </p>
+
+            <p>
+              E-Mail:
+              <a href="mailto:info@dampfglanzservice-ademi.ch">
+                info@dampfglanzservice-ademi.ch
+              </a>
+            </p>
+
+            <p>
+              Website:
+              dampfglanzservice-ademi.ch
+            </p>
+
           </div>
+
+          <div class="legal-card" id="datenschutz">
+
+            <h3>Datenschutzerklärung</h3>
+
+            <p>
+              Personenbezogene Angaben aus Kontaktanfragen werden ausschliesslich
+              zur Bearbeitung Ihrer Anfrage verwendet.
+            </p>
+
+            <br>
+
+            <p>
+              Die Verarbeitung erfolgt im Rahmen der geltenden schweizerischen
+              Datenschutzbestimmungen. Daten werden nicht ohne rechtliche Grundlage
+              an Dritte weitergegeben.
+            </p>
+
+            <br>
+
+            <p>
+              Bei Fragen zum Datenschutz können Sie uns jederzeit kontaktieren.
+            </p>
+
+          </div>
+
+          <div class="legal-card" id="agb">
+
+            <h3>Allgemeine Geschäftsbedingungen</h3>
+
+            <ul>
+
+              <li>
+                Leistungen und Preise werden vor Beginn der Arbeiten vereinbart.
+              </li>
+
+              <li>
+                Zusatzarbeiten werden vor Ausführung abgesprochen.
+              </li>
+
+              <li>
+                Bei Endreinigungen gilt die vereinbarte Abnahmegarantie im
+                Rahmen des vereinbarten Leistungsumfangs.
+              </li>
+
+              <li>
+                Nicht von uns verursachte Schäden oder bereits vorhandene
+                Beschädigungen sind von der Haftung ausgeschlossen.
+              </li>
+
+              <li>
+                Bei besonderen Materialien oder empfindlichen Oberflächen
+                kann eine individuelle Beurteilung notwendig sein.
+              </li>
+
+            </ul>
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <section class="section anchor-offset" id="impressum">
-      <div class="container">
-        <div class="eyebrow">Rechtliches</div>
-        <h2>Impressum</h2>
-        <div class="faq-body" style="background: var(--panel); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line);">
-          <p><strong>Dampfglanzservice-Ademi</strong><br>
-          Inhaber: Ferki Ademi<br>
-          Trischlistrasse 25<br>
-          9400 Rorschach, Kanton St. Gallen, Schweiz</p>
-          <p style="margin-top:24px;"><strong>Kontakt:</strong><br>
-          Telefon: +41 76 502 49 98<br>
-          E-Mail: <a href="mailto:info@dampfglanzservice-ademi.ch" style="color:var(--accent);">info@dampfglanzservice-ademi.ch</a></p>
-          <p style="margin-top:24px; font-size:0.9rem; color:var(--muted-2);">Haftungsausschluss: Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschliesslich deren Betreiber verantwortlich.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section anchor-offset" id="datenschutz">
-      <div class="container">
-        <div class="eyebrow">Rechtliches</div>
-        <h2>Datenschutzerklärung</h2>
-        <div class="faq-body" style="background: var(--panel); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.7;">
-          <p>Verantwortliche Stelle für den Datenschutz ist Dampfglanzservice-Ademi. Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften (insbesondere dem Schweizer DSG) behandelt.</p>
-          <p><strong>Datenerfassung auf dieser Website:</strong><br>Daten, die über unser Kontaktformular gesendet werden (z. B. Name, Telefonnummer, Nachricht), nutzen wir ausschliesslich zur Bearbeitung Ihrer Anfrage und für mögliche Anschlussfragen. Diese Daten geben wir nicht ohne Ihre ausdrückliche Einwilligung an Dritte weiter.</p>
-          <p><strong>Ihre Rechte:</strong><br>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Wenden Sie sich dazu an die im Impressum angegebene Adresse.</p>
-          <p><strong>Cookies:</strong><br>Unsere Website verwendet teilweise sogenannte Cookies. Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. Sie können die Speicherung von Cookies über unser Cookie-Banner ablehnen.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section anchor-offset" id="agb">
-      <div class="container">
-        <div class="eyebrow">Rechtliches</div>
-        <h2>Allgemeine Geschäftsbedingungen (AGB)</h2>
-        <div class="faq-body" style="background: var(--panel); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.7;">
-          <p><strong>1. Geltungsbereich:</strong> Diese AGB gelten für alle angebotenen Dienstleistungen, Aufträge und Verträge zwischen Dampfglanzservice-Ademi und dem Kunden.</p>
-          <p><strong>2. Offerten und Vertragsabschluss:</strong> Die auf der Webseite genannten Startpreise sind Richtpreise. Eine verbindliche Offerte wird auf Basis des tatsächlichen Aufwands erstellt. Ein Vertrag kommt durch die schriftliche oder mündliche Zusage des Kunden zustande.</p>
-          <p><strong>3. Terminabsagen:</strong> Stornierungen oder Terminverschiebungen müssen mindestens 24 Stunden vor dem vereinbarten Termin gemeldet werden. Bei kurzfristigeren Absagen behalten wir uns vor, eine Ausfallgebühr in Höhe von 50% des Auftragswerts in Rechnung zu stellen.</p>
-          <p><strong>4. Abnahmegarantie (Wohnungsreinigung):</strong> Bei Endreinigungen garantieren wir die erfolgreiche Wohnungsabgabe bei der Verwaltung. Werden bei der offiziellen Übergabe berechtigte Mängel an unserer Reinigungsarbeit festgestellt, bessern wir diese umgehend und kostenlos nach.</p>
-          <p><strong>5. Haftung:</strong> Für Schäden, die während der Reinigung am Fahrzeug oder Inventar entstehen, haften wir nur bei nachweislich grober Fahrlässigkeit. Normale Abnutzungserscheinungen oder bereits bestehende Vorschäden sind von der Haftung ausgeschlossen.</p>
-          <p><strong>6. Gerichtsstand:</strong> Gerichtsstand für alle Streitigkeiten ist Rorschach, Kanton St. Gallen, Schweiz. Es gilt ausschliesslich Schweizer Recht.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <div class="brand-logo" style="width: 48px; height: 48px; margin-bottom: 20px;">
-          <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" loading="lazy" width="48" height="48" alt="Dampfglanzservice-Ademi Firmenlogo Footer" />
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="footer-brand">
+
+            <img
+              src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png"
+              loading="lazy"
+              width="48"
+              height="48"
+              alt="Dampfglanzservice-Ademi Firmenlogo Footer">
+
+            <div>
+              <strong>Dampfglanzservice-Ademi</strong>
+              <span>Reinigung & Tiefenpflege</span>
+            </div>
+
+          </div>
+
+          <p class="footer-description">
+            Ihre persönliche Reinigungsfirma für Autoreinigung, Endreinigung,
+            Wohnungsreinigung und Tiefenpflege in Rorschach, St. Gallen und Umgebung.
+          </p>
+
+          <div class="socials">
+
+            <a href="https://www.instagram.com/dampfglanzservice/"
+               target="_blank"
+               rel="noopener"
+               class="social-btn"
+               aria-label="Instagram">
+              IG
+            </a>
+
+            <a href="https://www.tiktok.com/@dampfglanzservice?lang=en-GB"
+               target="_blank"
+               rel="noopener"
+               class="social-btn"
+               aria-label="TikTok">
+              TT
+            </a>
+
+          </div>
+
         </div>
-        <h4>Dampfglanzservice-Ademi</h4>
-        <p class="subtle">Ihre zuverlässige Reinigungsfirma für Auto, Haus und Gewerbe in der Ostschweiz. Kompromisslose Reinheit, die man sieht.</p>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/dampfglanzservice/" target="_blank" rel="noopener" class="social-btn" aria-label="Folgen Sie uns auf Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@dampfglanzservice?lang=en-GB" target="_blank" rel="noopener" class="social-btn" aria-label="Folgen Sie uns auf TikTok">
-            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-          </a>
+
+        <div class="footer-col">
+
+          <h4>Leistungen</h4>
+
+          <ul class="footer-links">
+            <li><a href="#leistungen">Autoreinigung</a></li>
+            <li><a href="#leistungen">Endreinigung</a></li>
+            <li><a href="#leistungen">Wohnungsreinigung</a></li>
+            <li><a href="#leistungen">Polster-Tiefenpflege</a></li>
+            <li><a href="#leistungen">Fensterreinigung</a></li>
+            <li><a href="#leistungen">Gewerbereinigung</a></li>
+          </ul>
+
         </div>
+
+        <div class="footer-col">
+
+          <h4>Rechtliches & Service</h4>
+
+          <ul class="footer-links">
+            <li><a href="#impressum">Impressum</a></li>
+            <li><a href="#datenschutz">Datenschutzerklärung</a></li>
+            <li><a href="#agb">Allgemeine Geschäftsbedingungen (AGB)</a></li>
+            <li><a href="#faq">Häufige Fragen (FAQ)</a></li>
+            <li><a href="#kontakt">Kontakt & Offerte</a></li>
+          </ul>
+
+        </div>
+
       </div>
-      
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul class="footer-links">
-          <li><a href="#leistungen">Dienstleistungen</a></li>
-          <li><a href="#ueber-uns">Unternehmensprofil</a></li>
-          <li><a href="#galerie">Vorher / Nachher Galerie</a></li>
-          <li><a href="#faq">Häufige Fragen (FAQ)</a></li>
-          <li><a href="#kontakt">Kontakt & Offerte</a></li>
-        </ul>
+
+      <div class="container footer-bottom">
+        © 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.
       </div>
-      
-      <div class="footer-col">
-        <h4>Rechtliches & Service</h4>
-        <ul class="footer-links">
-          <li><a href="#impressum">Impressum</a></li>
-          <li><a href="#datenschutz" id="datenschutz-link">Datenschutzerklärung</a></li>
-          <li><a href="#agb">Allgemeine Geschäftsbedingungen (AGB)</a></li>
-        </ul>
-      </div>
+
     </div>
-    <div class="container footer-bottom">
-      &copy; 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.
-    </div>
+
   </footer>
 
+  <!-- FLOATING CONTACT -->
   <div class="fab-container">
-    <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="fab fab-whatsapp" aria-label="WhatsApp Nachricht senden">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+
+    <a href="https://wa.me/41765024998"
+       target="_blank"
+       rel="noopener"
+       class="fab fab-whatsapp"
+       aria-label="WhatsApp Nachricht senden">
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.371.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.149-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+
     </a>
-    <a href="tel:+41765024998" class="fab fab-phone" aria-label="Jetzt anrufen">
-      <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+
+    <a href="tel:+41765024998"
+       class="fab fab-phone"
+       aria-label="Jetzt anrufen">
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+      </svg>
+
     </a>
+
   </div>
 
+  <!-- MOBILE CONTACT -->
   <div class="mobile-sticky-cta">
-    <a href="https://wa.me/41765024998" target="_blank" rel="noopener" class="m-cta-btn m-cta-whatsapp">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+
+    <a href="https://wa.me/41765024998"
+       target="_blank"
+       rel="noopener"
+       class="m-cta-btn m-cta-whatsapp">
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.371.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.149-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+
       WhatsApp
     </a>
-    <a href="tel:+41765024998" class="m-cta-btn m-cta-call">
-      <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+
+    <a href="tel:+41765024998"
+       class="m-cta-btn m-cta-call">
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+      </svg>
+
       Anrufen
     </a>
-  </div>
 
-  <div id="cookie-banner" class="cookie-banner">
-    <div class="cookie-content">
-      <h4>🍪 Cookies</h4>
-      <p>Wir verwenden Cookies zur Optimierung unserer Webseite. Mehr in unserer <a href="#datenschutz">Datenschutzerklärung</a>.</p>
-    </div>
-    <div class="cookie-buttons">
-      <button id="cookie-accept" class="btn btn-primary">Akzeptieren</button>
-      <button id="cookie-decline" class="btn btn-dark">Ablehnen</button>
-    </div>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Slider Logik
-      const containers = document.querySelectorAll('.ba-container');
+
+      /* Vorher-Nachher Slider */
+      const containers = document.querySelectorAll(".ba-container");
+
       containers.forEach(container => {
-        const slider = container.querySelector('.ba-slider');
-        const afterImage = container.querySelector('.ba-after');
-        const line = container.querySelector('.ba-line');
-        slider.addEventListener('input', (e) => {
+
+        const slider = container.querySelector(".ba-slider");
+        const afterImage = container.querySelector(".ba-after");
+        const line = container.querySelector(".ba-line");
+
+        if (!slider || !afterImage || !line) {
+          return;
+        }
+
+        slider.addEventListener("input", (e) => {
+
           const val = e.target.value;
-          afterImage.style.clipPath = `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
+
+          afterImage.style.clipPath =
+            `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
+
           line.style.left = `${val}%`;
+
         });
+
       });
 
-      // Cookie Banner Logik
-      const cookieBanner = document.getElementById('cookie-banner');
-      const acceptBtn = document.getElementById('cookie-accept');
-      const declineBtn = document.getElementById('cookie-decline');
-
-      if (!localStorage.getItem('cookieConsent')) {
-        setTimeout(() => { cookieBanner.classList.add('show'); }, 600); // Schneller einblenden
-      }
-      
-      acceptBtn.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'accepted');
-        cookieBanner.classList.remove('show');
-      });
-      
-      declineBtn.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'declined');
-        cookieBanner.classList.remove('show');
-      });
-
-      // Erfolgsmeldung Formular
+      /* Formular-Erfolgsmeldung */
       const urlParams = new URLSearchParams(window.location.search);
-      const formMessage = document.getElementById('form-message');
-      if (urlParams.get('status') === 'success') {
-        formMessage.textContent = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.';
-        formMessage.style.backgroundColor = 'rgba(37, 211, 102, 0.15)';
-        formMessage.style.color = '#25D366';
-        formMessage.style.border = '1px solid rgba(37, 211, 102, 0.3)';
-        formMessage.style.display = 'block';
-        
-        const form = document.querySelector('form');
-        if(form) form.reset();
-        
-        window.history.replaceState({}, document.title, window.location.pathname + "#kontakt");
+      const formMessage = document.getElementById("form-message");
+
+      if (
+        urlParams.get("status") === "success" &&
+        formMessage
+      ) {
+
+        formMessage.textContent =
+          "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.";
+
+        formMessage.style.backgroundColor =
+          "rgba(37, 211, 102, 0.15)";
+
+        formMessage.style.color =
+          "#188a43";
+
+        formMessage.style.border =
+          "1px solid rgba(37, 211, 102, 0.3)";
+
+        formMessage.style.display = "block";
+
+        const form = document.querySelector("form");
+
+        if (form) {
+          form.reset();
+        }
+
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname + "#kontakt"
+        );
+
       }
+
     });
   </script>
+
 </body>
 </html>
