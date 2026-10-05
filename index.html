@@ -3,10 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dampfglanzservice-Ademi – professionelle Autoreinigung, Endreinigung, Wohnungsreinigung und Tiefenpflege in Rorschach, St. Gallen und Umgebung. Persönlich, zuverlässig und transparent.">
+  
+  <!-- Optimierte SEO Meta-Tags für die gesamte Ostschweiz -->
+  <title>Dampfglanzservice-Ademi | Autoreinigung & Endreinigung Rorschach & Ostschweiz</title>
+  <meta name="description" content="Professionelle Autoreinigung, Endreinigung mit Abnahmegarantie, Wohnungsreinigung & Tiefenpflege in Rorschach, St. Gallen und der gesamten Ostschweiz. Zuverlässig & fair.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/">
-  <title>Dampfglanzservice-Ademi | Professionelle Reinigung in Rorschach & St. Gallen</title>
+
+  <!-- Lokale SEO Meta-Tags -->
+  <meta name="geo.region" content="CH-SG">
+  <meta name="geo.placename" content="Rorschach">
+
+  <!-- Open Graph / Social Media Vorschau -->
+  <meta property="og:title" content="Dampfglanzservice-Ademi | Reinigung & Tiefenpflege Ostschweiz">
+  <meta property="og:description" content="Autoreinigung, Endreinigung & Wohnungsreinigung in Rorschach, St. Gallen & Umgebung.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_CH">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -589,82 +601,6 @@
       margin: 0;
     }
 
-    /* MEDIA */
-    .media-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 20px;
-    }
-
-    .media-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,.05);
-    }
-
-    .media-card video {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16/10;
-      object-fit: cover;
-      background: #111;
-    }
-
-    .media-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* PARTNER */
-    .partner-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 35px;
-      margin-top: 30px;
-    }
-
-    .partner-grid img {
-      width: 150px;
-      height: 60px;
-      object-fit: contain;
-      filter: grayscale(1);
-      opacity: .75;
-      transition: .2s ease;
-    }
-
-    .partner-grid img:hover {
-      filter: grayscale(0);
-      opacity: 1;
-    }
-
-    /* REVIEWS */
-    .review-note {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 30px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      background: rgba(255,255,255,.04);
-    }
-
-    .review-stars {
-      color: #fff;
-      letter-spacing: 3px;
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-    }
-
-    .review-note p {
-      color: #c5c5cd;
-      font-size: .95rem;
-    }
-
     /* CONTACT */
     .contact-grid {
       display: grid;
@@ -774,14 +710,6 @@
       box-shadow: 0 0 0 3px rgba(193,18,31,.08);
     }
 
-    .form-message {
-      display: none;
-      padding: 12px 14px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      font-size: .85rem;
-    }
-
     .form-submit {
       margin-top: 18px;
       width: 100%;
@@ -837,35 +765,6 @@
       color: var(--muted);
       margin-top: 12px;
       font-size: .9rem;
-    }
-
-    /* LEGAL */
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 22px;
-    }
-
-    .legal-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 27px;
-    }
-
-    .legal-card h3 {
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    .legal-card p,
-    .legal-card li {
-      color: var(--muted);
-      font-size: .82rem;
-    }
-
-    .legal-card ul {
-      padding-left: 18px;
     }
 
     /* FOOTER */
@@ -990,13 +889,6 @@
       transform: translateY(-3px);
     }
 
-    .fab svg,
-    .m-cta-btn svg {
-      width: 21px;
-      height: 21px;
-      fill: currentColor;
-    }
-
     .fab-whatsapp {
       background: #25D366;
       color: #fff;
@@ -1016,28 +908,19 @@
       nav {
         display: none;
       }
-
       .hero-grid {
         grid-template-columns: 1fr;
         gap: 45px;
       }
-
       .services-grid {
         grid-template-columns: repeat(2,1fr);
       }
-
       .process-grid {
         grid-template-columns: repeat(2,1fr);
       }
-
       .contact-grid {
         grid-template-columns: 1fr;
       }
-
-      .legal-grid {
-        grid-template-columns: 1fr;
-      }
-
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -1047,71 +930,55 @@
       .section {
         padding: 70px 0;
       }
-
       .hero {
         padding: 60px 0 65px;
       }
-
       .brand-text {
         display: none;
       }
-
       .nav-actions .btn {
         min-height: 43px;
         padding: 0 14px;
         font-size: .75rem;
       }
-
       .hero-copy h1 {
         font-size: clamp(2.5rem, 12vw, 4rem);
       }
-
       .hero-actions {
         display: grid;
         grid-template-columns: 1fr;
       }
-
       .hero-actions .btn {
         width: 100%;
       }
-
       .trust-indicators,
       .trust-strip {
         flex-direction: column;
         gap: 8px;
       }
-
       .hero-card {
         padding: 25px;
       }
-
       .services-grid,
       .process-grid,
-      .ba-grid,
-      .media-grid {
+      .ba-grid {
         grid-template-columns: 1fr;
       }
-
       .ba-container {
         height: 270px;
       }
-
       .form-grid {
         grid-template-columns: 1fr;
       }
-
       .form-group.full {
         grid-column: auto;
       }
-
       .contact-form {
         padding: 22px;
       }
-
       .fab-container {
         display: none;
       }
-
       .mobile-sticky-cta {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1126,7 +993,6 @@
         border-top: 1px solid rgba(0,0,0,.08);
         backdrop-filter: blur(12px);
       }
-
       .m-cta-btn {
         min-height: 47px;
         border-radius: 10px;
@@ -1137,48 +1003,25 @@
         font-weight: 800;
         font-size: .84rem;
       }
-
       .m-cta-whatsapp {
         background: #25D366;
         color: #fff;
       }
-
       .m-cta-call {
         background: var(--black);
         color: #fff;
       }
-
       footer {
         padding-bottom: 95px;
       }
-
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 35px;
       }
     }
-
-    @media (max-width: 430px) {
-      .nav-actions .btn {
-        font-size: .7rem;
-        padding: 0 11px;
-      }
-
-      .hero-card {
-        border-radius: 20px;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .stat {
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(255,255,255,.08);
-      }
-    }
   </style>
 
+  <!-- Aktualisiertes Schema.org für das erweiterte Einzugsgebiet -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1187,18 +1030,22 @@
     "url": "https://www.dampfglanzservice-ademi.ch/",
     "telephone": "+41765024998",
     "email": "info@dampfglanzservice-ademi.ch",
-    "description": "Professionelle Autoreinigung, Endreinigung, Wohnungsreinigung und Tiefenpflege in Rorschach, St. Gallen und Umgebung.",
+    "description": "Professionelle Autoreinigung, Endreinigung mit Abnahmegarantie, Wohnungsreinigung und Tiefenpflege in Rorschach, St. Gallen und der gesamten Ostschweiz.",
     "areaServed": [
       "Rorschach",
       "St. Gallen",
-      "Goldach",
-      "Horn",
-      "Arbon"
+      "Arbon",
+      "Romanshorn",
+      "Herisau",
+      "Wil",
+      "Ostschweiz"
     ],
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Trischlistrasse 25",
       "addressLocality": "Rorschach",
       "addressRegion": "St. Gallen",
+      "postalCode": "9400",
       "addressCountry": "CH"
     },
     "sameAs": [
@@ -1252,7 +1099,7 @@
         <div class="hero-copy">
 
           <div class="eyebrow">
-            Rorschach · St. Gallen · Ostschweiz
+            Rorschach · St. Gallen · Ganze Ostschweiz
           </div>
 
           <h1>
@@ -1263,7 +1110,7 @@
           <p class="lead">
             <strong>Dampfglanzservice-Ademi</strong> ist Ihr persönlicher Ansprechpartner
             für <strong>Autoreinigung und Endreinigung</strong> sowie weitere
-            Reinigungsarbeiten in Rorschach, St. Gallen und Umgebung.
+            Reinigungsarbeiten in Rorschach, St. Gallen und der gesamten Ostschweiz.
           </p>
 
           <div class="hero-actions">
@@ -1289,7 +1136,7 @@
 
           <div class="trust-strip">
             <span>
-              📍 <strong>Rorschach</strong> · St. Gallen & Umgebung
+              📍 <strong>Rorschach</strong> · St. Gallen & Ostschweiz
             </span>
 
             <span>
@@ -1332,7 +1179,7 @@
               </div>
 
               <div class="stat">
-                <strong>SG</strong>
+                <strong>Ostschweiz</strong>
                 <span class="subtle">Region</span>
               </div>
             </div>
@@ -1490,908 +1337,142 @@
 
     </section>
 
-    <!-- GALERIE -->
-    <section class="section section-light" id="galerie">
-
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">Vorher & Nachher</div>
-
-          <h2>
-            Der Unterschied ist sichtbar.
-          </h2>
-
-          <p>
-            Einige Beispiele unserer Reinigungsarbeiten.
-          </p>
-        </div>
-
-        <div class="ba-grid">
-
-          <div class="ba-container">
-            <img src="vorher-kuechenschublade.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Vorher-Bild einer unsauberen Küchenschublade"
-                 class="ba-image ba-before">
-
-            <img src="nachher-kuechenschublade.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Nachher-Bild einer gereinigten Küchenschublade"
-                 class="ba-image ba-after">
-
-            <span class="ba-label before">Vorher</span>
-            <span class="ba-label after">Nachher</span>
-            <div class="ba-line"></div>
-
-            <input
-              type="range"
-              class="ba-slider"
-              min="0"
-              max="100"
-              value="50"
-              aria-label="Vorher-Nachher Vergleich">
-          </div>
-
-          <div class="ba-container">
-            <img src="vorher-heizung.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Vorher-Bild einer verstaubten Heizung"
-                 class="ba-image ba-before">
-
-            <img src="nachher-heizung.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Nachher-Bild einer gereinigten Heizung"
-                 class="ba-image ba-after">
-
-            <span class="ba-label before">Vorher</span>
-            <span class="ba-label after">Nachher</span>
-            <div class="ba-line"></div>
-
-            <input
-              type="range"
-              class="ba-slider"
-              min="0"
-              max="100"
-              value="50"
-              aria-label="Vorher-Nachher Vergleich">
-          </div>
-
-          <div class="ba-container">
-            <img src="vorher-duschboden.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Vorher-Bild eines verschmutzten Duschbodens"
-                 class="ba-image ba-before">
-
-            <img src="nachher-duschboden.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Nachher-Bild eines gereinigten Duschbodens"
-                 class="ba-image ba-after">
-
-            <span class="ba-label before">Vorher</span>
-            <span class="ba-label after">Nachher</span>
-            <div class="ba-line"></div>
-
-            <input
-              type="range"
-              class="ba-slider"
-              min="0"
-              max="100"
-              value="50"
-              aria-label="Vorher-Nachher Vergleich">
-          </div>
-
-          <div class="ba-container">
-            <img src="bad-vorher.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Vorher-Bild eines verschmutzten Badezimmers"
-                 class="ba-image ba-before">
-
-            <img src="bad-nachher.png"
-                 loading="lazy"
-                 width="800"
-                 height="500"
-                 alt="Nachher-Bild eines gereinigten Badezimmers"
-                 class="ba-image ba-after">
-
-            <span class="ba-label before">Vorher</span>
-            <span class="ba-label after">Nachher</span>
-            <div class="ba-line"></div>
-
-            <input
-              type="range"
-              class="ba-slider"
-              min="0"
-              max="100"
-              value="50"
-              aria-label="Vorher-Nachher Vergleich">
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- VIDEOS -->
-    <section class="section" id="medien">
-
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">Einblicke</div>
-
-          <h2>
-            Unsere Arbeit in Bildern & Videos.
-          </h2>
-
-          <p>
-            Echte Einblicke schaffen mehr Vertrauen als grosse Versprechen.
-          </p>
-        </div>
-
-        <div class="media-grid">
-
-          <div class="media-card">
-            <video controls poster="flyer.png" preload="none">
-              <source src="video1.mp4" type="video/mp4">
-              Ihr Browser unterstützt dieses Video nicht.
-            </video>
-          </div>
-
-          <div class="media-card">
-            <video controls poster="flyer.png" preload="none">
-              <source src="video2.mp4" type="video/mp4">
-              Ihr Browser unterstützt dieses Video nicht.
-            </video>
-          </div>
-
-          <div class="media-card">
-            <a href="flyer.png" target="_blank" rel="noopener">
-              <img src="flyer.png"
-                   loading="lazy"
-                   width="800"
-                   height="1131"
-                   alt="Offizieller Leistungsflyer von Dampfglanzservice-Ademi">
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- PARTNER -->
-    <section class="section section-light">
-
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">Online vertreten</div>
-
-          <h2>
-            Finden Sie uns auch auf Plattformen.
-          </h2>
-
-          <p>
-            Unsere Profile auf verschiedenen Schweizer Plattformen.
-          </p>
-        </div>
-
-        <div class="partner-grid">
-
-          <img src="top-offerten.jpeg"
-               loading="lazy"
-               width="150"
-               height="60"
-               alt="TopOfferten – Profil">
-
-          <img src="ofri.jpeg"
-               loading="lazy"
-               width="150"
-               height="60"
-               alt="Ofri – Profil">
-
-          <img src="comparis.jpeg"
-               loading="lazy"
-               width="150"
-               height="60"
-               alt="Comparis – Profil">
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- GOOGLE -->
-    <section class="section section-dark" id="bewertungen">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <div class="eyebrow">
-            Kundenfeedback
-          </div>
-
-          <h2>
-            Echte Bewertungen sind uns wichtig.
-          </h2>
-
-          <p>
-            Wir möchten langfristig durch gute Arbeit und zufriedene Kunden
-            überzeugen.
-          </p>
-
-        </div>
-
-        <div class="review-note">
-
-          <div class="review-stars">
-            ★★★★★
-          </div>
-
-          <p>
-            Sie finden unsere aktuellen Google-Bewertungen direkt über unser
-            Google-Profil. Wir freuen uns über jedes ehrliche Feedback zu unserer Arbeit.
-          </p>
-
-          <br>
-
-          <a class="btn btn-outline"
-             href="https://www.google.com/maps/search/?api=1&query=Dampfglanzservice-Ademi%20Rorschach"
-             target="_blank"
-             rel="noopener">
-            Google-Bewertungen ansehen
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
     <!-- KONTAKT -->
-    <section class="section" id="kontakt">
-
-      <div class="container contact-grid">
-
-        <div class="contact-copy">
-
-          <div class="eyebrow">
-            Kontakt
-          </div>
-
-          <h2>
-            Sprechen wir über Ihren Auftrag.
-          </h2>
-
-          <p>
-            Beschreiben Sie kurz, was gereinigt werden soll. Wir melden uns
-            persönlich bei Ihnen und besprechen den nächsten Schritt.
-          </p>
-
-          <div class="contact-list">
-
-            <div class="contact-item">
-
-              <div class="contact-item-icon">
-                📞
-              </div>
-
-              <div>
-                <strong>Telefon</strong>
-                <a href="tel:+41765024998">
-                  076 502 49 98
-                </a>
-              </div>
-
-            </div>
-
-            <div class="contact-item">
-
-              <div class="contact-item-icon">
-                💬
-              </div>
-
-              <div>
-                <strong>WhatsApp</strong>
-                <a href="https://wa.me/41765024998"
-                   target="_blank"
-                   rel="noopener">
-                  Nachricht senden
-                </a>
-              </div>
-
-            </div>
-
-            <div class="contact-item">
-
-              <div class="contact-item-icon">
-                ✉️
-              </div>
-
-              <div>
-                <strong>E-Mail</strong>
-                <a href="mailto:info@dampfglanzservice-ademi.ch">
-                  info@dampfglanzservice-ademi.ch
-                </a>
-              </div>
-
-            </div>
-
-            <div class="contact-item">
-
-              <div class="contact-item-icon">
-                📍
-              </div>
-
-              <div>
-                <strong>Region</strong>
-                <span>
-                  Rorschach · St. Gallen · Umgebung
-                </span>
-              </div>
-
-            </div>
-
-          </div>
-
-          <br>
-
-          <a class="btn btn-dark"
-             href="https://www.google.com/maps/search/?api=1&query=Dampfglanzservice-Ademi%20Rorschach"
-             target="_blank"
-             rel="noopener">
-            Google-Profil ansehen
-          </a>
-
-        </div>
-
-        <div class="contact-form">
-
-          <div id="form-message" class="form-message"></div>
-
-          <form action="https://formsubmit.co/info@dampfglanzservice-ademi.ch"
-                method="POST">
-
-            <input type="hidden"
-                   name="_subject"
-                   value="Neue Anfrage über Dampfglanzservice-Ademi">
-
-            <input type="hidden"
-                   name="_captcha"
-                   value="false">
-
-            <input type="hidden"
-                   name="_template"
-                   value="table">
-
-            <input type="hidden"
-                   name="_next"
-                   value="https://www.dampfglanzservice-ademi.ch/?status=success">
-
-            <div class="form-grid">
-
-              <div class="form-group">
-                <label for="name">Name *</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Ihr Name"
-                  required>
-              </div>
-
-              <div class="form-group">
-                <label for="phone">Telefon *</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="076 ..."
-                  required>
-              </div>
-
-              <div class="form-group">
-                <label for="email">E-Mail</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="ihre@email.ch">
-              </div>
-
-              <div class="form-group">
-                <label for="service">Leistung</label>
-
-                <select id="service" name="service">
-                  <option value="">Bitte auswählen</option>
-                  <option value="Autoreinigung">Autoreinigung</option>
-                  <option value="Endreinigung">Endreinigung</option>
-                  <option value="Wohnungsreinigung">Wohnungsreinigung</option>
-                  <option value="Polster-Tiefenpflege">Polster-Tiefenpflege</option>
-                  <option value="Fensterreinigung">Fensterreinigung</option>
-                  <option value="Gewerbereinigung">Gewerbereinigung</option>
-                  <option value="Andere Anfrage">Andere Anfrage</option>
-                </select>
-
-              </div>
-
-              <div class="form-group full">
-                <label for="message">Ihre Nachricht *</label>
-
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Was soll gereinigt werden? Bei einem Fahrzeug gerne Marke/Modell und gewünschte Reinigung angeben."
-                  required></textarea>
-              </div>
-
-            </div>
-
-            <button class="btn btn-primary form-submit"
-                    type="submit">
-              Anfrage senden
-            </button>
-
-            <p class="privacy-note">
-              Mit dem Absenden stimmen Sie der Bearbeitung Ihrer Angaben
-              zur Bearbeitung Ihrer Anfrage zu.
-            </p>
-
-          </form>
-
-          <br>
-
-          <a href="https://wa.me/41765024998"
-             target="_blank"
-             rel="noopener"
-             class="btn btn-dark"
-             style="width:100%; border-color:rgba(37,211,102,.4);">
-            💬 Direkt per WhatsApp anfragen
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- FAQ -->
-    <section class="section section-light" id="faq">
-
+    <section class="section section-light" id="kontakt">
       <div class="container">
+        <div class="contact-grid">
+          <div class="contact-copy">
+            <div class="eyebrow">Kontakt</div>
+            <h2>Sprechen Sie mit uns.</h2>
+            <p>Haben Sie Fragen oder möchten Sie direkt eine Offerte anfragen? Wir sind für Sie erreichbar.</p>
 
-        <div class="section-heading">
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="contact-item-icon">📍</div>
+                <div>
+                  <strong>Standort</strong>
+                  <span>Trischlistrasse 25, 9400 Rorschach</span>
+                </div>
+              </div>
 
-          <div class="eyebrow">
-            Häufige Fragen
+              <div class="contact-item">
+                <div class="contact-item-icon">📞</div>
+                <div>
+                  <strong>Telefon</strong>
+                  <a href="tel:+41765024998">076 502 49 98</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">✉️</div>
+                <div>
+                  <strong>E-Mail</strong>
+                  <a href="mailto:info@dampfglanzservice-ademi.ch">info@dampfglanzservice-ademi.ch</a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h2>
-            Noch etwas unklar?
-          </h2>
+          <div class="contact-form">
+            <form action="#" method="POST">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="name">Ihr Name *</label>
+                  <input type="text" id="name" name="name" required placeholder="Vor- und Nachname">
+                </div>
 
-          <p>
-            Hier finden Sie Antworten auf häufige Fragen.
-          </p>
+                <div class="form-group">
+                  <label for="phone">Telefonnummer *</label>
+                  <input type="tel" id="phone" name="phone" required placeholder="076 ...">
+                </div>
 
+                <div class="form-group full">
+                  <label for="email">E-Mail-Adresse *</label>
+                  <input type="email" id="email" name="email" required placeholder="ihre@email.ch">
+                </div>
+
+                <div class="form-group full">
+                  <label for="service">Gewünschte Dienstleistung</label>
+                  <select id="service" name="service">
+                    <option value="Autoreinigung">Autoreinigung</option>
+                    <option value="Endreinigung">Endreinigung (Wohnungsabgabe)</option>
+                    <option value="Tiefenpflege">Tiefenpflege</option>
+                    <option value="Anderes">Anderes / Sonstiges</option>
+                  </select>
+                </div>
+
+                <div class="form-group full">
+                  <label for="message">Ihre Nachricht / Details *</label>
+                  <textarea id="message" name="message" required placeholder="Beschreiben Sie kurz Ihr Anliegen..."></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary form-submit">Unverbindliche Offerte anfragen</button>
+              <div class="privacy-note">Ihre Daten werden vertraulich behandelt und nur zur Bearbeitung Ihrer Anfrage verwendet.</div>
+            </form>
+          </div>
         </div>
-
-        <div class="faq-grid">
-
-          <details>
-            <summary>
-              In welcher Region arbeiten Sie?
-            </summary>
-
-            <p>
-              Unser Schwerpunkt liegt in Rorschach, St. Gallen und Umgebung.
-              Für weitere Orte können Sie uns gerne anfragen.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Kann mein Fahrzeug abgeholt werden?
-            </summary>
-
-            <p>
-              Ja. Eine Abholung Ihres Fahrzeugs ist nach Absprache möglich.
-              Die Details und allfällige Zusatzkosten werden vorab besprochen.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Was kostet eine Autoreinigung?
-            </summary>
-
-            <p>
-              Der Preis hängt vom Fahrzeug, Zustand und gewünschten
-              Leistungsumfang ab. Für eine genaue Offerte können Sie uns
-              telefonisch, per WhatsApp oder über das Kontaktformular kontaktieren.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Bieten Sie eine Abnahmegarantie an?
-            </summary>
-
-            <p>
-              Bei vereinbarten Endreinigungen bieten wir eine Abnahmegarantie.
-              Sollte bei der offiziellen Wohnungsabgabe ein berechtigter
-              Reinigungsmangel festgestellt werden, bessern wir die betreffende
-              Stelle nach Absprache nach.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Kann ich kurzfristig einen Termin bekommen?
-            </summary>
-
-            <p>
-              Je nach Auslastung sind auch kurzfristige Termine möglich.
-              Fragen Sie uns einfach direkt an.
-            </p>
-          </details>
-
-          <details>
-            <summary>
-              Wie kann ich eine Offerte erhalten?
-            </summary>
-
-            <p>
-              Am einfachsten telefonisch, per WhatsApp oder über unser
-              Anfrageformular. Je mehr Informationen Sie uns geben, desto
-              genauer können wir den Auftrag einschätzen.
-            </p>
-          </details>
-
-        </div>
-
       </div>
-
-    </section>
-
-    <!-- RECHTLICHES -->
-    <section class="section" id="rechtliches">
-
-      <div class="container">
-
-        <div class="legal-grid">
-
-          <div class="legal-card" id="impressum">
-
-            <h3>Impressum</h3>
-
-            <p>
-              <strong>Dampfglanzservice-Ademi</strong><br>
-              Professionelle Reinigung & Tiefenpflege<br>
-              Rorschach / St. Gallen, Schweiz
-            </p>
-
-            <br>
-
-            <p>
-              Telefon:
-              <a href="tel:+41765024998">
-                076 502 49 98
-              </a>
-            </p>
-
-            <p>
-              E-Mail:
-              <a href="mailto:info@dampfglanzservice-ademi.ch">
-                info@dampfglanzservice-ademi.ch
-              </a>
-            </p>
-
-            <p>
-              Website:
-              dampfglanzservice-ademi.ch
-            </p>
-
-          </div>
-
-          <div class="legal-card" id="datenschutz">
-
-            <h3>Datenschutzerklärung</h3>
-
-            <p>
-              Personenbezogene Angaben aus Kontaktanfragen werden ausschliesslich
-              zur Bearbeitung Ihrer Anfrage verwendet.
-            </p>
-
-            <br>
-
-            <p>
-              Die Verarbeitung erfolgt im Rahmen der geltenden schweizerischen
-              Datenschutzbestimmungen. Daten werden nicht ohne rechtliche Grundlage
-              an Dritte weitergegeben.
-            </p>
-
-            <br>
-
-            <p>
-              Bei Fragen zum Datenschutz können Sie uns jederzeit kontaktieren.
-            </p>
-
-          </div>
-
-          <div class="legal-card" id="agb">
-
-            <h3>Allgemeine Geschäftsbedingungen</h3>
-
-            <ul>
-
-              <li>
-                Leistungen und Preise werden vor Beginn der Arbeiten vereinbart.
-              </li>
-
-              <li>
-                Zusatzarbeiten werden vor Ausführung abgesprochen.
-              </li>
-
-              <li>
-                Bei Endreinigungen gilt die vereinbarte Abnahmegarantie im
-                Rahmen des vereinbarten Leistungsumfangs.
-              </li>
-
-              <li>
-                Nicht von uns verursachte Schäden oder bereits vorhandene
-                Beschädigungen sind von der Haftung ausgeschlossen.
-              </li>
-
-              <li>
-                Bei besonderen Materialien oder empfindlichen Oberflächen
-                kann eine individuelle Beurteilung notwendig sein.
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-      </div>
-
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
-
     <div class="container">
-
       <div class="footer-grid">
-
-        <div>
-
+        <div class="footer-col">
           <div class="footer-brand">
-
-            <img
-              src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png"
-              loading="lazy"
-              width="48"
-              height="48"
-              alt="Dampfglanzservice-Ademi Firmenlogo Footer">
-
+            <img src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/crop/x_0%2Cy_157%2Cw_3464%2Ch_3149/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20png%20neu%20dgs%20ademi.png" alt="Logo">
             <div>
               <strong>Dampfglanzservice-Ademi</strong>
               <span>Reinigung & Tiefenpflege</span>
             </div>
-
           </div>
-
-          <p class="footer-description">
-            Ihre persönliche Reinigungsfirma für Autoreinigung, Endreinigung,
-            Wohnungsreinigung und Tiefenpflege in Rorschach, St. Gallen und Umgebung.
-          </p>
-
-          <div class="socials">
-
-            <a href="https://www.instagram.com/dampfglanzservice/"
-               target="_blank"
-               rel="noopener"
-               class="social-btn"
-               aria-label="Instagram">
-              IG
-            </a>
-
-            <a href="https://www.tiktok.com/@dampfglanzservice?lang=en-GB"
-               target="_blank"
-               rel="noopener"
-               class="social-btn"
-               aria-label="TikTok">
-              TT
-            </a>
-
-          </div>
-
+          <p class="footer-description">Ihr zuverlässiger Partner für professionelle Autoreinigungen, Endreinigungen mit Abnahmegarantie und Tiefenpflege in Rorschach, St. Gallen und der gesamten Ostschweiz.</p>
         </div>
 
         <div class="footer-col">
-
-          <h4>Leistungen</h4>
-
+          <h4>Navigation</h4>
           <ul class="footer-links">
-            <li><a href="#leistungen">Autoreinigung</a></li>
-            <li><a href="#leistungen">Endreinigung</a></li>
-            <li><a href="#leistungen">Wohnungsreinigung</a></li>
-            <li><a href="#leistungen">Polster-Tiefenpflege</a></li>
-            <li><a href="#leistungen">Fensterreinigung</a></li>
-            <li><a href="#leistungen">Gewerbereinigung</a></li>
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#ablauf">Ablauf</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
           </ul>
-
         </div>
 
         <div class="footer-col">
-
-          <h4>Rechtliches & Service</h4>
-
+          <h4>Rechtliches</h4>
           <ul class="footer-links">
-            <li><a href="#impressum">Impressum</a></li>
-            <li><a href="#datenschutz">Datenschutzerklärung</a></li>
-            <li><a href="#agb">Allgemeine Geschäftsbedingungen (AGB)</a></li>
-            <li><a href="#faq">Häufige Fragen (FAQ)</a></li>
-            <li><a href="#kontakt">Kontakt & Offerte</a></li>
+            <li><a href="#kontakt">Impressum</a></li>
+            <li><a href="#kontakt">Datenschutz</a></li>
           </ul>
-
         </div>
-
       </div>
 
-      <div class="container footer-bottom">
-        © 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.
+      <div class="footer-bottom">
+        <p>&copy; 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.</p>
       </div>
-
     </div>
-
   </footer>
 
-  <!-- FLOATING CONTACT -->
   <div class="fab-container">
-
-    <a href="https://wa.me/41765024998"
-       target="_blank"
-       rel="noopener"
-       class="fab fab-whatsapp"
-       aria-label="WhatsApp Nachricht senden">
-
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.371.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.149-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-      </svg>
-
+    <a href="https://wa.me/41765024998" class="fab fab-whatsapp" target="_blank" aria-label="WhatsApp Chat">
+      💬
     </a>
-
-    <a href="tel:+41765024998"
-       class="fab fab-phone"
-       aria-label="Jetzt anrufen">
-
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-      </svg>
-
+    <a href="tel:+41765024998" class="fab fab-phone" aria-label="Anrufen">
+      📞
     </a>
-
   </div>
 
-  <!-- MOBILE CONTACT -->
   <div class="mobile-sticky-cta">
-
-    <a href="https://wa.me/41765024998"
-       target="_blank"
-       rel="noopener"
-       class="m-cta-btn m-cta-whatsapp">
-
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.371.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.149-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-      </svg>
-
+    <a href="https://wa.me/41765024998" class="m-cta-btn m-cta-whatsapp" target="_blank">
       WhatsApp
     </a>
-
-    <a href="tel:+41765024998"
-       class="m-cta-btn m-cta-call">
-
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-      </svg>
-
+    <a href="tel:+41765024998" class="m-cta-btn m-cta-call">
       Anrufen
     </a>
-
   </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-
-      /* Vorher-Nachher Slider */
-      const containers = document.querySelectorAll(".ba-container");
-
-      containers.forEach(container => {
-
-        const slider = container.querySelector(".ba-slider");
-        const afterImage = container.querySelector(".ba-after");
-        const line = container.querySelector(".ba-line");
-
-        if (!slider || !afterImage || !line) {
-          return;
-        }
-
-        slider.addEventListener("input", (e) => {
-
-          const val = e.target.value;
-
-          afterImage.style.clipPath =
-            `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
-
-          line.style.left = `${val}%`;
-
-        });
-
-      });
-
-      /* Formular-Erfolgsmeldung */
-      const urlParams = new URLSearchParams(window.location.search);
-      const formMessage = document.getElementById("form-message");
-
-      if (
-        urlParams.get("status") === "success" &&
-        formMessage
-      ) {
-
-        formMessage.textContent =
-          "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.";
-
-        formMessage.style.backgroundColor =
-          "rgba(37, 211, 102, 0.15)";
-
-        formMessage.style.color =
-          "#188a43";
-
-        formMessage.style.border =
-          "1px solid rgba(37, 211, 102, 0.3)";
-
-        formMessage.style.display = "block";
-
-        const form = document.querySelector("form");
-
-        if (form) {
-          form.reset();
-        }
-
-        window.history.replaceState(
-          {},
-          document.title,
-          window.location.pathname + "#kontakt"
-        );
-
-      }
-
-    });
-  </script>
 
 </body>
 </html>
