@@ -5,10 +5,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Reinigungsfirma Steinach | Dampfglanzservice-Ademi</title>
+  <title>Reinigungsfirma Steinach | Wohnungs-, End- & Autoreinigung</title>
 
   <meta name="description"
-        content="Professionelle Reinigung in Steinach durch Dampfglanzservice-Ademi aus Rorschach. Wohnungsreinigung, Endreinigung, Fensterreinigung, Polsterreinigung und Autoreinigung.">
+        content="Reinigungsfirma für Steinach: Wohnungsreinigung, Endreinigung mit Abnahmegarantie, Fenster-, Polster- und Autoreinigung. Dampfglanzservice-Ademi aus Rorschach.">
 
   <meta name="robots" content="index, follow">
 
@@ -19,7 +19,7 @@
   <meta property="og:title"
         content="Reinigungsfirma Steinach | Dampfglanzservice-Ademi">
   <meta property="og:description"
-        content="Professionelle Reinigung in Steinach und Umgebung – Wohnungsreinigung, Endreinigung, Fensterreinigung, Polsterreinigung und Autoreinigung.">
+        content="Professionelle Reinigung für Wohnungen, Häuser und Fahrzeuge in Steinach. Endreinigung mit Abnahmegarantie sowie Fenster-, Polster- und Tiefenreinigung.">
   <meta property="og:url"
         content="https://www.dampfglanzservice-ademi.ch/reinigungsfirma-steinach/">
 
@@ -27,11 +27,69 @@
   <meta name="twitter:title"
         content="Reinigungsfirma Steinach | Dampfglanzservice-Ademi">
   <meta name="twitter:description"
-        content="Professionelle Reinigungsarbeiten in Steinach und Umgebung durch Dampfglanzservice-Ademi aus Rorschach.">
+        content="Professionelle Reinigung in Steinach durch Dampfglanzservice-Ademi aus Rorschach.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CleaningService",
+    "@id": "https://www.dampfglanzservice-ademi.ch/#cleaningservice",
+    "name": "Dampfglanzservice-Ademi",
+    "url": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-steinach/",
+    "telephone": "+41765024998",
+    "email": "info@dampfglanzservice-ademi.ch",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Trischlistrasse 25",
+      "postalCode": "9400",
+      "addressLocality": "Rorschach",
+      "addressCountry": "CH"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Steinach",
+      "addressCountry": "CH"
+    },
+    "serviceType": [
+      "Wohnungsreinigung",
+      "Endreinigung",
+      "Fensterreinigung",
+      "Polsterreinigung",
+      "Autoreinigung",
+      "Tiefenreinigung"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/dampfglanzservice/",
+      "https://www.tiktok.com/@dampfglanzservice"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Startseite",
+        "item": "https://www.dampfglanzservice-ademi.ch/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Reinigungsfirma Steinach",
+        "item": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-steinach/"
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root{
@@ -58,6 +116,7 @@
 
     html{
       scroll-behavior:smooth;
+      scroll-padding-top:85px;
     }
 
     body{
@@ -75,6 +134,13 @@
     img{
       max-width:100%;
       display:block;
+    }
+
+    button,
+    input,
+    select,
+    textarea{
+      font:inherit;
     }
 
     .container{
@@ -120,8 +186,22 @@
       font-weight:600;
     }
 
+    .nav-links a{
+      transition:.2s ease;
+    }
+
     .nav-links a:hover{
       color:#ff5b64;
+    }
+
+    .nav-links a:focus-visible,
+    .nav-phone:focus-visible,
+    .btn:focus-visible,
+    .footer-links a:focus-visible,
+    .mobile-bar a:focus-visible,
+    .floating-whatsapp:focus-visible{
+      outline:3px solid #ff6971;
+      outline-offset:3px;
     }
 
     .nav-phone{
@@ -132,6 +212,7 @@
       font-weight:700;
       font-size:14px;
       white-space:nowrap;
+      transition:.2s ease;
     }
 
     .nav-phone:hover{
@@ -306,6 +387,12 @@
       border-radius:var(--radius);
       padding:30px;
       box-shadow:0 8px 30px rgba(0,0,0,.04);
+      transition:.2s ease;
+    }
+
+    .service-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 14px 35px rgba(0,0,0,.07);
     }
 
     .service-number{
@@ -331,8 +418,109 @@
       font-size:15px;
     }
 
-    .regional{
+    .steinach-focus{
       background:#fff;
+    }
+
+    .focus-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:55px;
+      align-items:center;
+    }
+
+    .focus-content h2{
+      max-width:650px;
+    }
+
+    .focus-content p{
+      color:var(--muted);
+      font-size:16px;
+      margin-bottom:18px;
+      max-width:680px;
+    }
+
+    .focus-points{
+      display:grid;
+      gap:14px;
+      margin-top:25px;
+    }
+
+    .focus-point{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:17px 18px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#fff;
+    }
+
+    .focus-icon{
+      flex:0 0 34px;
+      width:34px;
+      height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:9px;
+      background:rgba(193,18,31,.09);
+      color:var(--red);
+      font-weight:800;
+    }
+
+    .focus-point strong{
+      display:block;
+      margin-bottom:3px;
+      font-size:15px;
+    }
+
+    .focus-point span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .focus-box{
+      background:linear-gradient(145deg,#111116,#1b1b21);
+      color:#fff;
+      border-radius:24px;
+      padding:38px;
+      box-shadow:0 20px 50px rgba(0,0,0,.12);
+    }
+
+    .focus-box h3{
+      font-size:25px;
+      margin-bottom:15px;
+    }
+
+    .focus-box p{
+      color:#c9c9cf;
+      font-size:15px;
+      margin-bottom:22px;
+    }
+
+    .focus-box ul{
+      list-style:none;
+      display:grid;
+      gap:12px;
+    }
+
+    .focus-box li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#eee;
+      font-size:14px;
+    }
+
+    .focus-box li::before{
+      content:"✓";
+      color:#ff4a55;
+      font-weight:800;
+    }
+
+    .regional{
+      background:var(--light);
     }
 
     .regional-box{
@@ -366,7 +554,7 @@
     }
 
     .process{
-      background:var(--light);
+      background:#fff;
     }
 
     .process-grid{
@@ -376,7 +564,7 @@
     }
 
     .process-item{
-      background:#fff;
+      background:var(--light);
       border:1px solid var(--border);
       border-radius:18px;
       padding:25px;
@@ -400,7 +588,7 @@
     }
 
     .faq{
-      background:#fff;
+      background:var(--light);
     }
 
     .faq-grid{
@@ -420,10 +608,26 @@
       cursor:pointer;
       font-weight:700;
       list-style:none;
+      padding-right:25px;
+      position:relative;
     }
 
     summary::-webkit-details-marker{
       display:none;
+    }
+
+    summary::after{
+      content:"+";
+      position:absolute;
+      right:0;
+      top:-2px;
+      color:var(--red);
+      font-size:22px;
+      font-weight:500;
+    }
+
+    details[open] summary::after{
+      content:"−";
     }
 
     details p{
@@ -433,7 +637,7 @@
     }
 
     .contact{
-      background:var(--light);
+      background:#fff;
     }
 
     .contact-grid{
@@ -471,8 +675,13 @@
       margin-bottom:3px;
     }
 
-    .contact-item span{
+    .contact-item span,
+    .contact-item a{
       color:#bbb;
+    }
+
+    .contact-item a:hover{
+      color:#fff;
     }
 
     form{
@@ -511,9 +720,9 @@
       border:1px solid #d9d9df;
       border-radius:10px;
       padding:13px 14px;
-      font:inherit;
       outline:none;
       background:#fff;
+      color:var(--text);
     }
 
     input:focus,
@@ -614,13 +823,14 @@
       }
 
       .hero-grid,
+      .focus-grid,
       .regional-box,
       .contact-grid{
         grid-template-columns:1fr;
       }
 
       .service-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
       }
 
       .process-grid{
@@ -629,6 +839,10 @@
 
       .hero-card{
         max-width:650px;
+      }
+
+      .focus-box{
+        max-width:700px;
       }
     }
 
@@ -671,12 +885,20 @@
         padding:65px 0;
       }
 
+      .service-grid{
+        grid-template-columns:1fr;
+      }
+
       .regional-box{
         padding:28px;
       }
 
       .process-grid{
         grid-template-columns:1fr;
+      }
+
+      .focus-box{
+        padding:28px;
       }
 
       form,
@@ -743,12 +965,15 @@
 <header>
   <div class="container nav">
 
-    <a href="https://www.dampfglanzservice-ademi.ch/" class="logo">
+    <a href="https://www.dampfglanzservice-ademi.ch/"
+       class="logo"
+       aria-label="Dampfglanzservice-Ademi Startseite">
       Dampfglanzservice<span>-Ademi</span>
     </a>
 
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Hauptnavigation">
       <a href="#leistungen">Leistungen</a>
+      <a href="#steinach">Für Steinach</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#faq">FAQ</a>
       <a href="#kontakt">Kontakt</a>
@@ -771,19 +996,20 @@
     <div>
 
       <div class="eyebrow">
-        Reinigung in Steinach & Umgebung
+        Reinigungsfirma für Steinach
       </div>
 
       <h1>
-        Professionelle Reinigung in
-        <span>Steinach</span>
+        Reinigung in
+        <span>Steinach</span>,
+        die gründlich ausgeführt wird
       </h1>
 
       <p class="hero-text">
-        Dampfglanzservice-Ademi ist Ihre professionelle Reinigungsfirma
-        aus Rorschach für Steinach und die umliegende Region.
-        Wir bieten gründliche Wohnungsreinigung, Endreinigung,
-        Fensterreinigung, Polsterreinigung und Autoreinigung.
+        Dampfglanzservice-Ademi ist eine Reinigungsfirma aus Rorschach
+        und arbeitet auch in Steinach. Unser Angebot reicht von der
+        Wohnungs- und Endreinigung bis zur Fenster-, Polster- und
+        Autoreinigung.
       </p>
 
       <div class="hero-buttons">
@@ -793,7 +1019,9 @@
         </a>
 
         <a class="btn btn-outline"
-           href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Reinigung%20in%20Steinach.">
+           href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Reinigung%20in%20Steinach."
+           target="_blank"
+           rel="noopener noreferrer">
           WhatsApp schreiben
         </a>
 
@@ -808,38 +1036,38 @@
 
     <div class="hero-card">
 
-      <h2>Sauberkeit, auf die Sie zählen können</h2>
+      <h2>Was wir in Steinach reinigen</h2>
 
       <p>
-        Ob Wohnung, Umzug, Polster oder Fahrzeug:
-        Wir kümmern uns um eine gründliche und professionelle Reinigung.
+        Vom einzelnen Auftrag bis zur umfassenden Reinigung:
+        Entscheidend ist, was bei Ihnen tatsächlich gereinigt werden soll.
       </p>
 
       <ul class="check-list">
 
         <li>
           <span class="check">✓</span>
-          Wohnungs- & Endreinigung
+          Wohnungen und Häuser
         </li>
 
         <li>
           <span class="check">✓</span>
-          Endreinigung mit Abnahmegarantie
+          Endreinigungen bei Wohnungswechsel
         </li>
 
         <li>
           <span class="check">✓</span>
-          Fensterreinigung
+          Fenster und Glasflächen
         </li>
 
         <li>
           <span class="check">✓</span>
-          Polster- & Tiefenreinigung
+          Sofas und Polster
         </li>
 
         <li>
           <span class="check">✓</span>
-          Auto Innen- & Aussenreinigung
+          Fahrzeuginnenräume und Fahrzeugwäsche
         </li>
 
       </ul>
@@ -858,16 +1086,17 @@
     <div class="section-head">
 
       <div class="section-label">
-        Unsere Leistungen
+        Leistungen
       </div>
 
       <h2>
-        Reinigung für private und gewerbliche Bedürfnisse
+        Welche Reinigung benötigen Sie?
       </h2>
 
       <p>
-        Wir bieten verschiedene Reinigungsleistungen in Steinach
-        und Umgebung – individuell nach Bedarf und Objekt.
+        In Steinach übernehmen wir unterschiedliche Reinigungsarbeiten.
+        Der Umfang richtet sich nach dem Objekt, dem Verschmutzungsgrad
+        und Ihren Anforderungen.
       </p>
 
     </div>
@@ -880,12 +1109,12 @@
         <div class="service-number">01</div>
 
         <h3>
-          Wohnungs- & Endreinigung
+          Wohnungsreinigung
         </h3>
 
         <p>
-          Gründliche Reinigung von Wohnungen und Häusern –
-          auf Wunsch inklusive Endreinigung mit Abnahmegarantie.
+          Reinigung von Wohnungen und Häusern mit Fokus auf die Bereiche,
+          die im Alltag besonders beansprucht werden.
         </p>
 
       </article>
@@ -896,12 +1125,12 @@
         <div class="service-number">02</div>
 
         <h3>
-          Fensterreinigung
+          Endreinigung
         </h3>
 
         <p>
-          Saubere Fenster für Wohnungen, Häuser und andere Objekte
-          in Steinach und Umgebung.
+          Gründliche Reinigung vor der Wohnungsabgabe. Auf Wunsch
+          inklusive Abnahmegarantie und abgestimmtem Leistungsumfang.
         </p>
 
       </article>
@@ -912,12 +1141,12 @@
         <div class="service-number">03</div>
 
         <h3>
-          Polster- & Tiefenreinigung
+          Fensterreinigung
         </h3>
 
         <p>
-          Tiefenreinigung für Sofas, Polster und stark beanspruchte
-          Oberflächen – gründlich und hygienisch.
+          Reinigung von Fenstern und Glasflächen für Wohnungen,
+          Häuser und weitere geeignete Objekte.
         </p>
 
       </article>
@@ -928,12 +1157,12 @@
         <div class="service-number">04</div>
 
         <h3>
-          Autoreinigung
+          Polsterreinigung
         </h3>
 
         <p>
-          Innen- und Aussenreinigung für Fahrzeuge – von der
-          gründlichen Innenpflege bis zur kompletten Fahrzeugreinigung.
+          Tiefenpflege für Sofas, Polster und andere textile
+          Oberflächen mit stärkerer Beanspruchung.
         </p>
 
       </article>
@@ -944,12 +1173,12 @@
         <div class="service-number">05</div>
 
         <h3>
-          Tiefenpflege
+          Autoreinigung
         </h3>
 
         <p>
-          Besonders gründliche Reinigung bei stärker verschmutzten
-          Flächen, Polstern und Innenräumen.
+          Innen- und Aussenreinigung von Fahrzeugen – auch für
+          stärkere Verschmutzungen im Innenraum.
         </p>
 
       </article>
@@ -964,11 +1193,127 @@
         </h3>
 
         <p>
-          Sie haben einen speziellen Reinigungswunsch?
-          Kontaktieren Sie uns und wir besprechen die passende Lösung.
+          Wenn Ihr Auftrag nicht genau in eine Kategorie passt,
+          können Sie uns direkt beschreiben, was gereinigt werden soll.
         </p>
 
       </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="steinach-focus" id="steinach">
+
+  <div class="container focus-grid">
+
+    <div class="focus-content">
+
+      <div class="section-label">
+        Reinigung in Steinach
+      </div>
+
+      <h2>
+        Besonders wichtig bei einem Reinigungsauftrag in Steinach
+      </h2>
+
+      <p>
+        Bei einer Reinigung kommt es nicht nur darauf an, dass eine
+        Fläche sauber aussieht. Entscheidend ist, welche Räume,
+        Oberflächen und Verschmutzungen tatsächlich bearbeitet werden
+        müssen.
+      </p>
+
+      <p>
+        Deshalb klären wir vor dem Auftrag möglichst genau, was
+        gereinigt werden soll. Das ist besonders bei Endreinigungen,
+        stark beanspruchten Polstern und Fahrzeug-Innenräumen wichtig.
+      </p>
+
+      <div class="focus-points">
+
+        <div class="focus-point">
+
+          <div class="focus-icon">01</div>
+
+          <div>
+            <strong>Wohnungswechsel</strong>
+            <span>
+              Bei einer Endreinigung wird der benötigte Umfang
+              anhand der Wohnung und des gewünschten Ergebnisses besprochen.
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="focus-point">
+
+          <div class="focus-icon">02</div>
+
+          <div>
+            <strong>Stärker beanspruchte Bereiche</strong>
+            <span>
+              Polster, Innenräume und Oberflächen können je nach
+              Verschmutzung eine intensivere Reinigung benötigen.
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="focus-point">
+
+          <div class="focus-icon">03</div>
+
+          <div>
+            <strong>Ein Auftrag, mehrere Leistungen</strong>
+            <span>
+              Auf Wunsch können beispielsweise Wohnungs-, Fenster-
+              und Polsterreinigung miteinander kombiniert werden.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="focus-box">
+
+      <h3>
+        Von Rorschach nach Steinach
+      </h3>
+
+      <p>
+        Unser Standort befindet sich in Rorschach. Von dort aus
+        bedienen wir auch Kunden in Steinach und der näheren Region.
+      </p>
+
+      <ul>
+
+        <li>
+          Anfrage telefonisch, per WhatsApp oder Formular
+        </li>
+
+        <li>
+          Reinigungsumfang gemeinsam besprechen
+        </li>
+
+        <li>
+          Termin nach Vereinbarung
+        </li>
+
+        <li>
+          Ausführung der vereinbarten Arbeiten
+        </li>
+
+      </ul>
 
     </div>
 
@@ -986,26 +1331,26 @@
       <div>
 
         <div class="section-label">
-          Steinach & Umgebung
+          Standort & Einsatzgebiet
         </div>
 
         <h2>
-          Professionelle Reinigung direkt aus der Region
+          Steinach liegt für uns direkt in der Region
         </h2>
 
         <p>
-          Dampfglanzservice-Ademi befindet sich in Rorschach
-          und ist für Kunden in Steinach und der näheren Umgebung
-          im Einsatz.
+          Dampfglanzservice-Ademi hat seinen Standort in Rorschach
+          und ist auch für Reinigungsaufträge in Steinach erreichbar.
         </p>
 
         <p>
-          Dadurch können wir Reinigungsaufträge in der Region
-          unkompliziert und persönlich besprechen.
+          Dadurch eignet sich die Region für verschiedene Aufträge –
+          von einzelnen Reinigungsleistungen bis zur umfassenden
+          Endreinigung einer Wohnung.
         </p>
 
         <a class="btn btn-primary" href="#kontakt">
-          Anfrage senden
+          Anfrage für Steinach senden
         </a>
 
       </div>
@@ -1015,15 +1360,15 @@
 
         <li>Wohnungsreinigung in Steinach</li>
 
+        <li>Endreinigung bei Wohnungswechsel</li>
+
         <li>Endreinigung mit Abnahmegarantie</li>
 
-        <li>Fenster- und Oberflächenreinigung</li>
+        <li>Fenster- und Glasreinigung</li>
 
         <li>Polster- und Tiefenreinigung</li>
 
-        <li>Autoreinigung</li>
-
-        <li>Reinigung in der Umgebung von Steinach</li>
+        <li>Auto Innen- und Aussenreinigung</li>
 
       </ul>
 
@@ -1041,16 +1386,16 @@
     <div class="section-head">
 
       <div class="section-label">
-        Einfach & unkompliziert
+        Ablauf
       </div>
 
       <h2>
-        So funktioniert die Anfrage
+        Von der Anfrage bis zur Reinigung
       </h2>
 
       <p>
-        Von der ersten Anfrage bis zur fertigen Reinigung –
-        unkompliziert und transparent.
+        Je genauer wir wissen, was gereinigt werden soll,
+        desto besser lässt sich der Auftrag einschätzen.
       </p>
 
     </div>
@@ -1062,11 +1407,11 @@
 
         <strong>01</strong>
 
-        <h3>Anfrage</h3>
+        <h3>Anfrage senden</h3>
 
         <p>
-          Kontaktieren Sie uns telefonisch, per WhatsApp
-          oder über das Anfrageformular.
+          Kontaktieren Sie uns telefonisch, über WhatsApp
+          oder über das Formular auf dieser Seite.
         </p>
 
       </div>
@@ -1076,11 +1421,11 @@
 
         <strong>02</strong>
 
-        <h3>Besprechung</h3>
+        <h3>Auftrag besprechen</h3>
 
         <p>
-          Wir klären den gewünschten Umfang und die wichtigsten
-          Details Ihres Auftrags.
+          Wir klären Objekt, gewünschte Leistung, Umfang
+          und besondere Anforderungen.
         </p>
 
       </div>
@@ -1090,11 +1435,11 @@
 
         <strong>03</strong>
 
-        <h3>Termin</h3>
+        <h3>Termin vereinbaren</h3>
 
         <p>
-          Gemeinsam vereinbaren wir einen passenden Termin
-          für die Reinigung.
+          Anschliessend wird ein passender Termin für
+          die vereinbarten Arbeiten festgelegt.
         </p>
 
       </div>
@@ -1104,11 +1449,11 @@
 
         <strong>04</strong>
 
-        <h3>Reinigung</h3>
+        <h3>Reinigung durchführen</h3>
 
         <p>
-          Wir führen die vereinbarten Reinigungsarbeiten
-          gründlich und professionell aus.
+          Die vereinbarten Arbeiten werden entsprechend
+          dem besprochenen Leistungsumfang ausgeführt.
         </p>
 
       </div>
@@ -1127,12 +1472,17 @@
     <div class="section-head">
 
       <div class="section-label">
-        Häufige Fragen
+        FAQ
       </div>
 
       <h2>
-        Fragen zur Reinigung in Steinach
+        Häufige Fragen zur Reinigung in Steinach
       </h2>
+
+      <p>
+        Hier finden Sie Antworten auf häufige Fragen zu unseren
+        Reinigungsleistungen in Steinach.
+      </p>
 
     </div>
 
@@ -1142,13 +1492,13 @@
       <details>
 
         <summary>
-          Bietet Dampfglanzservice-Ademi Reinigung in Steinach an?
+          Ist Dampfglanzservice-Ademi auch in Steinach tätig?
         </summary>
 
         <p>
-          Ja. Dampfglanzservice-Ademi aus Rorschach bietet
-          verschiedene Reinigungsleistungen für Kunden in Steinach
-          und der näheren Umgebung an.
+          Ja. Dampfglanzservice-Ademi hat seinen Standort in Rorschach
+          und nimmt Reinigungsaufträge in Steinach und der näheren
+          Umgebung an.
         </p>
 
       </details>
@@ -1157,13 +1507,13 @@
       <details>
 
         <summary>
-          Bieten Sie eine Endreinigung mit Abnahmegarantie an?
+          Bieten Sie Endreinigungen in Steinach mit Abnahmegarantie an?
         </summary>
 
         <p>
-          Ja. Endreinigungen können auf Wunsch mit
-          Abnahmegarantie angeboten werden. Der genaue Umfang
-          wird vor dem Auftrag besprochen.
+          Ja. Eine Endreinigung kann auf Wunsch mit Abnahmegarantie
+          angeboten werden. Der genaue Leistungsumfang wird vor dem
+          Auftrag besprochen.
         </p>
 
       </details>
@@ -1172,12 +1522,13 @@
       <details>
 
         <summary>
-          Kann ich eine Reinigung in Steinach per WhatsApp anfragen?
+          Können mehrere Reinigungsleistungen kombiniert werden?
         </summary>
 
         <p>
-          Ja. Sie können uns direkt über WhatsApp kontaktieren
-          und Ihr gewünschtes Reinigungsobjekt kurz beschreiben.
+          Ja. Je nach Auftrag können beispielsweise Wohnungsreinigung,
+          Fensterreinigung oder Polsterreinigung miteinander kombiniert
+          werden.
         </p>
 
       </details>
@@ -1186,13 +1537,13 @@
       <details>
 
         <summary>
-          Wie erhalte ich eine Offerte?
+          Reinigen Sie auch Fahrzeuge in Steinach?
         </summary>
 
         <p>
-          Senden Sie uns Ihre Anfrage mit den wichtigsten Angaben.
-          Anschliessend können wir den gewünschten Umfang besprechen
-          und eine passende Offerte erstellen.
+          Ja. Wir bieten Innen- und Aussenreinigung für Fahrzeuge an.
+          Der Umfang richtet sich nach Fahrzeug, Verschmutzung und
+          gewünschter Reinigung.
         </p>
 
       </details>
@@ -1201,12 +1552,27 @@
       <details>
 
         <summary>
-          Reinigen Sie auch Fahrzeuge?
+          Wie kann ich eine Offerte anfragen?
         </summary>
 
         <p>
-          Ja. Neben der Gebäudereinigung bieten wir auch
-          professionelle Innen- und Aussenreinigung von Fahrzeugen an.
+          Sie können uns telefonisch, per WhatsApp oder über das
+          Anfrageformular kontaktieren. Beschreiben Sie möglichst
+          genau, was gereinigt werden soll.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          Kann ich vor einer Endreinigung den Umfang besprechen?
+        </summary>
+
+        <p>
+          Ja. Gerade bei Endreinigungen ist es sinnvoll, den Umfang
+          und die gewünschten Leistungen vorab genau zu klären.
         </p>
 
       </details>
@@ -1234,8 +1600,8 @@
       </h2>
 
       <p>
-        Beschreiben Sie kurz, was gereinigt werden soll.
-        Wir melden uns anschliessend bei Ihnen.
+        Teilen Sie uns kurz mit, was gereinigt werden soll.
+        Wir besprechen anschliessend den passenden Umfang.
       </p>
 
 
@@ -1243,9 +1609,9 @@
 
         <strong>Telefon</strong>
 
-        <span>
+        <a href="tel:+41765024998">
           076 502 49 98
-        </span>
+        </a>
 
       </div>
 
@@ -1254,9 +1620,11 @@
 
         <strong>WhatsApp</strong>
 
-        <span>
-          Direkte Anfrage per WhatsApp möglich
-        </span>
+        <a href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20m%C3%B6chte%20eine%20Reinigung%20in%20Steinach%20anfragen."
+           target="_blank"
+           rel="noopener noreferrer">
+          Anfrage per WhatsApp senden
+        </a>
 
       </div>
 
@@ -1265,9 +1633,9 @@
 
         <strong>E-Mail</strong>
 
-        <span>
+        <a href="mailto:info@dampfglanzservice-ademi.ch">
           info@dampfglanzservice-ademi.ch
-        </span>
+        </a>
 
       </div>
 
@@ -1322,6 +1690,7 @@
             type="text"
             name="name"
             placeholder="Ihr Name"
+            autocomplete="name"
             required
           >
 
@@ -1339,6 +1708,7 @@
             type="tel"
             name="phone"
             placeholder="076 123 45 67"
+            autocomplete="tel"
             required
           >
 
@@ -1356,6 +1726,7 @@
             type="email"
             name="email"
             placeholder="ihre@email.ch"
+            autocomplete="email"
             required
           >
 
@@ -1384,6 +1755,10 @@
 
             <option value="Endreinigung">
               Endreinigung
+            </option>
+
+            <option value="Endreinigung mit Abnahmegarantie">
+              Endreinigung mit Abnahmegarantie
             </option>
 
             <option value="Fensterreinigung">
@@ -1420,7 +1795,7 @@
           <textarea
             id="message"
             name="message"
-            placeholder="Was soll gereinigt werden? Bitte wenn möglich Ort, Objekt und gewünschte Leistung angeben."
+            placeholder="Was soll gereinigt werden? Bitte wenn möglich Ort, Objekt, Grösse und gewünschte Leistung angeben."
             required
           ></textarea>
 
@@ -1472,11 +1847,15 @@
         Datenschutz
       </a>
 
-      <a href="https://www.instagram.com/dampfglanzservice/" target="_blank" rel="noopener">
+      <a href="https://www.instagram.com/dampfglanzservice/"
+         target="_blank"
+         rel="noopener noreferrer">
         Instagram
       </a>
 
-      <a href="https://www.tiktok.com/@dampfglanzservice" target="_blank" rel="noopener">
+      <a href="https://www.tiktok.com/@dampfglanzservice"
+         target="_blank"
+         rel="noopener noreferrer">
         TikTok
       </a>
 
@@ -1492,7 +1871,7 @@
   href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Reinigung%20in%20Steinach."
   aria-label="Dampfglanzservice-Ademi per WhatsApp kontaktieren"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1508,7 +1887,7 @@
     class="mobile-wa"
     href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Reinigung%20in%20Steinach."
     target="_blank"
-    rel="noopener"
+    rel="noopener noreferrer"
   >
     WhatsApp
   </a>
