@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de-CH">
 <head>
@@ -40,6 +41,119 @@
 
   <link rel="stylesheet" href="/style.css">
 
+  <!-- Page-specific image sizing -->
+  <style>
+    .logo-brand {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .logo-img {
+      display: block;
+      width: 210px;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .hero-image-placeholder {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      min-height: 430px;
+    }
+
+    .hero-image-placeholder img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 430px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 32px;
+      background: linear-gradient(
+        to top,
+        rgba(16,17,20,0.78),
+        rgba(16,17,20,0.08) 65%,
+        rgba(16,17,20,0)
+      );
+      pointer-events: none;
+    }
+
+    .hero-image-overlay-content {
+      color: #fff;
+    }
+
+    .hero-image-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .hero-image-overlay strong {
+      display: block;
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .about-photo {
+      overflow: hidden;
+    }
+
+    .about-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .footer-logo-img {
+      display: block;
+      width: 190px;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 650px) {
+      .logo-img {
+        width: 175px;
+      }
+
+      .hero-image-placeholder,
+      .hero-image-placeholder img {
+        min-height: 320px;
+      }
+
+      .hero-image-overlay {
+        padding: 24px;
+      }
+
+      .about-photo img {
+        min-height: 420px;
+      }
+
+      .footer-logo-img {
+        width: 170px;
+      }
+    }
+  </style>
+
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -51,6 +165,11 @@
     "telephone": "+41765024998",
     "email": "info@dampfglanzservice-ademi.ch",
     "image": "https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "UID",
+      "value": "CHE-199.157.071"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Trischlistrasse 25",
@@ -87,9 +206,6 @@
         "@type": "Place",
         "name": "Ostschweiz"
       }
-    ],
-    "sameAs": [
-      "https://www.dampfglanzservice-ademi.ch/"
     ]
   }
   </script>
@@ -103,11 +219,18 @@
   <header class="site-header">
     <div class="container nav-bar">
 
-      <a href="/" class="logo-brand" aria-label="Dampfglanzservice-Ademi Startseite">
+      <a
+        href="/"
+        class="logo-brand"
+        aria-label="Dampfglanzservice-Ademi Startseite"
+      >
         <img
-          src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/fill/w_400,h_120,al_c,q_85,usm_0.66_1.00_0.01/logo%20png%20neu%20dgs%20ademi.png"
+          src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png"
           alt="Dampfglanzservice-Ademi Logo"
           class="logo-img"
+          width="210"
+          height="auto"
+          fetchpriority="high"
         >
       </a>
 
@@ -184,18 +307,40 @@
         <div class="hero-visual">
 
           <div class="hero-image-frame">
+
             <div class="hero-image-placeholder">
-              <div class="hero-image-inner">
-                <span class="hero-image-label">
-                  Professionelle Reinigung
-                </span>
-                <strong>
-                  Sauberkeit mit<br>
-                  Anspruch.
-                </strong>
+
+              <!--
+                Diese Datei bitte im Hauptverzeichnis der Website ablegen:
+                /hero-reinigung.webp
+
+                Idealerweise ein echtes Foto aus deinem Betrieb.
+              -->
+              <img
+                src="/hero-reinigung.webp"
+                alt="Professionelle Reinigung von Dampfglanzservice-Ademi"
+                width="1200"
+                height="900"
+                fetchpriority="high"
+              >
+
+              <div class="hero-image-overlay">
+                <div class="hero-image-overlay-content">
+                  <span class="hero-image-label">
+                    Dampfglanzservice-Ademi
+                  </span>
+
+                  <strong>
+                    Reinigung mit<br>
+                    persönlichem Service.
+                  </strong>
+                </div>
               </div>
+
             </div>
+
           </div>
+
 
           <div class="hero-info-card">
 
@@ -281,16 +426,16 @@
 
           <p class="intro-large">
             Ob Wohnung, Fahrzeug oder Polster: Eine professionelle Reinigung
-            soll nicht einfach schnell erledigt sein. Entscheidend ist eine
-            gründliche Ausführung, eine klare Absprache und ein Ergebnis,
-            mit dem Sie zufrieden sind.
+            soll nicht einfach schnell erledigt sein. Entscheidend sind eine
+            gründliche Ausführung, klare Absprachen und ein Leistungsumfang,
+            der zu Ihrem Auftrag passt.
           </p>
 
           <p>
-            Dampfglanzservice-Ademi ist ein Reinigungsunternehmen mit Sitz in
-            Rorschach. Wir arbeiten für Privatkunden und übernehmen
-            unterschiedliche Reinigungsaufträge in Rorschach, St. Gallen,
-            Arbon und der weiteren Ostschweiz.
+            Dampfglanzservice-Ademi ist ein persönlich geführtes
+            Reinigungsunternehmen mit Sitz in Rorschach. Wir arbeiten für
+            Privatkunden und übernehmen unterschiedliche Reinigungsaufträge
+            in Rorschach, St. Gallen, Arbon und der weiteren Ostschweiz.
           </p>
 
           <a href="/ueber-uns/" class="text-link">
@@ -331,7 +476,6 @@
 
         <div class="services-grid">
 
-          <!-- Service 1 -->
           <article class="service-card service-card-featured">
 
             <div class="service-number">01</div>
@@ -355,7 +499,6 @@
           </article>
 
 
-          <!-- Service 2 -->
           <article class="service-card">
 
             <div class="service-number">02</div>
@@ -382,7 +525,6 @@
           </article>
 
 
-          <!-- Service 3 -->
           <article class="service-card">
 
             <div class="service-number">03</div>
@@ -406,7 +548,6 @@
           </article>
 
 
-          <!-- Service 4 -->
           <article class="service-card">
 
             <div class="service-number">04</div>
@@ -533,9 +674,13 @@
 
         <div class="about-photo">
 
-          <div class="about-photo-placeholder">
-            <span>Über uns</span>
-          </div>
+          <img
+            src="/ferki-ueber-uns.webp"
+            alt="Ferki Ademi von Dampfglanzservice-Ademi"
+            width="900"
+            height="1125"
+            loading="lazy"
+          >
 
         </div>
 
@@ -883,9 +1028,12 @@
 
           <a href="/" class="footer-logo">
             <img
-              src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png/v1/fill/w_400,h_120,al_c,q_85,usm_0.66_1.00_0.01/logo%20png%20neu%20dgs%20ademi.png"
-              alt="Dampfglanzservice-Ademi"
+              src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png"
+              alt="Dampfglanzservice-Ademi Logo"
               class="footer-logo-img"
+              width="190"
+              height="auto"
+              loading="lazy"
             >
           </a>
 
@@ -1012,3 +1160,4 @@
 
 </body>
 </html>
+```
