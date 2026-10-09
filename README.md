@@ -52,3 +52,11 @@ Weiss/Rot, feste WhatsApp-/Anrufleiste auf allen Seiten; drei Kantonsseiten St. 
 Das Formular führt in drei Schritten durch Leistung, Preis/Fotos und Kontakt/Termine. Vorwärts wird nur bei gültigen Feldern des aktuellen Schritts gewechselt; zurück bleiben Angaben erhalten. Sonderverschmutzung und auswärtige Einsätze können eine persönliche Offerte mit Budgetwunsch erhalten, ohne die Paketgrenze zu umgehen. Leistungs-/Ortsänderungen widerrufen die vorherige Zustimmung. Die Druckübersicht enthält nun auch Auftragsbeschreibung und gewählten Ort. Preiscode lädt nur auf der Offertenseite. Eine neue Projektseite zeigt vorhandene echte Vorher-/Nachher-Aufnahmen und Fotohinweise.
 
 Autorisierter Versandtest am 9. Oktober 2026: FormSubmit zeigte `Check Your Email` und meldete eine notwendige Formularaktivierung. Laut Dienst wurde die Aktivierungs-E-Mail an info@dampfglanzservice-ademi.ch gesendet. Eingang und Aktivierung müssen vom Inhaber bestätigt werden; die Zustellung der eigentlichen Offerte ist noch nicht nachgewiesen. Keine Veröffentlichung erfolgt.
+
+## Cookie-Banner und Analytics (aktuelle Fassung)
+
+GA4-Mess-ID G-479RC4GH7F, im Google-Konto des Inhabers eingerichtet. consent.js lädt Google erst nach freiwilliger Statistik-Zustimmung; Ablehnung lädt keinen Messcode. Die Auswahl wird 180 Tage lokal gespeichert und kann über die Fusszeile geändert werden. Widerruf löscht erreichbare GA-Cookies und lädt die Seite ohne Tracker neu. Datenschutzseite bleibt auch ohne vorherige Auswahl zugänglich.
+
+Gemessen werden Seitenaufrufe, click_whatsapp, click_call, click_email, inquiry_start, inquiry_submit_attempt und scroll_75. Absendeversuche sind keine bestätigten Leads oder zugestellten E-Mails. Formularinhalte, Budgets und Fotos werden nicht an Analytics gesendet. Eigene Seitenadressen enthalten keine Queryparameter; Werbesignale sind deaktiviert. Optimierte automatische Analysen im Webstream sind deaktiviert, damit keine unkontrollierten Formular-/Linkdaten erfasst werden. Lokale Vorschautests sind als debug_mode markiert.
+
+Browserprüfung: vor Zustimmung und nach Ablehnung kein Google-Skript; nach Zustimmung korrekte Mess-ID geladen; Widerruf lädt ohne Skript neu. Mobilbanner bei 320 Pixeln geprüft. Frühere Abschnitte zum Betrieb ohne Cookies/Analytics beschreiben den vorherigen Stand.
