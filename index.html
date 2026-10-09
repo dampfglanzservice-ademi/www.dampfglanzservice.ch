@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="de-CH">
 <head>
@@ -9,7 +9,7 @@
 
   <meta
     name="description"
-    content="Dampfglanzservice-Ademi steht für professionelle Wohnungsreinigung, Endreinigung mit Abgabegarantie, Autoreinigung und Polster-Tiefenreinigung in Rorschach, St. Gallen und der Ostschweiz."
+    content="Dampfglanzservice-Ademi: Wohnungsreinigung, Endreinigung mit Abgabegarantie, Autoreinigung und Polster-Tiefenreinigung in Rorschach, St. Gallen, Arbon und der Ostschweiz. Jetzt unverbindliche Offerte anfragen."
   >
 
   <meta name="robots" content="index, follow">
@@ -25,7 +25,7 @@
   <meta property="og:title" content="Dampfglanzservice-Ademi | Professionelle Reinigung">
   <meta
     property="og:description"
-    content="Professionelle Reinigung in Rorschach, St. Gallen und der Ostschweiz – Wohnungsreinigung, Endreinigung, Autoreinigung und Tiefenreinigung."
+    content="Professionelle Wohnungs-, End-, Auto- und Polsterreinigung in Rorschach, St. Gallen, Arbon und der Ostschweiz. Persönlicher Kontakt und unverbindliche Offerte."
   >
   <meta
     property="og:image"
@@ -33,7 +33,7 @@
   >
   <meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/">
 
-  <!-- Google Search Console -->
+  <!-- Google Search Console: vorhandenen Verifizierungscode beibehalten -->
   <meta
     name="google-site-verification"
     content="Q_Ead2BqWl0n4IqW6wstFdwtrNm8mLhezZjtmdLTUcU"
@@ -41,7 +41,7 @@
 
   <link rel="stylesheet" href="/style.css">
 
-  <!-- Page-specific image sizing -->
+  <!-- Zusätzliche Gestaltung und Bildkorrekturen -->
   <style>
     .logo-brand {
       display: inline-flex;
@@ -130,6 +130,77 @@
       object-fit: contain;
     }
 
+    /* Google-Unternehmensprofil */
+    .google-profile-section {
+      padding: 34px 0;
+    }
+
+    .google-profile-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px;
+      border: 1px solid rgba(128, 128, 128, 0.25);
+      border-radius: 12px;
+      background: #f7f7f7;
+      color: #171717;
+    }
+
+    .google-profile-content {
+      max-width: 680px;
+    }
+
+    .google-profile-content h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      line-height: 1.25;
+    }
+
+    .google-profile-content p {
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .google-profile-button {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 6px;
+      background: #b51f2b;
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .google-profile-button:hover {
+      opacity: 0.88;
+    }
+
+    .google-profile-button:focus-visible {
+      outline: 3px solid #171717;
+      outline-offset: 4px;
+    }
+
+    .google-profile-note {
+      margin-top: 10px !important;
+      font-size: 0.88rem;
+      opacity: 0.8;
+    }
+
+    .google-profile-footer-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     @media (max-width: 650px) {
       .logo-img {
         width: 175px;
@@ -151,10 +222,21 @@
       .footer-logo-img {
         width: 170px;
       }
+
+      .google-profile-card {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 22px;
+      }
+
+      .google-profile-button {
+        width: 100%;
+        box-sizing: border-box;
+      }
     }
   </style>
 
-  <!-- Structured Data -->
+  <!-- Strukturierte Unternehmensdaten -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -170,6 +252,9 @@
       "propertyID": "UID",
       "value": "CHE-199.157.071"
     },
+    "sameAs": [
+      "https://maps.app.goo.gl/BsTFtTK7SN91dasF7?g_st=ic"
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Trischlistrasse 25",
@@ -213,9 +298,7 @@
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container nav-bar">
 
@@ -226,31 +309,20 @@
       >
         <img
           src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png"
-          alt="Dampfglanzservice-Ademi Logo"
+          alt="Dampfglanzservice-Ademi – Reinigungsunternehmen in Rorschach"
           class="logo-img"
           width="210"
-          height="auto"
           fetchpriority="high"
         >
       </a>
 
       <nav aria-label="Hauptnavigation">
         <ul class="nav-links">
-          <li>
-            <a href="/" class="active">Startseite</a>
-          </li>
-          <li>
-            <a href="/leistungen/">Leistungen</a>
-          </li>
-          <li>
-            <a href="/regionen/">Regionen</a>
-          </li>
-          <li>
-            <a href="/ueber-uns/">Über uns</a>
-          </li>
-          <li>
-            <a href="/kontakt/">Kontakt</a>
-          </li>
+          <li><a href="/" class="active">Startseite</a></li>
+          <li><a href="/leistungen/">Leistungen</a></li>
+          <li><a href="/regionen/">Regionen</a></li>
+          <li><a href="/ueber-uns/">Über uns</a></li>
+          <li><a href="/kontakt/">Kontakt</a></li>
         </ul>
       </nav>
 
@@ -261,12 +333,9 @@
     </div>
   </header>
 
-
   <main>
 
-    <!-- =========================
-         HERO
-    ========================== -->
+    <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
 
@@ -282,8 +351,9 @@
           </h1>
 
           <p class="hero-lead">
-            Sorgfältige Reinigung für Wohnungen, Fahrzeuge und Polster –
-            persönlich ausgeführt in Rorschach, St. Gallen und der Ostschweiz.
+            Sorgfältige Wohnungsreinigung, Endreinigung mit Abgabegarantie,
+            Autoreinigung und Polster-Tiefenreinigung – persönlich betreut
+            in Rorschach, St. Gallen, Arbon und der Ostschweiz.
           </p>
 
           <div class="hero-actions">
@@ -303,22 +373,19 @@
 
         </div>
 
-
         <div class="hero-visual">
 
           <div class="hero-image-frame">
-
             <div class="hero-image-placeholder">
 
               <!--
-                Diese Datei bitte im Hauptverzeichnis der Website ablegen:
-                /hero-reinigung.webp
-
-                Idealerweise ein echtes Foto aus deinem Betrieb.
+                Die Datei hero-reinigung.webp muss im Hauptverzeichnis
+                der Website vorhanden sein. Ideal ist ein echtes Foto
+                einer ausgeführten Reinigung.
               -->
               <img
                 src="/hero-reinigung.webp"
-                alt="Professionelle Reinigung von Dampfglanzservice-Ademi"
+                alt="Reinigungsarbeiten von Dampfglanzservice-Ademi"
                 width="1200"
                 height="900"
                 fetchpriority="high"
@@ -338,9 +405,7 @@
               </div>
 
             </div>
-
           </div>
-
 
           <div class="hero-info-card">
 
@@ -363,11 +428,8 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         TRUST STRIP
-    ========================== -->
-    <section class="trust-section">
+    <!-- TRUST STRIP -->
+    <section class="trust-section" aria-label="Unsere Arbeitsweise">
       <div class="container trust-grid">
 
         <div class="trust-item">
@@ -405,10 +467,44 @@
       </div>
     </section>
 
+    <!-- GOOGLE-UNTERNEHMENSPROFIL -->
+    <section class="google-profile-section">
+      <div class="container">
 
-    <!-- =========================
-         INTRO
-    ========================== -->
+        <div class="google-profile-card">
+
+          <div class="google-profile-content">
+            <h2>Sie möchten sich zuerst ein eigenes Bild machen?</h2>
+
+            <p>
+              Besuchen Sie unser Google-Unternehmensprofil. Dort können
+              Sie die öffentlich verfügbaren Informationen, Fotos, Videos
+              und Kundenbewertungen von Dampfglanzservice-Ademi ansehen.
+            </p>
+
+            <p class="google-profile-note">
+              Die angezeigten Inhalte und Bewertungen werden direkt
+              auf Google bereitgestellt.
+            </p>
+          </div>
+
+          <a
+            href="https://maps.app.goo.gl/BsTFtTK7SN91dasF7?g_st=ic"
+            class="google-profile-button"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Google-Unternehmensprofil von Dampfglanzservice-Ademi öffnen"
+          >
+            Google-Profil ansehen
+            <span aria-hidden="true">↗</span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTRO -->
     <section class="intro-section">
       <div class="container intro-grid">
 
@@ -433,9 +529,9 @@
 
           <p>
             Dampfglanzservice-Ademi ist ein persönlich geführtes
-            Reinigungsunternehmen mit Sitz in Rorschach. Wir arbeiten für
-            Privatkunden und übernehmen unterschiedliche Reinigungsaufträge
-            in Rorschach, St. Gallen, Arbon und der weiteren Ostschweiz.
+            Reinigungsunternehmen mit Sitz in Rorschach. Wir übernehmen
+            Reinigungsaufträge für Privatkunden in Rorschach, St. Gallen,
+            Arbon und der weiteren Ostschweiz.
           </p>
 
           <a href="/ueber-uns/" class="text-link">
@@ -448,10 +544,7 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         SERVICES
-    ========================== -->
+    <!-- LEISTUNGEN -->
     <section class="services-section">
       <div class="container">
 
@@ -473,15 +566,12 @@
 
         </div>
 
-
         <div class="services-grid">
 
           <article class="service-card service-card-featured">
-
             <div class="service-number">01</div>
 
             <div class="service-content">
-
               <h3>Wohnungsreinigung</h3>
 
               <p>
@@ -493,22 +583,14 @@
                 Wohnungsreinigung entdecken
                 <span aria-hidden="true">→</span>
               </a>
-
             </div>
-
           </article>
 
-
           <article class="service-card">
-
             <div class="service-number">02</div>
 
             <div class="service-content">
-
-              <h3>
-                Endreinigung mit
-                Abgabegarantie
-              </h3>
+              <h3>Endreinigung mit Abgabegarantie</h3>
 
               <p>
                 Sorgfältige Reinigung vor dem Auszug und für die anschliessende
@@ -519,18 +601,13 @@
                 Endreinigung ansehen
                 <span aria-hidden="true">→</span>
               </a>
-
             </div>
-
           </article>
 
-
           <article class="service-card">
-
             <div class="service-number">03</div>
 
             <div class="service-content">
-
               <h3>Autoreinigung</h3>
 
               <p>
@@ -542,18 +619,13 @@
                 Autoreinigung ansehen
                 <span aria-hidden="true">→</span>
               </a>
-
             </div>
-
           </article>
 
-
           <article class="service-card">
-
             <div class="service-number">04</div>
 
             <div class="service-content">
-
               <h3>Polster- &amp; Tiefenreinigung</h3>
 
               <p>
@@ -565,9 +637,7 @@
                 Polsterreinigung ansehen
                 <span aria-hidden="true">→</span>
               </a>
-
             </div>
-
           </article>
 
         </div>
@@ -575,10 +645,7 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         QUALITY / METHOD
-    ========================== -->
+    <!-- QUALITÄT UND ARBEITSWEISE -->
     <section class="quality-section">
       <div class="container quality-grid">
 
@@ -603,7 +670,6 @@
 
         </div>
 
-
         <div class="quality-content">
 
           <div class="eyebrow">Unser Anspruch</div>
@@ -623,7 +689,6 @@
             So vermeiden wir unnötige Leistungen und können den Auftrag
             gezielt auf Ihre Situation abstimmen.
           </p>
-
 
           <div class="quality-points">
 
@@ -665,15 +730,11 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         ABOUT PREVIEW
-    ========================== -->
+    <!-- ÜBER UNS -->
     <section class="about-preview-section">
       <div class="container about-preview-grid">
 
         <div class="about-photo">
-
           <img
             src="/ferki-ueber-uns.webp"
             alt="Ferki Ademi von Dampfglanzservice-Ademi"
@@ -681,9 +742,7 @@
             height="1125"
             loading="lazy"
           >
-
         </div>
-
 
         <div class="about-preview-content">
 
@@ -714,10 +773,7 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         PROCESS
-    ========================== -->
+    <!-- ABLAUF -->
     <section class="process-section">
       <div class="container">
 
@@ -737,7 +793,6 @@
           </p>
 
         </div>
-
 
         <div class="process-grid">
 
@@ -782,10 +837,7 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         REGIONS
-    ========================== -->
+    <!-- EINSATZGEBIET -->
     <section class="regions-section">
       <div class="container">
 
@@ -806,7 +858,6 @@
           </p>
 
         </div>
-
 
         <div class="regions-list">
 
@@ -842,7 +893,6 @@
 
         </div>
 
-
         <div class="regions-footer">
           <p>
             Sie befinden sich ausserhalb dieser Orte?
@@ -859,10 +909,7 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         FAQ
-    ========================== -->
+    <!-- FAQ -->
     <section class="faq-section">
       <div class="container faq-grid">
 
@@ -887,26 +934,22 @@
 
         </div>
 
-
         <div class="faq-list">
 
           <details>
             <summary>
               Wo befindet sich Dampfglanzservice-Ademi?
             </summary>
-
             <p>
               Unser Betrieb hat seinen Sitz an der Trischlistrasse 25 in
               9400 Rorschach, Schweiz.
             </p>
           </details>
 
-
           <details>
             <summary>
               Welche Reinigungen bieten Sie an?
             </summary>
-
             <p>
               Zu unseren Schwerpunkten gehören Wohnungsreinigung,
               Endreinigung mit Abgabegarantie, Autoreinigung sowie
@@ -914,12 +957,10 @@
             </p>
           </details>
 
-
           <details>
             <summary>
               Bieten Sie Endreinigungen mit Abgabegarantie an?
             </summary>
-
             <p>
               Ja. Endreinigungen können nach dem vereinbarten
               Leistungsumfang mit Abgabegarantie angeboten werden.
@@ -927,12 +968,10 @@
             </p>
           </details>
 
-
           <details>
             <summary>
               Wie kann ich eine Offerte anfragen?
             </summary>
-
             <p>
               Sie können uns telefonisch, über WhatsApp oder über das
               Kontaktformular erreichen. Je genauer die Angaben zum
@@ -941,16 +980,30 @@
             </p>
           </details>
 
-
           <details>
             <summary>
               In welchen Regionen sind Sie tätig?
             </summary>
-
             <p>
               Wir sind insbesondere in Rorschach, Goldach,
               Rorschacherberg, Arbon, St. Gallen, Steinach und der
               weiteren Ostschweiz tätig.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Wo kann ich Fotos und Kundenbewertungen ansehen?
+            </summary>
+            <p>
+              Öffnen Sie unser
+              <a
+                href="https://maps.app.goo.gl/BsTFtTK7SN91dasF7?g_st=ic"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Google-Unternehmensprofil</a>.
+              Dort finden Sie die öffentlich verfügbaren Profilinformationen,
+              Fotos, Videos und Bewertungen.
             </p>
           </details>
 
@@ -959,10 +1012,7 @@
       </div>
     </section>
 
-
-    <!-- =========================
-         FINAL CTA
-    ========================== -->
+    <!-- ABSCHLUSS-CTA -->
     <section class="final-cta-section">
       <div class="container">
 
@@ -984,7 +1034,6 @@
             </p>
 
           </div>
-
 
           <div class="final-cta-actions">
 
@@ -1014,12 +1063,8 @@
 
   </main>
 
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <!-- FOOTER -->
   <footer class="site-footer">
-
     <div class="container">
 
       <div class="footer-main">
@@ -1032,7 +1077,6 @@
               alt="Dampfglanzservice-Ademi Logo"
               class="footer-logo-img"
               width="190"
-              height="auto"
               loading="lazy"
             >
           </a>
@@ -1046,73 +1090,39 @@
             Kontakt aufnehmen →
           </a>
 
+          <a
+            href="https://maps.app.goo.gl/BsTFtTK7SN91dasF7?g_st=ic"
+            class="google-profile-footer-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google-Unternehmensprofil ansehen ↗
+          </a>
+
         </div>
 
-
         <div class="footer-column">
-
           <h3>Leistungen</h3>
-
           <ul>
-            <li>
-              <a href="/wohnungsreinigung/">
-                Wohnungsreinigung
-              </a>
-            </li>
-
-            <li>
-              <a href="/endreinigung-abnahmegarantie/">
-                Endreinigung
-              </a>
-            </li>
-
-            <li>
-              <a href="/autoreinigung/">
-                Autoreinigung
-              </a>
-            </li>
-
-            <li>
-              <a href="/polsterreinigung/">
-                Polsterreinigung
-              </a>
-            </li>
+            <li><a href="/wohnungsreinigung/">Wohnungsreinigung</a></li>
+            <li><a href="/endreinigung-abnahmegarantie/">Endreinigung</a></li>
+            <li><a href="/autoreinigung/">Autoreinigung</a></li>
+            <li><a href="/polsterreinigung/">Polsterreinigung</a></li>
           </ul>
-
         </div>
 
-
         <div class="footer-column">
-
           <h3>Regionen</h3>
-
           <ul>
-            <li>
-              <a href="/regionen/rorschach/">Rorschach</a>
-            </li>
-
-            <li>
-              <a href="/regionen/goldach/">Goldach</a>
-            </li>
-
-            <li>
-              <a href="/regionen/arbon/">Arbon</a>
-            </li>
-
-            <li>
-              <a href="/regionen/st-gallen/">St. Gallen</a>
-            </li>
-
-            <li>
-              <a href="/regionen/steinach/">Steinach</a>
-            </li>
+            <li><a href="/regionen/rorschach/">Rorschach</a></li>
+            <li><a href="/regionen/goldach/">Goldach</a></li>
+            <li><a href="/regionen/arbon/">Arbon</a></li>
+            <li><a href="/regionen/st-gallen/">St. Gallen</a></li>
+            <li><a href="/regionen/steinach/">Steinach</a></li>
           </ul>
-
         </div>
 
-
         <div class="footer-column">
-
           <h3>Kontakt</h3>
 
           <address>
@@ -1128,11 +1138,9 @@
           <a href="mailto:info@dampfglanzservice-ademi.ch">
             info@dampfglanzservice-ademi.ch
           </a>
-
         </div>
 
       </div>
-
 
       <div class="footer-bottom">
 
@@ -1140,10 +1148,7 @@
           <p>
             © 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.
           </p>
-
-          <p>
-            UID: CHE-199.157.071
-          </p>
+          <p>UID: CHE-199.157.071</p>
         </div>
 
         <div class="footer-legal">
@@ -1154,10 +1159,7 @@
       </div>
 
     </div>
-
   </footer>
-
 
 </body>
 </html>
-```
