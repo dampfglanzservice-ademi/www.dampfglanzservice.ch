@@ -1,513 +1,115 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="de-CH">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Autoreinigung in Rorschach &amp; St. Gallen | Dampfglanzservice-Ademi</title>
-  <meta name="description" content="Autoreinigung in Rorschach, St. Gallen und der Ostschweiz. Innenraum, Sitze, Polster und Aussenbereich sorgfältig reinigen lassen. Unverbindliche Offerte anfragen.">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Dampfglanzservice-Ademi">
-  <meta name="theme-color" content="#101114">
-
-  <link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/autoreinigung/">
-  <link rel="stylesheet" href="../style.css">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Autoreinigung | Dampfglanzservice-Ademi">
-  <meta property="og:description" content="Sorgfältige Autoreinigung für Innenraum, Polster und Aussenbereich in Rorschach, St. Gallen und der Ostschweiz.">
-  <meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/autoreinigung/">
-  <meta property="og:site_name" content="Dampfglanzservice-Ademi">
-  <meta property="og:locale" content="de_CH">
-
-  <style>
-    .auto-hero-visual {
-      position: relative;
-      min-width: 0;
-    }
-
-    .auto-hero-panel {
-      min-height: 320px;
-      height: 100%;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 12px;
-      padding: 32px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: linear-gradient(145deg, #25262d, #121317);
-      color: #fff;
-    }
-
-    .auto-hero-panel .eyebrow {
-      color: #e1b4b5;
-    }
-
-    .auto-hero-panel h2 {
-      margin: 0;
-      font-size: clamp(25px, 3vw, 36px);
-      line-height: 1.2;
-    }
-
-    .auto-hero-panel p {
-      margin: 0;
-      color: #dedee2;
-      line-height: 1.7;
-    }
-
-    .auto-services {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .auto-service {
-      min-width: 0;
-      padding: 26px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-
-    .auto-service h3 {
-      margin: 12px 0;
-    }
-
-    .auto-service p {
-      margin-bottom: 0;
-    }
-
-    .auto-service-number {
-      font-size: 13px;
-      letter-spacing: .08em;
-      color: var(--burgundy, #a91d22);
-      font-weight: 700;
-    }
-
-    .auto-method {
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-      gap: 44px;
-      align-items: start;
-    }
-
-    .auto-method h2 {
-      margin-top: 8px;
-    }
-
-    .auto-method-copy p:last-child {
-      margin-bottom: 0;
-    }
-
-    .auto-method-points {
-      display: grid;
-      gap: 0;
-    }
-
-    .auto-method-point {
-      padding: 17px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .auto-method-point:first-child {
-      padding-top: 0;
-    }
-
-    .auto-method-point:last-child {
-      border-bottom: 0;
-    }
-
-    .auto-method-point strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .auto-method-point p {
-      margin: 0;
-    }
-
-    .auto-faq {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .auto-region-note {
-      max-width: 800px;
-      margin: 28px auto 0;
-      text-align: center;
-    }
-
-    @media (max-width: 850px) {
-      .auto-services {
-        grid-template-columns: 1fr;
-      }
-
-      .auto-method {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .auto-hero-panel {
-        min-height: 240px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      .auto-hero-panel {
-        padding: 24px;
-      }
-
-      .auto-service {
-        padding: 22px;
-      }
-    }
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://www.dampfglanzservice-ademi.ch/autoreinigung/#service",
-    "name": "Autoreinigung",
-    "serviceType": "Autoreinigung und Innenraumreinigung",
-    "url": "https://www.dampfglanzservice-ademi.ch/autoreinigung/",
-    "description": "Autoreinigung für Innenraum, Sitze, Polster, Teppiche und äussere Fahrzeugbereiche nach vereinbartem Leistungsumfang.",
-    "provider": {
-      "@type": "CleaningService",
-      "@id": "https://www.dampfglanzservice-ademi.ch/#business",
-      "name": "Dampfglanzservice-Ademi",
-      "url": "https://www.dampfglanzservice-ademi.ch/",
-      "telephone": "+41765024998",
-      "email": "info@dampfglanzservice-ademi.ch",
-      "identifier": {
-        "@type": "PropertyValue",
-        "propertyID": "UID",
-        "value": "CHE-199.157.071"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Trischlistrasse 25",
-        "postalCode": "9400",
-        "addressLocality": "Rorschach",
-        "addressCountry": "CH"
-      }
-    },
-    "areaServed": [
-      {"@type": "City", "name": "Rorschach"},
-      {"@type": "City", "name": "Goldach"},
-      {"@type": "City", "name": "Rorschacherberg"},
-      {"@type": "City", "name": "Arbon"},
-      {"@type": "City", "name": "St. Gallen"},
-      {"@type": "City", "name": "Steinach"}
-    ]
-  }
-  </script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Autoreinigung in St. Gallen &amp; Ostschweiz | Dampfglanzservice-Ademi</title>
+<meta name="description" content="Autoinnenreinigung mit Online-Offerte in Rorschach. Fahrzeug, Verschmutzung und Budget angeben, Fotos hinzufügen und Preisvorschlag erhalten. Anfragen aus St. Gallen, Thurgau und Zürich sind willkommen.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="Q_Ead2BqWl0n4IqW6wstFdwtrNm8mLhezZjtmdLTUcU">
+<link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/autoreinigung/">
+<link rel="icon" href="/assets/brand.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_CH">
+<meta property="og:site_name" content="Dampfglanzservice-Ademi">
+<meta property="og:title" content="Autoreinigung in St. Gallen &amp; Ostschweiz | Dampfglanzservice-Ademi">
+<meta property="og:description" content="Autoinnenreinigung mit Online-Offerte in Rorschach. Fahrzeug, Verschmutzung und Budget angeben, Fotos hinzufügen und Preisvorschlag erhalten. Anfragen aus St. Gallen, Thurgau und Zürich sind willkommen.">
+<meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/autoreinigung/">
+<meta property="og:image" content="https://www.dampfglanzservice-ademi.ch/assets/home.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/style.css?v=20261009f">
+<script defer src="/script.js?v=20261009f"></script><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "@id": "https://www.dampfglanzservice-ademi.ch/#business", "name": "Dampfglanzservice-Ademi", "logo": "https://www.dampfglanzservice-ademi.ch/assets/brand.png", "url": "https://www.dampfglanzservice-ademi.ch/", "telephone": "+41765024998", "email": "info@dampfglanzservice-ademi.ch", "image": "https://www.dampfglanzservice-ademi.ch/assets/brand.png", "address": {"@type": "PostalAddress", "streetAddress": "Trischlistrasse 25", "postalCode": "9400", "addressLocality": "Rorschach", "addressCountry": "CH"}, "identifier": "CHE-199.157.071", "areaServed": ["Rorschach", "Kanton St. Gallen", "Thurgau", "Kanton Zürich", "Goldach", "Rorschacherberg", "Arbon", "Steinach", "Horn", "Thal", "Staad", "Rheineck", "St. Margrethen"], "sameAs": ["https://share.google/dCGFMFzPosnnV46j6"]}, {"@type": "WebSite", "@id": "https://www.dampfglanzservice-ademi.ch/#website", "name": "Dampfglanzservice-Ademi", "url": "https://www.dampfglanzservice-ademi.ch/"}, {"@type": "WebPage", "@id": "https://www.dampfglanzservice-ademi.ch/autoreinigung/#page", "name": "Autoreinigung in St. Gallen & Ostschweiz | Dampfglanzservice-Ademi", "description": "Autoinnenreinigung mit Online-Offerte in Rorschach. Fahrzeug, Verschmutzung und Budget angeben, Fotos hinzufügen und Preisvorschlag erhalten. Anfragen aus St. Gallen, Thurgau und Zürich sind willkommen.", "url": "https://www.dampfglanzservice-ademi.ch/autoreinigung/", "inLanguage": "de-CH", "isPartOf": {"@id": "https://www.dampfglanzservice-ademi.ch/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.dampfglanzservice-ademi.ch/"}, {"@type": "ListItem", "position": 2, "name": "Autoreinigung in St. Gallen & Ostschweiz", "item": "https://www.dampfglanzservice-ademi.ch/autoreinigung/"}]}, {"@type": "Service", "name": "Autoreinigung", "provider": {"@id": "https://www.dampfglanzservice-ademi.ch/#business"}, "areaServed": ["Kanton St. Gallen", "Thurgau", "Kanton Zürich"], "url": "https://www.dampfglanzservice-ademi.ch/autoreinigung/"}]}</script>
 </head>
-
-<body>
-
-  <header class="site-header">
-    <div class="container nav-bar">
-      <a href="/" class="logo-brand" aria-label="Dampfglanzservice-Ademi – Startseite">
-        <img
-          src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png"
-          alt="Dampfglanzservice-Ademi Logo"
-          class="logo-img"
-          width="210"
-        >
-      </a>
-
-```
-  <nav aria-label="Hauptnavigation">
-    <ul class="nav-links">
-      <li><a href="/">Startseite</a></li>
-      <li><a href="/leistungen/" class="active" aria-current="page">Leistungen</a></li>
-      <li><a href="/regionen/">Regionen</a></li>
-      <li><a href="/ueber-uns/">Über uns</a></li>
-      <li><a href="/kontakt/">Kontakt</a></li>
-    </ul>
-  </nav>
-
-  <a href="/kontakt/" class="nav-cta">Offerte anfragen</a>
+<body id="top">
+<a class="skip" href="#main">Zum Inhalt</a><header class="header"><div class="container header-inner">
+<a class="brand" href="/" aria-label="Dampfglanzservice-Ademi – Startseite"><img src="/assets/brand.png" alt="" width="1200" height="1200" fetchpriority="high"><span>DAMPFGLANZSERVICE<span class="brand-sub">ADEMI <i>•</i> REINIGUNG</span></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menü <span aria-hidden="true">☰</span></button><nav id="main-nav" aria-label="Hauptnavigation"><a href="/leistungen/">Leistungen</a><a href="/regionen/">Regionen</a><a href="/ueber-uns/">Über uns</a><a href="/kontakt/">Kontakt</a><a class="nav-offerte" href="/offerte/">Online-Offerte ↗</a></nav><a class="button primary" href="/offerte/">Offerte anfragen <span aria-hidden="true">↗</span></a>
+</div></header><main id="main"><div class="container breadcrumbs">
+<a href="/">Startseite</a><span aria-hidden="true">/</span><a href="/leistungen/">Leistungen</a><span aria-hidden="true">/</span><span>Autoreinigung</span>
 </div>
-```
-
-  </header>
-
-  <main>
-
-```
-<section class="hero">
-  <div class="container hero-grid">
-
-    <div class="hero-content">
-      <span class="eyebrow">Autoreinigung · Rorschach</span>
-
-      <h1>Autoreinigung, die man sieht.</h1>
-
-      <p class="hero-lead">
-        Gründliche Reinigung für Innenraum, Sitze, Polster und
-        Aussenbereich – abgestimmt auf Ihr Fahrzeug und den gewünschten
-        Leistungsumfang.
-      </p>
-
-      <div class="hero-actions">
-        <a href="/kontakt/" class="btn btn-primary">Autoreinigung anfragen</a>
-        <a href="tel:+41765024998" class="btn btn-secondary">Anrufen</a>
-      </div>
-
-      <p class="hero-note">
-        Unverbindliche Offerte nach Fahrzeug und Reinigungsumfang.
-      </p>
-    </div>
-
-    <div class="auto-hero-visual">
-      <div class="auto-hero-panel">
-        <span class="eyebrow">Dampfglanzservice-Ademi</span>
-        <h2>Innen. Aussen. Sorgfältig gereinigt.</h2>
-        <p>
-          Persönliche Fahrzeugpflege in Rorschach und der Ostschweiz.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<section class="section section-light">
-  <div class="container">
-
-    <div class="section-header">
-      <span class="section-eyebrow">Unsere Leistungen</span>
-      <h2>Die passende Reinigung für Ihr Fahrzeug.</h2>
-      <p>
-        Sie entscheiden, welche Bereiche gereinigt werden sollen.
-        Wir besprechen den Umfang und erstellen eine passende Offerte.
-      </p>
-    </div>
-
-    <div class="auto-services">
-
-      <article class="auto-service">
-        <span class="auto-service-number">01 · INNENRAUM</span>
-        <h3>Innenreinigung</h3>
-        <p>
-          Reinigung von Armaturen, Kunststoffflächen, Fussraum,
-          Teppichen und weiteren zugänglichen Innenraumbereichen.
-        </p>
-      </article>
-
-      <article class="auto-service">
-        <span class="auto-service-number">02 · POLSTER</span>
-        <h3>Sitze &amp; Textilien</h3>
-        <p>
-          Tiefenreinigung von Sitzen, Teppichen und textilen Flächen,
-          abgestimmt auf Material und Verschmutzung.
-        </p>
-        <p>
-          <a class="service-link" href="/polsterreinigung/">Mehr zur Polsterreinigung</a>
-        </p>
-      </article>
-
-      <article class="auto-service">
-        <span class="auto-service-number">03 · AUSSEN</span>
-        <h3>Aussenreinigung</h3>
-        <p>
-          Reinigung der äusseren Fahrzeugbereiche für einen sauberen,
-          gepflegten Gesamteindruck.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-
-<section class="section section-dark">
-  <div class="container">
-
-    <div class="auto-method">
-
-      <div class="auto-method-copy">
-        <span class="section-eyebrow">Unsere Arbeitsweise</span>
-        <h2>Sorgfältig reinigen. Materialgerecht arbeiten.</h2>
-        <p>
-          Verschiedene Fahrzeugoberflächen benötigen unterschiedliche
-          Pflege. Deshalb berücksichtigen wir bei der Reinigung das
-          Material, den Zustand und die Art der Verschmutzung.
-        </p>
-        <p>
-          Je nach Bedarf kommen geeignete Reinigungsverfahren zum Einsatz.
-          Welche Arbeiten sinnvoll sind, besprechen wir vorab mit Ihnen.
-        </p>
-      </div>
-
-      <div class="auto-method-points">
-
-        <div class="auto-method-point">
-          <strong>Individueller Umfang</strong>
-          <p>Die Reinigung wird auf Ihr Fahrzeug und Ihre Wünsche abgestimmt.</p>
-        </div>
-
-        <div class="auto-method-point">
-          <strong>Passende Verfahren</strong>
-          <p>Material und Verschmutzung bestimmen die geeignete Vorgehensweise.</p>
-        </div>
-
-        <div class="auto-method-point">
-          <strong>Klare Offerte</strong>
-          <p>Sie wissen vor der Ausführung, welche Arbeiten vereinbart sind.</p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<section class="section section-light">
-  <div class="container">
-
-    <div class="section-header">
-      <span class="section-eyebrow">Häufige Fragen</span>
-      <h2>Fragen zur Autoreinigung.</h2>
-    </div>
-
-    <div class="faq-list auto-faq">
-
-      <details class="faq-item">
-        <summary>Kann ich nur den Innenraum reinigen lassen?</summary>
-        <p>
-          Ja. Sie können eine Innenreinigung anfragen oder diese
-          mit einer Polster- beziehungsweise Aussenreinigung kombinieren.
-        </p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Was kostet eine Autoreinigung?</summary>
-        <p>
-          Der Preis richtet sich nach Fahrzeuggrösse, Zustand und
-          gewünschtem Umfang. Wir erstellen gerne eine unverbindliche
-          Offerte für Ihr Fahrzeug.
-        </p>
-      </details>
-
-      <details class="faq-item">
-        <summary>In welchen Regionen bieten Sie Autoreinigung an?</summary>
-        <p>
-          Unser Standort ist in Rorschach. Wir sind unter anderem in
-          Goldach, Rorschacherberg, Arbon, St. Gallen und Steinach tätig.
-          Weitere Anfragen aus der Ostschweiz sind willkommen.
-        </p>
-      </details>
-
-    </div>
-
-    <p class="auto-region-note">
-      <a href="/regionen/">Mehr zu unseren Einsatzgebieten in der Ostschweiz</a>
-    </p>
-
-  </div>
-</section>
-
-
-<section class="final-cta">
-  <div class="container">
-    <div class="final-cta-box">
-
-      <div>
-        <span class="section-eyebrow">Unverbindliche Anfrage</span>
-        <h2>Bereit für eine gründliche Autoreinigung?</h2>
-        <p>
-          Teilen Sie uns mit, welches Fahrzeug Sie reinigen lassen
-          möchten und welche Bereiche Ihnen wichtig sind.
-        </p>
-      </div>
-
-      <div class="final-cta-actions">
-        <a href="/kontakt/" class="btn btn-primary">Offerte anfragen</a>
-        <a href="https://wa.me/41765024998" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-```
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-
-```
-  <div class="footer-grid">
-
-    <div class="footer-brand">
-      <a href="/" class="logo-brand" aria-label="Dampfglanzservice-Ademi – Startseite">
-        <img
-          src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png"
-          alt="Dampfglanzservice-Ademi Logo"
-          class="logo-img"
-          width="210"
-          loading="lazy"
-        >
-      </a>
-      <p>
-        Professionelle Reinigung &amp; Tiefenpflege in Rorschach,
-        St. Gallen und der Ostschweiz.
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Leistungen</h4>
-      <ul>
-        <li><a href="/wohnungsreinigung/">Wohnungsreinigung</a></li>
-        <li><a href="/endreinigung-abnahmegarantie/">Endreinigung</a></li>
-        <li><a href="/autoreinigung/">Autoreinigung</a></li>
-        <li><a href="/polsterreinigung/">Polsterreinigung</a></li>
-        <li><a href="/leistungen/">Alle Leistungen</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Regionen</h4>
-      <ul>
-        <li><a href="/regionen/rorschach/">Rorschach</a></li>
-        <li><a href="/regionen/goldach/">Goldach</a></li>
-        <li><a href="/regionen/arbon/">Arbon</a></li>
-        <li><a href="/regionen/st-gallen/">St. Gallen</a></li>
-        <li><a href="/regionen/">Alle Regionen</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Kontakt</h4>
-      <ul>
-        <li><a href="/kontakt/">Offerte anfragen</a></li>
-        <li><a href="/ueber-uns/">Über uns</a></li>
-        <li><a href="/impressum/">Impressum</a></li>
-        <li><a href="/datenschutz/">Datenschutz</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.</p>
-    <p>UID: CHE-199.157.071</p>
-  </div>
-
+<section class="hero "><div class="container hero-grid">
+<div class="hero-copy">
+<span class="eyebrow"><i></i>Innenraum sorgfältig gereinigt</span><h1>Einsteigen.<br>Wieder wohlfühlen.</h1>
+<p>Autoinnenreinigung mit Online-Offerte in Rorschach. Fahrzeug, Verschmutzung und Budget angeben, Fotos hinzufügen und Preisvorschlag erhalten. Anfragen aus St. Gallen, Thurgau und Zürich sind willkommen.</p>
+<div class="hero-actions">
+<a class="button primary" href="/offerte/?leistung=auto">Preisvorschlag berechnen <span aria-hidden="true">↗</span></a><a class="button secondary" href="tel:+41765024998">Persönlich beraten lassen <span aria-hidden="true">↗</span></a>
 </div>
-```
-
-  </footer>
-
+<div class="hero-assurance">
+<span>✓ Persönlicher Kontakt</span><span>✓ Unverbindliche Anfrage</span>
+</div>
+</div>
+<div class="hero-visual">
+<img src="/assets/car.webp" alt="Reinigungsprojekt von Dampfglanzservice-Ademi" width="900" height="1200" fetchpriority="high"><div class="image-caption">
+<span>Mit Sorgfalt bis ins Detail.</span><span aria-hidden="true">↗</span>
+</div>
+</div>
+</div></section><section class="section"><div class="container content-split">
+<div>
+<span class="eyebrow">Autoreinigung</span><h2>Frische für den Innenraum. Sorgfalt bis ins Detail.</h2>
+<p>Alltag, Kinder, Haustiere: Ein Auto erlebt viel. Wir reinigen Ihren Innenraum nach vereinbartem Umfang. Beschreiben Sie den Zustand und Ihre Wünsche – so können wir Aufwand und passende Leistungen vor dem Termin abstimmen.</p>
+</div>
+<div class="scope-list">
+<article><span aria-hidden="true">✓</span><div>
+<h3>Innenraum</h3>
+<p>Sichtbare und zugängliche Flächen, Ablagen und Fussraum nach Vereinbarung.</p>
+</div></article><article><span aria-hidden="true">✓</span><div>
+<h3>Sitze &amp; Polster</h3>
+<p>Materialgerechte Reinigung; Flecken und empfindliche Materialien vorab beurteilen.</p>
+</div></article><article><span aria-hidden="true">✓</span><div>
+<h3>Tierhaare &amp; Flecken</h3>
+<p>Besondere Verschmutzungen mit Fotos zeigen. Der Zusatzaufwand wird persönlich geprüft.</p>
+</div></article><article><span aria-hidden="true">✓</span><div>
+<h3>Weitere Wünsche</h3>
+<p>Kofferraum, Gerüche oder Aussenreinigung separat anfragen und abstimmen.</p>
+</div></article>
+</div>
+</div></section><section class="section"><div class="container">
+<div class="section-head"><div>
+<span class="eyebrow">Einfach. Persönlich. Klar.</span><h2>In drei Schritten zu mehr Glanz.</h2>
+</div></div>
+<div class="steps">
+<article><span class="step-number">01</span><h3>Wünsche beschreiben</h3>
+<p>Leistung auswählen, Zustand beschreiben und bei Bedarf Fotos hinzufügen.</p></article><article><span class="step-number">02</span><h3>Offerte abstimmen</h3>
+<p>Wir prüfen Ihre Angaben und vereinbaren Preis, Umfang und Termin mit Ihnen.</p></article><article><span class="step-number">03</span><h3>Sauberkeit geniessen</h3>
+<p>Wir führen die vereinbarten Arbeiten sorgfältig aus. Sie haben wieder Zeit für anderes.</p></article>
+</div>
+</div></section><section class="section faq-section"><div class="container faq-layout">
+<div>
+<span class="eyebrow">Gut zu wissen</span><h2>Ihre Fragen.<br>Unsere Antworten.</h2>
+<p>Noch etwas offen? Wir sind persönlich für Sie da.</p>
+<a class="text-link" href="/kontakt/">Kontakt aufnehmen ↗</a>
+</div>
+<div class="faq-list">
+<details><summary>Wie funktioniert der Online-Preisvorschlag?<span aria-hidden="true">+</span></summary><p>Wählen Sie ein Reinigungspaket und geben Sie Ihr Budget ein. Sie erhalten eine Angebotsübersicht mit Preis und enthaltenen Leistungen. Bestätigen Sie die Übersicht und nennen Sie zwei mögliche Termine. Wir bestätigen den Auftrag und Termin persönlich.</p></details><details><summary>Kann ich Fotos schicken?<span aria-hidden="true">+</span></summary><p>Ja. Im Offertenformular können Sie bis zu drei JPG- oder PNG-Fotos mit insgesamt maximal 9 MB hinzufügen. Sie werden erst beim Absenden übermittelt.</p></details><details><summary>Werden die Fotos automatisch bewertet?<span aria-hidden="true">+</span></summary><p>Nein. Sie geben den Verschmutzungsgrad selbst an. Wir prüfen Ihre Fotos persönlich und bestätigen den Leistungsumfang und Preis.</p></details><details><summary>Wo findet die Reinigung statt?<span aria-hidden="true">+</span></summary><p>Ort, Zugang und Termin werden persönlich mit Ihnen vereinbart. Eine allfällige Anfahrt ist im Online-Vorschlag nicht eingerechnet.</p></details>
+</div>
+</div></section><section class="cta-section"><div class="container cta-inner">
+<div>
+<span class="eyebrow">Der nächste Schritt ist einfach.</span><h2>Was dürfen wir<br>für Sie sauber machen?</h2>
+</div>
+<div>
+<p>Erzählen Sie uns von Ihrem Auftrag.<br>Wir kümmern uns um die passende Offerte.</p>
+<a class="button primary" href="/offerte/">Offerte anfragen <span aria-hidden="true">↗</span></a>
+</div>
+</div></section></main><footer><div class="container footer-grid">
+<div>
+<a class="footer-brand" href="/">Dampfglanzservice<span>Ademi.</span></a><p>Saubere Arbeit. Persönlicher Service.<br>In Rorschach und der Ostschweiz.</p>
+<span class="footer-location">9400 Rorschach · Schweiz</span>
+</div>
+<div>
+<h2>Unsere Leistungen</h2>
+<a href="/wohnungsreinigung/">Wohnungsreinigung</a><a href="/endreinigung-abnahmegarantie/">Endreinigung</a><a href="/autoreinigung/">Autoreinigung</a><a href="/polsterreinigung/">Polsterreinigung</a><a href="/offerte/">Online-Offerte</a>
+</div>
+<div>
+<h2>Direkt erreichen</h2>
+<a href="tel:+41765024998">+41 76 502 49 98</a><a href="mailto:info@dampfglanzservice-ademi.ch">info@dampfglanzservice-ademi.ch</a><p>Trischlistrasse 25<br>9400 Rorschach</p>
+</div>
+<div>
+<h2>Gut zu wissen</h2>
+<a href="/reinigungsprojekte/">Einblicke in unsere Arbeit</a><a href="/bewertungen/">Kundenbewertungen</a><a href="/regionen/">Unser Einsatzgebiet</a><a href="/ueber-uns/">Über uns</a><a href="/kontakt/">Kontakt</a><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a>
+</div>
+</div>
+<div class="container footer-bottom">
+<span>© 2026 Dampfglanzservice-Ademi</span><span>UID CHE-199.157.071</span><a href="#top">Nach oben ↑</a>
+</div></footer><nav class="quick-contact" aria-label="Direktkontakt"><a class="quick-whatsapp" href="https://wa.me/41765024998" target="_blank" rel="noopener" aria-label="WhatsApp an Dampfglanzservice-Ademi"><svg class="whatsapp-mark" viewbox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 2.4a10.6 10.6 0 1 1-5.7 19.5l-.5-.3-3.4.9.9-3.3-.3-.5A10.6 10.6 0 0 1 16 5.4Z"></path><path fill="currentColor" d="M11.1 9.5c-.4 0-.7.2-1 .5-.6.7-.9 1.4-.8 2.4.2 2.7 2.7 6.6 6.7 8.3 2 .9 3.4.9 4.3.3.7-.5 1.1-1.3 1.2-2.1 0-.3-.1-.5-.4-.6l-2.8-1.3c-.3-.1-.5 0-.7.2l-1.1 1.3c-.2.2-.4.3-.7.1-1.9-.9-3.2-2.1-4.2-3.9-.2-.3-.1-.5.1-.7l.9-1.1c.2-.2.3-.5.1-.8l-1.2-2.4c-.1-.2-.3-.3-.6-.3Z"></path></svg><span>WhatsApp</span></a><a class="quick-call" href="tel:+41765024998" aria-label="Dampfglanzservice-Ademi anrufen: +41 76 502 49 98"><svg viewbox="0 0 24 24" aria-hidden="true"><path d="M5 3 3 5c0 8 8 16 16 16l2-2-4-5-3 2-6-6 2-3Z"></path></svg><span>Anrufen</span></a></nav>
 </body>
 </html>

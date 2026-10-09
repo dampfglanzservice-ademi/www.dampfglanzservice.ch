@@ -1,494 +1,102 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="de-CH">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Kontakt | Dampfglanzservice-Ademi Rorschach</title>
-  <meta name="description" content="Kontaktieren Sie Dampfglanzservice-Ademi für eine unverbindliche Offerte zur Wohnungs-, End-, Auto- oder Polsterreinigung in Rorschach und der Ostschweiz.">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Dampfglanzservice-Ademi">
-  <meta name="theme-color" content="#101114">
-
-  <link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/kontakt/">
-  <link rel="stylesheet" href="../style.css">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Kontakt | Dampfglanzservice-Ademi">
-  <meta property="og:description" content="Fragen Sie Ihre unverbindliche Reinigungsofferte in Rorschach und der Ostschweiz an.">
-  <meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/kontakt/">
-  <meta property="og:site_name" content="Dampfglanzservice-Ademi">
-  <meta property="og:locale" content="de_CH">
-
-  <style>
-    .contact-page {
-      padding: 64px 0 80px;
-    }
-
-    .contact-heading {
-      max-width: 700px;
-      margin: 0 auto 42px;
-      text-align: center;
-    }
-
-    .contact-heading h1 {
-      margin: 10px 0 14px;
-    }
-
-    .contact-heading p {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-      gap: 28px;
-      align-items: start;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .contact-details,
-    .contact-form-card {
-      min-width: 0;
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--surface, #fff);
-    }
-
-    .contact-details h2,
-    .contact-form-card h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    .contact-intro {
-      margin-bottom: 28px;
-    }
-
-    .contact-item {
-      padding: 17px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .contact-item:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .contact-item strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .contact-item p {
-      margin: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .contact-item a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .contact-item a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 17px;
-      margin-top: 24px;
-    }
-
-    .contact-field label {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .contact-field input,
-    .contact-field select,
-    .contact-field textarea {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 13px 14px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: #fff;
-      color: #17181d;
-      font: inherit;
-      font-size: 15px;
-    }
-
-    .contact-field textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .contact-field input:focus,
-    .contact-field select:focus,
-    .contact-field textarea:focus {
-      outline: 2px solid var(--burgundy, #a91d22);
-      outline-offset: 2px;
-    }
-
-    .contact-required-note {
-      margin: 0;
-      font-size: 13px;
-      color: var(--muted, #666);
-    }
-
-    .contact-submit {
-      width: 100%;
-      min-height: 48px;
-      cursor: pointer;
-      border: 0;
-      font: inherit;
-      font-weight: 600;
-    }
-
-    .contact-whatsapp {
-      display: inline-block;
-      margin-top: 24px;
-      font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .contact-region {
-      max-width: 1000px;
-      margin: 30px auto 0;
-      text-align: center;
-      font-size: 14px;
-      color: var(--muted, #666);
-    }
-
-    @media (max-width: 760px) {
-      .contact-page {
-        padding: 42px 0 54px;
-      }
-
-      .contact-heading {
-        margin-bottom: 28px;
-        text-align: left;
-      }
-
-      .contact-heading p {
-        margin: 0;
-      }
-
-      .contact-layout {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .contact-details,
-      .contact-form-card {
-        padding: 22px;
-      }
-    }
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "@id": "https://www.dampfglanzservice-ademi.ch/kontakt/#contactpage",
-    "url": "https://www.dampfglanzservice-ademi.ch/kontakt/",
-    "name": "Kontakt | Dampfglanzservice-Ademi",
-    "description": "Kontaktseite für Anfragen und unverbindliche Reinigungsofferten.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Dampfglanzservice-Ademi",
-      "url": "https://www.dampfglanzservice-ademi.ch/"
-    },
-    "mainEntity": {
-      "@type": "CleaningService",
-      "@id": "https://www.dampfglanzservice-ademi.ch/#business",
-      "name": "Dampfglanzservice-Ademi",
-      "url": "https://www.dampfglanzservice-ademi.ch/",
-      "telephone": "+41765024998",
-      "email": "info@dampfglanzservice-ademi.ch",
-      "identifier": {
-        "@type": "PropertyValue",
-        "propertyID": "UID",
-        "value": "CHE-199.157.071"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Trischlistrasse 25",
-        "postalCode": "9400",
-        "addressLocality": "Rorschach",
-        "addressCountry": "CH"
-      }
-    }
-  }
-  </script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kontakt &amp; Reinigungsofferte in Rorschach | Dampfglanzservice-Ademi</title>
+<meta name="description" content="Kontaktieren Sie Dampfglanzservice-Ademi in Rorschach. Telefon +41 76 502 49 98. Fragen zur Reinigung stellen oder unverbindliche Offerte anfragen.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="Q_Ead2BqWl0n4IqW6wstFdwtrNm8mLhezZjtmdLTUcU">
+<link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/kontakt/">
+<link rel="icon" href="/assets/brand.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_CH">
+<meta property="og:site_name" content="Dampfglanzservice-Ademi">
+<meta property="og:title" content="Kontakt &amp; Reinigungsofferte in Rorschach | Dampfglanzservice-Ademi">
+<meta property="og:description" content="Kontaktieren Sie Dampfglanzservice-Ademi in Rorschach. Telefon +41 76 502 49 98. Fragen zur Reinigung stellen oder unverbindliche Offerte anfragen.">
+<meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/kontakt/">
+<meta property="og:image" content="https://www.dampfglanzservice-ademi.ch/assets/home.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/style.css?v=20261009f">
+<script defer src="/script.js?v=20261009f"></script><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "@id": "https://www.dampfglanzservice-ademi.ch/#business", "name": "Dampfglanzservice-Ademi", "logo": "https://www.dampfglanzservice-ademi.ch/assets/brand.png", "url": "https://www.dampfglanzservice-ademi.ch/", "telephone": "+41765024998", "email": "info@dampfglanzservice-ademi.ch", "image": "https://www.dampfglanzservice-ademi.ch/assets/brand.png", "address": {"@type": "PostalAddress", "streetAddress": "Trischlistrasse 25", "postalCode": "9400", "addressLocality": "Rorschach", "addressCountry": "CH"}, "identifier": "CHE-199.157.071", "areaServed": ["Rorschach", "Kanton St. Gallen", "Thurgau", "Kanton Zürich", "Goldach", "Rorschacherberg", "Arbon", "Steinach", "Horn", "Thal", "Staad", "Rheineck", "St. Margrethen"], "sameAs": ["https://share.google/dCGFMFzPosnnV46j6"]}, {"@type": "WebSite", "@id": "https://www.dampfglanzservice-ademi.ch/#website", "name": "Dampfglanzservice-Ademi", "url": "https://www.dampfglanzservice-ademi.ch/"}, {"@type": "ContactPage", "@id": "https://www.dampfglanzservice-ademi.ch/kontakt/#page", "name": "Kontakt & Reinigungsofferte in Rorschach | Dampfglanzservice-Ademi", "description": "Kontaktieren Sie Dampfglanzservice-Ademi in Rorschach. Telefon +41 76 502 49 98. Fragen zur Reinigung stellen oder unverbindliche Offerte anfragen.", "url": "https://www.dampfglanzservice-ademi.ch/kontakt/", "inLanguage": "de-CH", "isPartOf": {"@id": "https://www.dampfglanzservice-ademi.ch/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.dampfglanzservice-ademi.ch/"}, {"@type": "ListItem", "position": 2, "name": "Kontakt & Reinigungsofferte in Rorschach", "item": "https://www.dampfglanzservice-ademi.ch/kontakt/"}]}]}</script>
 </head>
-
-<body>
-
-  <header class="site-header">
-    <div class="container nav-bar">
-
-```
-  <a href="/" class="logo-brand" aria-label="Dampfglanzservice-Ademi – Startseite">
-    <img
-      src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png"
-      alt="Dampfglanzservice-Ademi Logo"
-      class="logo-img"
-      width="210"
-    >
-  </a>
-
-  <ul class="nav-links">
-    <li><a href="/">Startseite</a></li>
-    <li><a href="/leistungen/">Leistungen</a></li>
-    <li><a href="/regionen/">Regionen</a></li>
-    <li><a href="/ueber-uns/">Über uns</a></li>
-    <li><a href="/kontakt/" class="active" aria-current="page">Kontakt</a></li>
-  </ul>
-
-  <a href="/kontakt/" class="nav-cta">Offerte anfragen</a>
-
+<body id="top">
+<a class="skip" href="#main">Zum Inhalt</a><header class="header"><div class="container header-inner">
+<a class="brand" href="/" aria-label="Dampfglanzservice-Ademi – Startseite"><img src="/assets/brand.png" alt="" width="1200" height="1200" fetchpriority="high"><span>DAMPFGLANZSERVICE<span class="brand-sub">ADEMI <i>•</i> REINIGUNG</span></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menü <span aria-hidden="true">☰</span></button><nav id="main-nav" aria-label="Hauptnavigation"><a href="/leistungen/">Leistungen</a><a href="/regionen/">Regionen</a><a href="/ueber-uns/">Über uns</a><a href="/kontakt/" aria-current="page">Kontakt</a><a class="nav-offerte" href="/offerte/">Online-Offerte ↗</a></nav><a class="button primary" href="/offerte/">Offerte anfragen <span aria-hidden="true">↗</span></a>
+</div></header><main id="main"><div class="container breadcrumbs">
+<a href="/">Startseite</a><span aria-hidden="true">/</span><span>Kontakt</span>
 </div>
-```
-
-  </header>
-
-  <main>
-    <section class="contact-page">
-      <div class="container">
-
-```
-    <div class="contact-heading">
-      <span class="eyebrow">Dampfglanzservice-Ademi · Rorschach</span>
-      <h1>Kontakt &amp; Offerte</h1>
-      <p>
-        Sie möchten eine Reinigung anfragen? Beschreiben Sie uns kurz
-        Ihren Auftrag. Wir freuen uns, von Ihnen zu hören.
-      </p>
-    </div>
-
-    <div class="contact-layout">
-
-      <section class="contact-details" aria-labelledby="contact-details-title">
-        <h2 id="contact-details-title">Direkter Kontakt</h2>
-        <p class="contact-intro">
-          Sie erreichen uns über die folgenden Kontaktmöglichkeiten.
-        </p>
-
-        <div class="contact-item">
-          <strong>Telefon</strong>
-          <p>
-            <a href="tel:+41765024998">+41 76 502 49 98</a>
-          </p>
-        </div>
-
-        <div class="contact-item">
-          <strong>E-Mail</strong>
-          <p>
-            <a href="mailto:info@dampfglanzservice-ademi.ch">
-              info@dampfglanzservice-ademi.ch
-            </a>
-          </p>
-        </div>
-
-        <div class="contact-item">
-          <strong>Adresse</strong>
-          <p>Trischlistrasse 25<br>9400 Rorschach, Schweiz</p>
-        </div>
-
-        <a
-          class="contact-whatsapp"
-          href="https://wa.me/41765024998"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Nachricht über WhatsApp senden
-        </a>
-      </section>
-
-      <section class="contact-form-card" aria-labelledby="contact-form-title">
-        <h2 id="contact-form-title">Ihre Anfrage</h2>
-        <p>
-          Alle Felder sind Pflichtfelder, damit wir Ihre Anfrage
-          bestmöglich bearbeiten können.
-        </p>
-
-        <form
-          class="contact-form"
-          action="https://formsubmit.co/info@dampfglanzservice-ademi.ch"
-          method="POST"
-        >
-          <input
-            type="hidden"
-            name="_subject"
-            value="Neue Anfrage über die Website"
-          >
-          <input
-            type="hidden"
-            name="_template"
-            value="table"
-          >
-
-          <div class="contact-field">
-            <label for="contact-name">Name *</label>
-            <input
-              id="contact-name"
-              type="text"
-              name="Name"
-              autocomplete="name"
-              required
-            >
-          </div>
-
-          <div class="contact-field">
-            <label for="contact-email">E-Mail-Adresse *</label>
-            <input
-              id="contact-email"
-              type="email"
-              name="E-Mail"
-              autocomplete="email"
-              required
-            >
-          </div>
-
-          <div class="contact-field">
-            <label for="contact-phone">Telefonnummer *</label>
-            <input
-              id="contact-phone"
-              type="tel"
-              name="Telefon"
-              autocomplete="tel"
-              required
-            >
-          </div>
-
-          <div class="contact-field">
-            <label for="contact-service">Gewünschte Leistung *</label>
-            <select
-              id="contact-service"
-              name="Leistung"
-              required
-            >
-              <option value="" selected disabled>Bitte auswählen</option>
-              <option value="Wohnungsreinigung">Wohnungsreinigung</option>
-              <option value="Endreinigung mit Abgabegarantie">Endreinigung mit Abgabegarantie</option>
-              <option value="Autoreinigung">Autoreinigung</option>
-              <option value="Polsterreinigung">Polsterreinigung</option>
-              <option value="Sonstiges">Sonstiges / Allgemeine Anfrage</option>
-            </select>
-          </div>
-
-          <div class="contact-field">
-            <label for="contact-message">Nachricht *</label>
-            <textarea
-              id="contact-message"
-              name="Nachricht"
-              rows="5"
-              placeholder="Beschreiben Sie kurz Ihren Auftrag."
-              required
-            ></textarea>
-          </div>
-
-          <p class="contact-required-note">
-            * Pflichtfeld
-          </p>
-
-          <button
-            type="submit"
-            class="btn btn-primary contact-submit"
-          >
-            Offerte anfragen
-          </button>
-        </form>
-      </section>
-
-    </div>
-
-    <p class="contact-region">
-      Persönlich in Rorschach erreichbar – tätig in St. Gallen, Arbon
-      und der Ostschweiz.
-    </p>
-
-  </div>
-</section>
-```
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-
-```
-  <div class="footer-grid">
-
-    <div class="footer-brand">
-      <a href="/" class="logo-brand" aria-label="Dampfglanzservice-Ademi – Startseite">
-        <img
-          src="https://static.wixstatic.com/media/2f51cc_192ed25d57ae4ac79ff7c26913bb5a0e~mv2.png"
-          alt="Dampfglanzservice-Ademi Logo"
-          class="logo-img"
-          width="210"
-          loading="lazy"
-        >
-      </a>
-
-      <p>
-        Professionelle Reinigung &amp; Tiefenpflege in Rorschach,
-        St. Gallen und der Ostschweiz.
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Leistungen</h4>
-      <ul>
-        <li><a href="/wohnungsreinigung/">Wohnungsreinigung</a></li>
-        <li><a href="/endreinigung-abnahmegarantie/">Endreinigung</a></li>
-        <li><a href="/autoreinigung/">Autoreinigung</a></li>
-        <li><a href="/polsterreinigung/">Polsterreinigung</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Regionen</h4>
-      <ul>
-        <li><a href="/regionen/rorschach/">Rorschach</a></li>
-        <li><a href="/regionen/goldach/">Goldach</a></li>
-        <li><a href="/regionen/arbon/">Arbon</a></li>
-        <li><a href="/regionen/st-gallen/">St. Gallen</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Kontakt</h4>
-      <ul>
-        <li><a href="tel:+41765024998">+41 76 502 49 98</a></li>
-        <li><a href="mailto:info@dampfglanzservice-ademi.ch">E-Mail schreiben</a></li>
-        <li><a href="/impressum/">Impressum</a></li>
-        <li><a href="/datenschutz/">Datenschutz</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; 2026 Dampfglanzservice-Ademi. Alle Rechte vorbehalten.</p>
-    <p>UID: CHE-199.157.071</p>
-  </div>
-
+<section class="section contact-section"><div class="container contact-layout">
+<div class="contact-intro">
+<span class="eyebrow">Wir sind für Sie da.</span><h1>Gute Reinigung<br>beginnt mit einem<br>guten Gespräch.</h1>
+<p>Sie haben Fragen oder möchten einen Auftrag besprechen? Schreiben Sie uns oder rufen Sie direkt an.</p>
+<div class="contact-lines">
+<div>
+<span>Telefon</span><a href="tel:+41765024998">+41 76 502 49 98 ↗</a>
 </div>
-```
-
-  </footer>
-
+<div>
+<span>E-Mail</span><a href="mailto:info@dampfglanzservice-ademi.ch">info@dampfglanzservice-ademi.ch ↗</a>
+</div>
+<div>
+<span>Standort</span><p>Trischlistrasse 25 · 9400 Rorschach</p>
+</div>
+</div>
+<div class="small-note">Sie möchten eine Autoinnenreinigung?<br><a href="/offerte/?leistung=auto">Direkt zum Online-Preisvorschlag ↗</a>
+</div>
+</div>
+<div class="form-card">
+<span class="eyebrow">Ihre Anfrage</span><h2>Erzählen Sie uns davon.</h2>
+<form action="https://formsubmit.co/info@dampfglanzservice-ademi.ch" method="POST" data-contact-form>
+<input type="hidden" name="_subject" value="Neue Kontaktanfrage – Dampfglanzservice-Ademi"><input type="hidden" name="_template" value="table"><input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"><input type="hidden" name="_autoresponse" value="Vielen Dank für Ihre Anfrage an Dampfglanzservice-Ademi. Wir prüfen Ihre Angaben persönlich. Erst unsere Bestätigung gilt als verbindliche Offerte."><div class="field-grid">
+<div class="field">
+<label for="customer-name">Ihr Name <span>*</span></label><input id="customer-name" name="Name" autocomplete="name" maxlength="100" required>
+</div>
+<div class="field">
+<label for="customer-email">E-Mail <span>*</span></label><input id="customer-email" name="email" type="email" autocomplete="email" maxlength="160" required>
+</div>
+<div class="field">
+<label for="customer-phone">Telefon <span class="optional">optional</span></label><input id="customer-phone" name="Telefon" type="tel" autocomplete="tel" maxlength="40">
+</div>
+<div class="field">
+<label for="customer-place">PLZ / Ort <span>*</span></label><input id="customer-place" name="Ort" autocomplete="address-level2" maxlength="120" required>
+</div>
+</div>
+<div class="field">
+<label for="contact-service">Gewünschte Leistung <span>*</span></label><select id="contact-service" name="Leistung" required><option value="">Bitte auswählen</option>
+<option>Wohnungsreinigung</option>
+<option>Endreinigung</option>
+<option>Autoreinigung</option>
+<option>Polsterreinigung</option>
+<option>Andere Anfrage</option></select>
+</div>
+<div class="field">
+<label for="message">Ihre Nachricht <span>*</span></label><textarea id="message" name="Nachricht" rows="5" maxlength="5000" required placeholder="Was dürfen wir reinigen? Wie gross ist das Objekt, und wann wünschen Sie den Termin?"></textarea>
+</div>
+<label class="check consent"><input type="checkbox" name="Datenschutz" value="gelesen und Übermittlung zugestimmt" required><span>Ich habe die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzhinweise</a> gelesen und stimme der Übermittlung meiner Angaben und ausgewählten Fotos zur Bearbeitung der Anfrage über FormSubmit zu. <span aria-hidden="true">*</span></span></label><p class="fine-print">Eine Anfrage ist keine Buchung. Preis, Leistungsumfang und Termin werden persönlich bestätigt. * Pflichtfelder</p>
+<button class="button primary" type="submit">Anfrage senden <span aria-hidden="true">↗</span></button><p class="form-status" role="status"></p>
+</form>
+</div>
+</div></section></main><footer><div class="container footer-grid">
+<div>
+<a class="footer-brand" href="/">Dampfglanzservice<span>Ademi.</span></a><p>Saubere Arbeit. Persönlicher Service.<br>In Rorschach und der Ostschweiz.</p>
+<span class="footer-location">9400 Rorschach · Schweiz</span>
+</div>
+<div>
+<h2>Unsere Leistungen</h2>
+<a href="/wohnungsreinigung/">Wohnungsreinigung</a><a href="/endreinigung-abnahmegarantie/">Endreinigung</a><a href="/autoreinigung/">Autoreinigung</a><a href="/polsterreinigung/">Polsterreinigung</a><a href="/offerte/">Online-Offerte</a>
+</div>
+<div>
+<h2>Direkt erreichen</h2>
+<a href="tel:+41765024998">+41 76 502 49 98</a><a href="mailto:info@dampfglanzservice-ademi.ch">info@dampfglanzservice-ademi.ch</a><p>Trischlistrasse 25<br>9400 Rorschach</p>
+</div>
+<div>
+<h2>Gut zu wissen</h2>
+<a href="/reinigungsprojekte/">Einblicke in unsere Arbeit</a><a href="/bewertungen/">Kundenbewertungen</a><a href="/regionen/">Unser Einsatzgebiet</a><a href="/ueber-uns/">Über uns</a><a href="/kontakt/">Kontakt</a><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a>
+</div>
+</div>
+<div class="container footer-bottom">
+<span>© 2026 Dampfglanzservice-Ademi</span><span>UID CHE-199.157.071</span><a href="#top">Nach oben ↑</a>
+</div></footer><nav class="quick-contact" aria-label="Direktkontakt"><a class="quick-whatsapp" href="https://wa.me/41765024998" target="_blank" rel="noopener" aria-label="WhatsApp an Dampfglanzservice-Ademi"><svg class="whatsapp-mark" viewbox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 2.4a10.6 10.6 0 1 1-5.7 19.5l-.5-.3-3.4.9.9-3.3-.3-.5A10.6 10.6 0 0 1 16 5.4Z"></path><path fill="currentColor" d="M11.1 9.5c-.4 0-.7.2-1 .5-.6.7-.9 1.4-.8 2.4.2 2.7 2.7 6.6 6.7 8.3 2 .9 3.4.9 4.3.3.7-.5 1.1-1.3 1.2-2.1 0-.3-.1-.5-.4-.6l-2.8-1.3c-.3-.1-.5 0-.7.2l-1.1 1.3c-.2.2-.4.3-.7.1-1.9-.9-3.2-2.1-4.2-3.9-.2-.3-.1-.5.1-.7l.9-1.1c.2-.2.3-.5.1-.8l-1.2-2.4c-.1-.2-.3-.3-.6-.3Z"></path></svg><span>WhatsApp</span></a><a class="quick-call" href="tel:+41765024998" aria-label="Dampfglanzservice-Ademi anrufen: +41 76 502 49 98"><svg viewbox="0 0 24 24" aria-hidden="true"><path d="M5 3 3 5c0 8 8 16 16 16l2-2-4-5-3 2-6-6 2-3Z"></path></svg><span>Anrufen</span></a></nav>
 </body>
 </html>

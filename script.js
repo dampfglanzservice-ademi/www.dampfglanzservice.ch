@@ -1,53 +1,30 @@
-document.addEventListener("DOMContentLoaded", () => {
-const menuToggle = document.querySelector(".menu-toggle");
-const navigation = document.querySelector("#main-navigation");
-
-if (!menuToggle || !navigation) return;
-
-const closeMenu = () => {
-navigation.classList.remove("is-open");
-menuToggle.setAttribute("aria-expanded", "false");
-menuToggle.setAttribute("aria-label", "Menü öffnen");
-};
-
-const openMenu = () => {
-navigation.classList.add("is-open");
-menuToggle.setAttribute("aria-expanded", "true");
-menuToggle.setAttribute("aria-label", "Menü schliessen");
-};
-
-menuToggle.setAttribute("aria-expanded", "false");
-menuToggle.setAttribute("aria-label", "Menü öffnen");
-
-menuToggle.addEventListener("click", () => {
-const isOpen = navigation.classList.contains("is-open");
-isOpen ? closeMenu() : openMenu();
-});
-
-navigation.querySelectorAll("a").forEach((link) => {
-link.addEventListener("click", closeMenu);
-});
-
-document.addEventListener("keydown", (event) => {
-if (event.key === "Escape") {
-closeMenu();
-menuToggle.focus();
-}
-});
-
-document.addEventListener("click", (event) => {
-if (
-navigation.classList.contains("is-open") &&
-!navigation.contains(event.target) &&
-!menuToggle.contains(event.target)
-) {
-closeMenu();
-}
-});
-
-window.addEventListener("resize", () => {
-if (window.innerWidth > 900) {
-closeMenu();
-}
-});
-});
+(()=>{
+ 'use strict';
+ const menu=document.querySelector('.menu-toggle'),nav=document.querySelector('#main-nav');
+ if(menu&&nav){const close=()=>{menu.setAttribute('aria-expanded','false');nav.classList.remove('is-open')};menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open)});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){close();menu.focus()}});nav.addEventListener('click',e=>{if(e.target.closest('a'))close()});window.addEventListener('resize',()=>{if(window.innerWidth>900)close()})}
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)'),finePointer=window.matchMedia('(hover: hover) and (pointer: fine)');
+ document.querySelectorAll('.service-card,.profile-card,.quote-result,.note-card,.review-card,.area-card,.price-example,.hero-visual').forEach(el=>{el.classList.add('tilt-surface');let frame=0;const reset=()=>{cancelAnimationFrame(frame);el.style.removeProperty('--tilt-x');el.style.removeProperty('--tilt-y')};el.addEventListener('pointermove',e=>{if(reduced.matches||!finePointer.matches)return;cancelAnimationFrame(frame);const rect=el.getBoundingClientRect(),x=(e.clientX-rect.left)/rect.width-.5,y=(e.clientY-rect.top)/rect.height-.5;frame=requestAnimationFrame(()=>{el.style.setProperty('--tilt-x',(-y*5).toFixed(2)+'deg');el.style.setProperty('--tilt-y',(x*5).toFixed(2)+'deg')})});el.addEventListener('pointerleave',reset);el.addEventListener('pointercancel',reset);reduced.addEventListener('change',reset)});
+ document.querySelectorAll('.button,.quick-contact a').forEach(el=>el.addEventListener('pointerdown',e=>{if(reduced.matches)return;const rect=el.getBoundingClientRect(),spark=document.createElement('span');spark.className='interaction-spark';spark.setAttribute('aria-hidden','true');spark.style.left=(e.clientX-rect.left)+'px';spark.style.top=(e.clientY-rect.top)+'px';spark.addEventListener('animationend',()=>spark.remove(),{once:true});el.append(spark)}));
+ const form=document.getElementById('quote-form');
+ document.querySelectorAll('[data-contact-form]').forEach(f=>f.addEventListener('submit',()=>{f.querySelector('.form-status').textContent='Bitte schliessen Sie die geschützte Übermittlung ab.'}));
+ if(!form)return;
+ const $=id=>document.getElementById(id),money=n=>new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(n);
+ const service=$('service'),pack=$('package'),budget=$('budget'),accept=$('accept-offer'),send=$('send-offer');
+ const dates=[1,2,3].map(n=>$('date-'+n));const now=new Date();const today=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);dates.forEach(d=>d.min=today);
+ const param=new URLSearchParams(location.search).get('leistung');if(DGSPrice.packages[param])service.value=param;
+ let result,urls=[];
+ function packages(){pack.replaceChildren();DGSPrice.packages[service.value].forEach(([key,label])=>{const o=document.createElement('option');o.value=key;o.textContent=label;pack.append(o)})}
+ function photos(){const files=[...form.querySelectorAll('[data-photo]')];const chosen=files.flatMap(i=>i.files?.length?[i.files[0]]:[]);const error=chosen.some(f=>!['image/jpeg','image/png'].includes(f.type))?'Bitte nur JPG- oder PNG-Fotos auswählen.':chosen.reduce((s,f)=>s+f.size,0)>9*1024*1024?'Die Fotos dürfen zusammen höchstens 9 MB gross sein.':'';files.forEach(i=>i.setCustomValidity(error));$('photo-error').textContent=error;return !error}
+ function summary(){return ['Angebotsanfrage – Dampfglanzservice-Ademi','Preisregel: '+result.version,'Leistung: '+service.options[service.selectedIndex].text+' / '+result.label,result.automatic===false?'Preiswunsch: '+money(result.budget)+' (persönliche Offerte ausstehend)':'Gesamtpreis: '+money(result.proposal),'Enthalten: '+result.scope,'Reinigungsort: '+$('quote-location').options[$('quote-location').selectedIndex].text,'Kundenbudget: '+money(Number(budget.value)),'Terminvorschläge: '+dates.map(d=>d.value).filter(Boolean).join(', '),'Zeitfenster: '+$('time-window').value,'Auftragsdetails: '+$('quote-message').value,'Auftrag und Termin erst nach persönlicher Bestätigung.'].join('\n')}
+ function update(invalidate=true){validateDates();if(invalidate)accept.checked=false;result=DGSPrice.calculate(service.value,pack.value,budget.value,$('quote-location').value==='away'?'special':$('condition').value);budget.setCustomValidity(result.valid?'':result.error);const manual=service.value==='other'||result.automatic===false;$('accept-label').textContent=manual?'Ich möchte eine persönliche Offerte für meine beschriebene Leistung und mein Budget erhalten. Es erfolgt noch keine Beauftragung.':'Ich bin mit dem angezeigten Preis und Leistungsumfang einverstanden und beantrage den Auftrag. Auftrag und Termin gelten erst nach persönlicher Bestätigung durch Dampfglanzservice-Ademi.';send.textContent=manual?'Persönliche Offerte anfragen ↗':'Angebot bestätigen & Anfrage senden ↗';$('offer-terms').textContent=manual?'Ihr Budget ist ein Preiswunsch. Sie erhalten nach Prüfung Ihrer Beschreibung eine persönliche Offerte. Keine automatische Preiszusage oder Buchung.':'Gesamtpreis für das beschriebene Paket am Standort Rorschach, ohne separat vereinbarte Zusatzarbeiten. Andere Einsatzorte und Sonderfälle erhalten eine persönliche Offerte. Auftrag und Termin erst nach unserer E-Mail-Bestätigung.';pack.closest('.field').hidden=service.value==='other';const selected=DGSPrice.packages[service.value].find(p=>p[0]===pack.value);$('scope').textContent=selected?.[3]||'';$('result-service').textContent=service.options[service.selectedIndex].text+' · '+(selected?.[1]||'');$('result-price').textContent=result.valid?(result.automatic===false?'Persönliche Offerte':money(result.proposal)):(budget.value===''?'Budget eingeben':'Budget prüfen');$('budget-notice').textContent=result.valid?(manual?'Ihr Preiswunsch wird mit Ihrer Anfrage übermittelt.':'Ihr Angebotspreis ist berechnet.'):(budget.value===''?'Bitte geben Sie Ihr Budget ein.':result.error);$('result-note').textContent=result.valid?result.scope:('Ihr Paket: '+(selected?.[3]||'Beschreiben Sie Ihre gewünschte Leistung.'));$('quote-summary').value=result.valid?summary():'';$('print-quote').disabled=!result.valid;send.disabled=!result.valid||!accept.checked;}
+ service.addEventListener('change',()=>{packages();update()});
+ form.addEventListener('input',e=>{update(e.target!==accept)});form.addEventListener('change',e=>{if(e.target.matches('[data-photo]')){urls.forEach(URL.revokeObjectURL);urls=[];$('photo-preview').replaceChildren();if(photos())[...form.querySelectorAll('[data-photo]')].forEach(input=>{if(!input.files.length)return;const figure=document.createElement('figure'),image=document.createElement('img'),caption=document.createElement('figcaption'),remove=document.createElement('button');const f=input.files[0],url=URL.createObjectURL(f);urls.push(url);image.src=url;image.alt='Foto-Vorschau';caption.textContent=f.name;remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Foto entfernen');remove.onclick=()=>{input.value='';input.dispatchEvent(new Event('change',{bubbles:true}))};figure.append(image,remove,caption);$('photo-preview').append(figure)})}update(e.target!==accept)});
+ function validateDates(){dates.forEach(d=>d.setCustomValidity(''));const chosen=dates.filter(d=>d.value);for(const d of chosen){if(d.value<today)d.setCustomValidity('Bitte einen zukünftigen Termin wählen.');else if(chosen.filter(x=>x.value===d.value).length>1)d.setCustomValidity('Bitte unterschiedliche Termine auswählen.')}}
+ form.addEventListener('submit',e=>{update(false);validateDates();if(!result.valid||!accept.checked||!photos()||!form.checkValidity()){e.preventDefault();form.reportValidity();return}$('quote-summary').value=summary();$('quote-status').textContent='Bitte schliessen Sie die Übermittlung ab. Der Auftrag und Termin werden danach persönlich bestätigt.';});
+ $('print-quote').onclick=()=>{update(false);if(!result.valid)return;const area=$('print-summary');area.replaceChildren();const h=document.createElement('h1');h.textContent='Ihre Angebotsübersicht';const text=document.createElement('p');text.style.whiteSpace='pre-line';text.textContent=summary();area.append(h,text);window.print()};
+ const steps=[...form.querySelectorAll('.quote-step')],actions=form.querySelector('.wizard-actions'),next=$('quote-next'),back=$('quote-back');let step=0;
+ function showStep(index,focus=true){step=index;steps.forEach((panel,i)=>panel.hidden=i!==index);document.querySelectorAll('[data-progress]').forEach((el,i)=>{if(i===index)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current')});back.hidden=index===0;next.hidden=index===steps.length-1;if(focus){const heading=steps[index].querySelector('h2');heading.tabIndex=-1;heading.focus({preventScroll:true});steps[index].scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'})}}
+ next.onclick=()=>{update(false);const inputs=[...steps[step].querySelectorAll('input,select,textarea')];const invalid=inputs.find(input=>!input.disabled&&!input.checkValidity());if(invalid){invalid.reportValidity();return}if(step===1&&!photos()){return}showStep(Math.min(step+1,steps.length-1))};back.onclick=()=>showStep(Math.max(step-1,0));
+ form.addEventListener('invalid',e=>{const index=steps.indexOf(e.target.closest('.quote-step'));if(index>=0&&index!==step)showStep(index,false)},true);actions.hidden=false;showStep(0,false);
+ window.addEventListener('pagehide',()=>urls.forEach(URL.revokeObjectURL));packages();update();
+})();
