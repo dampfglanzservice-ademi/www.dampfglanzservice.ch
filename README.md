@@ -4,7 +4,7 @@ Statische, mehrseitige Website für das bestehende GitHub-Pages-Projekt. Die Dom
 
 ## Bearbeiten und prüfen
 
-Das Angebotsformular liegt in `tools/quote.template`. Die Seiten werden aus `tools/build_site.py` erzeugt. Dort liegen Seiteninhalte und gemeinsame Komponenten. Vorhandene Unternehmensbilder werden als optimierte WebP-Dateien verwendet. Die Sofaillustration ist als Illustration gekennzeichnet, nicht als Referenzfoto. Originalbilder bleiben erhalten. Die bisherigen Rechtstexte sind in `tools/legal_content.json` gesichert und um die Fotoanfrage ergänzt.
+Das Angebotsformular liegt in `tools/quote.template`. Die Seiten werden aus `tools/build_site.py` erzeugt. Dort liegen Seiteninhalte und gemeinsame Komponenten. Vorhandene Unternehmensbilder werden als optimierte WebP-Dateien verwendet. Das Sofa-Foto wurde mit Zustimmung des Betreibers aus der Inhaber-Galerie seines Google-Profils übernommen. Originalbilder bleiben erhalten. Die bisherigen Rechtstexte sind in `tools/legal_content.json` gesichert und um die Fotoanfrage ergänzt.
 
 ```sh
 python3 -m pip install -r tools/requirements.txt
@@ -36,3 +36,7 @@ Vor dem Produktivbetrieb: Eine Anfrage aus der veröffentlichten Domain senden, 
 Alle Seiten haben eigene Titel und Beschreibungen, eine kanonische URL auf der bestehenden Domain, Open-Graph-Angaben, eine einzelne H1 und JSON-LD für Unternehmen und Seiten. Leistungsseiten erhalten Service-Markup. `sitemap.xml` enthält die indexierbaren Seiten. Der vorhandene Search-Console-Verifizierungscode ist erhalten. Kein erfundenes Bewertungs-, Kunden- oder Auszeichnungs-Markup.
 
 Nach Freigabe: Änderungen in die bestehende GitHub-Pages-Quelle übernehmen, Veröffentlichung prüfen und die Sitemap in der Search Console einreichen. Es werden keine Rankingversprechen abgegeben.
+
+## Gestaltung und regionale Suche
+
+Weiss/Rot, feste WhatsApp-/Anrufleiste auf allen Seiten; drei Kantonsseiten St. Gallen/Thurgau/Zürich. Google-Profil mit datierter Bewertung 5.0 aus 11 Rezensionen (9. Oktober 2026), kein Live-Widget. Marketingvorbereitung und Keyword-Gruppen: tools/search-marketing.md. Sonstige Dienstleistungen erhalten Budgetanfrage ohne automatischen Fixpreis. Keine Werbung gestartet.

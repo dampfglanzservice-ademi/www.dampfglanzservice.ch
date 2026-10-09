@@ -1,4 +1,4 @@
-:root{--ink:#182521;--muted:#65706b;--paper:#f7f7f2;--white:#fff;--line:#dedfd6;--accent:#b83e29;--soft:#eeefe7;--green:#233c31;--radius:18px;--width:1240px;--font:Inter,'Helvetica Neue',Arial,sans-serif}
+:root{--ink:#292321;--muted:#6b605d;--paper:#fff;--white:#fff;--line:#eedfdb;--accent:#b83e29;--soft:#fff4f2;--green:#8f2827;--radius:18px;--width:1240px;--font:Inter,'Helvetica Neue',Arial,sans-serif}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:110px}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--font);-webkit-font-smoothing:antialiased}
@@ -459,3 +459,19 @@ legend{font-size:12px;font-weight:600;margin-bottom:12px}
 
 /* Quote summary contrast and confirmation state. */
 .quote-result #result-service,.quote-result #result-note{color:#edf2ee}.quote-result .fine-print{color:#d5ded7}.button:disabled{opacity:.45;cursor:not-allowed}.brand img{border-radius:0}
+
+/* White and restrained red, with persistent direct contact. */
+.header{background:rgba(255,255,255,.97);backdrop-filter:blur(14px)}
+.button{border-radius:14px;padding:15px 23px;box-shadow:0 4px 12px #8f282715;gap:18px}.primary{background:#b52d2c}.primary:hover{background:#942221}.secondary{border-color:#e3c6c0;background:#fff}.secondary:hover{background:#fff4f2}
+.quote-result{background:linear-gradient(145deg,#fff 20%,#fff0ed);color:var(--ink);border:1px solid #ebc8c1;box-shadow:0 16px 40px #9b302510}
+.quote-result .eyebrow{color:#a82c2b}.quote-result #result-service,.quote-result #result-note{color:#63534f}.quote-result .result-price{color:#a42625}.quote-result .fine-print{color:#6b5550}.quote-result .secondary{background:#fff;color:#9a2928;border-color:#e0b5ad}.quote-result .secondary:hover{background:#ffe9e4}
+.quote-promo{background:linear-gradient(120deg,#fff4f1,#ffe5df);color:var(--ink);border-block:1px solid #efd3cb}.quote-promo .eyebrow{color:var(--accent)}.quote-promo p{color:var(--muted)}.quote-promo .button{background:#b52d2c;color:#fff}.price-example{transform:none;background:#fff;box-shadow:0 14px 30px #b52d2c10}
+.cta-section{background:#fff0eb}.region-anchor{background:#fff0eb;color:var(--ink);border:1px solid #efd3cb}.region-anchor .eyebrow{color:var(--accent)}.region-anchor p,.region-note{color:var(--muted)}
+footer{background:#2e2221;padding-bottom:85px}.footer-grid p,.footer-grid>div>a:not(.footer-brand){color:#d5c6c2}.footer-location,.footer-bottom{color:#c7b5af}
+.profile-card{background:#fff6f3;border:1px solid #eed2cb;border-radius:20px;padding:35px}.profile-card h3{margin:15px 0}.profile-card p{margin-bottom:20px}
+.quick-contact{position:fixed;right:24px;bottom:24px;display:flex;gap:10px;z-index:40;padding:8px;border-radius:22px;background:#ffffffed;border:1px solid #e5d4ce;box-shadow:0 8px 30px #39201c24;backdrop-filter:blur(12px)}
+.quick-contact a{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 17px;border-radius:15px;font-size:13px;font-weight:700;min-height:48px}.quick-whatsapp{background:#edf8f0;color:#145f32;border:1px solid #b7d8c1}.quick-call{background:#b52d2c;color:#fff}.quick-contact a:hover{transform:translateY(-2px)}.quick-contact svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:600px){.quick-contact{left:14px;right:14px;bottom:max(12px,env(safe-area-inset-bottom));justify-content:center}.quick-contact a{flex:1}.header-inner{gap:10px}.brand{font-size:10px}.brand img{width:44px;height:44px}.brand-sub{font-size:8px}.profile-card{padding:24px}footer{padding-bottom:100px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+@media print{.quick-contact{display:none!important}}
+.google-rating{margin:24px 0}.google-rating>span{display:block;color:#a52625;font-size:24px;letter-spacing:3px}.google-rating strong{font-size:32px;letter-spacing:-.04em}.google-rating p{font-size:12px;margin-top:8px}.quote-result #result-price{font-size:clamp(28px,3vw,44px);overflow-wrap:anywhere}#budget-notice{font-size:12px;margin-top:10px}#quote-form .form-card>h2{margin-bottom:26px}.quote-result #result-note{margin-bottom:18px}.quote-result .secondary{margin-top:20px}
