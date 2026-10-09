@@ -1,579 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de-CH">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Reinigungsfirma Staad | Dampfglanzservice-Ademi</title>
-
-  <meta name="description"
-        content="Ihre lokale Reinigungsfirma für Staad: Wohnungsreinigung, Endreinigung mit Abnahmegarantie, Fenster- und Polsterreinigung direkt vom Profi aus Rorschach.">
-
-  <meta name="robots" content="index, follow">
-
-  <link rel="canonical"
-        href="https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Reinigungsfirma Staad | Dampfglanzservice-Ademi">
-  <meta property="og:description" content="Professionelle Reinigungsarbeiten in Staad und Umgebung durch Dampfglanzservice-Ademi aus Rorschach.">
-  <meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/">
-  <meta property="og:site_name" content="Dampfglanzservice-Ademi">
-  <meta property="og:locale" content="de_CH">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Reinigungsfirma Staad | Dampfglanzservice-Ademi">
-  <meta name="twitter:description" content="Ihr zuverlässiger Partner für Wohnungs- und Endreinigungen in Staad.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Schema.org CleaningService -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CleaningService",
-    "@id": "https://www.dampfglanzservice-ademi.ch/#cleaningservice",
-    "name": "Dampfglanzservice-Ademi",
-    "url": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/",
-    "telephone": "+41765024998",
-    "email": "info@dampfglanzservice-ademi.ch",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Trischlistrasse 25",
-      "postalCode": "9400",
-      "addressLocality": "Rorschach",
-      "addressCountry": "CH"
-    },
-    "areaServed": {
-      "@type": "City",
-      "name": "Staad",
-      "addressCountry": "CH"
-    },
-    "serviceType": [
-      "Wohnungsreinigung",
-      "Endreinigung",
-      "Fensterreinigung",
-      "Polsterreinigung",
-      "Autoreinigung"
-    ],
-    "sameAs": [
-      "https://www.instagram.com/dampfglanzservice/",
-      "https://www.tiktok.com/@dampfglanzservice"
-    ]
-  }
-  </script>
-
-  <!-- Breadcrumb Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Startseite",
-        "item": "https://www.dampfglanzservice-ademi.ch/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Reinigungsfirma Staad",
-        "item": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/"
-      }
-    ]
-  }
-  </script>
-
-  <style>
-    :root{
-      --red:#c1121f;
-      --red-dark:#8f0d16;
-      --red-light:#ff4652;
-      --black:#09090b;
-      --dark:#111116;
-      --dark-2:#1a1a20;
-      --white:#fff;
-      --text:#17171b;
-      --muted:#686873;
-      --light:#f6f6f8;
-      --border:#e5e5e9;
-      --shadow:0 18px 50px rgba(0,0,0,.10);
-      --shadow-dark:0 25px 70px rgba(0,0,0,.28);
-      --radius:18px;
-      --max:1180px;
-    }
-
-    *{box-sizing:border-box; margin:0; padding:0;}
-    html{scroll-behavior:smooth; scroll-padding-top:90px;}
-    body{font-family:Inter,Arial,sans-serif; color:var(--text); background:#fff; line-height:1.65; -webkit-font-smoothing:antialiased;}
-    a{color:inherit; text-decoration:none;}
-    img{max-width:100%; display:block;}
-    button, input, select, textarea{font:inherit;}
-    .container{width:min(92%,var(--max)); margin:0 auto;}
-
-    header{
-      position:sticky; top:0; z-index:1000;
-      background:rgba(9,9,11,.96);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .nav{min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:25px;}
-    .logo{color:#fff; font-size:20px; font-weight:800; letter-spacing:-.6px; white-space:nowrap;}
-    .logo span{color:var(--red);}
-    .nav-links{display:flex; align-items:center; gap:27px; color:#d9d9de; font-size:14px; font-weight:600;}
-    .nav-links a:hover{color:#fff;}
-    .nav-cta{
-      display:inline-flex; align-items:center; justify-content:center;
-      min-height:44px; padding:0 17px; border-radius:10px;
-      background:var(--red); color:#fff; font-size:13px; font-weight:800; transition:.2s ease;
-    }
-    .nav-cta:hover{background:var(--red-dark); transform:translateY(-1px);}
-
-    .hero{
-      position:relative; overflow:hidden;
-      background:radial-gradient(circle at 85% 20%, rgba(193,18,31,.25), transparent 34%), linear-gradient(135deg, #09090b 0%, #15151a 55%, #0b0b0d 100%);
-      color:#fff; padding:105px 0 95px;
-    }
-    .hero-grid{display:grid; grid-template-columns:1.12fr .88fr; gap:65px; align-items:center;}
-    .eyebrow{display:inline-flex; align-items:center; gap:9px; color:#ff6a73; font-size:13px; font-weight:800; margin-bottom:21px; text-transform:uppercase; letter-spacing:.6px;}
-    .eyebrow::before{content:""; width:30px; height:2px; background:var(--red); border-radius:10px;}
-    h1{font-size:clamp(40px,5.8vw,66px); line-height:1.04; letter-spacing:-2.8px; margin-bottom:25px;}
-    h1 span{color:var(--red-light);}
-    .hero-text{max-width:710px; color:#c9c9cf; font-size:18px; line-height:1.7; margin-bottom:32px;}
-    .buttons{display:flex; flex-wrap:wrap; gap:12px;}
-    .btn{display:inline-flex; align-items:center; justify-content:center; min-height:51px; padding:0 21px; border-radius:11px; font-size:14px; font-weight:800; transition:.2s ease; border:0; cursor:pointer;}
-    .btn-primary{background:var(--red); color:#fff;}
-    .btn-primary:hover{background:var(--red-dark); transform:translateY(-1px);}
-    .btn-secondary{border:1px solid rgba(255,255,255,.20); color:#fff; background:rgba(255,255,255,.05);}
-    .btn-secondary:hover{background:rgba(255,255,255,.10);}
-
-    .hero-card{
-      background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.13);
-      border-radius:24px; padding:31px; box-shadow:var(--shadow-dark);
-    }
-    .hero-card h2{color:#fff; font-size:22px; margin-bottom:8px;}
-    .hero-card-intro{color:#aaaab2; font-size:14px; margin-bottom:18px;}
-    .check{display:flex; gap:12px; align-items:flex-start; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#d5d5da; font-size:14px;}
-    .check:last-child{border-bottom:0; padding-bottom:0;}
-    .check strong{color:#fff;}
-    .check-icon{flex:0 0 22px; width:22px; height:22px; border-radius:50%; background:var(--red); display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:900; margin-top:1px;}
-
-    section{padding:90px 0;}
-    .section-head{max-width:780px; margin-bottom:45px;}
-    .section-label{color:var(--red); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:10px;}
-    h2{font-size:clamp(30px,4vw,44px); line-height:1.13; letter-spacing:-1.5px; margin-bottom:15px;}
-    .section-head p{color:var(--muted); font-size:16px;}
-
-    .services{background:var(--light);}
-    .service-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-    .service-card{background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:30px; box-shadow:0 8px 25px rgba(0,0,0,.035); transition:.22s ease;}
-    .service-card:hover{transform:translateY(-3px); box-shadow:var(--shadow);}
-    .service-number{width:42px; height:42px; display:flex; align-items:center; justify-content:center; border-radius:11px; background:rgba(193,18,31,.08); color:var(--red); font-weight:800; font-size:13px; margin-bottom:20px;}
-    .service-card h3{font-size:20px; margin-bottom:10px;}
-    .service-card p{color:var(--muted); font-size:14px;}
-
-    /* CUSTOM UNIQUE LOCAL SECTION FOR STAAD */
-    .local-deep{background:#fff;}
-    .local-deep-grid{display:grid; grid-template-columns:1fr 1fr; gap:55px; align-items:center;}
-    .local-deep p{color:var(--muted); font-size:16px; margin-bottom:17px;}
-    .local-features{display:grid; gap:12px; margin-top:25px;}
-    .local-feature-item{display:flex; gap:13px; align-items:flex-start; padding:16px 17px; border:1px solid var(--border); border-radius:14px; background:#fff;}
-    .local-feature-num{flex:0 0 34px; width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:9px; background:rgba(193,18,31,.08); color:var(--red); font-size:12px; font-weight:800;}
-    .local-feature-item strong{display:block; font-size:14px; margin-bottom:2px;}
-    .local-feature-item span{color:var(--muted); font-size:13px;}
-
-    .local-highlight-box{
-      background:radial-gradient(circle at 85% 20%, rgba(193,18,31,.18), transparent 35%), linear-gradient(145deg,#111116,#1b1b21);
-      color:#fff; border-radius:24px; padding:38px; box-shadow:0 20px 55px rgba(0,0,0,.12);
-    }
-    .local-highlight-box h3{font-size:25px; margin-bottom:14px;}
-    .local-highlight-box p{color:#c9c9cf; font-size:14px; margin-bottom:23px;}
-    .local-highlight-box ul{list-style:none; display:grid; gap:12px;}
-    .local-highlight-box li{display:flex; gap:10px; color:#eee; font-size:14px;}
-    .local-highlight-box li::before{content:"✓"; color:#ff4b56; font-weight:900;}
-
-    .regional{background:var(--dark); color:#fff;}
-    .regional-grid{display:grid; grid-template-columns:1fr 1fr; gap:55px; align-items:center;}
-    .regional h2{color:#fff;}
-    .regional p{color:#c7c7cd; font-size:15px; margin-bottom:17px;}
-    .regional-list{display:grid; gap:11px; margin-top:24px;}
-    .regional-list div{padding:14px 16px; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.045); border-radius:12px; color:#eee; font-size:14px;}
-    .regional-card-inner{padding:37px; border-radius:23px; border:1px solid rgba(193,18,31,.38); background:linear-gradient(145deg, rgba(193,18,31,.14), rgba(255,255,255,.025));}
-    .regional-card-inner h3{font-size:24px; margin-bottom:12px;}
-    .regional-card-inner p{margin-bottom:22px;}
-
-    .steps-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
-    .step-card{padding:28px; border:1px solid var(--border); border-radius:var(--radius); background:#fff;}
-    .step-num{width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:var(--red); color:#fff; font-weight:800; font-size:13px; margin-bottom:18px;}
-    .step-card h3{font-size:18px; margin-bottom:8px;}
-    .step-card p{color:var(--muted); font-size:14px;}
-
-    .faq{background:var(--light);}
-    .faq-grid{display:grid; gap:13px; max-width:900px;}
-    details{background:#fff; border:1px solid var(--border); border-radius:14px; padding:19px 21px;}
-    summary{cursor:pointer; font-weight:700; font-size:15px; padding-right:20px; position:relative; list-style:none;}
-    summary::-webkit-details-marker{display:none;}
-    summary::after{content:"+"; position:absolute; right:0; top:-3px; color:var(--red); font-size:21px;}
-    details[open] summary::after{content:"−";}
-    details p{color:var(--muted); margin-top:12px; font-size:14px;}
-
-    .contact{background:#fff;}
-    .contact-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:45px; align-items:start;}
-    .contact-info{display:grid; gap:12px; margin-top:25px;}
-    .contact-item{padding:17px 18px; border:1px solid var(--border); border-radius:13px; background:#fff;}
-    .contact-item small{display:block; color:var(--muted); font-size:12px; margin-bottom:3px;}
-    .contact-item strong{font-weight:700;}
-
-    form{background:var(--light); padding:31px; border-radius:22px; border:1px solid var(--border); box-shadow:0 10px 35px rgba(0,0,0,.04);}
-    .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:15px;}
-    .field{display:flex; flexDirection:column; gap:7px; margin-bottom:15px;}
-    .field.full{grid-column:1/-1;}
-    label{font-size:13px; font-weight:700;}
-    input, select, textarea{width:100%; border:1px solid #d7d7dc; background:#fff; color:var(--text); border-radius:10px; padding:13px 14px; outline:none;}
-    input:focus, select:focus, textarea:focus{border-color:var(--red); box-shadow:0 0 0 3px rgba(193,18,31,.08);}
-    textarea{min-height:145px; resize:vertical;}
-    .form-submit{width:100%; margin-top:3px;}
-    .form-note{color:var(--muted); font-size:11px; text-align:center; margin-top:11px;}
-
-    footer{background:var(--black); color:#aaa; padding:35px 0 90px;}
-    .footer-inner{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
-    .footer-brand{color:#fff; font-weight:800;}
-    .footer-brand span{color:var(--red);}
-    .footer-links{display:flex; gap:18px; flex-wrap:wrap; font-size:13px;}
-
-    .floating-whatsapp{
-      position:fixed; right:21px; bottom:21px; z-index:900; width:58px; height:58px;
-      border-radius:50%; background:#25d366; color:#fff; display:flex; align-items:center; justify-content:center;
-      box-shadow:0 10px 30px rgba(0,0,0,.25); transition:.2s ease;
-    }
-    .floating-whatsapp:hover{transform:translateY(-2px) scale(1.03);}
-    .floating-whatsapp svg{width:28px; height:28px; fill:currentColor;}
-
-    .mobile-bar{display:none;}
-
-    @media(max-width:900px){
-      .nav-links{display:none;}
-      .hero-grid, .local-deep-grid, .regional-grid, .contact-grid{grid-template-columns:1fr;}
-      .service-grid{grid-template-columns:repeat(2,1fr);}
-      .steps-grid{grid-template-columns:repeat(2,1fr);}
-    }
-
-    @media(max-width:600px){
-      .service-grid, .steps-grid, .form-grid{grid-template-columns:1fr;}
-      .field.full{grid-column:auto;}
-      .floating-whatsapp{display:none;}
-      .mobile-bar{
-        position:fixed; left:0; right:0; bottom:0; z-index:1000;
-        display:grid; grid-template-columns:1fr 1fr; background:#222;
-        box-shadow:0 -5px 20px rgba(0,0,0,.15);
-      }
-      .mobile-bar a{min-height:52px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; color:#fff;}
-      .mobile-bar .mobile-wa{background:#25d366;}
-      .mobile-bar .mobile-call{background:var(--red);}
-      footer{padding-bottom:85px;}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reinigungsfirma für Staad | Dampfglanzservice-Ademi</title>
+<meta name="description" content="Reinigungsservice für Staad: Wohnungs-, End-, Auto- und Polsterreinigung von Dampfglanzservice-Ademi aus Rorschach. Individuelle Offerte anfragen.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f7f7f2">
+<meta name="google-site-verification" content="Q_Ead2BqWl0n4IqW6wstFdwtrNm8mLhezZjtmdLTUcU">
+<link rel="canonical" href="https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/">
+<link rel="icon" href="/assets/brand.webp" type="image/webp">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_CH">
+<meta property="og:site_name" content="Dampfglanzservice-Ademi">
+<meta property="og:title" content="Reinigungsfirma für Staad | Dampfglanzservice-Ademi">
+<meta property="og:description" content="Reinigungsservice für Staad: Wohnungs-, End-, Auto- und Polsterreinigung von Dampfglanzservice-Ademi aus Rorschach. Individuelle Offerte anfragen.">
+<meta property="og:url" content="https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/">
+<meta property="og:image" content="https://www.dampfglanzservice-ademi.ch/assets/home.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/style.css">
+<script defer src="/pricing.js"></script><script defer src="/script.js"></script><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "@id": "https://www.dampfglanzservice-ademi.ch/#business", "name": "Dampfglanzservice-Ademi", "url": "https://www.dampfglanzservice-ademi.ch/", "telephone": "+41765024998", "email": "info@dampfglanzservice-ademi.ch", "image": "https://www.dampfglanzservice-ademi.ch/assets/brand.webp", "address": {"@type": "PostalAddress", "streetAddress": "Trischlistrasse 25", "postalCode": "9400", "addressLocality": "Rorschach", "addressCountry": "CH"}, "identifier": "CHE-199.157.071", "areaServed": ["Rorschach", "St. Gallen", "Goldach", "Rorschacherberg", "Arbon", "Steinach", "Horn", "Thal", "Staad", "Rheineck", "St. Margrethen"]}, {"@type": "WebSite", "@id": "https://www.dampfglanzservice-ademi.ch/#website", "name": "Dampfglanzservice-Ademi", "url": "https://www.dampfglanzservice-ademi.ch/"}, {"@type": "WebPage", "@id": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/#page", "name": "Reinigungsfirma für Staad | Dampfglanzservice-Ademi", "description": "Reinigungsservice für Staad: Wohnungs-, End-, Auto- und Polsterreinigung von Dampfglanzservice-Ademi aus Rorschach. Individuelle Offerte anfragen.", "url": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/", "inLanguage": "de-CH", "isPartOf": {"@id": "https://www.dampfglanzservice-ademi.ch/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.dampfglanzservice-ademi.ch/"}, {"@type": "ListItem", "position": 2, "name": "Staad", "item": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/"}]}, {"@type": "Service", "name": "Reinigungsservice in Staad", "provider": {"@id": "https://www.dampfglanzservice-ademi.ch/#business"}, "areaServed": "Staad", "url": "https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/"}]}</script>
 </head>
-
-<body>
-
-<header>
-  <div class="container nav">
-    <a class="logo" href="https://www.dampfglanzservice-ademi.ch/">Dampfglanzservice<span>-Ademi</span></a>
-    <nav class="nav-links">
-      <a href="https://www.dampfglanzservice-ademi.ch/">Startseite</a>
-      <a href="#leistungen">Leistungen</a>
-      <a href="#staad-fokus">Staad-Service</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-    <a class="nav-cta" href="#kontakt">Offerte anfragen</a>
-  </div>
-</header>
-
-<main>
-
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow">Direkt am Bodensee &amp; in der Region</div>
-      <h1>Reinigungsfirma Staad: Sauberkeit mit <span>Handschlagqualität</span></h1>
-      <p class="hero-text">
-        Sie suchen einen zuverlässigen Fachbetrieb für eine Wohnungsabgabe, eine gründliche Grundreinigung oder eine professionelle Textil- und Autopflege in Staad? Von unserem Standort an der Trischlistrasse in Rorschach sind wir im Handumdrehen direkt bei Ihnen vor Ort. Ohne anonyme Callcenter, dafür mit ehrlicher, termingerechter Ausführung.
-      </p>
-      <div class="buttons">
-        <a class="btn btn-primary" href="#kontakt">Unverbindliche Anfrage senden</a>
-        <a class="btn btn-secondary" href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Reinigung%20in%20Staad." target="_blank" rel="noopener">WhatsApp direkt</a>
-        <a class="btn btn-secondary" href="tel:+41765024998">076 502 49 98</a>
-      </div>
-    </div>
-
-    <div class="hero-card">
-      <h2>Ihre Vorteile in Staad</h2>
-      <p class="hero-card-intro">Massgeschneiderte Leistung für private Haushalte und Liegenschaften:</p>
-      <div class="check"><div class="check-icon">✓</div><div><strong>Wohnungs- &amp; Endreinigung</strong><br>Saubere Übergabe nach Mass.</div></div>
-      <div class="check"><div class="check-icon">✓</div><div><strong>Mit Abnahmegarantie</strong><br>Sicherheit bei der Wohnungsabgabe.</div></div>
-      <div class="check"><div class="check-icon">✓</div><div><strong>Fenster- &amp; Glasreinigung</strong><br>Durchblick ohne Schlieren.</div></div>
-      <div class="check"><div class="check-icon">✓</div><div><strong>Polster- &amp; Tiefenpflege</strong><br>Direkt vor Ort bei Ihnen im Wohnzimmer.</div></div>
-      <div class="check"><div class="check-icon">✓</div><div><strong>Fahrzeug-Innenreinigung</strong><br>Auto-Aufbereitung direkt im Einsatzgebiet.</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="leistungen" class="services">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">Unser Leistungsportfolio</div>
-      <h2>Reinigungen, die auf den Punkt überzeugen</h2>
-      <p>Keine Standardabfertigung: Wir passen jeden Reinigungsschritt exakt an das jeweilige Objekt und die Verschmutzung an.</p>
-    </div>
-    <div class="service-grid">
-      <article class="service-card">
-        <div class="service-number">01</div>
-        <h3>Wohnungsreinigung</h3>
-        <p>Gründliche Unterhalts- und Grundreinigung für Ihre Zimmer, Küche und Sanitäranlagen in Staad.</p>
-      </article>
-      <article class="service-card">
-        <div class="service-number">02</div>
-        <h3>Endreinigung mit Garantie</h3>
-        <p>Perfekt für den Umzug: Wir übergeben Ihre alte Wohnung in tadellosem Zustand an die Verwaltung.</p>
-      </article>
-      <article class="service-card">
-        <div class="service-number">03</div>
-        <h3>Fensterreinigung</h3>
-        <p>Streifenfreie Reinigung von Fenstern, Rahmen und Storen – für ein helles, gepflegtes Ambiente.</p>
-      </article>
-      <article class="service-card">
-        <div class="service-number">04</div>
-        <h3>Polsterreinigung</h3>
-        <p>Tiefenwirksame Extraktion für Sofas, Stühle und Matratzen gegen Gerüche und hartnäckige Flecken.</p>
-      </article>
-      <article class="service-card">
-        <div class="service-number">05</div>
-        <h3>Autoreinigung</h3>
-        <p>Intensive Auto-Innenraumreinigung und Polsterpflege, damit Ihr Fahrzeug wieder wie neu glänzt.</p>
-      </article>
-      <article class="service-card">
-        <div class="service-number">06</div>
-        <h3>Individuelle Aufträge</h3>
-        <p>Spezielle Wünsche oder Gewerbeobjekte? Sagen Sie uns, was ansteht – wir finden die Lösung.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="staad-fokus" class="local-deep">
-  <div class="container local-deep-grid">
-    <div>
-      <div class="section-label">Lokale Expertise</div>
-      <h2>Warum Kunden in Staad auf Dampfglanzservice-Ademi setzen</h2>
-      <p>
-        In Staad schätzt man kurze Wege und klare Absprachen. Weil unser Hauptsitz in unmittelbarer Nachbarschaft in Rorschach liegt, sind wir schnell bei Ihnen, kennen die Gegebenheiten vor Ort am Bodensee und garantieren eine reibungslose Abwicklung.
-      </p>
-      <div class="local-features">
-        <div class="local-feature-item">
-          <div class="local-feature-num">01</div>
-          <div>
-            <strong>Kurze Anfahrtswege aus Rorschach</strong>
-            <span>Keine langen Logistikketten – pünktlich vor Ort in Staad und Umgebung.</span>
-          </div>
-        </div>
-        <div class="local-feature-item">
-          <div class="local-feature-num">02</div>
-          <div>
-            <strong>Persönlicher Ansprechpartner</strong>
-            <span>Sie sprechen direkt mit dem Ausführenden, nicht mit Callcentern oder Agenturen.</span>
-          </div>
-        </div>
-        <div class="local-feature-item">
-          <div class="local-feature-num">03</div>
-          <div>
-            <strong>Faire und transparente Preise</strong>
-            <span>Vorab besprochene Offerten ohne versteckte Zusatzkosten.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="local-highlight-box">
-      <h3>Der kurze Weg von Rorschach nach Staad</h3>
-      <p>Von der Trischlistrasse 25 in Rorschach sind wir rasch in den Quartieren von Staad. Das spart Zeit, schont die Nerven und ermöglicht auch kurzfristige Einsätze bei dringenden Wohnungsabgaben.</p>
-      <ul>
-        <li>Direkte Erreichbarkeit per Telefon &amp; WhatsApp</li>
-        <li>Unkomplizierte Besichtigung und Aufwandsschätzung</li>
-        <li>Verlässliche Durchführung zum vereinbarten Termin</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="regional">
-  <div class="container regional-grid">
-    <div>
-      <div class="section-label">Unser Einsatzgebiet</div>
-      <h2>Ihr mobiler Profi für die ganze Region</h2>
-      <p>Neben Staad und Rorschach sind wir im gesamten Einzugsgebiet rund um den Bodensee und im Kanton St. Gallen im Einsatz.</p>
-      <div class="regional-list">
-        <div>✓ Wohnungsreinigung &amp; Endreinigung in Staad</div>
-        <div>✓ Zuverlässige Abnahmegarantie nach Absprache</div>
-        <div>✓ Professionelle Fenster- und Storenreinigung</div>
-        <div>✓ Polster- und Tiefenpflege direkt im Objekt</div>
-      </div>
-    </div>
-    <div>
-      <div class="regional-card-inner">
-        <h3>Bereit für saubere Ergebnisse in Staad?</h3>
-        <p>Erzählen Sie uns kurz per Formular oder WhatsApp, was gereinigt werden soll. Wir melden uns umgehend mit einer klaren Einschätzung.</p>
-        <a class="btn btn-primary" href="#kontakt">Jetzt unverbindlich anfragen</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="ablauf">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">Einfacher Ablauf</div>
-      <h2>In 4 Schritten zu Ihrer sauberen Lösung</h2>
-      <p>Transparenter Service ohne bürokratische Hürden.</p>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <h3>Anfrage</h3>
-        <p>Kontaktieren Sie uns bequem via Formular, WhatsApp oder Telefon.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <h3>Besprechung</h3>
-        <p>Wir klären den genauen Umfang, das Objekt und Ihre Wünsche.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <h3>Termin</h3>
-        <p>Wir vereinbaren einen verbindlichen Zeitpunkt für die Ausführung.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">4</div>
-        <h3>Reinigung</h3>
-        <p>Wir erledigen die Arbeit gründlich, sauber und termingerecht.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="faq">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label">Häufige Fragen</div>
-      <h2>Wichtige Antworten zur Reinigung in Staad</h2>
-    </div>
-    <div class="faq-grid">
-      <details>
-        <summary>Bieten Sie Reinigungen direkt in Staad an?</summary>
-        <p>Ja, von unserem Standort in Rorschach aus bedienen wir Staad und die umliegende Region regelmässig und schnell.</p>
-      </details>
-      <details>
-        <summary>Wie funktioniert die Abnahmegarantie?</summary>
-        <p>Bei Endreinigungen besprechen wir den Leistungsumfang exakt nach den Vorgaben der Verwaltung. Sollte etwas beanstandet werden, bessern wir umgehend nach.</p>
-      </details>
-      <details>
-        <summary>Kann ich Fotos für eine Offerte senden?</summary>
-        <p>Sehr gerne! Senden Sie uns einfach Bilder des Objekts oder der Polstermöbel per WhatsApp für eine schnelle Richtofferte.</p>
-      </details>
-      <details>
-        <summary>Welche Zahlungsmöglichkeiten gibt es?</summary>
-        <p>Die Abrechnung erfolgt transparent nach Rechnungsstellung gemäss vorheriger Vereinbarung.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section id="kontakt" class="contact">
-  <div class="container contact-grid">
-    <div>
-      <div class="section-label">Kontakt</div>
-      <h2>Reinigung in Staad anfragen</h2>
-      <p style="color:var(--muted); margin-top:10px;">Beschreiben Sie Ihr Anliegen. Wir melden uns umgehend bei Ihnen zurück.</p>
-      <div class="contact-info">
-        <div class="contact-item"><small>Telefon</small><strong>076 502 49 98</strong></div>
-        <div class="contact-item"><small>WhatsApp</small><strong>Direkte Nachricht jederzeit möglich</strong></div>
-        <div class="contact-item"><small>E-Mail</small><strong>info@dampfglanzservice-ademi.ch</strong></div>
-        <div class="contact-item"><small>Standort</small><strong>Trischlistrasse 25, 9400 Rorschach</strong></div>
-      </div>
-    </div>
-
-    <form action="https://formsubmit.co/ajax/info@dampfglanzservice-ademi.ch" method="POST">
-      <input type="hidden" name="_subject" value="Anfrage Reinigung Staad – Dampfglanzservice-Ademi">
-      <input type="hidden" name="_next" value="https://www.dampfglanzservice-ademi.ch/reinigungsfirma-staad/?status=success#kontakt">
-      <input type="hidden" name="_captcha" value="false">
-
-      <div class="form-grid">
-        <div class="field">
-          <label for="name">Name *</label>
-          <input id="name" type="text" name="name" placeholder="Ihr Vor- und Nachname" required>
-        </div>
-        <div class="field">
-          <label for="phone">Telefon *</label>
-          <input id="phone" type="tel" name="phone" placeholder="076 123 45 67" required>
-        </div>
-        <div class="field">
-          <label for="email">E-Mail *</label>
-          <input id="email" type="email" name="email" placeholder="ihre@email.ch" required>
-        </div>
-        <div class="field">
-          <label for="service">Gewünschte Leistung *</label>
-          <select id="service" name="service" required>
-            <option value="" selected disabled>Bitte auswählen</option>
-            <option value="Wohnungsreinigung">Wohnungsreinigung</option>
-            <option value="Endreinigung">Endreinigung (mit Garantie)</option>
-            <option value="Fensterreinigung">Fensterreinigung</option>
-            <option value="Polsterreinigung">Polsterreinigung</option>
-            <option value="Autoreinigung">Autoreinigung</option>
-            <option value="Sonstiges">Sonstiges</option>
-          </select>
-        </div>
-        <div class="field full">
-          <label for="message">Ihre Nachricht *</label>
-          <textarea id="message" name="message" placeholder="Was soll gereinigt werden? (Objektgrösse, Zimmeranzahl, Wunschtermin)" required></textarea>
-        </div>
-      </div>
-
-      <button class="btn btn-primary form-submit" type="submit">Unverbindliche Anfrage absenden</button>
-      <p class="form-note">Ihre Angaben werden ausschliesslich zur Bearbeitung Ihrer Anfrage verwendet.</p>
-    </form>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container footer-inner">
-    <div class="footer-brand">Dampfglanzservice<span>-Ademi</span></div>
-    <div class="footer-links">
-      <a href="https://www.dampfglanzservice-ademi.ch/">Startseite</a>
-      <a href="https://www.dampfglanzservice-ademi.ch/#impressum">Impressum</a>
-      <a href="https://www.dampfglanzservice-ademi.ch/#datenschutz">Datenschutz</a>
-      <a href="https://www.instagram.com/dampfglanzservice/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.tiktok.com/@dampfglanzservice" target="_blank" rel="noopener">TikTok</a>
-    </div>
-  </div>
-</footer>
-
-<a class="floating-whatsapp" href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Reinigung%20in%20Staad." aria-label="WhatsApp" target="_blank" rel="noopener">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M20.52 3.48A11.85 11.85 0 0 0 12.04 0C5.48 0 .13 5.35.13 11.91c0 2.1.55 4.15 1.6 5.96L0 24l6.28-1.65a11.86 11.86 0 0 0 5.76 1.47h.01c6.56 0 11.91-5.35 11.91-11.91 0-3.18-1.24-6.17-3.44-8.43ZM12.05 21.8h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.73.98 1-3.64-.23-.37a9.86 9.86 0 1 1 8.36 4.62Zm5.41-7.39c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"></path>
-  </svg>
-</a>
-
-<div class="mobile-bar">
-  <a class="mobile-wa" href="https://wa.me/41765024998?text=Hallo%20Dampfglanzservice-Ademi%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Reinigung%20in%20Staad." target="_blank" rel="noopener">WhatsApp</a>
-  <a class="mobile-call" href="tel:+41765024998">Anrufen</a>
+<body id="top">
+<a class="skip" href="#main">Zum Inhalt</a><div class="topbar"><div class="container">
+<span>Ihr Reinigungsservice aus Rorschach.</span><a href="tel:+41765024998">+41 76 502 49 98 <span aria-hidden="true">↗</span></a>
+</div></div>
+<header class="header"><div class="container header-inner">
+<a class="brand" href="/" aria-label="Dampfglanzservice-Ademi – Startseite"><img src="/assets/brand.webp" alt="" width="1200" height="1200" fetchpriority="high"><span>DAMPFGLANZSERVICE<span class="brand-sub">ADEMI <i>•</i> RORSCHACH</span></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menü <span aria-hidden="true">☰</span></button><nav id="main-nav" aria-label="Hauptnavigation"><a href="/leistungen/">Leistungen</a><a href="/regionen/">Regionen</a><a href="/ueber-uns/">Über uns</a><a href="/kontakt/">Kontakt</a><a class="nav-offerte" href="/offerte/">Online-Offerte ↗</a></nav><a class="button primary" href="/offerte/">Offerte anfragen <span aria-hidden="true">↗</span></a>
+</div></header><main id="main"><div class="container breadcrumbs">
+<a href="/">Startseite</a><span aria-hidden="true">/</span><a href="/regionen/">Regionen</a><span aria-hidden="true">/</span><span>Staad</span>
 </div>
-
+<section class="hero "><div class="container hero-grid">
+<div class="hero-copy">
+<span class="eyebrow"><i></i>Ihr Reinigungsservice aus Rorschach</span><h1>Persönlicher Service für Staad.</h1>
+<p>Dampfglanzservice-Ademi für Staad. Wohnung, Fahrzeug oder Polster: Für Aufträge in Staad stimmen wir die Reinigung auf Ihre Wünsche ab. Die Anfrage ist unverbindlich.</p>
+<div class="hero-actions">
+<a class="button primary" href="/offerte/">Offerte anfragen <span aria-hidden="true">↗</span></a><a class="button secondary" href="tel:+41765024998">Persönlich beraten lassen <span aria-hidden="true">↗</span></a>
+</div>
+<div class="hero-assurance">
+<span>✓ Persönlicher Kontakt</span><span>✓ Unverbindliche Anfrage</span>
+</div>
+</div>
+<div class="hero-visual">
+<img src="/assets/home.webp" alt="Reinigungsprojekt von Dampfglanzservice-Ademi" width="899" height="1200" fetchpriority="high"><div class="image-caption">
+<span>Mit Sorgfalt bis ins Detail.</span><span aria-hidden="true">↗</span>
+</div>
+</div>
+</div></section><section class="section"><div class="container content-split">
+<div>
+<span class="eyebrow">Ihr Auftrag in Staad</span><h2>Gut geplant.<br>Sorgfältig gereinigt.</h2>
+<p>Bei der Autoinnenreinigung in Staad können Sie zuerst den Online-Preisvorschlag nutzen. Ort, Termin, Extras und eine allfällige Anfahrt werden danach bestätigt.</p>
+</div>
+<div class="note-card">
+<h3>Das hilft uns bei Ihrer Anfrage</h3>
+<ul>
+<li>Adresse und gewünschter Termin</li>
+<li>Art und Umfang der Reinigung</li>
+<li>Zustand und aussagekräftige Fotos</li>
+<li>Besondere Wünsche und Ihr Budget</li>
+</ul>
+<a class="button primary" href="/offerte/">Auftrag beschreiben <span aria-hidden="true">↗</span></a>
+</div>
+</div></section><section class="section muted"><div class="container">
+<div class="section-head"><div>
+<span class="eyebrow">Unsere Leistungen in Staad</span><h2>Die passende Reinigung für Ihren Auftrag.</h2>
+</div></div>
+<div class="service-grid">
+<a class="service-card" href="/wohnungsreinigung/"><div class="service-image">
+<img src="/assets/home.webp" alt="Wohnungsreinigung – Einblick in unsere Arbeit" width="899" height="1200" loading="lazy" decoding="async"><span class="card-index">01</span>
+</div>
+<div class="service-card-body">
+<span class="small-label">Einmalig oder regelmässig</span><h3>Wohnungsreinigung <span aria-hidden="true">↗</span>
+</h3>
+<p>Ein gepflegtes Zuhause, ohne dass Ihre Freizeit zu kurz kommt.</p>
+</div></a><a class="service-card" href="/endreinigung-abnahmegarantie/"><div class="service-image">
+<img src="/assets/bath.webp" alt="Endreinigung – Einblick in unsere Arbeit" width="900" height="1200" loading="lazy" decoding="async"><span class="card-index">02</span>
+</div>
+<div class="service-card-body">
+<span class="small-label">Mit vereinbarter Abgabegarantie</span><h3>Endreinigung <span aria-hidden="true">↗</span>
+</h3>
+<p>Sie kümmern sich um den Umzug. Wir um die Reinigung.</p>
+</div></a><a class="service-card" href="/autoreinigung/"><div class="service-image">
+<img src="/assets/car.webp" alt="Autoreinigung – Einblick in unsere Arbeit" width="900" height="1200" loading="lazy" decoding="async"><span class="card-index">03</span>
+</div>
+<div class="service-card-body">
+<span class="small-label">Innenreinigung ab CHF 100</span><h3>Autoreinigung <span aria-hidden="true">↗</span>
+</h3>
+<p>Frische für den Innenraum. Sorgfalt bis ins Detail.</p>
+</div></a><a class="service-card" href="/polsterreinigung/"><div class="service-image">
+<img src="/assets/polster.svg" alt="Illustration: Polsterpflege" width="1000" height="900" loading="lazy" decoding="async"><span class="card-index">04</span>
+</div>
+<div class="service-card-body">
+<span class="small-label">Sofas · Sessel · Textile Flächen</span><h3>Polsterreinigung <span aria-hidden="true">↗</span>
+</h3>
+<p>Eine sorgfältige Reinigung beginnt mit dem richtigen Blick auf das Material.</p>
+</div></a>
+</div>
+</div></section><section class="cta-section"><div class="container cta-inner">
+<div>
+<span class="eyebrow">Der nächste Schritt ist einfach.</span><h2>Was dürfen wir<br>für Sie sauber machen?</h2>
+</div>
+<div>
+<p>Erzählen Sie uns von Ihrem Auftrag.<br>Wir kümmern uns um die passende Offerte.</p>
+<a class="button primary" href="/offerte/">Offerte anfragen <span aria-hidden="true">↗</span></a>
+</div>
+</div></section></main><footer><div class="container footer-grid">
+<div>
+<a class="footer-brand" href="/">Dampfglanzservice<span>Ademi.</span></a><p>Saubere Arbeit. Persönlicher Service.<br>In Rorschach und der Ostschweiz.</p>
+<span class="footer-location">9400 Rorschach · Schweiz</span>
+</div>
+<div>
+<h2>Unsere Leistungen</h2>
+<a href="/wohnungsreinigung/">Wohnungsreinigung</a><a href="/endreinigung-abnahmegarantie/">Endreinigung</a><a href="/autoreinigung/">Autoreinigung</a><a href="/polsterreinigung/">Polsterreinigung</a><a href="/offerte/">Online-Offerte</a>
+</div>
+<div>
+<h2>Direkt erreichen</h2>
+<a href="tel:+41765024998">+41 76 502 49 98</a><a href="mailto:info@dampfglanzservice-ademi.ch">info@dampfglanzservice-ademi.ch</a><p>Trischlistrasse 25<br>9400 Rorschach</p>
+</div>
+<div>
+<h2>Gut zu wissen</h2>
+<a href="/regionen/">Unser Einsatzgebiet</a><a href="/ueber-uns/">Über uns</a><a href="/kontakt/">Kontakt</a><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a>
+</div>
+</div>
+<div class="container footer-bottom">
+<span>© 2026 Dampfglanzservice-Ademi</span><span>UID CHE-199.157.071</span><a href="#top">Nach oben ↑</a>
+</div></footer>
 </body>
 </html>

@@ -1,53 +1,36 @@
-document.addEventListener("DOMContentLoaded", () => {
-const menuToggle = document.querySelector(".menu-toggle");
-const navigation = document.querySelector("#main-navigation");
-
-if (!menuToggle || !navigation) return;
-
-const closeMenu = () => {
-navigation.classList.remove("is-open");
-menuToggle.setAttribute("aria-expanded", "false");
-menuToggle.setAttribute("aria-label", "Menü öffnen");
-};
-
-const openMenu = () => {
-navigation.classList.add("is-open");
-menuToggle.setAttribute("aria-expanded", "true");
-menuToggle.setAttribute("aria-label", "Menü schliessen");
-};
-
-menuToggle.setAttribute("aria-expanded", "false");
-menuToggle.setAttribute("aria-label", "Menü öffnen");
-
-menuToggle.addEventListener("click", () => {
-const isOpen = navigation.classList.contains("is-open");
-isOpen ? closeMenu() : openMenu();
-});
-
-navigation.querySelectorAll("a").forEach((link) => {
-link.addEventListener("click", closeMenu);
-});
-
-document.addEventListener("keydown", (event) => {
-if (event.key === "Escape") {
-closeMenu();
-menuToggle.focus();
-}
-});
-
-document.addEventListener("click", (event) => {
-if (
-navigation.classList.contains("is-open") &&
-!navigation.contains(event.target) &&
-!menuToggle.contains(event.target)
-) {
-closeMenu();
-}
-});
-
-window.addEventListener("resize", () => {
-if (window.innerWidth > 900) {
-closeMenu();
-}
-});
-});
+(()=>{
+ 'use strict';
+ const menu=document.querySelector('.menu-toggle'),nav=document.querySelector('#main-nav');
+ if(menu&&nav){const close=()=>{menu.setAttribute('aria-expanded','false');nav.classList.remove('is-open')};menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open)});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){close();menu.focus()}});nav.addEventListener('click',e=>{if(e.target.closest('a'))close()});window.addEventListener('resize',()=>{if(window.innerWidth>900)close()})}
+ const form=document.getElementById('quote-form');
+ document.querySelectorAll('[data-contact-form]').forEach(f=>f.addEventListener('submit',()=>{f.querySelector('.form-status').textContent='Sie werden zur geschützten Übermittlung weitergeleitet. Die Anfrage ist erst nach erfolgreicher Übermittlung gesendet.'}));
+ if(!form)return;
+ const $=id=>document.getElementById(id),money=n=>new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(n);
+ const files=[...document.querySelectorAll('[data-photo]')];
+ const serviceInputs=[...form.querySelectorAll('input[name="Leistung"]')];
+ const date=$('desired-date'); if(date){const now=new Date();date.min=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10)}
+ const param=new URLSearchParams(location.search).get('leistung');const chosen=serviceInputs.find(i=>i.value===param);if(chosen)chosen.checked=true;
+ let imageUrls=[];let lastResult=null;
+ function service(){return serviceInputs.find(i=>i.checked)?.value||'auto'}
+ function selectedPhotos(){return files.flatMap(input=>input.files?.length?[{input,file:input.files[0]}]:[])}
+ function checkPhotos(){const photos=selectedPhotos();const bad=photos.find(({file})=>!['image/jpeg','image/png'].includes(file.type));const total=photos.reduce((sum,{file})=>sum+file.size,0);const message=bad?'Bitte verwenden Sie ausschliesslich JPG- oder PNG-Fotos.':total>9*1024*1024?'Die Fotos sind zusammen zu gross. Bitte wählen Sie insgesamt höchstens 9 MB.':'';$('photo-error').textContent=message;files.forEach(input=>input.setCustomValidity(message));return !message}
+ function photoPreview(){imageUrls.forEach(URL.revokeObjectURL);imageUrls=[];$('photo-preview').replaceChildren();if(!checkPhotos())return;selectedPhotos().forEach(({input,file})=>{const figure=document.createElement('figure'),im=document.createElement('img'),caption=document.createElement('figcaption'),remove=document.createElement('button');const url=URL.createObjectURL(file);imageUrls.push(url);im.src=url;im.alt='Vorschau Ihres Fotos: '+file.name;caption.textContent=file.name;remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Foto '+file.name+' entfernen');remove.addEventListener('click',()=>{input.value='';photoPreview();update()});figure.append(im,remove,caption);$('photo-preview').append(figure)})}
+ files.forEach(input=>input.addEventListener('change',()=>{photoPreview();update()}));
+ function addRow(dl,label,value){const div=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;div.append(dt,dd);dl.append(div)}
+ function reviewItems(){const result=[];const dirt=form.querySelector('input[name="Verschmutzung"]:checked')?.value;if(dirt==='Stark')result.push('Starke Verschmutzung');if(service()==='auto'){form.querySelectorAll('input[name="Extras"]:checked').forEach(i=>result.push(i.value));const vehicle=$('vehicle').value;if(vehicle==='SUV / Van'||vehicle==='Anderes Fahrzeug')result.push(vehicle)}return result}
+ function summary(result){let lines=['Unverbindlicher Preisvorschlag – Dampfglanzservice-Ademi','Stand der Preisregel: '+result.version,'Leistung: '+result.label];if(result.automatic)lines.push('Mindestpreis: '+money(result.minimum),'Kundenbudget: '+(result.budget!==null?money(result.budget):'nicht angegeben'),'Berechnung: Mittelwert aus CHF 100 und Budget, mindestens CHF 100','Preisvorschlag: '+money(result.proposal));else lines.push('Preis: individuelle Offerte nach Prüfung');const review=reviewItems();if(review.length)lines.push('Separat zu prüfen, nicht eingerechnet: '+review.join(', '));lines.push('Zusatzleistungen, tatsächlicher Mehraufwand und allfällige Anfahrt nicht eingerechnet. Endpreis, Steuerbehandlung, Umfang und Termin werden persönlich bestätigt.');return lines.join('\n')}
+ function update(){const auto=service()==='auto';$('vehicle-fields').hidden=!auto;$('object-fields').hidden=auto;$('extras').hidden=!auto;[...$('vehicle-fields').querySelectorAll('input,select'),...$('extras').querySelectorAll('input')].forEach(i=>i.disabled=!auto);$('object-fields').querySelectorAll('input').forEach(i=>i.disabled=auto);
+ const result=DGSPrice.calculate(service(),$('budget').value);lastResult=result;$('budget').setCustomValidity(result.valid?'':result.error);$('price-breakdown').replaceChildren();$('result-service').textContent=DGSPrice.labels[service()];$('budget-help').textContent=auto?'Ohne Budget startet der Vorschlag bei CHF 100. Der Mittelwert aus Mindestpreis und Budget liegt nie unter CHF 100.':'Ihr Budget hilft uns, eine passende individuelle Offerte zu erstellen. Für diese Leistung erfolgt keine automatische Preisberechnung.';
+ if(!result.valid){$('result-price').textContent='Budget prüfen';$('budget-notice').textContent=result.error;$('quote-summary').value='';$('print-quote').disabled=true;return}
+ $('print-quote').disabled=false;$('result-price').textContent=result.automatic?money(result.proposal):'Individuelle Offerte';$('result-price').style.fontSize=result.automatic?'':'30px';
+ if(result.automatic){addRow($('price-breakdown'),'Mindestpreis',money(result.minimum));addRow($('price-breakdown'),'Ihr Budget',result.budget!==null?money(result.budget):'Nicht angegeben');addRow($('price-breakdown'),'Berechnung','Mittelwert, mind. CHF 100')}
+ else addRow($('price-breakdown'),'Ihr Budget',result.budget!==null?money(result.budget):'Nicht angegeben');
+ $('budget-notice').textContent=result.belowMinimum?'Ihr Budget liegt unter unserem Mindestpreis. Der Vorschlag beträgt CHF 100 und überschreitet Ihr Budget.':result.automatic&&result.budget!==null?'Beispielregel: ('+money(result.minimum)+' + '+money(result.budget)+') ÷ 2, mindestens CHF 100.':'';
+ $('result-note').textContent=result.automatic?'Vorschlag für die Autoinnenreinigung. Extras, starker Mehraufwand und allfällige Anfahrt werden separat geprüft. Die Fotos werden nicht automatisch ausgewertet.':'Wir prüfen Grösse, Material, Zustand und gewünschten Umfang und erstellen Ihre persönliche Offerte. Ihr Budget wird als Wunsch berücksichtigt.';
+ const review=reviewItems();$('review-note').hidden=!review.length;$('review-note').textContent='Separat zu prüfen: '+review.join(', ')+'. Ein allfälliger Zuschlag ist noch nicht eingerechnet.';$('quote-summary').value=summary(result);
+ }
+ form.addEventListener('input',update);form.addEventListener('change',update);
+ form.addEventListener('submit',e=>{update();if(!checkPhotos()||!lastResult?.valid){e.preventDefault();form.reportValidity();return}$('quote-status').textContent='Sie werden zur geschützten Übermittlung weitergeleitet. Die Anfrage ist erst nach erfolgreicher Übermittlung gesendet.'});
+ function print(){update();if(!lastResult?.valid){$('budget').reportValidity();return}const area=$('print-summary');area.replaceChildren();const title=document.createElement('h1');title.textContent='Dampfglanzservice-Ademi';const sub=document.createElement('p');sub.textContent='Unverbindlicher Preisvorschlag · '+new Intl.DateTimeFormat('de-CH').format(new Date());const address=document.createElement('p');address.textContent='Trischlistrasse 25 · 9400 Rorschach\n+41 76 502 49 98 · info@dampfglanzservice-ademi.ch';area.append(title,sub,address);const price=document.createElement('p');price.className='print-price';price.textContent=lastResult.automatic?money(lastResult.proposal):'Individuelle Offerte nach Prüfung';area.append(price);const lines=document.createElement('p');lines.textContent=summary(lastResult);area.append(lines);const heading=document.createElement('h2');heading.textContent='Ihre Angaben';area.append(heading);['customer-name','customer-email','customer-phone','customer-place','car-model','object-size','desired-date','quote-message'].forEach(id=>{const input=$(id);if(input?.value&&!input.disabled){const p=document.createElement('p'),label=form.querySelector('label[for="'+id+'"]');p.textContent=(label?.textContent.replace(/\s*optional|\s*\*/g,'')||id)+': '+input.value;area.append(p)}});const dirt=document.createElement('p');dirt.textContent='Verschmutzung: '+form.querySelector('input[name="Verschmutzung"]:checked').value;area.append(dirt);const photos=document.createElement('div');photos.className='print-photos';$('photo-preview').querySelectorAll('figure').forEach(f=>{const copy=f.cloneNode(true);copy.querySelector('button')?.remove();photos.append(copy)});area.append(photos);const note=document.createElement('p');note.className='print-note';note.textContent='Diese Übersicht ist keine verbindliche Offerte und keine Buchung. Dampfglanzservice-Ademi prüft Fotos und Auftragsumfang persönlich. Endgültiger Preis, Steuerbehandlung, Anfahrt und Termin werden vor dem Auftrag bestätigt.';area.append(note);window.print()}
+ $('print-quote').addEventListener('click',print);window.addEventListener('pagehide',()=>imageUrls.forEach(URL.revokeObjectURL));update();
+})();
