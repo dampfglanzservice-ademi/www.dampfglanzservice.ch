@@ -4,7 +4,7 @@ Statische, mehrseitige Website für das bestehende GitHub-Pages-Projekt. Die Dom
 
 ## Bearbeiten und prüfen
 
-Die Seiten werden aus `tools/build_site.py` erzeugt. Dort liegen Seiteninhalte und gemeinsame Komponenten. Vorhandene Unternehmensbilder werden als optimierte WebP-Dateien verwendet. Die Sofaillustration ist als Illustration gekennzeichnet, nicht als Referenzfoto. Originalbilder bleiben erhalten. Die bisherigen Rechtstexte sind in `tools/legal_content.json` gesichert und um die Fotoanfrage ergänzt.
+Das Angebotsformular liegt in `tools/quote.template`. Die Seiten werden aus `tools/build_site.py` erzeugt. Dort liegen Seiteninhalte und gemeinsame Komponenten. Vorhandene Unternehmensbilder werden als optimierte WebP-Dateien verwendet. Die Sofaillustration ist als Illustration gekennzeichnet, nicht als Referenzfoto. Originalbilder bleiben erhalten. Die bisherigen Rechtstexte sind in `tools/legal_content.json` gesichert und um die Fotoanfrage ergänzt.
 
 ```sh
 python3 -m pip install -r tools/requirements.txt
@@ -15,20 +15,13 @@ node --check script.js
 python3 -m http.server 8765
 ```
 
-## Preisregel
+## Preisregel und kostenlose Grenzen
 
-`pricing.js` enthält die separat getestete Preisregel für die Autoinnenreinigung:
+Alle vier Leistungen besitzen definierte Online-Pakete. Die internen Regeln, recherchierten Vergleichspreise und Unterschiede sind in `tools/price-research.md` dokumentiert. Keine sichtbare Mindestpreistabelle. Budgets unter der Paketgrenze werden gesperrt, gültige Budgets ergeben den Mittelwert aus Paketgrenze und Budget. Sonderfälle benötigen eine persönliche Offerte; keine erfundenen Zuschläge. Preise gelten für das beschriebene Paket in Rorschach. Betreiber muss Umfang und Durchführbarkeit vor Annahme prüfen.
 
-`Vorschlag = max(100, (100 + Kundenbudget) / 2)`, auf zwei Nachkommastellen gerundet.
+Kunden geben zwei unterschiedliche zukünftige Termine (dritter optional) an und bestätigen Preis und Leistungsumfang. Jede Änderung setzt ihr Einverständnis zurück. Das Unternehmen bestätigt Auftrag und Termin persönlich. GitHub Pages und vorhandenes FormSubmit benötigen keinen neu gebuchten kostenpflichtigen Dienst; bestehende Domainkosten bleiben bestehen.
 
-- Ohne Budget: CHF 100.
-- Budget CHF 150: CHF 125.
-- Budget CHF 50: CHF 100, mit Hinweis auf die Budgetüberschreitung.
-- Fahrzeuggrösse, Verschmutzung, Fotos und Extras werden zur persönlichen Prüfung erfasst. Ohne freigegebene Zuschläge werden sie nicht automatisch berechnet.
-- Andere Reinigungsleistungen erhalten eine individuelle Offerte; der Auto-Mindestpreis wird nicht auf sie übertragen.
-- Keine KI-Fotoanalyse, automatische Buchung oder verbindliche Preiszusage.
-- MWST-Behandlung, Zusatzkosten, Anfahrt und endgültiger Umfang müssen in der persönlichen Bestätigung festgelegt werden.
-- Kunden können Browserwerte verändern. Die eingehende Anfrage ist untrusted input; immer anhand der Preisregel und des tatsächlichen Aufwands überprüfen. Eine verbindliche automatische Kalkulation erfordert einen serverseitigen Angebotsdienst.
+GitHub Pages führt keine Serverprüfung aus. Browserregeln sind einsehbar und manipulierbar; versteckte UI-Werte sind keine geheimen Werte. Eingehende Anfragen vor Annahme nachrechnen. Echte Vertraulichkeit und manipulationssichere Prüfung benötigen einen anderen Serverdienst, der hier nicht aktiviert wurde.
 
 ## Anfragen und Fotos
 

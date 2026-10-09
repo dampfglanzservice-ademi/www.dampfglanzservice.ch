@@ -456,3 +456,6 @@ legend{font-size:12px;font-weight:600;margin-bottom:12px}
 @media(max-width:900px){.header nav .nav-offerte{display:block;color:var(--accent)}
 }
 
+
+/* Quote summary contrast and confirmation state. */
+.quote-result #result-service,.quote-result #result-note{color:#edf2ee}.quote-result .fine-print{color:#d5ded7}.button:disabled{opacity:.45;cursor:not-allowed}.brand img{border-radius:0}

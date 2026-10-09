@@ -1,16 +1,11 @@
-/* Prices in CHF. This proposal is not a binding quote; extras require review. */
-(function(root){
- 'use strict';
- const minimum=100;
- const labels={auto:'Autoinnenreinigung',wohnungsreinigung:'Wohnungsreinigung','endreinigung-abnahmegarantie':'Endreinigung',polsterreinigung:'Polsterreinigung'};
- function calculate(service,budget){
-  const provided=budget!=='' && budget!==null && budget!==undefined;
-  const value=provided?Number(budget):null;
-  if(provided && (!Number.isFinite(value)||value<0||value>100000))return {valid:false,error:'Bitte geben Sie ein Budget zwischen CHF 0 und CHF 100’000 ein.'};
-  const automatic=service==='auto';
-  return {valid:true,automatic,minimum:automatic?minimum:null,budget:value,proposal:automatic?Math.round(Math.max(minimum,(minimum+(value??minimum))/2)*100)/100:null,belowMinimum:automatic&&value!==null&&value<minimum,label:labels[service]||'Reinigung',formula:'max(100, (100 + Budget) / 2)',version:'2026-10-09'};
- }
- const api={calculate,labels,minimum};
- root.DGSPrice=api;
- if(typeof module!=='undefined'&&module.exports)module.exports=api;
+/* Operator policy, not confidential: GitHub Pages delivers this file to browsers.
+   Sample and comparison limitations: tools/price-research.md. No invented extras. */
+(function(root){'use strict';
+const packages={
+auto:[['small','Kleinwagen',250,'Innenraum saugen, Fussmatten, zugängliche Oberflächen und Scheiben innen reinigen.'],['medium','Limousine / Kombi',270,'Innenraum saugen, Fussmatten, zugängliche Oberflächen und Scheiben innen reinigen.'],['large','SUV / Van',350,'Innenraum saugen, Fussmatten, zugängliche Oberflächen und Scheiben innen reinigen.']],
+wohnungsreinigung:[2,3,4,5,6].map(h=>[String(h),h+' Arbeitsstunden',h*48,'Genau '+h+' Arbeitsstunden: Böden saugen/wischen, zugängliche Oberflächen, Küche und Bad nach Ihrer Priorität. Keine Zusage, die gesamte Wohnung in dieser Zeit zu reinigen.']),
+'endreinigung-abnahmegarantie':[[1.5,550],[2.5,700],[3.5,850],[4.5,1000],[5.5,1150],[6.5,1400]].map(([n,p])=>[String(n),'Wohnung bis '+n+' Zimmer',p,'Leere Wohnung: Küche und Geräte innen, Bad/WC, Böden, Fenster und Rahmen. Abgabegarantie für diese Reinigungsarbeiten; keine Reparaturen, Schimmel- oder Sonderreinigung.']),
+polsterreinigung:[[1,75],[2,140],[3,205],[4,265],[5,330]].map(([n,p])=>[String(n),n===1?'Ein Sessel':n+' Sitzplätze',p,'Textilpolster, Sitzflächen, Rücken- und Armlehnen reinigen, Materialeignung vor Ort prüfen. Keine Garantie vollständiger Fleckenentfernung; keine Lederreinigung.'])};
+function calculate(service,key,budget,condition='normal'){const item=packages[service]?.find(p=>p[0]===String(key));if(!item)return {valid:false,error:'Bitte wählen Sie ein Paket.'};if(condition!=='normal')return {valid:false,error:'Für diesen Zustand erstellen wir eine persönliche Offerte. Bitte kontaktieren Sie uns.'};const n=Number(budget);if(budget===''||budget==null||!Number.isFinite(n)||n<item[2]||n>100000)return {valid:false,error:'Dieses Budget ist für die gewählte Leistung nicht möglich. Bitte passen Sie Ihr Budget an oder kontaktieren Sie uns.'};return {valid:true,proposal:Math.ceil((item[2]+n)/2*100)/100,label:item[1],scope:item[3],version:'2026-10-09'};}
+root.DGSPrice={packages,calculate};if(typeof module!=='undefined')module.exports=root.DGSPrice;
 })(typeof globalThis!=='undefined'?globalThis:this);

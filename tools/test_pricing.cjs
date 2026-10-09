@@ -1,10 +1,3 @@
-const assert=require('node:assert/strict');
-const {calculate}=require('../pricing.js');
-for(const [budget,proposal] of [['',100],[null,100],[0,100],[50,100],[100,100],[150,125],[200,150],[150.5,125.25],[100000,50050]]){
- const result=calculate('auto',budget);assert.equal(result.valid,true);assert.equal(result.proposal,proposal);assert.ok(result.proposal>=100);
-}
-assert.equal(calculate('auto',50).belowMinimum,true);
-assert.equal(calculate('auto',150).belowMinimum,false);
-for(const budget of [-1,'nonsense',Infinity,100001])assert.equal(calculate('auto',budget).valid,false);
-for(const service of ['wohnungsreinigung','endreinigung-abnahmegarantie','polsterreinigung']){const result=calculate(service,150);assert.equal(result.proposal,null);assert.equal(result.automatic,false);assert.equal(result.budget,150)}
-console.log('Pricing checks passed: minimum, mean, decimals, invalid budgets and manual services.');
+const assert=require('node:assert/strict');const {calculate,packages}=require('../pricing.js');
+for(const [service,list] of Object.entries(packages))for(const [key,label,floor] of list){assert.equal(calculate(service,key,floor-0.01).valid,false);assert.equal(calculate(service,key,'').valid,false);assert.equal(calculate(service,key,floor).proposal,floor);assert.equal(calculate(service,key,floor+100).proposal,floor+50);assert.equal(calculate(service,key,floor,'special').valid,false);for(const b of [-1,'bad',Infinity,100001])assert.equal(calculate(service,key,b).valid,false)}
+assert.equal(calculate('auto','small',249).valid,false);assert.equal(calculate('auto','small',300).proposal,275);assert.equal(calculate('unknown','bad',500).valid,false);console.log('All packages: floor boundaries, mean, invalid inputs and special cases passed.');
