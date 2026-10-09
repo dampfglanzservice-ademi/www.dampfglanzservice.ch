@@ -40,3 +40,9 @@ Nach Freigabe: Änderungen in die bestehende GitHub-Pages-Quelle übernehmen, Ve
 ## Gestaltung und regionale Suche
 
 Weiss/Rot, feste WhatsApp-/Anrufleiste auf allen Seiten; drei Kantonsseiten St. Gallen/Thurgau/Zürich. Google-Profil mit datierter Bewertung 5.0 aus 11 Rezensionen (9. Oktober 2026), kein Live-Widget. Marketingvorbereitung und Keyword-Gruppen: tools/search-marketing.md. Sonstige Dienstleistungen erhalten Budgetanfrage ohne automatischen Fixpreis. Keine Werbung gestartet.
+
+## Bewertungen und weitere Ostschweizer Gebiete
+
+35 Seiten: zusätzliche regionale Seiten für Appenzell Ausserrhoden/Innerrhoden, Schaffhausen, Glarus, Graubünden, Rheintal, Toggenburg und Werdenberg/Sarganserland. Jede Seite behandelt eigene Auftragsfragen. Keine erfundenen Niederlassungen, Referenzen oder Anfahrtsversprechen. Kombireinigung kann individuell angefragt werden. Weisse Fusszeile, optimiertes WhatsApp-Symbol und leichte perspektivische Effekte; reduzierte Bewegung wird berücksichtigt.
+
+`tools/reviews.json`: alle 11 sichtbaren Einträge mit Namen, relativer Google-Zeitangabe und Quellenlink; 10 kurze Originalauszüge mit zusammen 25 Wörtern, ein Eintrag ohne Text. Keine vollständige Kopie längerer fremder Rezensionen, keine erfundenen Kalenderdaten. Die datierte Momentaufnahme wird nicht live aktualisiert.
