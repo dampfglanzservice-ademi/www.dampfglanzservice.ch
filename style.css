@@ -490,3 +490,23 @@ footer{background:#fff;color:var(--ink);border-top:1px solid var(--line)}.footer
 @media(max-width:600px){.quote-progress{gap:8px}.quote-progress span{font-size:10px}.wizard-actions .button{padding:13px 18px}.quote-step{scroll-margin-top:100px}}
 @media print{.tilt-surface{transform:none!important;box-shadow:none!important}.wizard-actions,.quote-progress{display:none!important}}
 .project-link{padding-block:0 28px}.quote-result{min-width:0}.result-price{word-break:normal}.quote-progress span{line-height:1.5}
+
+/* Shared, visible depth for every interactive control. */
+a[href],button{transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease,color .2s ease;transform-origin:center;}
+.button,.quick-contact a,.menu-toggle,.photo-preview button{box-shadow:0 5px 0 #72201b35,0 9px 18px #72201b18;transform:perspective(700px) translateZ(0);}
+@media(hover:hover) and (pointer:fine){
+a[href]:not(.service-card):not(.brand):hover,button:not(:disabled):hover{transform:perspective(700px) translateY(-3px) rotateX(7deg);}
+.button:hover,.quick-contact a:hover,.menu-toggle:hover{box-shadow:0 7px 0 #72201b35,0 15px 24px #72201b25;}
+.header nav a{padding:9px 11px;margin:-9px -11px;border-radius:9px;}
+.header nav a:hover{background:#fff2ef;box-shadow:0 4px 0 #b52d2c24,0 8px 16px #72201b12;}
+.footer a:hover,.breadcrumbs a:hover{display:inline-block;box-shadow:0 3px 0 #b52d2c25;}
+}
+a[href]:not(.service-card):not(.brand):active,button:not(:disabled):active{transform:perspective(700px) translateY(2px) scale(.97);box-shadow:0 1px 0 #72201b35;}
+input::file-selector-button{transition:transform .2s,box-shadow .2s;box-shadow:0 3px 0 #72201b25;}
+input::file-selector-button:hover{transform:translateY(-2px);}
+input::file-selector-button:active{transform:translateY(1px);}
+@media(prefers-reduced-motion:reduce){a[href],button,input::file-selector-button{transform:none!important;transition:none!important;animation:none!important;}}
+@media print{a[href],button{transform:none!important;box-shadow:none!important;}}
+
+a[href],button{position:relative;}
+.header nav a,.breadcrumbs a,.legal-content a{display:inline-block;}
