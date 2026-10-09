@@ -542,3 +542,10 @@ input,select,textarea{font-size:16px;}
 @media(max-width:600px){.hero-grid>*{min-width:0;}.hero-copy h1{overflow-wrap:anywhere;hyphens:auto;}.hero-copy .eyebrow{white-space:normal;}}
 
 @media(hover:none),(max-width:600px){.service-card.tilt-surface{transform:none;transform-style:flat;}.service-card img{transform:none;}}
+
+body.consent-open{overflow:hidden;}
+#cookie-dialog{width:min(620px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding:0;border:1px solid #ead6d0;border-radius:22px;background:#fff;color:var(--ink);box-shadow:0 24px 70px #39201c35;margin:auto;}
+#cookie-dialog::backdrop{background:#24171477;backdrop-filter:blur(3px);}
+.cookie-content{padding:28px;}.cookie-content h2{font-size:28px;margin:12px 0;}.cookie-content p{font-size:14px;line-height:1.6;}.cookie-content details{margin:16px 0;border:1px solid var(--line);padding:12px;border-radius:12px;}.cookie-content summary{cursor:pointer;font-weight:600;min-height:32px;}.cookie-option{display:flex;align-items:center;gap:10px;font-size:14px;}.cookie-option input{width:20px;height:20px;flex:none;}.cookie-content>a{text-decoration:underline;font-size:14px;}.cookie-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 12px;}.cookie-actions .button{font-size:14px;padding:13px;}.cookie-actions #cookie-save{grid-column:1/-1;}.cookie-small{color:var(--muted);font-size:12px!important;}.cookie-settings-link{display:block;background:none;border:0;padding:8px 0;color:var(--muted);font-size:13px;text-decoration:underline;text-align:left;}
+@media(max-width:600px){.cookie-content{padding:20px;}.cookie-content h2{font-size:24px;}.cookie-actions{gap:10px;}.cookie-actions .button{font-size:12px;}}
+@media print{#cookie-dialog{display:none!important;}body.consent-open{overflow:visible;}}
