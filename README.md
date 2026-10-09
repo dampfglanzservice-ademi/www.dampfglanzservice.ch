@@ -43,6 +43,12 @@ Weiss/Rot, feste WhatsApp-/Anrufleiste auf allen Seiten; drei Kantonsseiten St. 
 
 ## Bewertungen und weitere Ostschweizer Gebiete
 
-35 Seiten: zusätzliche regionale Seiten für Appenzell Ausserrhoden/Innerrhoden, Schaffhausen, Glarus, Graubünden, Rheintal, Toggenburg und Werdenberg/Sarganserland. Jede Seite behandelt eigene Auftragsfragen. Keine erfundenen Niederlassungen, Referenzen oder Anfahrtsversprechen. Kombireinigung kann individuell angefragt werden. Weisse Fusszeile, optimiertes WhatsApp-Symbol und leichte perspektivische Effekte; reduzierte Bewegung wird berücksichtigt.
+36 Seiten: zusätzliche regionale Seiten für Appenzell Ausserrhoden/Innerrhoden, Schaffhausen, Glarus, Graubünden, Rheintal, Toggenburg und Werdenberg/Sarganserland. Jede Seite behandelt eigene Auftragsfragen. Keine erfundenen Niederlassungen, Referenzen oder Anfahrtsversprechen. Kombireinigung kann individuell angefragt werden. Weisse Fusszeile, optimiertes WhatsApp-Symbol und leichte perspektivische Effekte; reduzierte Bewegung wird berücksichtigt.
 
 `tools/reviews.json`: alle 11 sichtbaren Einträge mit Namen, relativer Google-Zeitangabe und Quellenlink; 10 kurze Originalauszüge mit zusammen 25 Wörtern, ein Eintrag ohne Text. Keine vollständige Kopie längerer fremder Rezensionen, keine erfundenen Kalenderdaten. Die datierte Momentaufnahme wird nicht live aktualisiert.
+
+## Qualitätsrunde: Offertenablauf
+
+Das Formular führt in drei Schritten durch Leistung, Preis/Fotos und Kontakt/Termine. Vorwärts wird nur bei gültigen Feldern des aktuellen Schritts gewechselt; zurück bleiben Angaben erhalten. Sonderverschmutzung und auswärtige Einsätze können eine persönliche Offerte mit Budgetwunsch erhalten, ohne die Paketgrenze zu umgehen. Leistungs-/Ortsänderungen widerrufen die vorherige Zustimmung. Die Druckübersicht enthält nun auch Auftragsbeschreibung und gewählten Ort. Preiscode lädt nur auf der Offertenseite. Eine neue Projektseite zeigt vorhandene echte Vorher-/Nachher-Aufnahmen und Fotohinweise.
+
+Autorisierter Versandtest am 9. Oktober 2026: FormSubmit zeigte `Check Your Email` und meldete eine notwendige Formularaktivierung. Laut Dienst wurde die Aktivierungs-E-Mail an info@dampfglanzservice-ademi.ch gesendet. Eingang und Aktivierung müssen vom Inhaber bestätigt werden; die Zustellung der eigentlichen Offerte ist noch nicht nachgewiesen. Keine Veröffentlichung erfolgt.
