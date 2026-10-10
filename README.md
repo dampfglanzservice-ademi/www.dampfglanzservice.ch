@@ -8,7 +8,7 @@ Mehrseitige statische GitHub-Pages-Website auf www.dampfglanzservice-ademi.ch. A
 
 Die Hauptgestaltung, Farben, vier Hauptkarten auf Start- und Regionalseiten und die festen Kontaktbuttons bleiben erhalten. Die Online-Offerte steht direkt unter dem Startseiten-Hero und ist bereits im Hero verlinkt.
 
-Vom Betreiber bereitgestellte Medien: `assets/ferki-ademi-480.webp` und `assets/ferki-ademi-960.webp` zeigen Ferki Ademi, Inhaber und CEO. `assets/dampfreinigung-animiert.webp` enthält die 73 Frames des Startseiten-GIFs in optimierter WebP-Form; der schwarze Leerbereich ist entfernt. Die Animation kann pausiert werden; bei reduzierter Bewegung wird ein Standbild gezeigt. Keine erfundenen Projektbilder.
+Vom Betreiber bereitgestellte Medien: Die optimierten Porträts `assets/ferki-ademi-weiss-480.webp` und `assets/ferki-ademi-weiss-960.webp` zeigen Ferki Ademi mit weissem Hintergrund. Das vollständige Startseiten-GIF wurde ohne Beschnitt in `assets/dampfreinigung-vollstaendig.mp4` umgewandelt (576 × 1024, rund 5,3 Sekunden). Native Videosteuerung bietet Pause und Vollbild; bei reduzierter Bewegung startet es nicht automatisch. Leistungen ohne passendes Originalfoto erscheinen als schlichte verlinkte Balken.
 
 ```sh
 python3 -m pip install -r tools/requirements.txt
