@@ -1,3 +1,5 @@
+> Historisches Rechercheprotokoll vom 9. Oktober 2026. Die damaligen Preisgrenzen und Durchschnittsregeln wurden am 10. Oktober 2026 vollständig aus der Website entfernt. Keine der folgenden Preisregeln ist aktiv.
+
 # Betreiberunterlage: Preisvergleich und kostenlose Umsetzung
 
 Stand: 9. Oktober 2026. Ausgewählte öffentlich ausgeschriebene Angebote, keine vollständige Markterhebung. Anbieter veröffentlichen teils Richt- oder Abpreise mit unterschiedlichem Umfang und Steuerstatus. Die folgenden Regeln sind Betreiberentscheidungen auf Grundlage dieser Stichprobe und keine Behauptung eines exakten Marktmittels. Aufrundung auf CHF 5, ausser Stundensatz auf CHF 1. Preise sind Endpreise des Online-Pakets; keine automatische MWST-Zuschlagsberechnung.
