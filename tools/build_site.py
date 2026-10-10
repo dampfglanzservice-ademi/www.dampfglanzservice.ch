@@ -153,6 +153,26 @@ project_body=breadcrumbs('Reinigungsprojekte')+hero('Echte Aufnahmen aus unserer
 put('/reinigungsprojekte/','Reinigungsprojekte: Bad & Küche vorher/nachher | Ademi','Echte Bilder von Bad- und Küchenreinigung. Sehen Sie Einblicke in unsere Arbeit und erfahren Sie, welche Fotos bei Ihrer Reinigungsanfrage helfen.',project_body)
 put('/bewertungen/','Google-Kundenbewertungen | Dampfglanzservice-Ademi','Elf echte Google-Bewertungen mit Namen, originalen Zeitangaben und kurzen Auszügen. Quellen prüfen und Dampfglanzservice-Ademi kennenlernen.',reviews_page())
 put('/404.html','Seite nicht gefunden | '+NAME,'Diese Seite wurde nicht gefunden. Entdecken Sie unsere Reinigungsleistungen oder kontaktieren Sie Dampfglanzservice-Ademi.','<section class="text-hero"><div class="container"><span class="eyebrow">404 · Seite nicht gefunden</span><h1>Hier fehlt etwas.<br>Glanz gibt es trotzdem.</h1><p>Diese Adresse ist nicht verfügbar. Finden Sie auf der Startseite die passende Reinigung.</p>'+button('Zur Startseite','/')+'</div></section>',noindex=True)
+# Compact, expandable answers on the main customer journeys.
+common_faq = [
+ ('Welche Reinigungen kann ich anfragen?', 'Wohnungs-, End-, Auto- und Polsterreinigung sowie weitere Leistungen für Innen- und Aussenbereiche. In der Leistungsübersicht finden Sie unser Angebot. Zusätzliche Wünsche können Sie als sonstige Dienstleistung beschreiben.'),
+ ('Wie funktioniert die Online-Offerte?', 'Wählen Sie die Leistung, beschreiben Sie den Auftrag und nennen Sie Ihren Preiswunsch. Fotos und zwei mögliche Termine helfen uns bei der Planung. Anschliessend erhalten Sie eine übersichtliche Zusammenfassung Ihrer Anfrage.'),
+ ('Ist mein Preisvorschlag bereits ein bestätigter Auftrag?', 'Nein. Ihre Anfrage ist unverbindlich. Wir prüfen Umfang und Zustand und stimmen den endgültigen Preis, die Leistungen und den Termin persönlich mit Ihnen ab.'),
+ ('Wo bieten Sie Ihre Reinigung an?', 'Unser Standort ist Rorschach. Wir nehmen Anfragen aus St. Gallen, Thurgau, Zürich und weiteren Teilen der Ostschweiz entgegen. Verfügbarkeit und eine allfällige Anfahrt klären wir vor dem Auftrag.'),
+ ('Kann ich mehrere Leistungen kombinieren?', 'Ja. Beschreiben Sie die gewünschten Arbeiten gemeinsam in Ihrer Anfrage, zum Beispiel Wohnung und Sofa. Wir klären mit Ihnen den Umfang, den Gesamtpreis und den möglichen Ablauf.')
+]
+offer_faq = [common_faq[1], common_faq[2],
+ ('Welche Fotos kann ich hinzufügen?', 'Sie können bis zu drei JPG- oder PNG-Fotos mit insgesamt höchstens 9 MB hinzufügen. Zeigen Sie das Objekt und besondere Verschmutzungen. Die Bilder werden persönlich geprüft.'),
+ ('Kann ich meinen Wunschpreis selbst eingeben?', 'Ja. Geben Sie Ihren Preisvorschlag in CHF ein. Wir prüfen, welche Leistungen dafür möglich sind, und besprechen die passende Offerte mit Ihnen.'),
+ ('Ist ein vorgeschlagener Termin schon reserviert?', 'Nein. Geben Sie zwei unterschiedliche mögliche Termine an; ein dritter ist optional. Verbindlich wird der Termin erst durch unsere persönliche Bestätigung.')
+]
+for faq_path, answers in {'/': common_faq, '/leistungen/': [common_faq[0], common_faq[4], common_faq[3]], '/offerte/': offer_faq, '/kontakt/': [common_faq[2], common_faq[3]]}.items():
+ page = pages[faq_path]
+ # Keep answers collapsed so the existing layout stays clear.
+ block = faq(answers)
+ page['body'] = page['body'][:-len(cta())] + block + cta() if page['body'].endswith(cta()) else page['body'] + block
+ page['faq'] = answers
+
 for path,p in pages.items():
  url=BASE+path
  business={'@type':'LocalBusiness','@id':BASE+'/#business','name':NAME,'logo':BASE+'/assets/brand.png','founder':{'@id':BASE+'/ueber-uns/#ferki-ademi'},'hasOfferCatalog':{'@type':'OfferCatalog','name':'Reinigungsleistungen','itemListElement':[{'@type':'Offer','itemOffered':{'@type':'Service','name':label,'url':BASE+'/'+slug+'/','provider':{'@id':BASE+'/#business'}}} for label,slug in profile_services]},'url':BASE+'/','telephone':'+41765024998','email':'info@dampfglanzservice-ademi.ch','image':BASE+'/assets/brand.png','address':{'@type':'PostalAddress','streetAddress':'Trischlistrasse 25','postalCode':'9400','addressLocality':'Rorschach','addressCountry':'CH'},'identifier':'CHE-199.157.071','areaServed':['Rorschach','Kanton St. Gallen','Thurgau','Kanton Zürich']+list(regions.values()),'sameAs':['https://share.google/dCGFMFzPosnnV46j6']}
