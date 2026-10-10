@@ -1,0 +1,597 @@
+{
+  "bueroreinigung": {
+    "label": "Büro- und Arbeitsplatzreinigung",
+    "title": "Saubere Arbeitsplätze.\nEin gepflegter Empfang.",
+    "image": "home",
+    "tag": "Regelmässig oder einmalig",
+    "intro": "Arbeitsplätze, Besprechungsräume und gemeinsam genutzte Bereiche werden nach einem abgestimmten Reinigungsplan gepflegt.",
+    "body": "Für ein Büro ist wichtig, welche Räume täglich genutzt werden und wann die Reinigung den Betrieb möglichst wenig stört. Wir stimmen Arbeitszeiten, Zugang und Aufgaben mit Ihnen ab. Dokumente und persönliche Arbeitsmittel bleiben an ihrem vereinbarten Platz.",
+    "desc": "Büro- und Arbeitsplatzreinigung in Rorschach, St. Gallen und der Ostschweiz. Arbeitsplätze, Besprechungsräume und gemeinsam genutzte Bereiche werden nach einem abgestimmten Reinigungsplan gepflegt. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Arbeitsplätze",
+        "Zugängliche Tischflächen und Ablagen nach Absprache reinigen. Elektronik nur im ausdrücklich vereinbarten Umfang."
+      ],
+      [
+        "Gemeinschaftsbereiche",
+        "Böden, Empfang, Teeküche und Sanitärbereiche in den Reinigungsplan aufnehmen."
+      ],
+      [
+        "Organisation",
+        "Reinigungsrhythmus, Schlüsselübergabe und Hinweise zu vertraulichen Bereichen vorab klären."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Büro- und Arbeitsplatzreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Büroreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Büro- und Arbeitsplatzreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "grundreinigung": {
+    "label": "Grundreinigung",
+    "title": "Gründlich von Grund auf.\nNach Ihrem Bedarf.",
+    "image": "bath",
+    "tag": "Gezielte intensive Reinigung",
+    "intro": "Für Bereiche, die über die laufende Reinigung hinaus besondere Aufmerksamkeit brauchen.",
+    "body": "Bei einer Grundreinigung stehen angesammelte Verschmutzungen und schwerer erreichbare Stellen im Mittelpunkt. Sie beschreiben die betroffenen Räume und Oberflächen; wir bestimmen mit Ihnen die Prioritäten. Material und bisherige Pflege entscheiden mit darüber, welches Verfahren geeignet ist.",
+    "desc": "Grundreinigung in Rorschach, St. Gallen und der Ostschweiz. Für Bereiche, die über die laufende Reinigung hinaus besondere Aufmerksamkeit brauchen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Bestandsaufnahme",
+        "Fotos und Hinweise zu Belägen, Oberflächen und Verschmutzungen helfen bei der Planung."
+      ],
+      [
+        "Schwerpunkte",
+        "Böden, Küche, Bad oder einzelne Bereiche gezielt in den Auftrag aufnehmen."
+      ],
+      [
+        "Materialschutz",
+        "Empfindliche Beschichtungen und Naturstein vorab benennen. Schäden werden nicht als Verschmutzung behandelt."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Grundreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Grundreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Grundreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "fensterreinigung": {
+    "label": "Fenster- und Glasreinigung",
+    "title": "Klare Sicht.\nSorgfältig gereinigt.",
+    "image": "home",
+    "tag": "Fenster innen und aussen",
+    "intro": "Fenster, Glasflächen und Rahmen im persönlich vereinbarten Umfang reinigen lassen.",
+    "body": "Für eine Fensterreinigung benötigen wir Angaben zur Anzahl, Grösse und Erreichbarkeit der Glasflächen. Innen- und Aussenseiten, Rahmen und weitere Elemente werden einzeln abgestimmt. So ist vor dem Termin klar, welche Arbeiten dazugehören und wie der Zugang organisiert wird.",
+    "desc": "Fenster- und Glasreinigung in Rorschach, St. Gallen und der Ostschweiz. Fenster, Glasflächen und Rahmen im persönlich vereinbarten Umfang reinigen lassen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Glasflächen",
+        "Fenster innen und aussen sowie weitere zugängliche Glasflächen nach Vereinbarung."
+      ],
+      [
+        "Rahmen und Details",
+        "Rahmen, Falze, Fensterbänke und Storen ausdrücklich anfragen."
+      ],
+      [
+        "Sicherer Zugang",
+        "Höhe, Hindernisse und Zugang von aussen beschreiben. Besondere Hilfsmittel vorab klären."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Fenster- und Glasreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Fensterreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Fenster- und Glasreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "matratzenreinigung": {
+    "label": "Matratzenreinigung",
+    "title": "Ihr Schlafplatz.\nSorgfältig gepflegt.",
+    "image": "polster",
+    "tag": "Materialgerecht auf Anfrage",
+    "intro": "Matratzengrösse, Material und betroffene Stellen beschreiben – wir prüfen die passende Reinigung.",
+    "body": "Matratzen unterscheiden sich in Aufbau und Feuchtigkeitsempfindlichkeit. Ein Foto des Pflegeetiketts und eine Beschreibung der Flecken helfen uns, die Eignung der gewünschten Behandlung zu prüfen. Die Reinigung ist keine medizinische Behandlung; eine vollständige Fleckenentfernung wird nicht pauschal zugesagt.",
+    "desc": "Matratzenreinigung in Rorschach, St. Gallen und der Ostschweiz. Matratzengrösse, Material und betroffene Stellen beschreiben – wir prüfen die passende Reinigung. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Angaben zur Matratze",
+        "Grösse, Anzahl, Material und Pflegehinweise mitteilen."
+      ],
+      [
+        "Verschmutzung",
+        "Flecken und bisherige Reinigungsversuche beschreiben und fotografieren."
+      ],
+      [
+        "Trocknung",
+        "Zugang, Lüftung und ausreichende Trocknungszeit vor der nächsten Nutzung einplanen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Matratzenreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Matratzenreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Matratzenreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "fruehlingsreinigung": {
+    "label": "Frühjahrsputz / Frühlingsreinigung",
+    "title": "Frischer Start.\nMehr Ordnung im Alltag.",
+    "image": "home",
+    "tag": "Saisonale Reinigung",
+    "intro": "Eine gründliche saisonale Reinigung mit den Schwerpunkten, die Ihnen wichtig sind.",
+    "body": "Beim Frühjahrsputz entscheiden Sie, welche Arbeiten im Alltag zu kurz kommen. Küche, Bad, Böden oder Fenster können Teil Ihrer Anfrage sein. Wir stimmen ab, welche Bereiche zugänglich sind und welche zusätzlichen Aufgaben berücksichtigt werden sollen. Aufräumen und das Umstellen schwerer Möbel werden separat besprochen.",
+    "desc": "Frühjahrsputz / Frühlingsreinigung in Rorschach, St. Gallen und der Ostschweiz. Eine gründliche saisonale Reinigung mit den Schwerpunkten, die Ihnen wichtig sind. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Prioritäten",
+        "Die wichtigsten Räume und Aufgaben in einer kurzen Liste beschreiben."
+      ],
+      [
+        "Zusatzarbeiten",
+        "Fenster, Schränke innen oder besondere Oberflächen ausdrücklich aufnehmen."
+      ],
+      [
+        "Vorbereitung",
+        "Zugang zu Flächen schaffen und empfindliche Gegenstände vorab benennen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Frühjahrsputz / Frühlingsreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Frühlingsreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Frühjahrsputz / Frühlingsreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "wintergartenreinigung": {
+    "label": "Wintergartenreinigung",
+    "title": "Mehr Licht.\nEin gepflegter Wintergarten.",
+    "image": "home",
+    "tag": "Glas und Rahmen nach Absprache",
+    "intro": "Glasflächen, Rahmen und zugängliche Bereiche Ihres Wintergartens reinigen lassen.",
+    "body": "Für die Reinigung eines Wintergartens zählen Aufbau, Glasfläche und sichere Erreichbarkeit. Bitte zeigen Sie Innen- und Aussenansichten und nennen Sie Höhe sowie Zugangsmöglichkeiten. Dachverglasungen und schwer erreichbare Bereiche werden gesondert geprüft; eine Reinigung durch Betreten empfindlicher Glasdächer wird nicht vorausgesetzt.",
+    "desc": "Wintergartenreinigung in Rorschach, St. Gallen und der Ostschweiz. Glasflächen, Rahmen und zugängliche Bereiche Ihres Wintergartens reinigen lassen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Innen und aussen",
+        "Gewünschte Glasflächen und Seiten genau angeben."
+      ],
+      [
+        "Rahmen und Boden",
+        "Materialien und zusätzliche Reinigungswünsche vorab abstimmen."
+      ],
+      [
+        "Höhe und Zugang",
+        "Dachflächen, Hindernisse und nötige Zugangshilfen vor dem Termin klären."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Wintergartenreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Wintergartenreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Wintergartenreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "autopolsterreinigung": {
+    "label": "Autopolsterreinigung",
+    "title": "Sitze auffrischen.\nMaterialien respektieren.",
+    "image": "car",
+    "tag": "Sitze und textile Fahrzeugflächen",
+    "intro": "Gezielte Reinigung von Autopolstern und textilen Flächen nach Materialprüfung.",
+    "body": "Für Autopolster sind Sitzmaterial, Pflegehinweise und Art der Verschmutzung entscheidend. Nennen Sie die betroffenen Sitze, Flecken und bisherigen Behandlungen. Textil und Leder benötigen unterschiedliche Verfahren; Lederpflege und empfindliche Bauteile werden separat abgestimmt. Der Umfang wird vor Beginn persönlich bestätigt.",
+    "desc": "Autopolsterreinigung in Rorschach, St. Gallen und der Ostschweiz. Gezielte Reinigung von Autopolstern und textilen Flächen nach Materialprüfung. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Sitze",
+        "Anzahl und Material der zu reinigenden Sitze angeben."
+      ],
+      [
+        "Textile Bereiche",
+        "Fussmatten oder Kofferraumtextilien als zusätzliche Wünsche beschreiben."
+      ],
+      [
+        "Nach der Reinigung",
+        "Hinweise zur Trocknung und zum Zeitpunkt der nächsten Nutzung persönlich besprechen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Autopolsterreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Autopolsterreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Autopolsterreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "praxisreinigung": {
+    "label": "Praxisreinigung",
+    "title": "Gepflegte Praxisräume.\nKlare Abläufe.",
+    "image": "home",
+    "tag": "Reinigungsplan nach Vereinbarung",
+    "intro": "Reinigung von Empfang, Wartebereich, Böden und Sanitärbereichen passend zum Praxisbetrieb.",
+    "body": "In Praxisräumen müssen Aufgaben und Verantwortlichkeiten eindeutig sein. Wir stimmen einen Reinigungsplan, Zugang und Zeiten ausserhalb der vereinbarten Nutzung mit Ihnen ab. Medizinische Instrumente, Sterilisation und spezielle Desinfektionsaufgaben sind keine automatisch enthaltenen Leistungen; dafür sind gesonderte Anforderungen und Vereinbarungen nötig.",
+    "desc": "Praxisreinigung in Rorschach, St. Gallen und der Ostschweiz. Reinigung von Empfang, Wartebereich, Böden und Sanitärbereichen passend zum Praxisbetrieb. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Räume",
+        "Empfang, Wartezimmer, Büros und Sanitärbereiche in den Plan aufnehmen."
+      ],
+      [
+        "Betriebszeiten",
+        "Reinigungstermine und Zugang so vereinbaren, dass Abläufe berücksichtigt werden."
+      ],
+      [
+        "Besondere Anforderungen",
+        "Hygieneplan und Abgrenzung medizinischer Tätigkeiten vor der Offerte besprechen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Praxisreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Praxisreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Praxisreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "ladenreinigung": {
+    "label": "Ladenreinigung",
+    "title": "Ein gepflegter Laden.\nEin guter erster Eindruck.",
+    "image": "home",
+    "tag": "Für Verkaufsräume und Nebenräume",
+    "intro": "Saubere Verkaufsflächen und gemeinsame Bereiche nach Ihrem Betriebsrhythmus.",
+    "body": "Bei einer Ladenreinigung berücksichtigen wir Öffnungszeiten, Kundenverkehr und die Art der Verkaufsfläche. Böden, zugängliche Oberflächen, Eingangsbereiche und Nebenräume werden im Auftrag festgelegt. Waren, Dekoration und empfindliche Präsentationsflächen werden nur nach Absprache bewegt oder behandelt.",
+    "desc": "Ladenreinigung in Rorschach, St. Gallen und der Ostschweiz. Saubere Verkaufsflächen und gemeinsame Bereiche nach Ihrem Betriebsrhythmus. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Verkaufsfläche",
+        "Bodenmaterial, Fläche und gewünschte Reinigungshäufigkeit mitteilen."
+      ],
+      [
+        "Eingang und Glas",
+        "Eingangsbereich und Schaufenster als gewünschte Zusatzarbeiten angeben."
+      ],
+      [
+        "Nebenräume",
+        "Lagerzugang, Teeküche und Sanitärbereiche im Reinigungsplan abstimmen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Ladenreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Ladenreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Ladenreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "kalkentfernung": {
+    "label": "Kalkentfernung",
+    "title": "Ablagerungen behandeln.\nOberflächen schützen.",
+    "image": "bath",
+    "tag": "Material zuerst prüfen",
+    "intro": "Gezielte Behandlung von Kalkablagerungen an geeigneten Oberflächen.",
+    "body": "Kalk und beschädigte Oberflächen können ähnlich aussehen, benötigen aber unterschiedliche Behandlungen. Zeigen Sie Armaturen, Duschglas oder betroffene Flächen und nennen Sie das Material. Säureempfindliche Oberflächen wie bestimmte Natursteine benötigen besondere Vorsicht. Eine Reinigung ersetzt keine Reparatur beschädigter Beschichtungen.",
+    "desc": "Kalkentfernung in Rorschach, St. Gallen und der Ostschweiz. Gezielte Behandlung von Kalkablagerungen an geeigneten Oberflächen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Betroffene Stellen",
+        "Nahaufnahme und Übersichtsbild der Ablagerungen hinzufügen."
+      ],
+      [
+        "Material",
+        "Naturstein, Beschichtung oder unbekannte Materialien ausdrücklich erwähnen."
+      ],
+      [
+        "Umfang",
+        "Einzelne Armaturen, Dusche oder weitere Bereiche im Auftrag festhalten."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Kalkentfernung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Kalkentfernung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Kalkentfernung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "terrassenreinigung": {
+    "label": "Terrassenreinigung",
+    "title": "Draussen sauber.\nPassend zum Belag.",
+    "image": "home",
+    "tag": "Aussenflächen nach Prüfung",
+    "intro": "Ihre Terrasse mit einem zum Belag und Zustand passenden Verfahren reinigen lassen.",
+    "body": "Für eine Terrassenreinigung sind Fläche, Belag, Fugen und Wasserablauf wichtig. Teilen Sie uns mit, ob es sich etwa um Stein, Holz oder beschichtete Platten handelt. Hochdruck ist nicht für jeden Belag geeignet. Zugang, Wasseranschluss und Schutz angrenzender Bereiche werden vor dem Auftrag geklärt.",
+    "desc": "Terrassenreinigung in Rorschach, St. Gallen und der Ostschweiz. Ihre Terrasse mit einem zum Belag und Zustand passenden Verfahren reinigen lassen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Belag und Fläche",
+        "Material, ungefähre Quadratmeter und Zustand beschreiben."
+      ],
+      [
+        "Vorbereitung",
+        "Möbel, Pflanzen und freie Arbeitsflächen vorab besprechen."
+      ],
+      [
+        "Verfahren",
+        "Reinigungsmethode, Wasserzugang und Entwässerung persönlich abstimmen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Terrassenreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Terrassenreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Terrassenreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "balkonreinigung": {
+    "label": "Balkonreinigung",
+    "title": "Ihr Balkon.\nWieder gepflegt.",
+    "image": "home",
+    "tag": "Boden und Details nach Absprache",
+    "intro": "Balkonboden, zugängliche Flächen und vereinbarte Details sorgfältig reinigen lassen.",
+    "body": "Beim Balkon sind Nachbarbereiche, Wasserablauf und empfindliche Fassaden zu berücksichtigen. Geben Sie Grösse, Bodenmaterial und Zugang an. Geländer, Glasflächen oder starke Ablagerungen können Teil Ihrer Anfrage sein. Wir prüfen den Umfang und die geeignete Methode, bevor Preis und Termin bestätigt werden.",
+    "desc": "Balkonreinigung in Rorschach, St. Gallen und der Ostschweiz. Balkonboden, zugängliche Flächen und vereinbarte Details sorgfältig reinigen lassen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Boden",
+        "Belag, Fläche und Flecken auf Fotos zeigen."
+      ],
+      [
+        "Geländer und Glas",
+        "Zusätzliche Flächen ausdrücklich in der Anfrage nennen."
+      ],
+      [
+        "Umgebung",
+        "Wasserablauf, angrenzende Balkone und Schutzbedarf vorab klären."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Balkonreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Balkonreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Balkonreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "hochdruckreinigung": {
+    "label": "Hochdruckreinigung",
+    "title": "Wirksam reinigen.\nGezielt einsetzen.",
+    "image": "bath",
+    "tag": "Für geeignete Aussenflächen",
+    "intro": "Hochdruckreinigung nach Prüfung von Material, Zustand und Zugang.",
+    "body": "Hochdruck kann bei geeigneten Aussenflächen helfen, ist aber kein universelles Verfahren. Beschichtungen, Fugen, Holz und lose Materialien können empfindlich reagieren. Wir prüfen deshalb den vorgesehenen Einsatz mit Ihnen. Eine Materialprüfung und klare Absprachen stehen vor der Wahl von Druck und Vorgehensweise.",
+    "desc": "Hochdruckreinigung in Rorschach, St. Gallen und der Ostschweiz. Hochdruckreinigung nach Prüfung von Material, Zustand und Zugang. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Einsatzbereich",
+        "Fläche, Belag und Verschmutzung mit Fotos beschreiben."
+      ],
+      [
+        "Materialzustand",
+        "Lose Fugen, Beschädigungen und Beschichtungen vorab mitteilen."
+      ],
+      [
+        "Organisation",
+        "Wasseranschluss, Zugang, Ablauf und Schutz benachbarter Flächen klären."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Hochdruckreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Hochdruckreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Hochdruckreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "teppichreinigung": {
+    "label": "Teppichreinigung",
+    "title": "Textile Flächen.\nSorgfältig gepflegt.",
+    "image": "polster",
+    "tag": "Material und Pflegehinweise prüfen",
+    "intro": "Teppiche und textile Bodenflächen nach Eignungsprüfung reinigen lassen.",
+    "body": "Ob loser Teppich oder verlegter textiler Boden: Material, Farbechtheit und Pflegehinweise beeinflussen die Behandlung. Nennen Sie Masse, Flecken und vorhandene Etiketten. Für empfindliche Fasern oder unbekannte Materialien prüfen wir zuerst, ob die gewünschte Reinigung geeignet ist. Das Ergebnis hängt auch vom Alter der Flecken ab.",
+    "desc": "Teppichreinigung in Rorschach, St. Gallen und der Ostschweiz. Teppiche und textile Bodenflächen nach Eignungsprüfung reinigen lassen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Grösse und Material",
+        "Masse, Faserart und Pflegeetikett wenn vorhanden hinzufügen."
+      ],
+      [
+        "Flecken",
+        "Art, Alter und bisherige Behandlungen möglichst genau beschreiben."
+      ],
+      [
+        "Trocknung",
+        "Zugang, Untergrund, Lüftung und erneute Nutzung vorher abstimmen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Teppichreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Teppichreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Teppichreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "kuechenreinigung": {
+    "label": "Küchenreinigung",
+    "title": "Ihre Küche.\nGründlich gepflegt.",
+    "image": "drawer-after",
+    "tag": "Flächen und Geräte nach Vereinbarung",
+    "intro": "Arbeitsflächen, Spüle und gewünschte Küchenbereiche sorgfältig reinigen lassen.",
+    "body": "Eine Küchenreinigung kann sich auf zugängliche Flächen beschränken oder zusätzliche Innenbereiche umfassen. Schränke, Backofen und Kühlschrank werden deshalb ausdrücklich vereinbart. Geben Sie Materialien, Verschmutzungen und Ihren Schwerpunkt an. Lebensmittel und persönliche Gegenstände müssen für die vereinbarten Arbeiten entsprechend vorbereitet werden.",
+    "desc": "Küchenreinigung in Rorschach, St. Gallen und der Ostschweiz. Arbeitsflächen, Spüle und gewünschte Küchenbereiche sorgfältig reinigen lassen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Oberflächen",
+        "Arbeitsflächen, Spüle und Fronten nach Material und Umfang abstimmen."
+      ],
+      [
+        "Geräte und Schränke",
+        "Innenreinigung von Geräten oder Schränken separat in der Anfrage nennen."
+      ],
+      [
+        "Vorbereitung",
+        "Freie Flächen, Stromversorgung und Zugang vor dem Termin besprechen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Küchenreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Küchenreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Küchenreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "badreinigung": {
+    "label": "Badreinigung",
+    "title": "Ein gepflegtes Bad.\nSorgfalt im Detail.",
+    "image": "bath",
+    "tag": "Sanitär und zugängliche Flächen",
+    "intro": "Bad, Dusche, WC und Armaturen im vereinbarten Umfang reinigen lassen.",
+    "body": "Für eine Badreinigung zeigen Sie uns am besten eine Übersicht und Detailbilder auffälliger Stellen. Sanitäre Einrichtungen, Fliesen, Spiegel und Armaturen benötigen eine materialgerechte Behandlung. Kalkentfernung, empfindliche Natursteine und besondere Ablagerungen werden vorab besprochen. Schimmelbehandlung und Reparaturen gehören nicht automatisch dazu.",
+    "desc": "Badreinigung in Rorschach, St. Gallen und der Ostschweiz. Bad, Dusche, WC und Armaturen im vereinbarten Umfang reinigen lassen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Sanitär",
+        "WC, Waschbecken, Dusche oder Badewanne als gewünschte Bereiche nennen."
+      ],
+      [
+        "Oberflächen",
+        "Fliesen, Glas, Spiegel und Armaturen im Auftrag festlegen."
+      ],
+      [
+        "Besondere Stellen",
+        "Kalk, beschädigte Fugen und empfindliche Materialien vorab zeigen."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Badreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Badreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Badreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  },
+  "moebelreinigung": {
+    "label": "Möbelreinigung",
+    "title": "Gepflegte Möbel.\nPassend zum Material.",
+    "image": "polster",
+    "tag": "Textile und feste Oberflächen",
+    "intro": "Reinigung Ihrer Möbel nach Prüfung von Oberfläche und Pflegehinweisen.",
+    "body": "Möbel können aus Textil, Holz, Leder oder beschichteten Materialien bestehen. Teilen Sie uns mit, welche Stücke gereinigt werden sollen und zeigen Sie Oberfläche sowie Pflegeetikett. Die Methode wird passend zum Material abgestimmt. Reparaturen, Kratzerentfernung und Restaurierung sind keine automatisch enthaltenen Reinigungsarbeiten.",
+    "desc": "Möbelreinigung in Rorschach, St. Gallen und der Ostschweiz. Reinigung Ihrer Möbel nach Prüfung von Oberfläche und Pflegehinweisen. Preiswunsch, Fotos und Termine online anfragen.",
+    "items": [
+      [
+        "Möbelstücke",
+        "Anzahl, Grösse und Material der gewünschten Stücke mitteilen."
+      ],
+      [
+        "Pflegehinweise",
+        "Etiketten, Beschichtungen und bisherige Behandlungen zeigen."
+      ],
+      [
+        "Abgrenzung",
+        "Reinigung und mögliche Materialschäden vor Beginn unterscheiden."
+      ]
+    ],
+    "faq": [
+      [
+        "Welche Angaben helfen bei der Offerte?",
+        "Für die Möbelreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+      ],
+      [
+        "Kann ich meinen eigenen Preis vorschlagen?",
+        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+      ]
+    ],
+    "seo_title": "Möbelreinigung St. Gallen & Ostschweiz | Ademi",
+    "meta_desc": "Möbelreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+  }
+}

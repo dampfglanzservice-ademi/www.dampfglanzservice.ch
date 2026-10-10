@@ -1,10 +1,14 @@
 # Dampfglanzservice-Ademi
 
-Statische, mehrseitige Website für das bestehende GitHub-Pages-Projekt. Die Domain in `CNAME` bleibt `www.dampfglanzservice-ademi.ch`; die bisherigen 20 Seitenadressen bleiben erhalten. Zusätzlich gibt es `/offerte/` und eine 404-Seite.
+Mehrseitige statische GitHub-Pages-Website auf www.dampfglanzservice-ademi.ch. Aktuelle Fassung: 10. Oktober 2026, 53 Seiten einschliesslich 404; bestehende Adressen bleiben erhalten.
 
-## Bearbeiten und prüfen
+## Quellen und Bearbeitung
 
-Das Angebotsformular liegt in `tools/quote.template`. Die Seiten werden aus `tools/build_site.py` erzeugt. Dort liegen Seiteninhalte und gemeinsame Komponenten. Vorhandene Unternehmensbilder werden als optimierte WebP-Dateien verwendet. Das Sofa-Foto wurde mit Zustimmung des Betreibers aus der Inhaber-Galerie seines Google-Profils übernommen. Originalbilder bleiben erhalten. Die bisherigen Rechtstexte sind in `tools/legal_content.json` gesichert und um die Fotoanfrage ergänzt.
+`tools/build_site.py` erzeugt alle Seiten. `tools/quote.template` enthält das Anfrageformular. `tools/additional_services.json` enthält die neuen, eigenständig beschriebenen Leistungsbereiche. `tools/profile_services.json` dokumentiert die 31 verschiedenen Leistungsbezeichnungen aus dem Google-Unternehmensprofil, am 10. Oktober 2026 im angemeldeten Profil geprüft. Verwandte Leistungen teilen sich eine passende Detailseite; es gibt keine duplizierten Seiten für Synonyme.
+
+Die Hauptgestaltung, Farben, vier Hauptkarten auf Start- und Regionalseiten und die festen Kontaktbuttons bleiben erhalten. Die Online-Offerte steht direkt unter dem Startseiten-Hero und ist bereits im Hero verlinkt.
+
+Vom Betreiber bereitgestellte Medien: `assets/ferki-ademi-480.webp` und `assets/ferki-ademi-960.webp` zeigen Ferki Ademi, Inhaber und CEO. `assets/dampfreinigung-animiert.webp` enthält die 73 Frames des Startseiten-GIFs in optimierter WebP-Form; der schwarze Leerbereich ist entfernt. Die Animation kann pausiert werden; bei reduzierter Bewegung wird ein Standbild gezeigt. Keine erfundenen Projektbilder.
 
 ```sh
 python3 -m pip install -r tools/requirements.txt
@@ -15,48 +19,24 @@ node --check script.js
 python3 -m http.server 8765
 ```
 
-## Preisregel und kostenlose Grenzen
+## Freier Preisvorschlag
 
-Alle vier Leistungen besitzen definierte Online-Pakete. Die internen Regeln, recherchierten Vergleichspreise und Unterschiede sind in `tools/price-research.md` dokumentiert. Keine sichtbare Mindestpreistabelle. Budgets unter der Paketgrenze werden gesperrt, gültige Budgets ergeben den Mittelwert aus Paketgrenze und Budget. Sonderfälle benötigen eine persönliche Offerte; keine erfundenen Zuschläge. Preise gelten für das beschriebene Paket in Rorschach. Betreiber muss Umfang und Durchführbarkeit vor Annahme prüfen.
+Keine Paketpreisgrenzen und keine Durchschnittsberechnung mehr. Jeder endliche, nicht negative CHF-Wunschbetrag wird unverändert in die Anfrage übernommen, einschliesslich 0 und Beträgen unter früheren Preisgrenzen. Die numerische Eingabe hat keine geschäftliche Untergrenze oder Höchstgrenze. Negative, leere oder ungültige Zahlen werden abgewiesen. Ein Preiswunsch ist kein bestätigter Fixpreis und keine Buchung. Das Unternehmen prüft Material, Aufwand, Leistungsumfang und Einsatzort und bestätigt die persönliche Offerte und den Termin.
 
-Kunden geben zwei unterschiedliche zukünftige Termine (dritter optional) an und bestätigen Preis und Leistungsumfang. Jede Änderung setzt ihr Einverständnis zurück. Das Unternehmen bestätigt Auftrag und Termin persönlich. GitHub Pages und vorhandenes FormSubmit benötigen keinen neu gebuchten kostenpflichtigen Dienst; bestehende Domainkosten bleiben bestehen.
+Alle 31 Profilbezeichnungen und eine sonstige Dienstleistung sind auswählbar. Vorhandene Grössen- und Umfangsoptionen enthalten keine Preisregeln. Zwei verschiedene zukünftige Terminvorschläge sind erforderlich, ein dritter optional. Änderungen setzen die Zustimmung zurück. `tools/price-research.md` ist ausschliesslich ein historisches Rechercheprotokoll ohne aktive Preisregeln.
 
-GitHub Pages führt keine Serverprüfung aus. Browserregeln sind einsehbar und manipulierbar; versteckte UI-Werte sind keine geheimen Werte. Eingehende Anfragen vor Annahme nachrechnen. Echte Vertraulichkeit und manipulationssichere Prüfung benötigen einen anderen Serverdienst, der hier nicht aktiviert wurde.
+## Kontakt und Fotos
 
-## Anfragen und Fotos
-
-Die Website verwendet den im ursprünglichen Projekt vorhandenen FormSubmit-Empfänger `info@dampfglanzservice-ademi.ch`. Die Formulare senden per normalem POST; Fotoanfragen verwenden `multipart/form-data`. Es gibt drei separate Foto-Felder, passend zur FormSubmit-Dokumentation. JPG/PNG und zusammen maximal 9 MB sind im Browser geprüft. FormSubmit hat ein eigenes 10-MB-Limit und Spam-Schutz.
-
-Berechnen, Vorschau und Drucken senden nichts. Erst das bewusste Absenden übermittelt die Eingaben und Dateien an FormSubmit. Die Website speichert Eingaben nicht in localStorage und setzt keine eigenen Analyse- oder Marketingcookies.
-
-Vor dem Produktivbetrieb: Eine Anfrage aus der veröffentlichten Domain senden, gegebenenfalls die FormSubmit-Aktivierung im Firmenpostfach bestätigen und Eingang inklusive aller Fotos überprüfen. Es wurde keine Testmail an das Unternehmen versendet. Die E-Mail-Zustellung wurde daher nicht als bestanden behauptet. Der Browser-Druckdialog kann je nach Umgebung eingeschränkt sein; die Druckansicht ist über Print-CSS vorbereitet.
+Normaler Formular-POST an den vorhandenen FormSubmit-Empfänger info@dampfglanzservice-ademi.ch; Fotos über multipart/form-data. Bis zu drei JPG-/PNG-Bilder, zusammen höchstens 9 MB. Vorschau und Drucken senden nichts. Die Eingaben werden nicht dauerhaft im Browser gespeichert. FormSubmit kann beim Absenden eine externe Spamprüfung anzeigen. Ein erfolgreicher Browser-Versand ersetzt keine Bestätigung des tatsächlichen Eingangs im Firmenpostfach.
 
 ## SEO
 
-Alle Seiten haben eigene Titel und Beschreibungen, eine kanonische URL auf der bestehenden Domain, Open-Graph-Angaben, eine einzelne H1 und JSON-LD für Unternehmen und Seiten. Leistungsseiten erhalten Service-Markup. `sitemap.xml` enthält die indexierbaren Seiten. Der vorhandene Search-Console-Verifizierungscode ist erhalten. Kein erfundenes Bewertungs-, Kunden- oder Auszeichnungs-Markup.
+Eindeutige Titel und Beschreibungen, kanonische URLs, einzelne H1, interne Links, Open Graph, strukturierte Unternehmens-, Seiten-, Leistungs- und Breadcrumb-Daten. Vollständiger Leistungskatalog im Unternehmens-Markup; Ferki Ademi ist auf der Über-uns-Seite als Person ausgezeichnet. Sitemap: 52 indexierbare Seiten. Regionale Seiten behalten eigene Auftragsinformationen. Keine erfundenen Niederlassungen, Referenzen oder Rankingversprechen. Keine bezahlte Werbung gestartet.
 
-Nach Freigabe: Änderungen in die bestehende GitHub-Pages-Quelle übernehmen, Veröffentlichung prüfen und die Sitemap in der Search Console einreichen. Es werden keine Rankingversprechen abgegeben.
+Google-Bewertungen bleiben eine datierte Momentaufnahme: 11 echte Einträge, 5,0/5, geprüft am 9. Oktober 2026. Kurze gekennzeichnete Originalauszüge und Quellenlinks; keine erfundenen Kalendertage und keine selbst kontrollierte AggregateRating-Auszeichnung.
 
-## Gestaltung und regionale Suche
+## Cookie-Banner und Messung
 
-Weiss/Rot, feste WhatsApp-/Anrufleiste auf allen Seiten; drei Kantonsseiten St. Gallen/Thurgau/Zürich. Google-Profil mit datierter Bewertung 5.0 aus 11 Rezensionen (9. Oktober 2026), kein Live-Widget. Marketingvorbereitung und Keyword-Gruppen: tools/search-marketing.md. Sonstige Dienstleistungen erhalten Budgetanfrage ohne automatischen Fixpreis. Keine Werbung gestartet.
+GA4 G-479RC4GH7F, kostenlos im Google-Konto des Betreibers eingerichtet. `consent.js` lädt Google erst nach Zustimmung. Ablehnung lädt keinen Messcode. Die Auswahl wird 180 Tage lokal gespeichert und kann in der Fusszeile geändert werden. Widerruf löscht erreichbare GA-Cookies und lädt ohne Tracker neu. Die Datenschutzseite ist ohne vorherige Auswahl zugänglich.
 
-## Bewertungen und weitere Ostschweizer Gebiete
-
-36 Seiten: zusätzliche regionale Seiten für Appenzell Ausserrhoden/Innerrhoden, Schaffhausen, Glarus, Graubünden, Rheintal, Toggenburg und Werdenberg/Sarganserland. Jede Seite behandelt eigene Auftragsfragen. Keine erfundenen Niederlassungen, Referenzen oder Anfahrtsversprechen. Kombireinigung kann individuell angefragt werden. Weisse Fusszeile, optimiertes WhatsApp-Symbol und leichte perspektivische Effekte; reduzierte Bewegung wird berücksichtigt.
-
-`tools/reviews.json`: alle 11 sichtbaren Einträge mit Namen, relativer Google-Zeitangabe und Quellenlink; 10 kurze Originalauszüge mit zusammen 25 Wörtern, ein Eintrag ohne Text. Keine vollständige Kopie längerer fremder Rezensionen, keine erfundenen Kalenderdaten. Die datierte Momentaufnahme wird nicht live aktualisiert.
-
-## Qualitätsrunde: Offertenablauf
-
-Das Formular führt in drei Schritten durch Leistung, Preis/Fotos und Kontakt/Termine. Vorwärts wird nur bei gültigen Feldern des aktuellen Schritts gewechselt; zurück bleiben Angaben erhalten. Sonderverschmutzung und auswärtige Einsätze können eine persönliche Offerte mit Budgetwunsch erhalten, ohne die Paketgrenze zu umgehen. Leistungs-/Ortsänderungen widerrufen die vorherige Zustimmung. Die Druckübersicht enthält nun auch Auftragsbeschreibung und gewählten Ort. Preiscode lädt nur auf der Offertenseite. Eine neue Projektseite zeigt vorhandene echte Vorher-/Nachher-Aufnahmen und Fotohinweise.
-
-Autorisierter Versandtest am 9. Oktober 2026: FormSubmit zeigte `Check Your Email` und meldete eine notwendige Formularaktivierung. Laut Dienst wurde die Aktivierungs-E-Mail an info@dampfglanzservice-ademi.ch gesendet. Eingang und Aktivierung müssen vom Inhaber bestätigt werden; die Zustellung der eigentlichen Offerte ist noch nicht nachgewiesen. Keine Veröffentlichung erfolgt.
-
-## Cookie-Banner und Analytics (aktuelle Fassung)
-
-GA4-Mess-ID G-479RC4GH7F, im Google-Konto des Inhabers eingerichtet. consent.js lädt Google erst nach freiwilliger Statistik-Zustimmung; Ablehnung lädt keinen Messcode. Die Auswahl wird 180 Tage lokal gespeichert und kann über die Fusszeile geändert werden. Widerruf löscht erreichbare GA-Cookies und lädt die Seite ohne Tracker neu. Datenschutzseite bleibt auch ohne vorherige Auswahl zugänglich.
-
-Gemessen werden Seitenaufrufe, click_whatsapp, click_call, click_email, inquiry_start, inquiry_submit_attempt und scroll_75. Absendeversuche sind keine bestätigten Leads oder zugestellten E-Mails. Formularinhalte, Budgets und Fotos werden nicht an Analytics gesendet. Eigene Seitenadressen enthalten keine Queryparameter; Werbesignale sind deaktiviert. Optimierte automatische Analysen im Webstream sind deaktiviert, damit keine unkontrollierten Formular-/Linkdaten erfasst werden. Lokale Vorschautests sind als debug_mode markiert.
-
-Browserprüfung: vor Zustimmung und nach Ablehnung kein Google-Skript; nach Zustimmung korrekte Mess-ID geladen; Widerruf lädt ohne Skript neu. Mobilbanner bei 320 Pixeln geprüft. Frühere Abschnitte zum Betrieb ohne Cookies/Analytics beschreiben den vorherigen Stand.
+Seitenaufrufe, click_whatsapp, click_call, click_email, inquiry_start, inquiry_submit_attempt und scroll_75. Absendeversuche sind keine bestätigten Leads, E-Mails oder Aufträge. Namen, Kontaktdaten, Nachrichten, Fotos und Preiswünsche werden nicht an Analytics gesendet. URL-Abfrageparameter, Werbesignale und optimierte automatische Analysen sind deaktiviert. Lokale Vorschauen sind als debug_mode markiert.
