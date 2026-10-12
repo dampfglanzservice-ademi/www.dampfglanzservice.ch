@@ -7,7 +7,8 @@ for(const [service,list] of Object.entries(packages))for(const [key] of list){
   assert.equal(result.valid,true,`${service}: ${amount} must be accepted`);
   assert.equal(result.budget,amount);assert.equal(result.automatic,false);assert.equal(result.proposal,undefined);
  }
- for(const amount of ['',null,-1,'bad',Infinity])assert.equal(calculate(service,key,amount).valid,false);
+ for(const amount of ['',null]){const result=calculate(service,key,amount);assert.equal(result.valid,true);assert.equal(result.budget,null);assert.equal(result.automatic,false);}
+ for(const amount of [-1,'bad',Infinity])assert.equal(calculate(service,key,amount).valid,false);
 }
 assert.equal(calculate('unknown','custom',50).valid,false);
 assert.equal(calculate('auto','unknown',50).valid,false);
