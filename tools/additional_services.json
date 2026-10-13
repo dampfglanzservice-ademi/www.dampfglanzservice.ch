@@ -1,11 +1,11 @@
 {
   "bueroreinigung": {
     "label": "Büro- und Arbeitsplatzreinigung",
-    "title": "Saubere Arbeitsplätze.\nEin gepflegter Empfang.",
+    "title": "Büroreinigung in Rorschach.\nFür St. Gallen & Umgebung.",
     "image": "home",
     "tag": "Regelmässig oder einmalig",
-    "intro": "Arbeitsplätze, Besprechungsräume und gemeinsam genutzte Bereiche werden nach einem abgestimmten Reinigungsplan gepflegt.",
-    "body": "Für ein Büro ist wichtig, welche Räume täglich genutzt werden und wann die Reinigung den Betrieb möglichst wenig stört. Wir stimmen Arbeitszeiten, Zugang und Aufgaben mit Ihnen ab. Dokumente und persönliche Arbeitsmittel bleiben an ihrem vereinbarten Platz.",
+    "intro": "Gepflegte Arbeitsplätze, Empfang und Gemeinschaftsbereiche – einmalig oder regelmässig, passend zu Ihrem Betrieb.",
+    "body": "Dampfglanzservice-Ademi bietet Büro- und Arbeitsplatzreinigung aus Rorschach für Unternehmen in St. Gallen, Goldach, Rorschacherberg, Arbon und der Umgebung an. Wir legen gemeinsam fest, welche Böden, zugänglichen Oberflächen, Sanitärbereiche und Teeküchen gereinigt werden sollen. Häufigkeit, Zugang und Reinigungszeiten stimmen wir mit Ihrem Betrieb ab. Dokumente und persönliche Arbeitsmittel bleiben am vereinbarten Platz; Elektronik wird nur im ausdrücklich vereinbarten Umfang gereinigt. Sie können zunächst einen einzelnen Einsatz anfragen und danach über eine regelmässige Zusammenarbeit entscheiden.",
     "desc": "Büro- und Arbeitsplatzreinigung in Rorschach, St. Gallen und der Ostschweiz. Arbeitsplätze, Besprechungsräume und gemeinsam genutzte Bereiche werden nach einem abgestimmten Reinigungsplan gepflegt. Preiswunsch, Fotos und Termine online anfragen.",
     "items": [
       [
@@ -23,16 +23,25 @@
     ],
     "faq": [
       [
-        "Welche Angaben helfen bei der Offerte?",
-        "Für die Büro- und Arbeitsplatzreinigung helfen Fotos, Grösse beziehungsweise Anzahl, Material und eine Beschreibung Ihres gewünschten Umfangs. Nennen Sie ausserdem den Einsatzort und mögliche Termine."
+        "Was kostet eine Büroreinigung?",
+        "Fläche, Anzahl und Nutzung der Räume, gewünschte Arbeiten, Verschmutzung und Reinigungsrhythmus bestimmen den Aufwand. Für die Offerte nennen Sie bitte die ungefähren Quadratmeter, Sanitärbereiche und Teeküchen. Wir vereinbaren Leistungsumfang, Preis und eine allfällige Anfahrt vor dem Auftrag."
       ],
       [
-        "Kann ich meinen eigenen Preis vorschlagen?",
-        "Ja. In der Online-Offerte geben Sie Ihren Preiswunsch frei ein. Wir prüfen Aufwand, Material und Leistungsumfang und bestätigen Ihnen Preis und Termin persönlich. Die Anfrage ist unverbindlich."
+        "Kann ich zuerst einen einzelnen Einsatz vereinbaren?",
+        "Ja. Sie können einen einmaligen Reinigungsauftrag anfragen. Umfang, Preis und Termin werden persönlich bestätigt. Eine spätere regelmässige Reinigung vereinbaren wir separat."
+      ],
+      [
+        "Ist eine Reinigung ausserhalb unserer Bürozeiten möglich?",
+        "Teilen Sie uns Ihre gewünschten Zeitfenster mit. Wir prüfen die Verfügbarkeit und stimmen Zugang, Schlüsselübergabe und Ablauf vor dem Einsatz mit Ihnen ab."
+      ],
+      [
+        "Welche Angaben benötigen Sie für eine Offerte?",
+        "Einsatzort, ungefähre Bürofläche, Anzahl der Räume, Sanitärbereiche und Teeküchen, gewünschte Arbeiten, Häufigkeit und mögliche Zeitfenster. Fotos helfen bei der Einschätzung. Ihren Preiswunsch können Sie nennen oder offenlassen; die Anfrage ist unverbindlich."
       ]
     ],
-    "seo_title": "Büroreinigung St. Gallen & Ostschweiz | Ademi",
-    "meta_desc": "Büro- und Arbeitsplatzreinigung in St. Gallen & Ostschweiz. Umfang, Fotos und Wunschpreis online anfragen. Persönliche Offerte von Ademi in Rorschach."
+    "seo_title": "Büroreinigung Rorschach & St. Gallen | Dampfglanzservice-Ademi",
+    "meta_desc": "Büroreinigung in Rorschach, St. Gallen und Umgebung: einmalig oder regelmässig. Reinigungsplan, Zeiten und Preis persönlich abstimmen. Unverbindlich anfragen.",
+    "content_heading": "Ein Reinigungsplan für Ihren Büroalltag."
   },
   "grundreinigung": {
     "label": "Grundreinigung",
