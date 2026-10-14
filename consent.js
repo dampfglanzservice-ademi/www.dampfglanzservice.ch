@@ -6,6 +6,19 @@
  let consent=null,loaded=false,previousFocus=null;
  try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now())consent=saved;}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
+ // Forward only our known campaign labels; never arbitrary URL parameters.
+ const trafficFields=()=>{
+  const fields={};
+  try{
+   const u=new URL(location.href);
+   if(u.searchParams.get('utm_source')==='google'&&u.searchParams.get('utm_medium')==='organic'&&u.searchParams.get('utm_campaign')==='gbp_autoinnenreinigung'){
+    fields.campaign_source='google';fields.campaign_medium='organic';fields.campaign_name='gbp_autoinnenreinigung';
+   }
+  }catch{}
+  // Returning from the form provider must not replace the original traffic source.
+  try{if(new URL(document.referrer).origin==='https://formsubmit.co')fields.ignore_referrer=true;}catch{}
+  return fields;
+ };
  const event=(name,params={})=>{if(consent?.analytics&&loaded)window.gtag('event',name,{...params,transport_type:'beacon'});};
  function start(){
   if(loaded||!consent?.analytics)return;
@@ -13,7 +26,7 @@
   window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
   window.gtag('consent','update',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
   window.gtag('js',new Date());
-  window.gtag('config',ID,{page_location:location.origin+location.pathname,page_referrer:cleanURL(document.referrer),allow_google_signals:false,allow_ad_personalization_signals:false,cookie_expires:15552000,debug_mode:location.hostname!=='www.dampfglanzservice-ademi.ch'});
+  window.gtag('config',ID,{...trafficFields(),page_location:location.origin+location.pathname,page_referrer:cleanURL(document.referrer),allow_google_signals:false,allow_ad_personalization_signals:false,cookie_expires:15552000,debug_mode:location.hostname!=='www.dampfglanzservice-ademi.ch'});
   const script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.append(script);
  }
  function clearAnalytics(){
