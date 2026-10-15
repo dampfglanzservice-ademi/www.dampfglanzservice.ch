@@ -304,7 +304,7 @@ legend{font-size:12px;font-weight:600;margin-bottom:12px}
 .contact-intro h1{font-size:48px}
 .contact-lines{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .quote-layout{grid-template-columns:1fr;gap:24px}
-.quote-sidebar{position:static;grid-row:1}
+.quote-sidebar{position:static;grid-row:auto}
 .quote-result{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
 .quote-result>.eyebrow,.quote-result>h2,.quote-result>.result-service,.quote-result>.result-price,.quote-result>.result-badge{grid-column:1}
 .quote-result>dl{grid-column:2;grid-row:2/6;margin:0}
@@ -568,3 +568,6 @@ body.consent-open{overflow:hidden;}
 /* Clear customer offers, using the existing visual language. */
 .customer-terms{margin-top:24px;max-width:850px}.customer-terms summary{cursor:pointer;font-weight:600;padding-block:12px}.customer-terms p{font-size:14px;line-height:1.7}.mobile-estimate{display:none}.sidebar-help h3{font-size:18px}.sidebar-help p{font-size:13px;line-height:1.6;margin:12px 0}#estimate-details,#budget-summary{font-size:13px;line-height:1.65}#quote-form details{margin-top:20px}#quote-form details summary{cursor:pointer;font-weight:600;margin-bottom:14px}#quote-form .check{align-items:flex-start}#quote-form .check input{flex-shrink:0}
 @media(max-width:1000px){.mobile-estimate{display:block;padding:16px;border:1px solid #ebc8c1;border-radius:12px;background:#fff7f5;font-size:14px;line-height:1.65;margin-top:20px}}
+
+.trust-strip small{display:block;font-size:10px;margin-top:5px}.customer-answers details{border-bottom:1px solid #e6e6e6;padding:18px 0}.customer-answers summary{cursor:pointer;font-weight:600}.customer-answers details p{margin-top:14px;line-height:1.75}
+@media(max-width:900px){.quote-result{display:block}.quote-sidebar{margin-top:8px}.quote-sidebar #result-note{display:none}.quote-heading h1{font-size:36px}.quote-heading p{font-size:15px}}
