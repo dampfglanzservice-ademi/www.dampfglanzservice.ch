@@ -18,3 +18,10 @@ def customer_answers():
 
 def early_trust():
  return '''<div class="trust-strip"><div class="container"><span><a href="/bewertungen/">5,0 / 5 · 11 Google-Bewertungen<small>Stand: 09.10.2026</small></a></span><span>Bis 15 km keine Anfahrtskosten</span><span>Antwort spätestens innerhalb eines Tages</span><span>Ferki Ademi · Ihr Ansprechpartner</span></div></div>'''
+
+
+def service_evidence(key):
+ data=json.loads((ROOT/'tools/reviews.json').read_text())
+ review=data['items'][0]
+ visual=('<video width="576" height="1024" controls muted playsinline preload="none" poster="/assets/dampfreinigung-vollstaendig-poster.webp" aria-label="Originalvideo unserer Reinigungsarbeit"><source src="/assets/dampfreinigung-vollstaendig.mp4" type="video/mp4"><a href="/assets/dampfreinigung-vollstaendig.mp4">Video unserer Arbeit öffnen</a></video>' if key=='autoreinigung' else img('polster','Sofa aus unserem Unternehmensprofil'))
+ return '<section class="section service-evidence"><div class="container content-split"><div class="evidence-visual">'+visual+'</div><div><span class="eyebrow">Einblicke und Kundenstimmen</span><h2>Sehen Sie unsere Arbeit.<br>Lesen Sie echte Erfahrungen.</h2><p>'+('Originalvideo aus unserer Reinigungsarbeit. Weitere Aufnahmen finden Sie in unserem Unternehmensprofil.' if key=='autoreinigung' else 'Eine vorhandene Sofa-Aufnahme aus unserem Unternehmensprofil. Weitere Bilder finden Sie direkt auf Google.')+'</p><article class="review-card"><div class="review-stars" aria-label="5 von 5 Sternen">★★★★★</div><blockquote>„'+esc(review['excerpt'])+'“</blockquote><p>'+esc(review['name'])+' · Google-Bewertung</p><p class="fine-print">Kundenstimme zum Unternehmen · kurzer Originalauszug · geprüft am 09.10.2026.</p><a class="text-link" href="https://www.google.com/maps/contrib/'+review['author']+'/reviews?hl=de-CH" target="_blank" rel="noopener">Originalbewertung lesen ↗</a></article><a class="text-link" href="/bewertungen/">Weitere Kundenbewertungen ansehen ↗</a></div></div></section>'

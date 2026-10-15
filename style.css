@@ -571,3 +571,5 @@ body.consent-open{overflow:hidden;}
 
 .trust-strip small{display:block;font-size:10px;margin-top:5px}.customer-answers details{border-bottom:1px solid #e6e6e6;padding:18px 0}.customer-answers summary{cursor:pointer;font-weight:600}.customer-answers details p{margin-top:14px;line-height:1.75}
 @media(max-width:900px){.quote-result{display:block}.quote-sidebar{margin-top:8px}.quote-sidebar #result-note{display:none}.quote-heading h1{font-size:36px}.quote-heading p{font-size:15px}}
+
+.evidence-visual img,.evidence-visual video{display:block;width:100%;max-height:480px;object-fit:contain;border-radius:18px;background:#f7f5f3}.service-evidence .review-card{margin:24px 0}.service-evidence blockquote{font-size:24px;line-height:1.5;margin:12px 0}.hero-copy h1{overflow-wrap:break-word}@media(max-width:600px){.service-evidence .content-split{gap:24px}.evidence-visual img,.evidence-visual video{max-height:360px}}
