@@ -19,11 +19,21 @@ node --check script.js
 python3 -m http.server 8765
 ```
 
-## Freier Preisvorschlag
+## Kundenangebote und Preisorientierung (15. Oktober 2026)
 
-Keine Paketpreisgrenzen und keine Durchschnittsberechnung mehr. Jeder endliche, nicht negative CHF-Wunschbetrag wird unverändert in die Anfrage übernommen, einschliesslich 0 und Beträgen unter früheren Preisgrenzen. Die numerische Eingabe hat keine geschäftliche Untergrenze oder Höchstgrenze. Negative, leere oder ungültige Zahlen werden abgewiesen. Ein Preiswunsch ist kein bestätigter Fixpreis und keine Buchung. Das Unternehmen prüft Material, Aufwand, Leistungsumfang und Einsatzort und bestätigt die persönliche Offerte und den Termin.
+`tools/customer_offers.py` enthält die Kundenvorteile und Paketbeschreibungen für Start-, Auto-, Polster- und Endreinigungsseite. Die Büroreinigungsseite enthält den kostenlosen, unverbindlichen Objektvergleich für Gewerbe/Verwaltungen; erste Reinigung als einzelner bezahlter Auftrag.
 
-Alle 31 Profilbezeichnungen und eine sonstige Dienstleistung sind auswählbar. Vorhandene Grössen- und Umfangsoptionen enthalten keine Preisregeln. Zwei verschiedene zukünftige Terminvorschläge sind erforderlich, ein dritter optional. Änderungen setzen die Zustimmung zurück. `tools/price-research.md` ist ausschliesslich ein historisches Rechercheprotokoll ohne aktive Preisregeln.
+`pricing.js` trennt `calculate()` (freiwilliger Wunschbetrag, unverändert, auch 0) von `estimate()` (unverbindlicher Preisrahmen für Auto/Sofa). Die Preisorientierung ist ohne Kontaktdaten sichtbar. Auto: Basis oder Intensiv plus Fahrzeuggrösse; Polster: 1-5 Sitzplätze. Bei besonderer Verschmutzung, empfindlichem Material, unbekannter Fahrzone oder anderen Leistungen wird kein automatisch berechneter Preis ausgegeben. Eine Anfrage bleibt möglich.
+
+Die Rahmen sind geschätzte Kunden-Gesamtpreise mit Standardmaterial, der gewählten Anfahrt und allfälliger MwSt.; kein Nettopreis, kein verbindlicher Festpreis und keine Margengarantie. Fahrzone: bis 15 km 0, 16-30 km 50 CHF, 31-50 km 90 CHF, einfache Fahrstrecke ab Rorschach; deckt eine An- und Rückfahrt. Gross-/Sonderaufträge und weitere Leistungen werden persönlich kalkuliert. Mindestauftrag für ein einzelnes Polsterobjekt 150 CHF. Sonderfälle dürfen die Standardpreise nicht erben. Preisrahmen und Wunschbudget bleiben in Darstellung und E-Mail-Zusammenfassung getrennt.
+
+Kunden können eine günstigere Alternative mit geringerem Umfang und weitere Reinigungen anfragen; kein pauschaler Kombirabatt. Alle Eingaben, Zustand, Paket, Fahrzone und angezeigter Preisrahmen werden in der Anfrage zusammengefasst. Freiwillige Termine bleiben freiwillig; Änderungen setzen die Anfragezustimmung zurück. Erst schriftliche Bestätigung von Arbeiten, Gesamtpreis und Termin und anschliessende Auftragsbestätigung des Kunden führen zur Buchung. Die Nachbesserungszusage gilt für berechtigte Mängel vereinbarter ausgeführter Reinigungsarbeiten; keine Neuzustands-/Fleckenentfernungsgarantie.
+
+Zusätzliche Prüfung:
+
+```sh
+node tools/test_estimates.cjs
+```
 
 ## Kontakt und Fotos
 

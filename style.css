@@ -564,3 +564,7 @@ body.consent-open{overflow:hidden;}
 .service-row h3{font-size:17px;margin:0;line-height:1.4}.service-row>span{color:var(--accent);flex:none}.service-row:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 7px 15px #b52d2c0b}
 @media(max-width:600px){.hero-visual.work-animation{height:480px;min-height:0;aspect-ratio:auto}.hero-visual.owner-portrait{height:380px}.hero-visual.owner-portrait>img{height:380px}.service-bars{grid-template-columns:1fr;gap:10px;margin-top:20px}.service-row{padding:18px}.service-row h3{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.service-row{transition:none}.service-row:hover{transform:none}}
+
+/* Clear customer offers, using the existing visual language. */
+.customer-terms{margin-top:24px;max-width:850px}.customer-terms summary{cursor:pointer;font-weight:600;padding-block:12px}.customer-terms p{font-size:14px;line-height:1.7}.mobile-estimate{display:none}.sidebar-help h3{font-size:18px}.sidebar-help p{font-size:13px;line-height:1.6;margin:12px 0}#estimate-details,#budget-summary{font-size:13px;line-height:1.65}#quote-form details{margin-top:20px}#quote-form details summary{cursor:pointer;font-weight:600;margin-bottom:14px}#quote-form .check{align-items:flex-start}#quote-form .check input{flex-shrink:0}
+@media(max-width:1000px){.mobile-estimate{display:block;padding:16px;border:1px solid #ebc8c1;border-radius:12px;background:#fff7f5;font-size:14px;line-height:1.65;margin-top:20px}}
