@@ -1,0 +1,28 @@
+"""Keep recurring property cleaning visible on existing routes."""
+import json, re
+SECTION = "<section class=\"section\" id=\"treppenhausreinigung\"><div class=\"container content-split\"><div><span class=\"eyebrow\">Für Verwaltungen und Eigentümer</span><h2>Treppenhausreinigung in der Ostschweiz</h2><p>Saubere Eingänge, Treppen und Gemeinschaftsflächen für Ihre Liegenschaft. Wir vereinbaren einen Reinigungsplan für Treppenstufen, Podeste, Handläufe, Eingangsbereiche und zugängliche Oberflächen. Briefkastenanlagen, Lift und Verglasungen nehmen wir nach Absprache dazu.</p><p>Für eine passende Offerte nennen Sie Ort, Anzahl der Etagen und Hauseingänge, Bodenmaterial, gewünschten Rhythmus und Zugang. Fotos oder eine Besichtigung helfen, den Aufwand einzuschätzen. Häufigkeit, Arbeiten und Gesamtpreis halten wir vor dem Auftrag fest.</p></div><div class=\"note-card\"><h3>Ihr gesamtes Objekt im Blick</h3><p>Treppenhaus, Büros, Fenster und weitere Reinigungsarbeiten lassen sich in einer Offerte zusammenstellen. Teilen Sie uns Ihre bisherigen Leistungen und Kosten sowie fehlende Arbeiten oder Verbesserungswünsche mit.</p><a class=\"button primary\" href=\"/offerte/?leistung=bueroreinigung\">Reinigungspaket vergleichen ↗</a></div></div></section>\n<section class=\"section muted\" id=\"unterhaltsreinigung\"><div class=\"container content-split\"><div><span class=\"eyebrow\">Ein fester Reinigungsplan</span><h2>Unterhaltsreinigung für Firmen und Liegenschaften</h2><p>Regelmässige Reinigung für Büros, Praxen, Verkaufsflächen und gemeinschaftliche Bereiche: Böden, zugängliche Oberflächen, Sanitäranlagen und Teeküchen werden nach einem auf Ihr Objekt abgestimmten Plan gereinigt. Wöchentliche oder andere Intervalle und passende Einsatzzeiten vereinbaren wir nach Bedarf und Verfügbarkeit.</p><p>Von Rorschach aus planen wir Aufträge in St. Gallen, Thurgau, beiden Appenzell, im Rheintal und Toggenburg sowie in Werdenberg, im Sarganserland und der weiteren Ostschweiz. Bei weiter entfernten Objekten prüfen wir Umfang, Anfahrt und Einsatzrhythmus gemeinsam.</p></div><div class=\"note-card\"><h3>Leistungen, Kosten und Wünsche vergleichen</h3><p>Nennen Sie uns Fläche, Nutzung, aktuelle Reinigungskosten, bisherige Arbeiten und Ihre Wünsche. Sie erhalten eine unverbindliche Vergleichsofferte mit klaren Aufgaben, Intervall und Gesamtpreis. Eine Ersparnis lässt sich erst anhand Ihres konkreten Objekts beurteilen.</p><a class=\"button primary\" href=\"https://wa.me/41765024998?text=Guten%20Tag%2C%20ich%20moechte%20Treppenhaus-%20oder%20Unterhaltsreinigung%20vergleichen.%20Ort%3A%20__%20Leistungen%20und%20Intervall%3A%20__%20Bisherige%20Kosten%3A%20__%20Wuensche%3A%20__\" target=\"_blank\" rel=\"noopener\">Objekt per WhatsApp besprechen ↗</a></div></div></section>"
+BLOCK = "<section class=\"section\" id=\"regelmaessige-objektreinigung\"><div class=\"container\"><span class=\"eyebrow\">Für Firmen und Verwaltungen</span><h2>Regelmässige Reinigung für Ihr gesamtes Objekt</h2><p><a href=\"/bueroreinigung/#treppenhausreinigung\">Treppenhausreinigung</a> und <a href=\"/bueroreinigung/#unterhaltsreinigung\">Unterhaltsreinigung</a> für Büros, Gewerbe und Liegenschaften in der Ostschweiz. Wir vergleichen Ihre bisherigen Leistungen und Kosten, besprechen Ihre Wünsche und erstellen einen passenden Reinigungsplan.</p><a class=\"button primary\" href=\"/bueroreinigung/#objektvergleich\">Leistungen und Reinigungskosten vergleichen ↗</a></div></section>"
+PATHS = {'/', '/leistungen/', '/reinigungsfirma-st-gallen/', '/reinigungsfirma-thurgau/'}
+def enhance_property_cleaning(html, path):
+    if path in PATHS and 'id="regelmaessige-objektreinigung"' not in html:
+        html = html.replace('</main>', BLOCK + '</main>')
+    if path == '/bueroreinigung/':
+        title = 'Büro-, Treppenhaus- & Unterhaltsreinigung Ostschweiz | Ademi'
+        desc = 'Treppenhaus-, Unterhalts- und Büroreinigung für Firmen und Verwaltungen in St. Gallen, Thurgau und Appenzell. Reinigungsplan und Kosten unverbindlich vergleichen.'
+        html = re.sub(r'<title>.*?</title>', '<title>'+title.replace('&','&amp;')+'</title>', html)
+        html = re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*', lambda m:m[1]+desc, html)
+        html = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m:m[1]+title.replace('&','&amp;'), html)
+        html = re.sub(r'<h1>.*?</h1>', '<h1>Büro-, Treppenhaus- und Unterhaltsreinigung.<br>Für Ihre Objekte in der Ostschweiz.</h1>', html, flags=re.S)
+        html = html.replace('Gepflegte Arbeitsplätze, Empfang und Gemeinschaftsbereiche – einmalig oder regelmässig, passend zu Ihrem Betrieb.', 'Regelmässige Reinigung für Firmen, Verwaltungen und Eigentümer. Wir stimmen Arbeiten, Intervall und Gesamtpreis auf Ihr gesamtes Objekt ab.')
+        if 'id="treppenhausreinigung"' not in html:
+            html = html.replace('<section class="section muted" id="objektvergleich">', SECTION+'<section class="section muted" id="objektvergleich">')
+        def schema(m):
+            data=json.loads(m[1])
+            for item in data.get('@graph',[]):
+                if item.get('@type')=='WebPage':
+                    item.update(name=title,description=desc)
+                if item.get('@type')=='Service':
+                    item.update(name='Büro-, Treppenhaus- und Unterhaltsreinigung',serviceType=['Büroreinigung','Treppenhausreinigung','Unterhaltsreinigung'],description=desc)
+            return '<script type="application/ld+json">'+json.dumps(data,ensure_ascii=False)+'</script>'
+        html=re.sub(r'<script type="application/ld\+json">([\s\S]*?)</script>',schema,html)
+    return html
