@@ -31,7 +31,7 @@ def enhance_local_requests(document, path):
             hero = re.sub(r'<p>[\s\S]*?</p>\s*<p class="regional-offer-details">[\s\S]*?</p>', intro+detail, hero, count=1)
             hero = hero.replace('>Offerte anfragen <span', '>Offerte für '+region+' <span', 1)
         hero = re.sub(r'<a class="button secondary" href="(?:tel:[^"]*|https://wa\.me/[^"]*)">[\s\S]*?</a>',
-                      '<a class="button secondary" href="'+escape(whatsapp, quote=True)+'" target="_blank" rel="noopener">Auftrag per WhatsApp besprechen <span aria-hidden="true">↗</span></a>', hero, count=1)
+                      '<a class="button secondary" style="display:inline-flex" href="'+escape(whatsapp, quote=True)+'" target="_blank" rel="noopener">Auftrag per WhatsApp besprechen <span aria-hidden="true">↗</span></a>', hero, count=1)
         return hero
     document = re.sub(hero_pattern, improve_hero, document, count=1)
     if region:
