@@ -11,10 +11,10 @@ def enhance_search_snippets(document,path):
     document=re.sub(r'<title>.*?</title>','<title>'+escape(title)+'</title>',document)
     document=re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*',lambda m:m[1]+escape(desc,quote=True),document)
     document=re.sub(r'(<meta property="og:title" content=")[^"]*',lambda m:m[1]+escape(title,quote=True),document)
-    h1='Reinigungsfirma aus Rorschach.<br>Für Zuhause und Betrieb.' if home else 'Reinigung für '+escape(region)+'.<br>Persönlich geplant. Klar offeriert.'
+    h1='Reinigungsfirma<br>Rorschach.' if home else 'Reinigung für '+escape(region)+'.<br>Persönlich geplant. Klar offeriert.'
     document=re.sub(r'<h1>[\s\S]*?</h1>','<h1>'+h1+'</h1>',document)
     if home:
-        document=document.replace('Wohnung, Büro, Auto oder Sofa: Sie kennen Arbeiten und Gesamtpreis, bevor Sie buchen. Ihr Auto holen wir bis 15 km kostenlos ab und bringen es zurück. Ihr Sofa reinigen wir bei Ihnen zu Hause.','Wohnung, Umzug, Büro oder Treppenhaus: Sie erhalten Ihre persönliche Offerte direkt von Ferki Ademi. Auch Fenster, Auto und Polster können Sie anfragen. Arbeiten und Gesamtpreis stehen vor dem Auftrag fest. Unser Standort ist Rorschach; Einsätze in der Ostschweiz stimmen wir persönlich ab.')
+        document=document.replace('Wohnung, Büro, Auto oder Sofa: Sie kennen Arbeiten und Gesamtpreis, bevor Sie buchen. Ihr Auto holen wir bis 15 km kostenlos ab und bringen es zurück. Ihr Sofa reinigen wir bei Ihnen zu Hause.','Wohnung, Umzug, Büro und Treppenhaus – auch Fenster, Auto und Polster. Ferki Ademi erstellt Ihre persönliche Offerte: Arbeiten und Gesamtpreis stehen vor dem Auftrag fest. Aus Rorschach für die Ostschweiz.')
     else:
         paragraph='<p class="regional-offer-details">Für Privathaushalte, Firmen und Verwaltungen: Wohnungs- und Endreinigung, Büro-, Treppenhaus- und Unterhaltsreinigung sowie Fenster und weitere Arbeiten nach Vereinbarung. Nennen Sie Ort, gewünschte Arbeiten und Rhythmus; wir klären Verfügbarkeit, Anfahrt und Gesamtpreis vor dem Auftrag.</p>'
         if 'class="regional-offer-details"' not in document:
