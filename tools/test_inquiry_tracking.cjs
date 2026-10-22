@@ -1,22 +1,15 @@
-'use strict';
-const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
-const source=fs.readFileSync('inquiry-tracking.js','utf8');
-const now=Date.now(),KEY='dgs-inquiry-pending-v1';
-function run({consent=true,pending=null,path='/anfrage-gesendet/',referrer='https://formsubmit.co/',prevented=false,blocked=false,analytics=true}={}){
- const data=new Map(pending?[[KEY,JSON.stringify(pending)]]:[]),events=[],listeners=[],tasks=[];
- const storage={getItem:k=>{if(blocked)throw Error('blocked');return data.get(k)||null;},setItem:(k,v)=>{if(blocked)throw Error('blocked');data.set(k,v);},removeItem:k=>{if(blocked)throw Error('blocked');data.delete(k);}};
- const sandbox={URL,Date,Number,JSON,location:{pathname:path},localStorage:{getItem:()=>JSON.stringify({version:1,analytics:consent,at:now})},sessionStorage:storage,queueMicrotask:fn=>tasks.push(fn),document:{referrer,querySelectorAll:()=>path==='/offerte/'?[{id:'quote-form',addEventListener:(name,fn)=>listeners.push(fn)}]:[]},window:analytics?{gtag:(...args)=>events.push(args)}:{}};
- vm.runInNewContext(source,sandbox);for(const fn of listeners)fn({defaultPrevented:prevented});for(const fn of tasks)fn();
- return {data,events,sandbox};
+const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
+const code=fs.readFileSync(__dirname+'/../inquiry-tracking.js','utf8');
+async function run({ok=true,result={success:true},failure=false,test=false,cancelled=false}={}){
+ let handler,sends=0,events=0;const status={},button={},form={id:'quote-form',action:'https://usebasin.com/f/example-endpoint',reportValidity:()=>true,elements:{namedItem:()=>({value:''})},querySelector:s=>s==='[type="submit"]'?button:status,addEventListener:(n,f)=>handler=f};
+ vm.runInNewContext(code,{document:{querySelectorAll:()=>[form]},URL,location:{href:'https://www.dampfglanzservice-ademi.ch/offerte/'+(test?'?dgs_test=1':'')},crypto:{randomUUID:()=> 'test-random-id'},FormData:class{delete(){}set(){}},AbortController,setTimeout,clearTimeout,window:{DGSMeasurement:{completed:(k,id,t)=>{if(!t)events++;}}},fetch:async()=>{sends++;if(failure)throw Error('network');return{ok,json:async()=>result};}});
+ const event={defaultPrevented:cancelled,preventDefault(){}};
+ await handler(event);await handler(event);return{events,sends,status,button};
 }
-const valid={at:now,kind:'quote'};
-assert.equal(run({pending:valid}).events.length,1);
-assert.equal(run({pending:{at:now,kind:'contact'}}).events[0][2].form_kind,'contact');
-for(const options of [{},{pending:valid,consent:false},{pending:valid,referrer:''},{pending:valid,referrer:'https://formsubmit.co.evil.example/'},{pending:valid,referrer:'http://formsubmit.co/'},{pending:{at:now-31*60000,kind:'quote'}},{pending:{at:now+60000,kind:'quote'}},{pending:{at:'yesterday',kind:'quote'}},{pending:{at:now,kind:'unknown'}},{pending:valid,blocked:true},{pending:valid,analytics:false}])assert.equal(run(options).events.length,0,JSON.stringify(options));
-const once=run({pending:valid});vm.runInNewContext(source,once.sandbox);assert.equal(once.events.length,1,'reload must not recount');
-assert.ok(run({path:'/offerte/'}).data.has(KEY));
-assert.ok(!run({path:'/offerte/',prevented:true}).data.has(KEY));
-assert.ok(!run({path:'/offerte/',consent:false}).data.has(KEY));
-assert.doesNotThrow(()=>run({path:'/offerte/',blocked:true}));
-assert.deepEqual(Object.keys(JSON.parse(run({path:'/offerte/'}).data.get(KEY))).sort(),['at','kind']);
-console.log('18 tracking scenarios passed: consent, cancelled submission, direct visits, provider origin, expiry, storage failure and duplicate suppression.');
+(async()=>{
+ let r=await run();assert.equal(r.events,1);assert.equal(r.sends,1);assert.equal(r.button.disabled,true);
+ for(const options of [{ok:false},{result:{success:false}},{result:{}},{failure:true}]){r=await run(options);assert.equal(r.events,0);assert.match(r.status.textContent,/nicht bestätigt/);}
+ r=await run({test:true});assert.equal(r.events,0);assert.equal(r.sends,1);assert.match(r.status.textContent,/Testanfrage/);
+ r=await run({cancelled:true});assert.equal(r.events,0);assert.equal(r.sends,0);
+ console.log('Basin adapter checks passed: success once, no duplicate send, HTTP error, rejected/missing success, network error, test exclusion, cancelled validation');
+})();
