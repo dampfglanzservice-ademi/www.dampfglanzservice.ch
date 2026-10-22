@@ -1,23 +1,30 @@
 (()=>{
  'use strict';
- // Only coarse, consented funnel data. Never store or send form contents.
- const KEY='dgs-inquiry-pending-v1',CONSENT='dampfglanz-consent-v1',TTL=30*60*1000;
- const allowed=()=>{try{const c=JSON.parse(localStorage.getItem(CONSENT));return c?.version===1&&c.analytics===true&&Number.isFinite(c.at)&&Date.now()>=c.at&&Date.now()-c.at<180*86400000;}catch{return false;}};
+ // No form contents or contact details are stored or sent to measurement.
+ const KEY='dgs-inquiry-pending-v2',TTL=30*60*1000;
  const clear=()=>{try{sessionStorage.removeItem(KEY);}catch{}};
  document.querySelectorAll('form[action="https://formsubmit.co/info@dampfglanzservice-ademi.ch"]').forEach(form=>{
-  form.addEventListener('submit',e=>queueMicrotask(()=>{
-   if(e.defaultPrevented)return;
-   if(!allowed()){clear();return;}
-   try{sessionStorage.setItem(KEY,JSON.stringify({at:Date.now(),kind:form.id==='quote-form'?'quote':'contact'}));}catch{}
-  }));
+  form.addEventListener('submit',e=>{
+   if(e.defaultPrevented||!form.checkValidity()||form.elements.namedItem('_honey')?.value)return;
+   const next=form.elements.namedItem('_next');if(!next)return;
+   try{
+    const id=crypto.randomUUID(),test=new URL(location.href).searchParams.get('dgs_test')==='1';
+    sessionStorage.setItem(KEY,JSON.stringify({at:Date.now(),id,kind:form.id==='quote-form'?'quote':'contact',test}));
+    next.value=location.origin+'/anfrage-gesendet/?receipt='+encodeURIComponent(id);
+   }catch{clear();}
+  });
  });
  if(location.pathname!=='/anfrage-gesendet/')return;
  let pending;try{pending=JSON.parse(sessionStorage.getItem(KEY));}catch{}
- // Consume even on a direct visit: reloads and back navigation must not recount.
+ const receipt=new URL(location.href).searchParams.get('receipt');
+ // Consume before emitting: direct visits, reloads and back navigation cannot recount.
  clear();
- if(!allowed()||!pending||!['quote','contact'].includes(pending.kind)||!Number.isFinite(pending.at)||Date.now()<pending.at||Date.now()-pending.at>TTL)return;
  let providerReturn=false;try{providerReturn=new URL(document.referrer).origin==='https://formsubmit.co';}catch{}
- if(!providerReturn||typeof window.gtag!=='function')return;
- // Provider return is not proof of mailbox delivery, qualification or a sale.
- window.gtag('event','inquiry_form_completed',{form_kind:pending.kind,transport_type:'beacon'});
+ if(!pending||!receipt||receipt!==pending.id||!providerReturn||!['quote','contact'].includes(pending.kind)||!Number.isFinite(pending.at)||Date.now()<pending.at||Date.now()-pending.at>TTL)return;
+ // Remove the random receipt from the address bar. It never contains customer data.
+ history.replaceState(null,'',location.pathname);
+ const message=document.querySelector('.legal-lead');
+ if(message)message.textContent=pending.test?'Testanfrage erfolgreich von FormSubmit zurückgeleitet. Dieser Test wird nicht als Kundenanfrage gezählt.':'Vielen Dank. Ihre Anfrage wurde übermittelt. Wir prüfen Ihre Angaben persönlich und melden uns über Ihre angegebenen Kontaktdaten.';
+ // Provider success is not proof of inbox delivery, lead quality or a sale.
+ window.DGSMeasurement?.completed(pending.kind,pending.id,pending.test);
 })();
