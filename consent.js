@@ -45,23 +45,23 @@
   if(consent?.analytics)event('inquiry_form_completed',{form_kind:kind});
   if(consent?.ads&&adsStarted)window.gtag('event','conversion',{send_to:'AW-17797086557/ac3LCInLoaYdEN36p6ZC',transaction_id:id,value:0,currency:'CHF',transport_type:'beacon'});
  }};
- function clearAnalytics(){
-  const names=document.cookie.split(';').map(x=>x.trim().split('=')[0]).filter(x=>/^_ga(?:_|$)|^_gid$|^_gat|^_gcl_/.test(x));
+ function clearAnalytics(analytics=true,ads=true){
+  const names=document.cookie.split(';').map(x=>x.trim().split('=')[0]).filter(x=>(analytics&&/^_ga(?:_|$)|^_gid$|^_gat/.test(x))||(ads&&/^_gcl_/.test(x)));
   const domains=['',location.hostname,'.'+location.hostname,'.'+location.hostname.split('.').slice(-2).join('.')];
   for(const name of names)for(const domain of domains)document.cookie=name+'=; Max-Age=0; path=/'+(domain?'; domain='+domain:'')+'; SameSite=Lax; Secure';
  }
  function save(analytics,ads){
-  const wasLoaded=loaded;consent={version:1,analytics,ads,at:Date.now()};
+  const wasLoaded=loaded,previous=consent;consent={version:1,analytics,ads,at:Date.now()};
   try{localStorage.setItem(KEY,JSON.stringify(consent));}catch{}
   dialog.close();document.body.classList.remove('consent-open');previousFocus?.focus();
-  if(wasLoaded){clearAnalytics();location.reload();}else start();
+  if(wasLoaded){clearAnalytics(previous?.analytics===true&&!analytics,previous?.ads===true&&!ads);location.reload();}else start();
  }
  function open(){previousFocus=document.activeElement;toggle.checked=consent?.analytics===true;adsToggle.checked=consent?.ads===true;document.body.classList.add('consent-open');dialog.showModal();}
  document.querySelectorAll('[data-cookie-settings]').forEach(button=>button.addEventListener('click',open));
  document.getElementById('cookie-accept').addEventListener('click',()=>save(true,true));
  document.getElementById('cookie-reject').addEventListener('click',()=>save(false,false));
  document.getElementById('cookie-save').addEventListener('click',()=>save(toggle.checked,adsToggle.checked));
- dialog.addEventListener('cancel',e=>{e.preventDefault();save(false);});
+ dialog.addEventListener('cancel',e=>{e.preventDefault();save(false,false);});
  document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(href.startsWith('tel:'))event('click_call');else if(/^https:\/\/(?:wa.me|api.whatsapp.com)\//.test(href))event('click_whatsapp');else if(href.startsWith('mailto:'))event('click_email');});
  document.querySelectorAll('form').forEach(form=>{
   let started=false;form.addEventListener('input',()=>{if(!started&&consent?.analytics){started=true;event('inquiry_start',{form_kind:form.id==='quote-form'?'quote':'contact'});}});
