@@ -11,6 +11,19 @@
  adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Keine Werbepersonalisierung. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt.';
  try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now())consent=saved;}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
+ // Preserve Google click IDs only with explicit Ads consent. Other query fields
+ // (including form details and arbitrary URL values) are never sent as page URLs.
+ const measurementURL=()=>{
+  const page=new URL(location.origin+location.pathname);
+  if(consent?.ads){
+   const current=new URL(location.href);
+   for(const key of ['gclid','gbraid','wbraid']){
+    const value=current.searchParams.get(key);
+    if(value&&/^[A-Za-z0-9._~-]{1,512}$/.test(value))page.searchParams.set(key,value);
+   }
+  }
+  return page.href;
+ };
  // Forward only our known campaign labels; never arbitrary URL parameters.
  const trafficFields=()=>{
   const fields={};
@@ -35,7 +48,7 @@
   }
   window['ga-disable-'+ID]=!consent.analytics;
   window.gtag('consent','update',{analytics_storage:consent.analytics?'granted':'denied',ad_storage:consent.ads?'granted':'denied',ad_user_data:consent.ads?'granted':'denied',ad_personalization:'denied'});
-  const page={page_location:location.origin+location.pathname,page_referrer:cleanURL(document.referrer),allow_google_signals:false,allow_ad_personalization_signals:false};
+  const page={page_location:measurementURL(),page_referrer:cleanURL(document.referrer),allow_google_signals:false,allow_ad_personalization_signals:false};
   if(consent.analytics&&!analyticsStarted){analyticsStarted=true;window.gtag('config',ID,{...trafficFields(),...page,cookie_expires:15552000,debug_mode:location.hostname!=='www.dampfglanzservice-ademi.ch'});}
   if(consent.ads&&!adsStarted){adsStarted=true;window.gtag('config',ADS,{...page,send_page_view:false,allow_enhanced_conversions:false,conversion_linker:true,cookie_expires:15552000});}
   document.dispatchEvent(new Event('dgs:measurement-ready'));
