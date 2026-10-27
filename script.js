@@ -7,6 +7,21 @@
  document.querySelectorAll('button,a[href]').forEach(el=>el.addEventListener('pointerdown',e=>{if(reduced.matches)return;const rect=el.getBoundingClientRect(),spark=document.createElement('span');spark.className='interaction-spark';spark.setAttribute('aria-hidden','true');spark.style.left=(e.clientX-rect.left)+'px';spark.style.top=(e.clientY-rect.top)+'px';spark.addEventListener('animationend',()=>spark.remove(),{once:true});el.append(spark)}));
  const workVideo=document.getElementById('work-animation');
  if(workVideo){if(!reduced.matches)workVideo.play().catch(()=>{});reduced.addEventListener('change',()=>{if(reduced.matches)workVideo.pause()})}
+
+ // Keep an explicitly selected, published region across service and quote links.
+ const regionNames={"reinigungsfirma-st-gallen":"St. Gallen","reinigungsfirma-thurgau":"Thurgau","reinigungsfirma-zuerich":"Zürich","reinigungsfirma-goldach":"Goldach","reinigungsfirma-rorschacherberg":"Rorschacherberg","reinigungsfirma-arbon":"Arbon","reinigungsfirma-steinach":"Steinach","reinigungsfirma-horn":"Horn","reinigungsfirma-thal":"Thal","reinigungsfirma-staad":"Staad","reinigungsfirma-rheineck":"Rheineck","reinigungsfirma-st-margrethen":"St. Margrethen","reinigung-appenzell-ausserrhoden":"Appenzell Ausserrhoden","reinigung-appenzell-innerrhoden":"Appenzell Innerrhoden","reinigung-rheintal":"Rheintal","reinigung-toggenburg":"Toggenburg","reinigung-werdenberg-sarganserland":"Werdenberg & Sarganserland","reinigung-glarus":"Glarus","reinigung-graubuenden":"Graubünden","reinigung-schaffhausen":"Schaffhausen"};
+ const contextRoutes=new Set(["/autoreinigung/","/autopolsterreinigung/","/wohnungsreinigung/","/polsterreinigung/","/endreinigung-abnahmegarantie/","/bueroreinigung/","/grundreinigung/","/fensterreinigung/","/matratzenreinigung/","/fruehlingsreinigung/","/wintergartenreinigung/","/praxisreinigung/","/ladenreinigung/","/kalkentfernung/","/terrassenreinigung/","/balkonreinigung/","/hochdruckreinigung/","/teppichreinigung/","/kuechenreinigung/","/badreinigung/","/moebelreinigung/","/kombireinigung/","/leistungen/","/offerte/"]);
+ const pageRegion=location.pathname.split('/').filter(Boolean).join('/');
+ const queryRegion=new URLSearchParams(location.search).get('region');
+ const linkRegion=Object.hasOwn(regionNames,pageRegion)?pageRegion:Object.hasOwn(regionNames,queryRegion)?queryRegion:null;
+ if(linkRegion)document.querySelectorAll('a[href]').forEach(anchor=>{
+  try{
+   const target=new URL(anchor.getAttribute('href'),location.origin);
+   if(target.origin!==location.origin||!contextRoutes.has(target.pathname)||target.searchParams.has('region'))return;
+   target.searchParams.set('region',linkRegion);
+   anchor.setAttribute('href',target.pathname+target.search+target.hash);
+  }catch{}
+ });
  const form=document.getElementById('quote-form');
  document.querySelectorAll('[data-contact-form]').forEach(f=>{
   const email=f.querySelector('[name="email"]'),phone=f.querySelector('[name="Telefon"]');
@@ -23,7 +38,6 @@
 
  // Keep the chosen service area when moving from a regional page to the form.
  // Only our published region IDs are accepted; arbitrary URL text is ignored.
- const regionNames={"reinigungsfirma-st-gallen":"St. Gallen","reinigungsfirma-thurgau":"Thurgau","reinigungsfirma-zuerich":"Zürich","reinigungsfirma-goldach":"Goldach","reinigungsfirma-rorschacherberg":"Rorschacherberg","reinigungsfirma-arbon":"Arbon","reinigungsfirma-steinach":"Steinach","reinigungsfirma-horn":"Horn","reinigungsfirma-thal":"Thal","reinigungsfirma-staad":"Staad","reinigungsfirma-rheineck":"Rheineck","reinigungsfirma-st-margrethen":"St. Margrethen","reinigung-appenzell-ausserrhoden":"Appenzell Ausserrhoden","reinigung-appenzell-innerrhoden":"Appenzell Innerrhoden","reinigung-rheintal":"Rheintal","reinigung-toggenburg":"Toggenburg","reinigung-werdenberg-sarganserland":"Werdenberg & Sarganserland","reinigung-glarus":"Glarus","reinigung-graubuenden":"Graubünden","reinigung-schaffhausen":"Schaffhausen"};
  const region=params.get('region');
  if(Object.prototype.hasOwnProperty.call(regionNames,region)){
   const regionName=regionNames[region],place=$('customer-place');
