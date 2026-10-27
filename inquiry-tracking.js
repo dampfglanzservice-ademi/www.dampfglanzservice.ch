@@ -9,9 +9,18 @@
    if(busy||completed||!form.reportValidity())return;
    const status=form.querySelector('.form-status')||form.querySelector('#quote-status');
    const say=message=>{if(status)status.textContent=message;};
-   if(form.elements.namedItem('_honey')?.value){say('Die Anfrage konnte nicht angenommen werden. Bitte kontaktieren Sie uns direkt.');return;}
+   const fail=message=>{
+    say(message);
+    if(!status)return;
+    for(const [label,href] of [['Jetzt anrufen','tel:+41765024998'],['E-Mail schreiben','mailto:info@dampfglanzservice-ademi.ch']]){
+     status.append(document.createTextNode(' · '));
+     const link=document.createElement('a');link.href=href;link.textContent=label;status.append(link);
+    }
+    status.tabIndex=-1;status.focus({preventScroll:true});status.scrollIntoView({block:'center',behavior:'auto'});
+   };
+   if(form.elements.namedItem('_honey')?.value){fail('Die Anfrage konnte nicht angenommen werden. Bitte kontaktieren Sie uns direkt.');return;}
    const endpoint=new URL(form.action);
-   if(endpoint.origin!=='https://usebasin.com'||!/^\/f\/[a-zA-Z0-9-]+$/.test(endpoint.pathname)){say('Der Formularversand ist derzeit nicht eingerichtet. Bitte kontaktieren Sie uns direkt.');return;}
+   if(endpoint.origin!=='https://usebasin.com'||!/^\/f\/[a-zA-Z0-9-]+$/.test(endpoint.pathname)){fail('Der Formularversand ist derzeit nicht eingerichtet. Bitte kontaktieren Sie uns direkt.');return;}
    busy=true;
    const button=form.querySelector('[type="submit"]');if(button)button.disabled=true;
    const id=crypto.randomUUID(),kind=form.id==='quote-form'?'quote':'contact';
@@ -46,7 +55,7 @@
     try{window.DGSMeasurement?.completed(kind,id,test);}catch{};
     // No customer details are passed to measurement. Server acceptance does not prove inbox delivery.
    }catch{
-    say('Die Übermittlung konnte nicht bestätigt werden. Ihre Eingaben bleiben erhalten. Bitte kontaktieren Sie uns unter info@dampfglanzservice-ademi.ch oder +41 76 502 49 98, bevor Sie nochmals senden.');
+    fail('Die Übermittlung konnte nicht bestätigt werden. Ihre Eingaben bleiben erhalten. Bitte kontaktieren Sie uns unter info@dampfglanzservice-ademi.ch oder +41 76 502 49 98, bevor Sie nochmals senden.');
    }finally{
     clearTimeout(timer);busy=false;if(button)button.disabled=completed;
    }
