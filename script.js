@@ -14,6 +14,20 @@
  const service=$('service'),pack=$('package'),budget=$('budget'),send=$('send-offer'),tier=$('cleaning-tier'),zone=$('quote-location');
  const dates=[1,2,3].map(n=>$('date-'+n));const now=new Date();const today=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);dates.forEach(d=>d.min=today);
  const params=new URLSearchParams(location.search),param=params.get('leistung');if(DGSPrice.packages[param])service.value=param;if(['basis','intensiv'].includes(params.get('umfang')))tier.value=params.get('umfang');
+
+ // Keep the chosen service area when moving from a regional page to the form.
+ // Only our published region IDs are accepted; arbitrary URL text is ignored.
+ const regionNames={"reinigungsfirma-st-gallen":"St. Gallen","reinigungsfirma-thurgau":"Thurgau","reinigungsfirma-zuerich":"Zürich","reinigungsfirma-goldach":"Goldach","reinigungsfirma-rorschacherberg":"Rorschacherberg","reinigungsfirma-arbon":"Arbon","reinigungsfirma-steinach":"Steinach","reinigungsfirma-horn":"Horn","reinigungsfirma-thal":"Thal","reinigungsfirma-staad":"Staad","reinigungsfirma-rheineck":"Rheineck","reinigungsfirma-st-margrethen":"St. Margrethen","reinigung-appenzell-ausserrhoden":"Appenzell Ausserrhoden","reinigung-appenzell-innerrhoden":"Appenzell Innerrhoden","reinigung-rheintal":"Rheintal","reinigung-toggenburg":"Toggenburg","reinigung-werdenberg-sarganserland":"Werdenberg & Sarganserland","reinigung-glarus":"Glarus","reinigung-graubuenden":"Graubünden","reinigung-schaffhausen":"Schaffhausen"};
+ const region=params.get('region');
+ if(Object.prototype.hasOwnProperty.call(regionNames,region)){
+  const regionName=regionNames[region],place=$('customer-place');
+  const cityRegions=["reinigungsfirma-goldach","reinigungsfirma-rorschacherberg","reinigungsfirma-arbon","reinigungsfirma-steinach","reinigungsfirma-horn","reinigungsfirma-thal","reinigungsfirma-staad","reinigungsfirma-rheineck","reinigungsfirma-st-margrethen"];
+  if(cityRegions.includes(region)&&!place.value)place.value=regionName;
+  const context=document.createElement('p');context.id='regional-inquiry-context';context.className='fine-print';context.textContent='Ihre Anfrage für '+regionName+'. Bitte ergänzen oder korrigieren Sie bei Bedarf den genauen Einsatzort.';
+  form.prepend(context);
+  const origin=document.createElement('input');origin.type='hidden';origin.name='DGS_Anfrageregion';origin.value=regionName;form.append(origin);
+ }
+
  let result,urls=[];
  function packages(){pack.replaceChildren();(DGSPrice.packages[service.value]||[]).forEach(([key,label])=>{const o=document.createElement('option');o.value=key;o.textContent=label;pack.append(o)})}
  function photos(){const files=[...form.querySelectorAll('[data-photo]')];const chosen=files.flatMap(i=>i.files?.length?[i.files[0]]:[]);const error=chosen.some(f=>!['image/jpeg','image/png'].includes(f.type))?'Bitte nur JPG- oder PNG-Fotos auswählen.':chosen.reduce((s,f)=>s+f.size,0)>6*1024*1024?'Die Fotos dürfen zusammen höchstens 6 MB gross sein.':'';files.forEach(i=>i.setCustomValidity(error));$('photo-error').textContent=error;return !error}
