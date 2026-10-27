@@ -69,7 +69,7 @@
   $('budget-notice').textContent=result.valid?'Sie müssen keinen Preis vorgeben. Wir prüfen Ihren Auftrag und erstellen Ihre persönliche Offerte.':result.error;
   $('result-note').textContent=chosenScope();
   const mobile=$('mobile-estimate');if(mobile)mobile.textContent=$('result-price').textContent+'. '+$('estimate-details').textContent;
-  $('quote-summary').value=result.valid?summary():'';$('print-quote').disabled=!result.valid;send.disabled=!result.valid;
+  $('quote-summary').value=result.valid?summary():'';$('print-quote').disabled=!result.valid;send.disabled=!service.value;
  }
  service.addEventListener('change',()=>{packages();update()});
  form.addEventListener('input',e=>{update()});form.addEventListener('change',e=>{if(e.target.matches('[data-photo]')){urls.forEach(URL.revokeObjectURL);urls=[];$('photo-preview').replaceChildren();if(photos())[...form.querySelectorAll('[data-photo]')].forEach(input=>{if(!input.files.length)return;const figure=document.createElement('figure'),image=document.createElement('img'),caption=document.createElement('figcaption'),remove=document.createElement('button');const f=input.files[0],url=URL.createObjectURL(f);urls.push(url);image.src=url;image.alt='Foto-Vorschau';caption.textContent=f.name;remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Foto entfernen');remove.onclick=()=>{input.value='';input.dispatchEvent(new Event('change',{bubbles:true}))};figure.append(image,remove,caption);$('photo-preview').append(figure)})}update()});
@@ -82,6 +82,6 @@
  next.onclick=()=>{update();if(!validStep(step))return;showStep(photoChoice?2:Math.min(step+1,steps.length-1))};back.onclick=()=>showStep(photoChoice?(step===1?photoOrigin:0):Math.max(step-1,0));
  if(photoChoice)photoChoice.onclick=()=>{update();if(!validStep(0))return;photoOrigin=step;showStep(1)};
  const clearPhotos=$('clear-photos');if(clearPhotos)clearPhotos.onclick=()=>{form.querySelectorAll('[data-photo]').forEach(input=>{input.value='';input.setCustomValidity('')});urls.forEach(URL.revokeObjectURL);urls=[];$('photo-preview').replaceChildren();photos();update();showStep(2)};
- form.addEventListener('invalid',e=>{const index=steps.indexOf(e.target.closest('.quote-step'));if(index>=0&&index!==step)showStep(index,false)},true);actions.hidden=false;showStep(0,false);
+ form.addEventListener('invalid',e=>{const details=e.target.closest('details');if(details)details.open=true;const index=steps.indexOf(e.target.closest('.quote-step'));if(index>=0&&index!==step)showStep(index,false)},true);actions.hidden=false;showStep(0,false);
  window.addEventListener('pagehide',()=>urls.forEach(URL.revokeObjectURL));packages();update();
 })();
