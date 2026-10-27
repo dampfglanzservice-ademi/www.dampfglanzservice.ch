@@ -37,8 +37,16 @@
   return DGSPrice.packages[service.value]?.find(p=>p[0]===pack.value)?.[2]||'Bitte beschreiben Sie die gewünschten Arbeiten.';
  }
  function summary(){const est=estimated();return ['Unverbindliche Reinigungsanfrage – Dampfglanzservice-Ademi','Leistung: '+service.options[service.selectedIndex].text+' / '+result.label,'Gewünschter Leistungsumfang: '+chosenScope(),'Zustand: '+$('condition').options[$('condition').selectedIndex].text,'Angezeigter Preisrahmen der Hauptleistung: '+(est.available?money(est.min)+' bis '+money(est.max)+' inkl. Standardmaterial und allfälliger MwSt.; '+(est.travelConfirmed?'ohne Fahrdienst':'zuzüglich allfälliger Fahrtkosten über 15 km')+' (unverbindlich)':est.reason),'Optionales Wunschbudget: '+(result.budget===null?'Nicht angegeben':money(result.budget)),'Ort: '+$('customer-place').value,'Anfahrt: '+(zone.value==='rorschach'?'Selbstanlieferung; kein Fahrdienst':'Bis 15 km kostenlos; Entfernung und etwaige weitere Kosten vorab bestätigen'),'Auto-Übergabe: '+(service.value==='auto'?$('auto-handover').selectedOptions[0].text:'Entfällt'),'Zusätzliche Reinigungswünsche (nicht im Preisrahmen): '+($('combine-services').value||'Keine angegeben'),'Günstigere Variante gewünscht: '+($('alternative-offer').checked?'Ja, sofern sinnvoll; geringeren Umfang klar beschreiben':'Nein'),'Terminvorschläge: '+(dates.map(d=>d.value).filter(Boolean).join(', ')||'Flexibel / persönlich vereinbaren'),'Zeitfenster: '+($('time-window').value||'Persönlich vereinbaren'),'Auftragsdetails: '+$('quote-message').value,'Keine Buchung. Schriftliche Bestätigung von Leistungen, Gesamtpreis und Termin abwarten; danach Auftrag bestätigen.'].join('\n')}
+ function validateContact(){
+  const email=$('customer-email'),phone=$('customer-phone');
+  if(!email||!phone)return;
+  const missing=!email.value.trim()&&!phone.value.trim();
+  const message=missing?'Bitte geben Sie eine E-Mail-Adresse oder Telefonnummer an.':'';
+  email.setCustomValidity(message);
+  phone.setCustomValidity(message);
+ }
  function update(){
-  validateDates();
+  validateDates();validateContact();
   result=DGSPrice.calculate(service.value,pack.value,budget.value);budget.setCustomValidity(result.valid?'':result.error);
   send.textContent='Unverbindliche Offerte anfragen ↗';
   $('offer-terms').textContent='Der Preisrahmen ist keine verbindliche Offerte. Sie erhalten von uns die schriftliche Bestätigung von Arbeiten, Gesamtpreis und Termin. Erst wenn Sie danach den Auftrag bestätigen, ist die Reinigung gebucht.';
