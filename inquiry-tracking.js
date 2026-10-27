@@ -55,6 +55,7 @@
     try{window.DGSMeasurement?.completed(kind,id,test);}catch{};
     // No customer details are passed to measurement. Server acceptance does not prove inbox delivery.
    }catch{
+    try{window.DGSMeasurement?.failed(kind,test);}catch{};
     fail('Die Übermittlung konnte nicht bestätigt werden. Ihre Eingaben bleiben erhalten. Bitte kontaktieren Sie uns unter info@dampfglanzservice-ademi.ch oder +41 76 502 49 98, bevor Sie nochmals senden.');
    }finally{
     clearTimeout(timer);busy=false;if(button)button.disabled=completed;

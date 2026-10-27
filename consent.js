@@ -54,7 +54,15 @@
   if(consent.ads&&!adsStarted){adsStarted=true;window.gtag('config',ADS,{...page,send_page_view:false,allow_enhanced_conversions:false,conversion_linker:true,cookie_expires:15552000});}
   document.dispatchEvent(new Event('dgs:measurement-ready'));
  }
- window.DGSMeasurement={attempted:(kind,test)=>{
+ const measuredSteps=new Set();
+ window.DGSMeasurement={step:(kind,stage,test)=>{
+  if(test||testMode||!consent?.analytics||!loaded||!['quote','contact'].includes(kind)||!['photos','contact'].includes(stage))return;
+  const key=kind+':'+stage;if(measuredSteps.has(key))return;measuredSteps.add(key);
+  event('inquiry_step_'+stage,{form_kind:kind});
+ },failed:(kind,test)=>{
+  if(test||!['quote','contact'].includes(kind))return;
+  event('inquiry_send_failed',{form_kind:kind});
+ },attempted:(kind,test)=>{
   if(test)return;
   event('inquiry_submit_attempt',{form_kind:kind});
  },completed:(kind,id,test)=>{
@@ -82,6 +90,17 @@
  document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(href.startsWith('tel:'))event('click_call');else if(/^https:\/\/(?:wa.me|api.whatsapp.com)\//.test(href))event('click_whatsapp');else if(href.startsWith('mailto:'))event('click_email');});
  document.querySelectorAll('form').forEach(form=>{
   let started=false;form.addEventListener('input',()=>{if(!started&&consent?.analytics){started=true;event('inquiry_start',{form_kind:form.id==='quote-form'?'quote':'contact'});}});
+  // Diagnose fixed field groups only: never field values or customer details.
+  if(form.matches('[data-dgs-backend="basin"]')){
+   const invalidSeen=new Set();
+   const groups={'service':'service','package':'service','customer-place':'location','customer-name':'contact','customer-email':'contact','customer-phone':'contact','date-1':'date','date-2':'date','date-3':'date','budget':'budget'};
+   form.addEventListener('invalid',e=>{
+    const target=e.target;
+    const group=groups[target.id]||(target.matches('[data-photo]')?'photo':target.matches('input[name="Datenschutz"]')?'privacy':null);
+    if(!group||invalidSeen.has(group))return;invalidSeen.add(group);
+    event('inquiry_invalid_'+group,{form_kind:form.id==='quote-form'?'quote':'contact'});
+   },true);
+  }
   // Basin submit attempts are measured by its validated handler, not defaultPrevented.
  });
  let scrolled=false;window.addEventListener('scroll',()=>{if(!scrolled&&consent?.analytics&&window.scrollY+innerHeight>=document.documentElement.scrollHeight*.75){scrolled=true;event('scroll_75');}},{passive:true});
