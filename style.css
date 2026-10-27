@@ -573,3 +573,20 @@ body.consent-open{overflow:hidden;}
 @media(max-width:900px){.quote-result{display:block}.quote-sidebar{margin-top:8px}.quote-sidebar #result-note{display:none}.quote-heading h1{font-size:36px}.quote-heading p{font-size:15px}}
 
 .evidence-visual img,.evidence-visual video{display:block;width:100%;max-height:480px;object-fit:contain;border-radius:18px;background:#f7f5f3}.service-evidence .review-card{margin:24px 0}.service-evidence blockquote{font-size:24px;line-height:1.5;margin:12px 0}.hero-copy h1{overflow-wrap:break-word}@media(max-width:600px){.service-evidence .content-split{gap:24px}.evidence-visual img,.evidence-visual video{max-height:360px}}
+
+/* Customer readability and unobstructed contact controls on narrow screens. */
+.form-direct-contact{position:static;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:10px;margin:22px 0 0;padding:0;background:none;border:0;box-shadow:none;pointer-events:auto;}
+.form-direct-contact a{width:auto;height:auto;min-height:48px;padding:12px 16px;gap:9px;border-radius:12px;}
+.form-direct-contact a>span:not(.interaction-spark){display:inline;}
+@media(max-width:600px){
+ main h2,main h3{overflow-wrap:break-word;hyphens:auto;}
+ main .text-link{white-space:normal;overflow-wrap:break-word;}
+ .hero-copy h1{font-size:clamp(30px,9vw,37px);line-height:1.12;letter-spacing:-.035em;hyphens:none;overflow-wrap:break-word;}
+ main h2,.section-head h2{font-size:clamp(24px,7.2vw,31px);line-height:1.18;}
+ .form-direct-contact{left:auto;right:auto;bottom:auto;}
+ .form-direct-contact a{width:auto;height:auto;min-height:48px;padding:12px 14px;}
+}
+@media(max-width:480px){
+ .field-grid{grid-template-columns:minmax(0,1fr);}
+ .field-grid>.field{grid-column:1/-1;}
+}
