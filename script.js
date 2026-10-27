@@ -8,7 +8,13 @@
  const workVideo=document.getElementById('work-animation');
  if(workVideo){if(!reduced.matches)workVideo.play().catch(()=>{});reduced.addEventListener('change',()=>{if(reduced.matches)workVideo.pause()})}
  const form=document.getElementById('quote-form');
- document.querySelectorAll('[data-contact-form]').forEach(f=>f.addEventListener('submit',()=>{f.querySelector('.form-status').textContent='Bitte schliessen Sie die geschützte Übermittlung ab.'}));
+ document.querySelectorAll('[data-contact-form]').forEach(f=>{
+  const email=f.querySelector('[name="email"]'),phone=f.querySelector('[name="Telefon"]');
+  // One reply channel is sufficient; keep native email syntax validation.
+  const contactChoice=()=>{if(email&&phone)email.required=!phone.value.trim();};
+  if(email&&phone){for(const field of [email,phone]){field.addEventListener('input',contactChoice);field.addEventListener('change',contactChoice);}contactChoice();}
+  f.addEventListener('submit',()=>{contactChoice();f.querySelector('.form-status').textContent='Ihre Anfrage wird übermittelt.';});
+ });
  if(!form)return;
  const $=id=>document.getElementById(id),money=n=>n===null?'Bitte Preis empfehlen':new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(n);
  const service=$('service'),pack=$('package'),budget=$('budget'),send=$('send-offer'),tier=$('cleaning-tier'),zone=$('quote-location');
