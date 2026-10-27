@@ -20,6 +20,17 @@
    for(const name of ['_subject','_next','_autoresponse','_template','_honey'])data.delete(name);
    data.set('DGS_Anfragekennung',id);data.set('DGS_Formular',kind);
    if(test)data.set('DGS_Funktionstest','Ja – nicht als Kundenanfrage zählen');
+   // This is a first-party campaign reference, not a Google-confirmed conversion.
+   for(const name of ['DGS_Herkunft','DGS_Kampagne_ID','DGS_Kampagne','DGS_Zuordnung'])data.delete(name);
+   if(!test){
+    const origin=window.DGSCampaignAttribution?.get();
+    if(origin){
+     data.set('DGS_Herkunft','Google Ads – Kampagnenparameter');
+     data.set('DGS_Kampagne_ID',origin.campaignId);
+     data.set('DGS_Kampagne',origin.campaignName);
+     data.set('DGS_Zuordnung','Kampagnenparameter dieser Sitzung; Google-Conversion nicht bestätigt');
+    }
+   }
    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),30000);
    say('Ihre Anfrage wird übermittelt. Bitte warten Sie auf die Bestätigung.');
    try{

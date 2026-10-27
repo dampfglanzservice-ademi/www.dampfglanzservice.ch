@@ -83,3 +83,44 @@
  let scrolled=false;window.addEventListener('scroll',()=>{if(!scrolled&&consent?.analytics&&window.scrollY+innerHeight>=document.documentElement.scrollHeight*.75){scrolled=true;event('scroll_75');}},{passive:true});
  if(consent?.analytics||consent?.ads)start();if(!consent&&location.pathname!=='/datenschutz/')open();
 })();
+
+// Keep only a recognised campaign reference, after explicit Ads-measurement consent.
+// No click IDs, search terms, full URLs or customer details are stored here.
+;(()=>{
+ 'use strict';
+ const KEY='dgs-campaign-session-v1',CONSENT='dampfglanz-consent-v1',TTL=30*60*1000;
+ const CAMPAIGNS={
+  '24407255482':'Reinigung Ostschweiz',
+  '24407267470':'Auto-Innenreinigung Ostschweiz'
+ };
+ const isTest=()=>new URL(location.href).searchParams.get('dgs_test')==='1';
+ const allowed=()=>{
+  try{const c=JSON.parse(localStorage.getItem(CONSENT));return c?.version===1&&c.ads===true&&typeof c.at==='number'&&c.at<=Date.now()&&Date.now()-c.at<180*86400000;}catch{return false;}
+ };
+ const clear=()=>{try{sessionStorage.removeItem(KEY);}catch{}};
+ const campaignFrom=raw=>{
+  try{const u=new URL(raw);if(u.origin!==location.origin)return null;const id=u.searchParams.get('dgs_campaign');return Object.hasOwn(CAMPAIGNS,id)?id:null;}catch{return null;}
+ };
+ const saved=()=>{
+  try{const x=JSON.parse(sessionStorage.getItem(KEY));if(x?.version===1&&Object.hasOwn(CAMPAIGNS,x.id)&&typeof x.at==='number'&&x.at<=Date.now()&&Date.now()-x.at<TTL)return x;}catch{}
+  clear();return null;
+ };
+ const capture=()=>{
+  if(!allowed()){clear();return null;}
+  if(isTest())return null;
+  let x=saved();
+  const current=campaignFrom(location.href);
+  const previous=campaignFrom(document.referrer);
+  if(current||(previous&&!x)){
+   x={version:1,id:current||previous,at:Date.now()};
+   try{sessionStorage.setItem(KEY,JSON.stringify(x));}catch{}
+  }
+  return x;
+ };
+ window.DGSCampaignAttribution={
+  get:()=>{const x=capture();return x?{campaignId:x.id,campaignName:CAMPAIGNS[x.id],method:'campaign_parameter'}:null;},
+  clear
+ };
+ document.addEventListener('dgs:measurement-ready',capture);
+ capture();
+})();
