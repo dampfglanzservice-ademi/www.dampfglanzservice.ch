@@ -36,7 +36,7 @@
 
  let result,urls=[];
  function packages(){pack.replaceChildren();(DGSPrice.packages[service.value]||[]).forEach(([key,label])=>{const o=document.createElement('option');o.value=key;o.textContent=label;pack.append(o)})}
- function photos(){const files=[...form.querySelectorAll('[data-photo]')];const chosen=files.flatMap(i=>i.files?.length?[i.files[0]]:[]);const error=chosen.some(f=>!['image/jpeg','image/png'].includes(f.type))?'Bitte nur JPG- oder PNG-Fotos auswählen.':chosen.reduce((s,f)=>s+f.size,0)>6*1024*1024?'Die Fotos dürfen zusammen höchstens 6 MB gross sein.':'';files.forEach(i=>i.setCustomValidity(error));$('photo-error').textContent=error;return !error}
+ function photos(){const files=[...form.querySelectorAll('[data-photo]')];const chosen=files.flatMap(i=>i.files?.length?[i.files[0]]:[]);const error=chosen.some(f=>!['image/jpeg','image/png'].includes(f.type))?'Bitte nur JPG- oder PNG-Fotos auswählen.':chosen.reduce((s,f)=>s+f.size,0)>6*1024*1024?'Die Fotos dürfen zusammen höchstens 6 MB gross sein.':'';files.forEach(i=>i.setCustomValidity(error));$('photo-error').textContent=error;const clearPhotos=$('clear-photos');if(clearPhotos)clearPhotos.hidden=!error;return !error}
  function estimated(){zone.value=service.value==='auto'&&$('auto-handover').value==='bring'?'rorschach':'unknown';return DGSPrice.estimate(service.value,pack.value,tier.value,$('condition').value,zone.value)}
  function chosenScope(){
   if(service.value==='auto')return tier.value==='intensiv'?'Innen Intensiv: Innenraum und Kofferraum saugen, Fussmatten, zugängliche Oberflächen, Scheiben innen, gründliche Detailreinigung und materialgerechte Reinigung der vereinbarten Sitzflächen. Geeignete Stoffsitze werden feucht tiefengereinigt und abgesaugt. Trocknungszeit einplanen. Keine Aussenwäsche. Starke Tierhaare, besondere Flecken und Gerüche nach Fotoprüfung.':'Innen Basis: Innenraum und Kofferraum saugen, Fussmatten, zugängliche Oberflächen und Scheiben innen. Keine Sitz-Shampoonierung, starke Tierhaare, Geruchsbehandlung oder Aussenwäsche.';
@@ -81,6 +81,7 @@
  function validStep(index){const inputs=[...steps[index].querySelectorAll('input,select,textarea')];const invalid=inputs.find(input=>!input.disabled&&!input.checkValidity());if(invalid){invalid.reportValidity();return false}return index!==1||photos()}
  next.onclick=()=>{update();if(!validStep(step))return;showStep(photoChoice?2:Math.min(step+1,steps.length-1))};back.onclick=()=>showStep(photoChoice?(step===1?photoOrigin:0):Math.max(step-1,0));
  if(photoChoice)photoChoice.onclick=()=>{update();if(!validStep(0))return;photoOrigin=step;showStep(1)};
+ const clearPhotos=$('clear-photos');if(clearPhotos)clearPhotos.onclick=()=>{form.querySelectorAll('[data-photo]').forEach(input=>{input.value='';input.setCustomValidity('')});urls.forEach(URL.revokeObjectURL);urls=[];$('photo-preview').replaceChildren();photos();update();showStep(2)};
  form.addEventListener('invalid',e=>{const index=steps.indexOf(e.target.closest('.quote-step'));if(index>=0&&index!==step)showStep(index,false)},true);actions.hidden=false;showStep(0,false);
  window.addEventListener('pagehide',()=>urls.forEach(URL.revokeObjectURL));packages();update();
 })();
