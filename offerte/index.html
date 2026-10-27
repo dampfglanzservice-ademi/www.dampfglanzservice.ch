@@ -31,7 +31,7 @@
 <span class="eyebrow">Preis und Leistung vorher kennen.</span><h1>Welche Reinigung brauchen Sie?</h1>
 <p>Für Auto und Sofa sehen Sie einen ersten Preisrahmen, bevor Sie Kontaktdaten eingeben. Für andere Reinigungen erhalten Sie eine persönliche Offerte. Sie erhalten eine Antwort innerhalb weniger Stunden, spätestens innerhalb eines Tages. Ihre Anfrage ist kostenlos und unverbindlich.</p>
 </div></section>
-<nav class="quote-progress container" aria-label="Fortschritt Ihrer Anfrage"><span data-progress="0" aria-current="step">1 · Leistung</span><span data-progress="2">2 · Kontakt &amp; Termine</span><span data-progress="1">Fotos · freiwillig</span></nav><section class="section quote-section"><div class="container quote-layout">
+<nav class="quote-progress container" aria-label="Fortschritt Ihrer Anfrage"><span data-progress="0" aria-current="step">1 · Leistung</span><span data-progress="2">2 · Kontakt</span><span data-progress="1">Fotos · freiwillig</span></nav><section class="section quote-section"><div class="container quote-layout">
 <form id="quote-form" action="https://usebasin.com/f/c68a224cfdad" data-dgs-backend="basin" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="_subject" value="Unverbindliche Preisvorschlagsanfrage – Dampfglanzservice-Ademi"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://www.dampfglanzservice-ademi.ch/anfrage-gesendet/"><input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"><input type="hidden" name="_autoresponse" value="Vielen Dank für Ihre Anfrage an Dampfglanzservice-Ademi. Wir prüfen Ihre Angaben persönlich. Erst unsere Bestätigung gilt als verbindliche Offerte."><input type="hidden" name="Angebotsübersicht" id="quote-summary">
 <section class="form-card quote-step"><h2>1. Leistung &amp; Umfang</h2>
@@ -99,7 +99,7 @@
 <label class="check"><input id="alternative-offer" name="Guenstigere_Alternative" type="checkbox" value="Bitte eine günstigere Variante mit klar beschriebenem geringerem Umfang prüfen"><span>Bitte prüfen Sie zusätzlich eine günstigere Variante mit weniger Arbeiten, sofern sie für meinen Auftrag sinnvoll ist.</span></label><details><summary>Haben Sie ein Budget? · freiwillig</summary><div class="field">
 <label for="budget">Ihr Wunschbudget in CHF · optional</label><input id="budget" name="Preisvorschlag_CHF" type="number" min="0" step="0.01" aria-describedby="budget-notice"><p id="budget-notice" role="status">Sie müssen keinen Preis vorgeben. Wir erstellen Ihre persönliche Offerte.</p>
 </div></details></section>
-<section class="form-card quote-step"><h2>2. Kontakt &amp; mögliche Termine</h2>
+<section class="form-card quote-step"><h2>2. Kontakt</h2>
 <p id="contact-choice-help">Bitte nennen Sie Ihre E-Mail-Adresse oder Telefonnummer. Eine Kontaktmöglichkeit genügt; beides ist nicht nötig.</p>
 <div class="field-grid">
 <div class="field">
@@ -112,6 +112,7 @@
 <label for="customer-phone">Telefon</label><input id="customer-phone" name="Telefon" type="tel" autocomplete="tel" maxlength="40" aria-describedby="contact-choice-help">
 </div>
 </div>
+<details id="optional-dates"><summary>Wunschtermin hinzufügen · optional</summary>
 <p>Termine sind optional. Lassen Sie die Felder leer, wenn Sie flexibel sind oder den Termin persönlich besprechen möchten. Ihre Auswahl ist noch keine Terminbuchung.</p>
 <div class="field-grid">
 <div class="field">
@@ -127,6 +128,7 @@
 <label for="time-window">Mögliche Uhrzeiten</label><input id="time-window" name="Zeitfenster" placeholder="z. B. jeweils 09–16 Uhr">
 </div>
 </div>
+</details>
 <label class="check consent"><input type="checkbox" name="Datenschutz" value="gelesen und Übermittlung zugestimmt" required><span>Ich habe die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzhinweise</a> gelesen und stimme der Übermittlung meiner Angaben und ausgewählten Fotos zur Bearbeitung der Anfrage über Basin zu. <span aria-hidden="true">*</span></span></label><p class="fine-print">Eine Anfrage ist keine Buchung. Preis, Leistungsumfang und Termin werden persönlich bestätigt. * Pflichtfelder</p>
 <button id="send-offer" class="button primary submit-button" type="submit" disabled>Persönliche Offerte anfragen ↗</button><p id="quote-status" role="status" aria-live="polite"></p>
 <noscript>Bitte aktivieren Sie JavaScript für die Online-Anfrage oder kontaktieren Sie uns telefonisch.</noscript></section><div class="wizard-actions" hidden>
