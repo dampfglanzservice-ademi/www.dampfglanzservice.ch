@@ -590,3 +590,5 @@ body.consent-open{overflow:hidden;}
  .field-grid{grid-template-columns:minmax(0,1fr);}
  .field-grid>.field{grid-column:1/-1;}
 }
+
+@media(max-width:600px){.hero-actions .button,.hero-actions .secondary{font-size:14px;}}
