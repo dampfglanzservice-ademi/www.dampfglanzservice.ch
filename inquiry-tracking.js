@@ -32,6 +32,8 @@
     }
    }
    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),30000);
+   // Count only validated dispatch attempts; never a conversion or a customer enquiry.
+   try{window.DGSMeasurement?.attempted(kind,test);}catch{};
    say('Ihre Anfrage wird übermittelt. Bitte warten Sie auf die Bestätigung.');
    try{
     const response=await fetch(endpoint.href,{method:'POST',body:data,headers:{Accept:'application/json'},signal:controller.signal});
@@ -40,7 +42,8 @@
     if(!response.ok||result?.success!==true)throw new Error('not-confirmed');
     completed=true;
     say(test?'Testanfrage vom Formulardienst angenommen. Dieser Test zählt nicht als Kundenanfrage.':'Vielen Dank. Ihre Anfrage wurde übermittelt. Wir melden uns persönlich bei Ihnen.');
-    window.DGSMeasurement?.completed(kind,id,test);
+    // A blocked measurement tag must never overwrite an accepted enquiry with a send error.
+    try{window.DGSMeasurement?.completed(kind,id,test);}catch{};
     // No customer details are passed to measurement. Server acceptance does not prove inbox delivery.
    }catch{
     say('Die Übermittlung konnte nicht bestätigt werden. Ihre Eingaben bleiben erhalten. Bitte kontaktieren Sie uns unter info@dampfglanzservice-ademi.ch oder +41 76 502 49 98, bevor Sie nochmals senden.');

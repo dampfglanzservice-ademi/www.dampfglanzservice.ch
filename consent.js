@@ -53,7 +53,10 @@
   if(consent.ads&&!adsStarted){adsStarted=true;window.gtag('config',ADS,{...page,send_page_view:false,allow_enhanced_conversions:false,conversion_linker:true,cookie_expires:15552000});}
   document.dispatchEvent(new Event('dgs:measurement-ready'));
  }
- window.DGSMeasurement={completed:(kind,id,test)=>{
+ window.DGSMeasurement={attempted:(kind,test)=>{
+  if(test)return;
+  event('inquiry_submit_attempt',{form_kind:kind});
+ },completed:(kind,id,test)=>{
   if(test)return;
   if(consent?.analytics)event('inquiry_form_completed',{form_kind:kind});
   if(consent?.ads&&adsStarted)window.gtag('event','conversion',{send_to:'AW-17797086557/ac3LCInLoaYdEN36p6ZC',transaction_id:id,value:0,currency:'CHF',transport_type:'beacon'});
@@ -78,7 +81,7 @@
  document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(href.startsWith('tel:'))event('click_call');else if(/^https:\/\/(?:wa.me|api.whatsapp.com)\//.test(href))event('click_whatsapp');else if(href.startsWith('mailto:'))event('click_email');});
  document.querySelectorAll('form').forEach(form=>{
   let started=false;form.addEventListener('input',()=>{if(!started&&consent?.analytics){started=true;event('inquiry_start',{form_kind:form.id==='quote-form'?'quote':'contact'});}});
-  form.addEventListener('submit',e=>queueMicrotask(()=>{if(!e.defaultPrevented)event('inquiry_submit_attempt',{form_kind:form.id==='quote-form'?'quote':'contact'});}));
+  // Basin submit attempts are measured by its validated handler, not defaultPrevented.
  });
  let scrolled=false;window.addEventListener('scroll',()=>{if(!scrolled&&consent?.analytics&&window.scrollY+innerHeight>=document.documentElement.scrollHeight*.75){scrolled=true;event('scroll_75');}},{passive:true});
  if(consent?.analytics||consent?.ads)start();if(!consent&&location.pathname!=='/datenschutz/')open();
