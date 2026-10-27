@@ -3,13 +3,14 @@
  const ID='G-479RC4GH7F',ADS='AW-17797086557',KEY='dampfglanz-consent-v1',MAX_AGE=180*86400000;
  const dialog=document.getElementById('cookie-dialog'),toggle=document.getElementById('cookie-analytics');
  if(!dialog||!toggle)return;
- let consent=null,loaded=false,analyticsStarted=false,adsStarted=false,previousFocus=null;
+ let consent=null,loaded=false,analyticsStarted=false,adsStarted=false,previousFocus=null,needsAdsChoice=false;
+ const testMode=new URL(location.href).searchParams.get('dgs_test')==='1';
  const adsLabel=document.createElement('label');adsLabel.className='cookie-option';adsLabel.innerHTML='<input type="checkbox" id="cookie-ads"> Anfragenmessung mit Google Ads erlauben';toggle.closest('label').after(adsLabel);
  const adsToggle=adsLabel.querySelector('input');
  document.getElementById('cookie-title').textContent='Cookies & Anfragenmessung';
  document.getElementById('cookie-description').textContent='Wir speichern Ihre Cookie-Auswahl. Optional verwenden wir Google Analytics für Statistik und Google Ads zur Zuordnung erfolgreicher Formularanfragen zu Anzeigenklicks. Dabei werden Nutzungs- und Gerätedaten an Google übermittelt, möglicherweise auch in die USA. Alle Formulare funktionieren auch ohne Messung.';
  adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Keine Werbepersonalisierung. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt.';
- try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now())consent=saved;}catch{}
+ try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';consent={...saved,ads:saved.ads===true};}}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
  // Preserve Google click IDs only with explicit Ads consent. Other query fields
  // (including form details and arbitrary URL values) are never sent as page URLs.
@@ -37,9 +38,9 @@
   try{if(new URL(document.referrer).origin==='https://formsubmit.co')fields.ignore_referrer=true;}catch{}
   return fields;
  };
- const event=(name,params={})=>{if(consent?.analytics&&loaded)window.gtag('event',name,{...params,send_to:ID,transport_type:'beacon'});};
+ const event=(name,params={})=>{if(!testMode&&consent?.analytics&&loaded)window.gtag('event',name,{...params,send_to:ID,transport_type:'beacon'});};
  function start(){
-  if(!consent?.analytics&&!consent?.ads)return;
+  if(testMode||(!consent?.analytics&&!consent?.ads))return;
   if(!loaded){
    loaded=true;window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};
    window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
@@ -84,7 +85,7 @@
   // Basin submit attempts are measured by its validated handler, not defaultPrevented.
  });
  let scrolled=false;window.addEventListener('scroll',()=>{if(!scrolled&&consent?.analytics&&window.scrollY+innerHeight>=document.documentElement.scrollHeight*.75){scrolled=true;event('scroll_75');}},{passive:true});
- if(consent?.analytics||consent?.ads)start();if(!consent&&location.pathname!=='/datenschutz/')open();
+ if(consent?.analytics||consent?.ads)start();if((!consent||needsAdsChoice)&&location.pathname!=='/datenschutz/')open();
 })();
 
 // Keep only a recognised campaign reference, after explicit Ads-measurement consent.
