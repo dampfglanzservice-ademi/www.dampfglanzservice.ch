@@ -75,6 +75,17 @@
   $('auto-handover-field').hidden=service.value!=='auto';$('auto-handover').disabled=service.value!=='auto';
   $('cleaning-tier-field').hidden=service.value!=='auto';tier.disabled=service.value!=='auto';
   const selected=DGSPrice.packages[service.value]?.find(p=>p[0]===pack.value),est=estimated();
+  // Prepare only catalogue choices. Never copy typed customer details into external links.
+  const whatsappParts=service.value?[service.options[service.selectedIndex].text]:[];
+  if(service.value&&!custom&&selected?.[1])whatsappParts.push(selected[1]);
+  if(service.value==='auto')whatsappParts.push('Innen '+(tier.value==='intensiv'?'Intensiv':'Basis'));
+  const whatsappMessage=whatsappParts.length
+   ?'Guten Tag, ich möchte eine Offerte für '+whatsappParts.join(' · ')+'. Bitte nennen Sie mir den Preis und einen möglichen Termin.'
+   :'Guten Tag, ich möchte eine Reinigung anfragen. Bitte nennen Sie mir den Preis und einen möglichen Termin.';
+  document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{
+   link.href='https://wa.me/41765024998?text='+encodeURIComponent(whatsappMessage);
+   link.setAttribute('aria-label',whatsappParts.length?whatsappParts.join(' · ')+' per WhatsApp anfragen':'Reinigung per WhatsApp anfragen');
+  });
   $('scope').textContent=chosenScope();
   $('result-service').textContent=service.options[service.selectedIndex].text+' · '+(selected?.[1]||'')+(service.value==='auto'?' · Innen '+(tier.value==='intensiv'?'Intensiv':'Basis'):'');
   $('result-price').textContent=!service.value?'Bitte Reinigung auswählen':est.available?'ca. CHF '+est.min+'–'+est.max:'Persönliche Offerte';
