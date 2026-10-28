@@ -1,5 +1,43 @@
 (()=>{
  'use strict';
+ // Keep notification fields readable without sending the quote summary twice.
+ function notificationData(form){
+  const original=new FormData(form),ordered=new FormData();
+  const text=name=>String(original.get(name)||'').trim();
+  const selected=name=>{
+   const control=form.elements.namedItem(name);
+   return control?.tagName==='SELECT'&&control.selectedOptions?.length?control.selectedOptions[0].text.trim():text(name);
+  };
+  const add=(name,value)=>{if(value)ordered.append(name,value);};
+  const summary=text('Angebotsübersicht').split('\n');
+  const summaryValue=label=>summary.find(line=>line.startsWith(label+': '))?.slice(label.length+2).trim()||'';
+  for(const name of ['Name','email','Telefon','Ort'])add(name,text(name));
+  add('Leistung',selected('Leistung'));
+  const service=text('Leistung');
+  if(text('Paket'))add('Paket',selected('Paket'));
+  if(service==='auto')add('Autoreinigung_Umfang',selected('Autoreinigung_Umfang'));
+  add('Leistungsumfang',summaryValue('Gewünschter Leistungsumfang'));
+  add('Zustand',selected('Zustand'));
+  add('Preisrahmen',summaryValue('Angezeigter Preisrahmen der Hauptleistung'));
+  add('Auftragsdetails',text('Auftragsdetails')||text('Nachricht'));
+  add('Weitere_Reinigungswuensche',text('Weitere_Reinigungswuensche'));
+  add('Guenstigere_Alternative',text('Guenstigere_Alternative'));
+  add('Preisvorschlag_CHF',text('Preisvorschlag_CHF'));
+  for(const name of ['Terminvorschlag_1','Terminvorschlag_2','Terminvorschlag_3']){
+   const value=text(name);add(name,/^\d{4}-\d{2}-\d{2}$/.test(value)?value.split('-').reverse().join('.'):value);
+  }
+  add('Zeitfenster',text('Zeitfenster'));
+  if(service==='auto')add('Auto_Uebergabe',selected('Auto_Uebergabe'));
+  add('Datenschutz',text('Datenschutz'));
+  const handled=new Set(['Angebotsübersicht','Anfahrt_Pruefung','Name','email','Telefon','Ort','Leistung','Paket','Autoreinigung_Umfang','Zustand','Auftragsdetails','Nachricht','Weitere_Reinigungswuensche','Guenstigere_Alternative','Preisvorschlag_CHF','Terminvorschlag_1','Terminvorschlag_2','Terminvorschlag_3','Zeitfenster','Auto_Uebergabe','Datenschutz']);
+  // Preserve attachments and any additional fields; do not drop future inputs.
+  for(const [name,value] of original){
+   if(handled.has(name))continue;
+   if(typeof value==='string'){if(value.trim())ordered.append(name,value);}
+   else if(value.size>0)ordered.append(name,value);
+  }
+  return ordered;
+ }
  // Activate only on forms explicitly connected to the verified Basin endpoint.
  document.querySelectorAll('form[data-dgs-backend="basin"]').forEach(form=>{
   let busy=false,completed=false;
@@ -25,7 +63,7 @@
    const button=form.querySelector('[type="submit"]');if(button)button.disabled=true;
    const id=crypto.randomUUID(),kind=form.id==='quote-form'?'quote':'contact';
    const test=new URL(location.href).searchParams.get('dgs_test')==='1';
-   const data=new FormData(form);
+   const data=notificationData(form);
    for(const name of ['_subject','_next','_autoresponse','_template','_honey'])data.delete(name);
    data.set('DGS_Anfragekennung',id);data.set('DGS_Formular',kind);
    if(test)data.set('DGS_Funktionstest','Ja – nicht als Kundenanfrage zählen');
