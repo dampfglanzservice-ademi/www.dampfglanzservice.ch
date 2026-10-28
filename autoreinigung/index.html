@@ -24,8 +24,18 @@
 /* Let inquiry links wrap on narrow phones instead of widening their cards. */
 @media(max-width:600px){#pakete .content-split{grid-template-columns:minmax(0,1fr)}#pakete .content-split>*{min-width:0}#pakete .text-link{white-space:normal;overflow-wrap:anywhere}}
 </style>
+<style id="landing-clarity">
+.landing-auto .hero{padding:30px 0 40px}
+.landing-auto .hero-grid{gap:40px}
+.landing-auto .hero-copy h1{font-size:clamp(34px,4.2vw,56px);margin-bottom:18px}
+.landing-auto .hero-copy>p{font-size:16px;line-height:1.65}
+.landing-auto .hero-actions{margin-top:22px}
+.landing-auto .hero-copy .hero-direct-call{font-size:14px}
+@media(min-width:901px){.landing-auto .hero-visual{min-height:420px}.landing-auto .hero-visual>img{height:420px}}
+@media(max-width:600px){.landing-auto .hero{padding:24px 0 32px}.landing-auto .hero-copy h1{font-size:34px}.landing-auto .hero-grid{gap:24px}}
+</style>
 </head>
-<body id="top">
+<body id="top" class="landing-auto">
 <a class="skip" href="#main">Zum Inhalt</a><header class="header"><div class="container header-inner">
 <a class="brand" href="/" aria-label="Dampfglanzservice-Ademi – Startseite"><img src="/assets/brand.png" alt="" width="1200" height="1200" fetchpriority="high"><span>DAMPFGLANZSERVICE<span class="brand-sub">ADEMI <i>•</i> REINIGUNG</span></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menü <span aria-hidden="true">☰</span></button><nav id="main-nav" aria-label="Hauptnavigation"><a href="/leistungen/">Leistungen</a><a href="/regionen/">Regionen</a><a href="/ueber-uns/">Über uns</a><a href="/kontakt/">Kontakt</a><a class="nav-offerte" href="/offerte/">Online-Offerte ↗</a></nav><a class="button primary" href="/offerte/">Offerte anfragen <span aria-hidden="true">↗</span></a>
 </div></header><main id="main"><div class="container breadcrumbs">
@@ -34,9 +44,9 @@
 <section class="hero "><div class="container hero-grid">
 <div class="hero-copy">
 <span class="eyebrow"><i></i>Innenraum sorgfältig gereinigt</span><h1>Auto-Innenreinigung<br>für die Ostschweiz.</h1>
-<p>Auto innen reinigen lassen – vom Fussraum bis zu den Innenscheiben. Übergabe und Termin vereinbaren wir persönlich. Bis 15 km ab Rorschach sind Abholung und Rückgabe kostenlos.</p>
+<p>Auto innen reinigen lassen: Innenraum, Kofferraum, Oberflächen und Innenscheiben. <a href="#pakete" style="text-decoration:underline;text-underline-offset:3px">Basis oder Intensiv mit zusätzlicher Sitzreinigung wählen.</a> Bis 15 km ab Rorschach sind Abholung und Rückgabe kostenlos.</p>
 <div class="hero-actions">
-<a class="button primary" href="/offerte/?leistung=auto">Preisrahmen ansehen <span aria-hidden="true">↗</span></a><a class="button secondary" style="display:inline-flex" href="https://wa.me/41765024998?text=Guten%20Tag%2C%20ich%20m%C3%B6chte%20eine%20Auto-Innenreinigung%20anfragen.%20Bitte%20nennen%20Sie%20mir%20Preis%20und%20einen%20m%C3%B6glichen%20Termin." target="_blank" rel="noopener">Per WhatsApp anfragen <span aria-hidden="true">↗</span></a>
+<a class="button primary" href="/offerte/?leistung=auto">Preis und Termin anfragen <span aria-hidden="true">↗</span></a><a class="button secondary" style="display:inline-flex" href="https://wa.me/41765024998?text=Guten%20Tag%2C%20ich%20m%C3%B6chte%20eine%20Auto-Innenreinigung%20anfragen.%20Bitte%20nennen%20Sie%20mir%20Preis%20und%20einen%20m%C3%B6glichen%20Termin." target="_blank" rel="noopener">Per WhatsApp anfragen <span aria-hidden="true">↗</span></a>
 </div>
 <p class="hero-direct-call">Lieber direkt besprechen? <a href="tel:+41765024998">Jetzt anrufen: 076 502 49 98</a> <a href="/bewertungen/" style="display:inline-block;margin-left:.75rem">Kundenbewertungen lesen ↗</a></p>
 <div class="hero-assurance">
