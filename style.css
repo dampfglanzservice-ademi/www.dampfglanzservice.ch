@@ -592,3 +592,9 @@ body.consent-open{overflow:hidden;}
 }
 
 @media(max-width:600px){.hero-actions .button,.hero-actions .secondary{font-size:14px;}}
+
+/* Comfortable mobile reading without removing service or SEO content. */
+@media(max-width:600px){
+ .hero-copy>p,.section-head>p,.scope-list p,.customer-terms p,.sidebar-help p,.customer-answers p{font-size:16px;line-height:1.65;}
+ .hero-actions .button,.hero-actions .secondary{font-size:16px;}
+}
