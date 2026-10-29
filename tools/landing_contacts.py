@@ -113,10 +113,36 @@ SITE_STYLES = r'''<style id="calm-site-contact-20261029">
 @media(max-width:600px){.hero-actions{gap:8px 18px}.hero-actions a[href*="wa.me"]{width:auto}}
 </style>'''
 
+def _improve_service_decisions(document, path):
+    """Expose existing choices and prices before asking for customer details."""
+    if path == '/leistungen/':
+        if document.find('class="overview-promise"') > document.find('class="overview-other"') > -1:
+            return document
+        notes = []
+        for cls in ('overview-promise', 'overview-person'):
+            match = re.search(r'<p class="' + cls + r'">[\s\S]*?</p>', document)
+            if match:
+                notes.append(match.group(0))
+                document = document[:match.start()] + document[match.end():]
+        end = re.search(r'(<p class="overview-other">[\s\S]*?</p>\s*</div>)', document)
+        if end and notes:
+            document = document[:end.end()] + '\n' + '\n'.join(notes) + document[end.end():]
+    elif path == '/polsterreinigung/':
+        document = re.sub(
+            r'(<a class="button primary landing-contact-primary" href=")[^"]+(">)[\s\S]*?</a>',
+            r'\1#pakete\2Preise &amp; Leistungsumfang</a>',
+            document, count=1)
+        # The sofa page already answers drying and on-site cleaning specifically.
+        document = re.sub(
+            r'<details><summary>(?:Wo wird gereinigt\? Kann ich mein Auto bringen\?|Wann kann ich Auto oder Sofa wieder benutzen\?)[\s\S]*?</details>',
+            '', document)
+    return document
+
 def enhance_landing_contacts(document, path):
     if path == '/wohnungsreinigung/':
         document = document.replace("<p>Ein gepflegtes Zuhause, ohne dass Ihre Freizeit zu kurz kommt.</p>", "<p>Wohnung oder Haus putzen lassen: Wir reinigen Küche, Bad, Böden und Oberflächen – einmalig oder regelmässig nach Ihrem Bedarf. Sie erhalten vor dem Auftrag eine persönliche Offerte mit Fixpreis.</p>", 1)
     document = _enhance_primary_contacts(document, path)
+    document = _improve_service_decisions(document, path)
     if path in PATHS or path == '/offerte/':
         return document
     document = re.sub(r'<style id="calm-landing-contact-20261029">[\s\S]*?</style>\s*', '', document)
