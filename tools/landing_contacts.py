@@ -36,7 +36,9 @@ STYLES = r'''<style id="calm-landing-contact-20261029">
 @media print{.landing-contact-options{display:none}}
 </style>'''
 
-def enhance_landing_contacts(document, path):
+def _enhance_primary_contacts(document, path):
+    if path == '/offerte/':
+        return enhance_quote_contacts(document)
     if path not in PATHS:
         return document
     document = re.sub(r'<style id="calm-landing-contact-20261029">[\s\S]*?</style>\s*', '', document)
@@ -77,3 +79,46 @@ def enhance_landing_contacts(document, path):
             widget = '<details class="landing-contact-options"><summary>Kontakt</summary>' + floating.group(0) + '</details>'
             document = document.replace(floating.group(0), widget, 1)
     return document.replace('</head>', STYLES + '\n</head>', 1)
+
+FORM_STYLES = r'''<style id="calm-quote-20261029">
+.quote-heading .form-direct-contact,.quote-step .form-direct-contact{gap:8px 22px;margin:10px 0 8px}
+.quote-heading .form-direct-contact a,.quote-step .form-direct-contact a{min-height:44px;padding:4px 0;width:auto;height:auto;background:none;border:0;border-radius:0;box-shadow:none;transform:none;color:var(--ink);font-size:15px;text-decoration:underline;text-underline-offset:4px}
+.quote-heading .form-direct-contact .quick-whatsapp,.quote-step .form-direct-contact .quick-whatsapp{color:#145f32}
+.form-direct-contact svg{width:21px;height:21px}
+#quote-form .fine-print,#quote-form .upload-zone>p{font-size:14px;line-height:1.6}
+#quote-form .field label,#quote-form .photo-inputs label{font-size:14px}
+#quote-form input:not([type=checkbox]):not([type=file]),#quote-form select,#quote-form textarea{font-size:16px}
+#quote-form .upload-zone{text-align:left}
+#quote-form .photo-inputs{gap:16px}
+#quote-form .photo-inputs input{font-size:14px;max-width:100%}
+#quote-form .button{box-shadow:0 2px 5px #39201c14;transform:none}
+#contact-choice-help{font-size:15px;line-height:1.6;margin:12px 0 18px}
+.quote-progress span{font-size:12px}
+@media(max-width:600px){.quote-heading{padding-top:22px}.quote-heading p{font-size:15px;line-height:1.65}.quote-progress{padding-top:18px}.quote-section{padding-top:22px}}
+</style>'''
+
+def enhance_quote_contacts(document):
+    document = re.sub(r'<style id="calm-quote-20261029">[\s\S]*?</style>\s*', '', document)
+    document = re.sub(r'(<section class="quote-heading">[\s\S]*?<h1>[\s\S]*?</h1>\s*)<p>[\s\S]*?</p>', r'\1<p>Ihre Anfrage ist kostenlos und unverbindlich. Für Auto und Sofa sehen Sie vorab einen Preisrahmen. Für andere Reinigungen erstellen wir Ihre persönliche Offerte. Antwort spätestens innerhalb eines Tages.</p>', document, count=1)
+    document = document.replace('Bitte nennen Sie Ihre E-Mail-Adresse oder Telefonnummer. Eine Kontaktmöglichkeit genügt; beides ist nicht nötig.', 'Wie dürfen wir Sie erreichen? E-Mail oder Telefon genügt.')
+    document = document.replace('<h3>Zeigen Sie uns den Zustand.</h3>', '<h3>Fotos hinzufügen · freiwillig</h3>')
+    return document.replace('</head>', FORM_STYLES + '\n</head>', 1)
+
+SITE_STYLES = r'''<style id="calm-site-contact-20261029">
+.hero-actions .button.primary{box-shadow:0 2px 5px #39201c14;transform:none}
+.hero-actions a[href*="wa.me"]{display:inline-flex;align-items:center;min-height:44px;padding:6px 0;background:none;border:0;box-shadow:none;transform:none;color:#145f32;font-size:15px;text-decoration:underline;text-underline-offset:4px}
+.hero-actions a[href*="wa.me"] span[aria-hidden]{display:none}
+@media(max-width:600px){.hero-actions{gap:8px 18px}.hero-actions a[href*="wa.me"]{width:auto}}
+</style>'''
+
+def enhance_landing_contacts(document, path):
+    document = _enhance_primary_contacts(document, path)
+    if path in PATHS or path == '/offerte/':
+        return document
+    document = re.sub(r'<style id="calm-landing-contact-20261029">[\s\S]*?</style>\s*', '', document)
+    document = re.sub(r'<style id="calm-site-contact-20261029">[\s\S]*?</style>\s*', '', document)
+    if 'class="landing-contact-options"' not in document:
+        floating = re.search(r'<nav class="quick-contact" aria-label="Direktkontakt">[\s\S]*?</nav>', document)
+        if floating:
+            document = document.replace(floating.group(0), '<details class="landing-contact-options"><summary>Kontakt</summary>' + floating.group(0) + '</details>', 1)
+    return document.replace('</head>', STYLES + SITE_STYLES + '\n</head>', 1)
