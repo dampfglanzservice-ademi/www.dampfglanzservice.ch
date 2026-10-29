@@ -68,13 +68,14 @@
    data.set('DGS_Anfragekennung',id);data.set('DGS_Formular',kind);
    if(test)data.set('DGS_Funktionstest','Ja – nicht als Kundenanfrage zählen');
    // This is a first-party campaign reference, not a Google-confirmed conversion.
-   for(const name of ['DGS_Herkunft','DGS_Kampagne_ID','DGS_Kampagne','DGS_Zuordnung'])data.delete(name);
+   for(const name of ['DGS_Herkunft','DGS_Kampagne_ID','DGS_Kampagne','DGS_Zuordnung','DGS_Einstiegsseite'])data.delete(name);
    if(!test){
     const origin=window.DGSCampaignAttribution?.get();
     if(origin){
      data.set('DGS_Herkunft','Google Ads – Kampagnenparameter');
      data.set('DGS_Kampagne_ID',origin.campaignId);
      data.set('DGS_Kampagne',origin.campaignName);
+     if(origin.entryPath)data.set('DGS_Einstiegsseite',origin.entryPath);
      data.set('DGS_Zuordnung','Kampagnenparameter dieser Sitzung; Google-Conversion nicht bestätigt');
     }
    }
