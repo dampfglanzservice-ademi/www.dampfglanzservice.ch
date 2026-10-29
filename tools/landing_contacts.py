@@ -114,6 +114,8 @@ SITE_STYLES = r'''<style id="calm-site-contact-20261029">
 </style>'''
 
 def enhance_landing_contacts(document, path):
+    if path == '/wohnungsreinigung/':
+        document = document.replace("<p>Ein gepflegtes Zuhause, ohne dass Ihre Freizeit zu kurz kommt.</p>", "<p>Wohnung oder Haus putzen lassen: Wir reinigen Küche, Bad, Böden und Oberflächen – einmalig oder regelmässig nach Ihrem Bedarf. Sie erhalten vor dem Auftrag eine persönliche Offerte mit Fixpreis.</p>", 1)
     document = _enhance_primary_contacts(document, path)
     if path in PATHS or path == '/offerte/':
         return document
