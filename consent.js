@@ -135,13 +135,13 @@
   const current=campaignFrom(location.href);
   const previous=campaignFrom(document.referrer);
   if(current||(previous&&!x)){
-   x={version:1,id:current||previous,at:Date.now()};
+   x={version:1,id:current||previous,at:Date.now(),entryPath:current?location.pathname:new URL(document.referrer).pathname};
    try{sessionStorage.setItem(KEY,JSON.stringify(x));}catch{}
   }
   return x;
  };
  window.DGSCampaignAttribution={
-  get:()=>{const x=capture();return x?{campaignId:x.id,campaignName:CAMPAIGNS[x.id],method:'campaign_parameter'}:null;},
+  get:()=>{const x=capture();return x?{campaignId:x.id,campaignName:CAMPAIGNS[x.id],method:'campaign_parameter',entryPath:typeof x.entryPath==='string'&&/^\/[a-z0-9\/-]{0,160}$/i.test(x.entryPath)?x.entryPath:''}:null;},
   clear
  };
  document.addEventListener('dgs:measurement-ready',capture);
