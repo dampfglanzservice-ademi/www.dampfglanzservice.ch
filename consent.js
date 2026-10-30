@@ -30,8 +30,10 @@
   const fields={};
   try{
    const u=new URL(location.href);
-   if(u.searchParams.get('utm_source')==='google'&&u.searchParams.get('utm_medium')==='organic'&&u.searchParams.get('utm_campaign')==='gbp_autoinnenreinigung'){
-    fields.campaign_source='google';fields.campaign_medium='organic';fields.campaign_name='gbp_autoinnenreinigung';
+   const campaign=u.searchParams.get('utm_campaign');
+   const knownProfiles=['business_profile','gbp_autoinnenreinigung','gbp_sofareinigung','treppenhaus_unterhalt'];
+   if(u.searchParams.get('utm_source')==='google'&&u.searchParams.get('utm_medium')==='organic'&&knownProfiles.includes(campaign)){
+    fields.campaign_source='google';fields.campaign_medium='organic';fields.campaign_name=campaign;
    }
   }catch{}
   // Returning from the form provider must not replace the original traffic source.
