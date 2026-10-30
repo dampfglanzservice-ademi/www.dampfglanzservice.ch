@@ -3,13 +3,13 @@
  const ID='G-479RC4GH7F',ADS='AW-17797086557',KEY='dampfglanz-consent-v1',MAX_AGE=180*86400000;
  const dialog=document.getElementById('cookie-dialog'),toggle=document.getElementById('cookie-analytics');
  if(!dialog||!toggle)return;
- let consent=null,loaded=false,analyticsStarted=false,adsStarted=false,callsStarted=false,previousFocus=null,needsAdsChoice=false;
+ let consent=null,loaded=false,analyticsStarted=false,adsStarted=false,previousFocus=null,needsAdsChoice=false;
  const testMode=new URL(location.href).searchParams.get('dgs_test')==='1';
- const adsLabel=document.createElement('label');adsLabel.className='cookie-option';adsLabel.innerHTML='<input type="checkbox" id="cookie-ads"> Anfragen und Anrufe messen (optional)';toggle.closest('label').after(adsLabel);
+ const adsLabel=document.createElement('label');adsLabel.className='cookie-option';adsLabel.innerHTML='<input type="checkbox" id="cookie-ads"> Anfragenmessung mit Google Ads erlauben';toggle.closest('label').after(adsLabel);
  const adsToggle=adsLabel.querySelector('input');
  document.getElementById('cookie-title').textContent='Cookies & Anfragenmessung';
- document.getElementById('cookie-description').textContent='Sie entscheiden, ob wir mit Google unsere Website und die Wirkung unserer Anzeigen messen dürfen. Anfragen und Anrufe funktionieren auch ohne Messung. Bei erlaubter Anrufmessung kann eine Weiterleitungsnummer erscheinen, die Sie wie gewohnt mit uns verbindet.';
- adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Google erhält Nutzungs- und Gerätedaten; bei der Anrufmessung auch Rufnummer, Anrufzeit, Dauer und Verbindungsstatus, möglicherweise in den USA. Keine Werbepersonalisierung oder Gesprächsaufzeichnung. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt. Weitere Informationen stehen in der Datenschutzerklärung.';
+ document.getElementById('cookie-description').textContent='Wir speichern Ihre Cookie-Auswahl. Optional verwenden wir Google Analytics für Statistik und Google Ads zur Zuordnung erfolgreicher Formularanfragen zu Anzeigenklicks. Dabei werden Nutzungs- und Gerätedaten an Google übermittelt, möglicherweise auch in die USA. Alle Formulare funktionieren auch ohne Messung.';
+ adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Keine Werbepersonalisierung. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt.';
  try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';consent={...saved,ads:saved.ads===true};}}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
  // Preserve Google click IDs only with explicit Ads consent. Other query fields
@@ -39,25 +39,6 @@
   return fields;
  };
  const event=(name,params={})=>{if(!testMode&&consent?.analytics&&loaded)window.gtag('event',name,{...params,send_to:ID,transport_type:'beacon'});};
-
- // Calls use a separately disclosed scope: old form-only consent does not enable it.
- const businessPhone=value=>['+41765024998','41765024998','0765024998','0041765024998'].includes(String(value||'').replace(/[^+\d]/g,''));
- function applyForwardingNumber(formatted,mobile){
-  if(testMode||!consent?.ads||consent.adsCalls!==true)return;
-  let dial=String(mobile||'').replace(/[^+\d]/g,'');
-  if(/^\d{9,15}$/.test(dial)&&!dial.startsWith('0'))dial='+'+dial;
-  if(!/^(?:\+\d{8,15}|0\d{8,14})$/.test(dial)||typeof formatted!=='string'||formatted.length>40)return;
-  // Match business tel links only. WhatsApp, schema.org and other contacts stay intact.
-  document.querySelectorAll('a[href^="tel:"]').forEach(link=>{
-   if(!businessPhone(link.getAttribute('href').slice(4))&&link.dataset.dgsCallNumber!=='1')return;
-   link.dataset.dgsCallNumber='1';
-   link.setAttribute('href','tel:'+dial);
-   link.setAttribute('aria-label','Dampfglanzservice-Ademi anrufen: '+formatted);
-   for(const node of link.childNodes){
-    if(node.nodeType===3&&businessPhone(node.textContent))node.textContent=formatted;
-   }
-  });
- }
  function start(){
   if(testMode||(!consent?.analytics&&!consent?.ads))return;
   if(!loaded){
@@ -71,14 +52,6 @@
   const page={page_location:measurementURL(),page_referrer:cleanURL(document.referrer),allow_google_signals:false,allow_ad_personalization_signals:false};
   if(consent.analytics&&!analyticsStarted){analyticsStarted=true;window.gtag('config',ID,{...trafficFields(),...page,cookie_expires:15552000,debug_mode:location.hostname!=='www.dampfglanzservice-ademi.ch'});}
   if(consent.ads&&!adsStarted){adsStarted=true;window.gtag('config',ADS,{...page,send_page_view:false,allow_enhanced_conversions:false,conversion_linker:true,cookie_expires:15552000});}
-  if(consent.ads&&consent.adsCalls===true&&!callsStarted){
-   callsStarted=true;
-   window.gtag('config','AW-17797086557/b2JDCODIkq8dEN36p6ZC',{
-    phone_conversion_number:'+41 76 502 49 98',
-    phone_conversion_callback:applyForwardingNumber,
-    phone_conversion_options:{timeout:3000,cache:false}
-   });
-  }
   document.dispatchEvent(new Event('dgs:measurement-ready'));
  }
  const measuredSteps=new Set();
@@ -98,12 +71,12 @@
   if(consent?.ads&&adsStarted)window.gtag('event','conversion',{send_to:'AW-17797086557/ac3LCInLoaYdEN36p6ZC',transaction_id:id,value:0,currency:'CHF',transport_type:'beacon'});
  }};
  function clearAnalytics(analytics=true,ads=true){
-  const names=document.cookie.split(';').map(x=>x.trim().split('=')[0]).filter(x=>(analytics&&/^_ga(?:_|$)|^_gid$|^_gat/.test(x))||(ads&&/^(?:_gcl_|gwcc$)/.test(x)));
+  const names=document.cookie.split(';').map(x=>x.trim().split('=')[0]).filter(x=>(analytics&&/^_ga(?:_|$)|^_gid$|^_gat/.test(x))||(ads&&/^_gcl_/.test(x)));
   const domains=['',location.hostname,'.'+location.hostname,'.'+location.hostname.split('.').slice(-2).join('.')];
   for(const name of names)for(const domain of domains)document.cookie=name+'=; Max-Age=0; path=/'+(domain?'; domain='+domain:'')+'; SameSite=Lax; Secure';
  }
  function save(analytics,ads){
-  const wasLoaded=loaded,previous=consent;consent={version:1,analytics,ads,adsCalls:ads,at:Date.now()};
+  const wasLoaded=loaded,previous=consent;consent={version:1,analytics,ads,at:Date.now()};
   try{localStorage.setItem(KEY,JSON.stringify(consent));}catch{}
   dialog.close();document.body.classList.remove('consent-open');previousFocus?.focus();
   if(wasLoaded){clearAnalytics(previous?.analytics===true&&!analytics,previous?.ads===true&&!ads);location.reload();}else start();
