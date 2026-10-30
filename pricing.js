@@ -19,7 +19,7 @@ function estimate(service,key,tier='basis',condition='normal',zone='unknown'){
  if(!knownPackage)return {available:false,reason:'Bitte wählen Sie Ihre Reinigung.'};
  const range=service==='auto'?orientation.auto[tier]?.[key]:orientation[service]?.[String(key)];
  if(!range)return {available:false,reason:'Für diese Reinigung erhalten Sie eine persönliche Offerte. Beschreiben Sie kurz den Umfang; ein eigenes Budget ist nicht nötig.'};
- if(condition!=='normal')return {available:false,reason:'Für starke Verschmutzung oder empfindliches Material prüfen wir zuerst Ihre Fotos. Danach erhalten Sie Ihren Gesamtpreis.'};
+ if(condition!=='normal')return {available:false,reason:'Bei starker Verschmutzung oder empfindlichem Material klären wir Zustand, Umfang und Gesamtpreis persönlich. Fotos sind freiwillig.'};
  if(zone==='unknown')return {available:true,min:range[0],max:range[1],travel:null,travelConfirmed:false,binding:false};
  if(!Object.prototype.hasOwnProperty.call(travel,zone))return {available:false,reason:'Für einen vollständigen Preisrahmen wählen Sie bitte die passende Fahrzone. Wenn Sie unsicher sind, klären wir Reinigung und Anfahrt in Ihrer persönlichen Offerte.'};
  return {available:true,min:range[0]+travel[zone],max:range[1]+travel[zone],travel:travel[zone],travelConfirmed:true,binding:false};
