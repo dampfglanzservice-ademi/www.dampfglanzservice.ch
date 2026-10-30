@@ -79,6 +79,9 @@
   const whatsappParts=service.value?[service.options[service.selectedIndex].text]:[];
   if(service.value&&!custom&&selected?.[1])whatsappParts.push(selected[1]);
   if(service.value==='auto')whatsappParts.push('Innen '+(tier.value==='intensiv'?'Intensiv':'Basis'));
+  if(params.get('kombi')==='ja'&&$('combine-services').value==='Zusätzlich Matratzenreinigung. Grösse, Material und Zustand gemeinsam klären.')whatsappParts.push('zusätzlich Matratzenreinigung');
+  const combinationNote=$('quote-combination-note');
+  if(combinationNote)combinationNote.hidden=!$('combine-services').value.trim();
   const whatsappMessage=whatsappParts.length
    ?'Guten Tag, ich möchte eine Offerte für '+whatsappParts.join(' · ')+'. Bitte nennen Sie mir den Preis und einen möglichen Termin.'
    :'Guten Tag, ich möchte eine Reinigung anfragen. Bitte nennen Sie mir den Preis und einen möglichen Termin.';
@@ -117,8 +120,8 @@
  if(param==='polsterreinigung'&&params.get('kombi')==='ja'){
   const additional=$('combine-services');
   if(additional&&!additional.value)additional.value='Zusätzlich Matratzenreinigung. Grösse, Material und Zustand gemeinsam klären.';
-  const note=document.createElement('p');note.className='fine-print';
-  note.textContent='Zusätzlich vorgemerkt: Matratzenreinigung. Unter «Fotos & Wünsche» können Sie dies ändern. Der Preisrahmen gilt zunächst nur für das Sofa.';
+  const note=document.createElement('p');note.id='quote-combination-note';note.className='fine-print';
+  note.textContent='Ein zusätzlicher Reinigungswunsch ist vorgemerkt. Unter «Fotos & Wünsche» können Sie ihn prüfen oder ändern. Der Preisrahmen gilt nur für die ausgewählte Hauptleistung.';
   $('scope').after(note);
  }
  update();
