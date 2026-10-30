@@ -108,5 +108,18 @@
  if(photoChoice)photoChoice.onclick=()=>{update();if(!validStep(0))return;photoOrigin=step;showStep(1)};
  const clearPhotos=$('clear-photos');if(clearPhotos)clearPhotos.onclick=()=>{form.querySelectorAll('[data-photo]').forEach(input=>{input.value='';input.setCustomValidity('')});urls.forEach(URL.revokeObjectURL);urls=[];$('photo-preview').replaceChildren();photos();update();showStep(2)};
  form.addEventListener('invalid',e=>{const details=e.target.closest('details');if(details)details.open=true;const index=steps.indexOf(e.target.closest('.quote-step'));if(index>=0&&index!==step)showStep(index,false)},true);actions.hidden=false;showStep(0,false);
- window.addEventListener('pagehide',()=>urls.forEach(URL.revokeObjectURL));packages();update();
+ window.addEventListener('pagehide',()=>urls.forEach(URL.revokeObjectURL));
+ packages();
+ // Preserve only published package IDs from a service-page price link.
+ const requestedPackage=params.get('paket');
+ if((DGSPrice.packages[service.value]||[]).some(item=>item[0]===requestedPackage))pack.value=requestedPackage;
+ // The Sofa + mattress link expresses an explicit combined enquiry.
+ if(param==='polsterreinigung'&&params.get('kombi')==='ja'){
+  const additional=$('combine-services');
+  if(additional&&!additional.value)additional.value='Zusätzlich Matratzenreinigung. Grösse, Material und Zustand gemeinsam klären.';
+  const note=document.createElement('p');note.className='fine-print';
+  note.textContent='Zusätzlich vorgemerkt: Matratzenreinigung. Unter «Fotos & Wünsche» können Sie dies ändern. Der Preisrahmen gilt zunächst nur für das Sofa.';
+  $('scope').after(note);
+ }
+ update();
 })();
