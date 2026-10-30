@@ -89,6 +89,24 @@
  dialog.addEventListener('cancel',e=>{e.preventDefault();save(false,false);});
  document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(href.startsWith('tel:'))event('click_call');else if(/^https:\/\/(?:wa.me|api.whatsapp.com)\//.test(href))event('click_whatsapp');else if(href.startsWith('mailto:'))event('click_email');});
  document.querySelectorAll('form').forEach(form=>{
+  // A visible form is diagnostic only, never an enquiry or an Ads conversion.
+  // Record no field values. Existing analytics consent and test exclusions apply.
+  if(form.matches('[data-dgs-backend="basin"]')&&'IntersectionObserver' in window){
+   let viewed=false,visible=false,observer;
+   const reportView=()=>{
+    if(viewed||!visible||testMode||!consent?.analytics||!loaded)return;
+    viewed=true;
+    event('inquiry_view',{form_kind:form.id==='quote-form'?'quote':'contact'});
+    observer.disconnect();
+    document.removeEventListener('dgs:measurement-ready',reportView);
+   };
+   observer=new IntersectionObserver(entries=>{
+    visible=entries.some(entry=>entry.isIntersecting&&entry.intersectionRatio>=0.01);
+    reportView();
+   },{threshold:0.01});
+   observer.observe(form);
+   document.addEventListener('dgs:measurement-ready',reportView);
+  }
   let started=false;form.addEventListener('input',()=>{if(!started&&consent?.analytics){started=true;event('inquiry_start',{form_kind:form.id==='quote-form'?'quote':'contact'});}});
   // Diagnose fixed field groups only: never field values or customer details.
   if(form.matches('[data-dgs-backend="basin"]')){
