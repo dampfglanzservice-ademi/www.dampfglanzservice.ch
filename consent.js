@@ -5,11 +5,11 @@
  if(!dialog||!toggle)return;
  let consent=null,loaded=false,analyticsStarted=false,adsStarted=false,callsStarted=false,previousFocus=null,needsAdsChoice=false;
  const testMode=new URL(location.href).searchParams.get('dgs_test')==='1';
- const adsLabel=document.createElement('label');adsLabel.className='cookie-option';adsLabel.innerHTML='<input type="checkbox" id="cookie-ads"> Formular- und Anrufmessung mit Google Ads erlauben';toggle.closest('label').after(adsLabel);
+ const adsLabel=document.createElement('label');adsLabel.className='cookie-option';adsLabel.innerHTML='<input type="checkbox" id="cookie-ads"> Anfragen und Anrufe messen (optional)';toggle.closest('label').after(adsLabel);
  const adsToggle=adsLabel.querySelector('input');
  document.getElementById('cookie-title').textContent='Cookies & Anfragenmessung';
- document.getElementById('cookie-description').textContent='Wir speichern Ihre Cookie-Auswahl. Optional verwenden wir Google Analytics für Statistik und Google Ads zur Zuordnung erfolgreicher Formularanfragen und tatsächlicher Anrufe. Bei erlaubter Anrufmessung kann eine Messnummer von Google erscheinen; Anrufe gelangen weiterhin zu uns. Google verarbeitet Nutzungs- und Gerätedaten sowie Rufnummern, Anrufzeit und Dauer, möglicherweise auch in den USA. Alle Kontaktwege funktionieren auch ohne Messung.';
- adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Keine Werbepersonalisierung. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt. Wir richten keine Gesprächsaufzeichnung ein.';
+ document.getElementById('cookie-description').textContent='Sie entscheiden, ob wir mit Google unsere Website und die Wirkung unserer Anzeigen messen dürfen. Anfragen und Anrufe funktionieren auch ohne Messung. Bei erlaubter Anrufmessung kann eine Weiterleitungsnummer erscheinen, die Sie wie gewohnt mit uns verbindet.';
+ adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Google erhält Nutzungs- und Gerätedaten; bei der Anrufmessung auch Rufnummer, Anrufzeit, Dauer und Verbindungsstatus, möglicherweise in den USA. Keine Werbepersonalisierung oder Gesprächsaufzeichnung. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt. Weitere Informationen stehen in der Datenschutzerklärung.';
  try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';consent={...saved,ads:saved.ads===true};}}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
  // Preserve Google click IDs only with explicit Ads consent. Other query fields
