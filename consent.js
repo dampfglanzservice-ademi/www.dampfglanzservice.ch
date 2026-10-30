@@ -132,7 +132,8 @@
  const KEY='dgs-campaign-session-v1',CONSENT='dampfglanz-consent-v1',TTL=30*60*1000;
  const CAMPAIGNS={
   '24407255482':'Reinigung Ostschweiz',
-  '24407267470':'Auto-Innenreinigung Ostschweiz'
+  '24407267470':'Auto-Innenreinigung Ostschweiz',
+  '24415776164':'Grundreinigung Ostschweiz'
  };
  const isTest=()=>new URL(location.href).searchParams.get('dgs_test')==='1';
  const allowed=()=>{
