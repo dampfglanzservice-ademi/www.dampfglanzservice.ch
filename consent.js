@@ -34,6 +34,9 @@
    const knownProfiles=['business_profile','gbp_autoinnenreinigung','gbp_sofareinigung','treppenhaus_unterhalt'];
    if(u.searchParams.get('utm_source')==='google'&&u.searchParams.get('utm_medium')==='organic'&&knownProfiles.includes(campaign)){
     fields.campaign_source='google';fields.campaign_medium='organic';fields.campaign_name=campaign;
+   }else if(u.searchParams.get('utm_source')==='chatgpt.com'&&!['gclid','gbraid','wbraid'].some(key=>u.searchParams.has(key))){
+    // An allowlisted source hint, not proof of an AI recommendation or a lead.
+    fields.campaign_source='chatgpt.com';fields.campaign_medium='referral';
    }
   }catch{}
   // Returning from the form provider must not replace the original traffic source.
