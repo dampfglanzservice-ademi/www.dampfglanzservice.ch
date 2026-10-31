@@ -1,5 +1,15 @@
 (()=>{
  'use strict';
+ // Correlation only, never an authentication token. Older browsers may lack randomUUID.
+ function inquiryId(){
+  const c=window.crypto;
+  try{if(typeof c?.randomUUID==='function')return c.randomUUID();}catch{}
+  const bytes=new Uint8Array(16);
+  try{c.getRandomValues(bytes);}catch{for(let i=0;i<bytes.length;i++)bytes[i]=Math.floor(Math.random()*256);}
+  bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
+  const hex=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
+  return hex.slice(0,8)+'-'+hex.slice(8,12)+'-'+hex.slice(12,16)+'-'+hex.slice(16,20)+'-'+hex.slice(20);
+ }
  // Keep notification fields readable without sending the quote summary twice.
  function notificationData(form){
   const original=new FormData(form),ordered=new FormData();
@@ -61,7 +71,7 @@
    if(endpoint.origin!=='https://usebasin.com'||!/^\/f\/[a-zA-Z0-9-]+$/.test(endpoint.pathname)){fail('Der Formularversand ist derzeit nicht eingerichtet. Bitte kontaktieren Sie uns direkt.');return;}
    busy=true;
    const button=form.querySelector('[type="submit"]');if(button)button.disabled=true;
-   const id=crypto.randomUUID(),kind=form.id==='quote-form'?'quote':'contact';
+   const id=inquiryId(),kind=form.id==='quote-form'?'quote':'contact';
    const test=new URL(location.href).searchParams.get('dgs_test')==='1';
    const data=notificationData(form);
    for(const name of ['_subject','_next','_autoresponse','_template','_honey'])data.delete(name);
