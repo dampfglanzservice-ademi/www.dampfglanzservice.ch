@@ -1,5 +1,6 @@
 """Present one primary enquiry action and quiet direct-contact alternatives."""
 import re
+import json
 
 PATHS = {'/fruehlingsreinigung/', '/leistungen/', '/autoreinigung/', '/wohnungsreinigung/', '/endreinigung-abnahmegarantie/', '/bueroreinigung/', '/fensterreinigung/', '/polsterreinigung/', '/matratzenreinigung/', '/teppichreinigung/'}
 
@@ -144,6 +145,47 @@ def _improve_service_decisions(document, path):
             '', document)
     return document
 
+
+def _complete_cleaning_zurich_coverage(document, path):
+    """Keep the authorised canton coverage clear on the two general cleaning routes."""
+    if path not in ('/wohnungsreinigung/', '/leistungen/'):
+        return document
+    if path == '/wohnungsreinigung/':
+        document = document.replace(
+            'Wohnung oder Haus putzen lassen: Wir reinigen Küche, Bad, Böden und Oberflächen – einmalig oder regelmässig nach Ihrem Bedarf. Sie erhalten vor dem Auftrag eine persönliche Offerte mit Fixpreis.',
+            'Wohnung oder Haus putzen lassen in der Ostschweiz und im Kanton Zürich: Küche, Bad, Böden und Oberflächen, einmalig oder regelmässig. Umfang, Anfahrt, Fixpreis und Termin stimmen wir vor dem Auftrag ab.', 1)
+        document = document.replace(
+            '<h2>Wohnungsreinigung in der Ostschweiz anfragen</h2>',
+            '<h2>Wohnungsreinigung in der Ostschweiz und im Kanton Zürich anfragen</h2>', 1)
+        if 'Auch Einsätze im Kanton Zürich, etwa in Winterthur' not in document:
+            document = document.replace(
+                'Termin und Anfahrt werden passend zu Ihrem Auftrag bestätigt.',
+                'Auch Einsätze im Kanton Zürich, etwa in Winterthur, können Sie anfragen. Termin und Anfahrt werden passend zu Ihrem Auftrag bestätigt.', 1)
+        def update_service_area(match):
+            data = json.loads(match.group(1))
+            nodes = data.get('@graph', [data])
+            for node in nodes:
+                if node.get('@type') == 'Service' and isinstance(node.get('areaServed'), list):
+                    if 'Kanton Zürich' not in node['areaServed']:
+                        node['areaServed'].append('Kanton Zürich')
+            return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '</script>'
+        document = re.sub(r'<script type="application/ld\+json">([\s\S]*?)</script>', update_service_area, document)
+    else:
+        document = document.replace(
+            'Was dürfen wir für Sie reinigen? Nennen Sie uns Ihren Reinigungswunsch und Ort. Wir klären Umfang, Preis und Termin persönlich.',
+            'Ihre Reinigung in der Ostschweiz und im Kanton Zürich: Nennen Sie uns Ihren Reinigungswunsch und Ort. Umfang, Anfahrt, Preis und Termin klären wir persönlich vor dem Auftrag.', 1)
+        document = document.replace(
+            '<h2>Reinigung für die ganze Ostschweiz</h2>',
+            '<h2>Reinigung für die Ostschweiz und den Kanton Zürich</h2>', 1)
+        document = document.replace(
+            'Auch weitere Orte der Ostschweiz können Sie anfragen.',
+            'Auch weitere Orte der Ostschweiz und im Kanton Zürich, etwa Winterthur, können Sie anfragen.', 1)
+    regional = re.search(r'<section[^>]*id="regional-service-access"[\s\S]*?</section>', document)
+    if regional and 'href="/reinigungsfirma-zuerich/"' not in regional.group(0):
+        updated = regional.group(0).replace('</ul></details>', '<li><a href="/reinigungsfirma-zuerich/">Kanton Zürich</a></li>\n</ul></details>', 1)
+        document = document[:regional.start()] + updated + document[regional.end():]
+    return document
+
 def enhance_landing_contacts(document, path):
     if path == '/wohnungsreinigung/':
         document = document.replace("<p>Ein gepflegtes Zuhause, ohne dass Ihre Freizeit zu kurz kommt.</p>", "<p>Wohnung oder Haus putzen lassen: Wir reinigen Küche, Bad, Böden und Oberflächen – einmalig oder regelmässig nach Ihrem Bedarf. Sie erhalten vor dem Auftrag eine persönliche Offerte mit Fixpreis.</p>", 1)
@@ -157,6 +199,7 @@ def enhance_landing_contacts(document, path):
                 document, count=1)
     document = _enhance_primary_contacts(document, path)
     document = _improve_service_decisions(document, path)
+    document = _complete_cleaning_zurich_coverage(document, path)
     if path in PATHS or path == '/offerte/':
         return document
     document = re.sub(r'<style id="calm-landing-contact-20261029">[\s\S]*?</style>\s*', '', document)
