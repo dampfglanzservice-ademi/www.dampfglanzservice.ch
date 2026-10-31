@@ -1,7 +1,7 @@
 """Present one primary enquiry action and quiet direct-contact alternatives."""
 import re
 
-PATHS = {'/leistungen/', '/autoreinigung/', '/wohnungsreinigung/', '/endreinigung-abnahmegarantie/', '/bueroreinigung/', '/fensterreinigung/', '/polsterreinigung/', '/matratzenreinigung/', '/teppichreinigung/'}
+PATHS = {'/fruehlingsreinigung/', '/leistungen/', '/autoreinigung/', '/wohnungsreinigung/', '/endreinigung-abnahmegarantie/', '/bueroreinigung/', '/fensterreinigung/', '/polsterreinigung/', '/matratzenreinigung/', '/teppichreinigung/'}
 
 STYLES = r'''<style id="calm-landing-contact-20261029">
 .landing-contact{margin-top:22px}
@@ -147,6 +147,14 @@ def _improve_service_decisions(document, path):
 def enhance_landing_contacts(document, path):
     if path == '/wohnungsreinigung/':
         document = document.replace("<p>Ein gepflegtes Zuhause, ohne dass Ihre Freizeit zu kurz kommt.</p>", "<p>Wohnung oder Haus putzen lassen: Wir reinigen Küche, Bad, Böden und Oberflächen – einmalig oder regelmässig nach Ihrem Bedarf. Sie erhalten vor dem Auftrag eine persönliche Offerte mit Fixpreis.</p>", 1)
+    if path == '/fruehlingsreinigung/' and 'class="landing-contact"' not in document:
+        # Use the existing service-specific WhatsApp destination in the first contact block.
+        service_wa = re.search(r'<a\b[^>]*href="(https://wa\.me/[^"]+)"[^>]*>Unverbindlich per WhatsApp anfragen', document)
+        if service_wa:
+            document = re.sub(
+                r'(<div class="hero-actions">\s*<a class="button primary"[^>]*>)[\s\S]*?(</a>)',
+                r'\1Preis und Termin anfragen\2<a href="' + service_wa.group(1) + '" target="_blank" rel="noopener">WhatsApp</a>',
+                document, count=1)
     document = _enhance_primary_contacts(document, path)
     document = _improve_service_decisions(document, path)
     if path in PATHS or path == '/offerte/':
