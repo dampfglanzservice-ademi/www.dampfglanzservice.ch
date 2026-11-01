@@ -2,3 +2,12 @@
 
 .sq-title-mobile,.sq-intro-mobile,.sq-mobile-benefits{display:none}
 @media(max-width:600px){.breadcrumbs{padding-top:12px;padding-bottom:12px}.sq-heading{padding-top:14px;padding-bottom:8px}.sq-heading .eyebrow,.sq-title-full,.sq-intro-full,.sq-heading .sq-benefits,.sq-direct>span{display:none}.sq-title-mobile,.sq-intro-mobile{display:inline}.sq-heading h1{font-size:28px;line-height:1.15;margin:0 0 8px}.sq-heading .sq-intro{font-size:15px;line-height:1.45;margin:0 0 12px}.sq-direct{gap:6px}.sq-direct nav{gap:10px}.sq-direct a{min-height:44px;padding:6px 10px}.sq-direct img{width:27px;height:27px}.sq-section{padding-top:8px}.sq-small-heading{font-size:22px;margin-bottom:12px}.sq-picked{margin-bottom:14px;padding-bottom:8px}.sq-context{font-size:15px;line-height:1.45;margin-bottom:14px}#request-contact-heading{display:none}#short-request .field{margin:12px 0}#short-request .consent{margin:16px 0 12px;font-size:13px;line-height:1.45}.sq-mobile-benefits{display:grid;gap:6px;list-style:none;padding:0;font-size:13px;line-height:1.55;color:var(--muted);margin:14px 0}.sq-mobile-benefits li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:6px;align-items:start}.sq-mobile-benefits li>[aria-hidden]{color:#145f32}.sq-services+ .sq-mobile-benefits{margin-top:18px}}
+
+/* Confirmed-success presentation stays beside the original submit control. */
+#short-request #quote-status{margin:0;scroll-margin:120px 0 32px}
+#short-request #quote-status:not(:empty){margin:14px 0}
+#short-request #quote-status[data-state="success"]{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:18px;border:2px solid #267344;border-radius:14px;background:#eaf7ef;color:#154c2b}
+#quote-status .sq-success-mark{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#267344;color:#fff;font-size:23px;font-weight:700}
+#quote-status .sq-success-title{margin:0;font-size:20px;line-height:1.3;letter-spacing:0}
+#quote-status[data-state="success"] p{margin:6px 0 0;font-size:15px;line-height:1.5;color:#154c2b}
+#quote-status[data-state="success"]:focus{outline:3px solid #267344;outline-offset:3px}

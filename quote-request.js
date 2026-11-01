@@ -22,12 +22,31 @@
  function requestSummary(m){
   return ['Unverbindliche Reinigungsanfrage – Dampfglanzservice-Ademi','Leistung: '+m.serviceLabel,'Gewünschter Leistungsumfang: '+m.scope,'Angezeigter Preisrahmen der Hauptleistung: '+m.orientation,'Ort: '+m.place,'Keine Buchung. Persönliche Fixpreis-Offerte mit vereinbartem Umfang, Anfahrt, Material und Termin abwarten. Für den vereinbarten Umfang keine Zusatzkosten.'].join('\n');
  }
- if(typeof module==='object'&&module.exports)module.exports={classifyContact,contextFromQuery,photoError,requestSummary};
+ function submissionLocked(form){
+  return ['sending','success'].includes(form.dataset.dgsSubmitState);
+ }
+ function renderSubmissionUI({state,test=false,form,status,button,document:doc}){
+  if(!['sending','success','error'].includes(state)||!form||!button)return;
+  form.dataset.dgsSubmitState=state;
+  button.disabled=state!=='error';
+  button.textContent=state==='success'?(test?'Testanfrage angenommen ✓':'Anfrage gesendet ✓'):state==='sending'?'Wird gesendet …':'Unverbindlich anfragen ↗';
+  if(!status)return;
+  status.dataset.state=state;
+  if(state!=='success'){status.removeAttribute('aria-labelledby');return;}
+  const mark=doc.createElement('span');mark.className='sq-success-mark';mark.setAttribute('aria-hidden','true');mark.textContent='✓';
+  const body=doc.createElement('div'),heading=doc.createElement('h3'),message=doc.createElement('p');
+  heading.id='quote-success-heading';heading.className='sq-success-title';heading.textContent=test?'Testanfrage angenommen':'Anfrage erfolgreich gesendet';
+  message.textContent=test?'Dieser Test zählt nicht als Kundenanfrage.':'Vielen Dank! Wir melden uns persönlich bei Ihnen.';
+  body.append(heading,message);status.replaceChildren(mark,body);status.setAttribute('aria-labelledby',heading.id);
+  status.focus({preventScroll:true});status.scrollIntoView({block:'center',behavior:'instant'});
+ }
+ if(typeof module==='object'&&module.exports)module.exports={classifyContact,contextFromQuery,photoError,requestSummary,submissionLocked,renderSubmissionUI};
  if(typeof document==='undefined')return;
  const form=document.getElementById('quote-form');
  if(!form||form.dataset.shortRequest!=='true'||!window.DGSPrice)return;
  const $=id=>document.getElementById(id),catalog=window.DGSPrice.packages,ctx=contextFromQuery(location.search,catalog),isTest=new URLSearchParams(location.search).get('dgs_test')==='1';
  const service=$('service'),pack=$('package'),tier=$('cleaning-tier'),condition=$('condition'),handover=$('auto-handover'),budget=$('budget'),contact=$('customer-contact'),place=$('customer-place'),send=$('send-offer'),panel=$('request-contact'),choice=$('service-choice');
+ form.addEventListener('dgs:submission-ui',event=>renderSubmissionUI({...event.detail,form,status:$('quote-status'),button:send,document}));
  const fileInputs=Array.from(form.querySelectorAll('[data-photo]')),dates=[1,2,3].map(n=>$('date-'+n)),perService=new Map();let previousService='',objectURLs=[];
  const now=new Date(),today=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);dates.forEach(input=>input.min=today);
  const label=()=>service.selectedOptions[0]?.text||'Reinigung';
@@ -89,7 +108,7 @@
   const parts=Object.hasOwn(catalog,service.value)?[label()]:[];if(pack.value!=='custom'&&pack.selectedOptions.length)parts.push(pack.selectedOptions[0].text);if(auto&&tier.value)parts.push(tier.selectedOptions[0].text);
   const message=parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen. Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen. Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
   document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{link.href='https://wa.me/41765024998?text='+encodeURIComponent(message);link.setAttribute('aria-label',parts.length?parts.join(' · ')+' per WhatsApp anfragen':'Per WhatsApp anfragen');});
-  $('quote-combination-note').hidden=!$('combine-services').value.trim();$('quote-summary').value=summary();send.disabled=!Object.hasOwn(catalog,service.value);
+  $('quote-combination-note').hidden=!$('combine-services').value.trim();$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
  }
  function reportContact(){if(!isTest&&!panel.hidden){try{window.DGSMeasurement?.step('quote','contact',false);}catch{}}}
  function showService(value,focus=true){

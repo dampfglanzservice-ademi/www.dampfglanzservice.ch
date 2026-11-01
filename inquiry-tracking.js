@@ -58,8 +58,14 @@
    if(busy||completed||!form.reportValidity())return;
    const status=form.querySelector('.form-status')||form.querySelector('#quote-status');
    const say=message=>{if(status)status.textContent=message;};
+   // Presentation only; never let a UI listener change the transport outcome.
+   const uiState=(state,test=false)=>{
+    if(form.id!=='quote-form'||form.dataset.shortRequest!=='true')return;
+    try{form.dispatchEvent(new CustomEvent('dgs:submission-ui',{detail:{state,test}}));}catch{}
+   };
    const fail=message=>{
     say(message);
+    uiState('error');
     if(!status)return;
     for(const [label,href] of [['Jetzt anrufen','tel:+41765024998'],['E-Mail schreiben','mailto:info@dampfglanzservice-ademi.ch']]){
      status.append(document.createTextNode(' · '));
@@ -94,6 +100,7 @@
    // Count only validated dispatch attempts; never a conversion or a customer enquiry.
    try{window.DGSMeasurement?.attempted(kind,test);}catch{};
    say('Ihre Anfrage wird übermittelt. Bitte warten Sie auf die Bestätigung.');
+   uiState('sending',test);
    try{
     const response=await fetch(endpoint.href,{method:'POST',body:data,headers:{Accept:'application/json'},signal:controller.signal});
     const result=await response.json();
@@ -101,6 +108,7 @@
     if(!response.ok||result?.success!==true)throw new Error('not-confirmed');
     completed=true;
     say(test?'Testanfrage vom Formulardienst angenommen. Dieser Test zählt nicht als Kundenanfrage.':'Vielen Dank. Ihre Anfrage wurde übermittelt. Wir melden uns persönlich bei Ihnen.');
+    uiState('success',test);
     // A blocked measurement tag must never overwrite an accepted enquiry with a send error.
     try{window.DGSMeasurement?.completed(kind,id,test);}catch{};
     // No customer details are passed to measurement. Server acceptance does not prove inbox delivery.
