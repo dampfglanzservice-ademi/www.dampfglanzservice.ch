@@ -38,6 +38,8 @@
 #quote-form #send-offer{font-size:15px;min-height:48px}
 #contact-choice-help{font-size:15px;line-height:1.6;margin:12px 0 18px}
 .quote-progress span{font-size:12px}
+#service-choice .sq-choice-hint{display:flex;align-items:center;gap:6px;margin:-2px 0 12px;font-size:14px;line-height:1.4;color:var(--ink)}
+.sq-choice-hint [aria-hidden]{font-size:18px;flex:none}
 @media(max-width:600px){.quote-heading{padding-top:22px}.quote-heading p{font-size:15px;line-height:1.65}.quote-progress{padding-top:18px}.quote-section{padding-top:22px}}
 </style>
 </head>
@@ -84,6 +86,7 @@
 <option value="other">Andere Reinigung / mehrere Leistungen</option></select></div>
 <section id="service-choice" aria-labelledby="service-choice-heading" hidden>
 <h2 id="service-choice-heading" class="sq-small-heading">Was soll wieder sauber werden?</h2>
+<p class="sq-choice-hint"><span aria-hidden="true">👇</span> Einfach die gewünschte Reinigung antippen.</p>
 <div class="sq-services">
 <button type="button" data-service="wohnungsreinigung"><strong>Wohnung</strong><span>Ein gepflegtes Zuhause.</span></button>
 <button type="button" data-service="endreinigung-abnahmegarantie"><strong>Umzug &amp; Endreinigung</strong><span>Reinigung vor der Übergabe.</span></button>
