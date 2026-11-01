@@ -15,6 +15,7 @@
   const original=new FormData(form),ordered=new FormData();
   const text=name=>String(original.get(name)||'').trim();
   const selected=name=>{
+   if(!original.has(name))return ''; // Disabled or deliberately unspecified choices are not customer input.
    const control=form.elements.namedItem(name);
    return control?.tagName==='SELECT'&&control.selectedOptions?.length?control.selectedOptions[0].text.trim():text(name);
   };

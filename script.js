@@ -30,7 +30,7 @@
   if(email&&phone){for(const field of [email,phone]){field.addEventListener('input',contactChoice);field.addEventListener('change',contactChoice);}contactChoice();}
   f.addEventListener('submit',()=>{contactChoice();f.querySelector('.form-status').textContent='Ihre Anfrage wird übermittelt.';});
  });
- if(!form)return;
+ if(!form||form.dataset.shortRequest==='true')return;
  const $=id=>document.getElementById(id),money=n=>n===null?'Bitte Preis empfehlen':new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(n);
  const service=$('service'),pack=$('package'),budget=$('budget'),send=$('send-offer'),tier=$('cleaning-tier'),zone=$('quote-location');
  const dates=[1,2,3].map(n=>$('date-'+n));const now=new Date();const today=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);dates.forEach(d=>d.min=today);
