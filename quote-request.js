@@ -99,10 +99,10 @@
   if(Array.from(pack.options).some(option=>option.value===stored.pkg))pack.value=stored.pkg;tier.value=stored.tier;condition.value=stored.condition;handover.value=stored.handover;previousService=value;
   $('selected-service').textContent=label();$('selected-service-row').hidden=false;choice.hidden=true;panel.hidden=false;
   const auto=['auto','autopolsterreinigung'].includes(value);$('customer-place-label').textContent=auto?'Ihre PLZ / Ihr Ort *':'PLZ / Ort der Reinigung *';$('request-context').textContent=auto?'Reinigung stationär in Rorschach. Übergabe, Wünsche und Gesamtpreis klären wir persönlich.':'Nur Ihren Ort und einen Kontaktweg. Alles Weitere klären wir persönlich.';
-  renderPrice();update();reportContact();if(focus)place.focus({preventScroll:true});
+  renderPrice();update();reportContact();if(focus){place.focus({preventScroll:true});panel.scrollIntoView({block:'start',behavior:'auto'});}
  }
  form.querySelectorAll('[data-service]').forEach(button=>button.addEventListener('click',()=>showService(button.dataset.service)));
- $('change-service').addEventListener('click',()=>{panel.hidden=true;choice.hidden=false;const previous=Array.from(form.querySelectorAll('[data-service]')).find(button=>button.dataset.service===service.value);previous?.focus({preventScroll:true});});
+ $('change-service').addEventListener('click',()=>{panel.hidden=true;choice.hidden=false;const previous=Array.from(form.querySelectorAll('[data-service]')).find(button=>button.dataset.service===service.value);if(previous){previous.focus({preventScroll:true});previous.scrollIntoView({block:'nearest',behavior:'auto'});}});
  service.addEventListener('change',()=>showService(service.value));form.addEventListener('input',update);
  form.addEventListener('change',event=>{if(event.target.matches('[data-photo]')){
   objectURLs.forEach(URL.revokeObjectURL);objectURLs=[];$('photo-preview').replaceChildren();
