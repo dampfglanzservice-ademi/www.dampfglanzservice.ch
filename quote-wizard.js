@@ -10,7 +10,11 @@ const lock=()=>['sending','success'].includes(form.dataset.dgsSubmitState);
 function detailRows(){return M.summary(model).slice(2).filter(([label])=>service()?.groups.some(g=>g.questions.some(q=>q.label===label)));}
 function syncFields(){extraFields.replaceChildren();for(const [label,value]of detailRows()){const input=document.createElement('input');input.type='hidden';input.name='Auswahl – '+label;input.value=value;extraFields.append(input);}}
 window.DGSQuoteWizard={scope:()=>detailRows().map(([k,v])=>k+' '+v).join('; ')};
-function chooseService(id){if(!M.services.some(s=>s.id===id))return;model.service=id;const select=document.getElementById('service');select.value=id;select.selectedOptions[0].textContent=service().label;select.dispatchEvent(new Event('change',{bubbles:true}));legacyChoice.hidden=true;panel.hidden=true;syncFields();}
+function chooseService(id){if(!M.services.some(s=>s.id===id))return;model.service=id;const select=document.getElementById('service');select.value=id;select.selectedOptions[0].textContent=service().label;select.dispatchEvent(new Event('change',{bubbles:true}));
+// The wizard owns scope choices; stale URL packages must not contradict them.
+const oldPackage=document.getElementById('package'),oldTier=document.getElementById('cleaning-tier');
+if(oldPackage)oldPackage.value='custom';if(oldTier)oldTier.value='';
+legacyChoice.hidden=true;panel.hidden=true;syncFields();form.dispatchEvent(new Event('input',{bubbles:true}));}
 function actualSummary(){const rows=M.summary(model).slice(0,2).concat(detailRows());const selected=document.getElementById('service');for(const control of form.querySelectorAll('input[name],select[name],textarea[name]')){if(control.disabled||['hidden','submit'].includes(control.type)||control.name.startsWith('_')||control.closest('#quote-wizard')||control.parentElement===extraFields||control===selected||['email','Telefon'].includes(control.name)||(['checkbox','radio'].includes(control.type)&&!control.checked))continue;if(control.type==='file'){for(const file of control.files||[])rows.push(['Foto',file.name]);}else if(control.value.trim())rows.push([control.labels?.[0]?.textContent.trim()||control.name,control.tagName==='SELECT'?control.selectedOptions[0]?.textContent:control.value]);}return rows;}
 function validContact(){syncFields();form.dispatchEvent(new Event('input',{bubbles:true}));return form.reportValidity();}
 const advanceGate=M.createAdvanceGate({setTimer:(fn,ms)=>window.setTimeout(fn,ms),clearTimer:id=>window.clearTimeout(id)});
