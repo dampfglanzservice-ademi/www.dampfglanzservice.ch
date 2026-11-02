@@ -35,7 +35,7 @@
   if(state!=='success'){status.removeAttribute('aria-labelledby');return;}
   const mark=doc.createElement('span');mark.className='sq-success-mark';mark.setAttribute('aria-hidden','true');mark.textContent='✓';
   const body=doc.createElement('div'),heading=doc.createElement('h3'),message=doc.createElement('p');
-  heading.id='quote-success-heading';heading.className='sq-success-title';heading.textContent=test?'Testanfrage angenommen':'Anfrage erfolgreich gesendet';
+  heading.id='quote-success-heading';heading.className='sq-success-title';heading.textContent=test?'Testanfrage angenommen':'Ihre Anfrage wurde erfolgreich übermittelt';
   message.textContent=test?'Dieser Test zählt nicht als Kundenanfrage.':'Vielen Dank! Wir melden uns persönlich bei Ihnen.';
   body.append(heading,message);status.replaceChildren(mark,body);status.setAttribute('aria-labelledby',heading.id);
   status.focus({preventScroll:true});status.scrollIntoView({block:'center',behavior:'instant'});
@@ -83,7 +83,7 @@
   const estimate=window.DGSPrice.estimate(service.value,pack.value,tier.value||'basis','normal','unknown');
   return estimate.available?'Unverbindliche Orientierung bei normaler Verschmutzung: ca. CHF '+estimate.min+'–'+estimate.max+' inkl. Standardmaterial und allfälliger MwSt.; allfällige Fahrtkosten über 15 km vorab vereinbaren. Zustand noch persönlich prüfen.':'Persönliche Fixpreis-Offerte; kein berechenbarer Preisrahmen ausgewählt.';
  }
- function summary(){return requestSummary({serviceLabel:label(),scope:selectedScope(),orientation:orientation(),place:place.value.trim()});}
+ function summary(){return requestSummary({serviceLabel:label(),scope:selectedScope()+(window.DGSQuoteWizard?.scope()?' Auswahl: '+window.DGSQuoteWizard.scope():''),orientation:orientation(),place:place.value.trim()});}
  function renderPrice(){
   const area=$('price-orientation');area.replaceChildren();const auto=service.value==='auto',sofa=service.value==='polsterreinigung';
   $('price-orientation-note').textContent=auto||sofa?'Veröffentlichte unverbindliche Preisrahmen bei normaler Verschmutzung. Standardmaterial und allfällige MwSt. sind enthalten.':'Für diese Reinigung erhalten Sie eine persönliche Fixpreis-Offerte. Es ist kein eigener Preisvorschlag nötig.';
@@ -119,7 +119,7 @@
   if(Array.from(pack.options).some(option=>option.value===stored.pkg))pack.value=stored.pkg;tier.value=stored.tier;condition.value=stored.condition;handover.value=stored.handover;previousService=value;
   $('selected-service').textContent=label();$('selected-service-row').hidden=false;choice.hidden=true;panel.hidden=false;
   const auto=['auto','autopolsterreinigung'].includes(value);$('customer-place-label').textContent=auto?'Ihre PLZ / Ihr Ort *':'PLZ / Ort der Reinigung *';$('request-context').textContent=auto?'Reinigung stationär in Rorschach. Übergabe, Wünsche und Gesamtpreis klären wir persönlich.':'Nur Ihren Ort und einen Kontaktweg. Alles Weitere klären wir persönlich.';
-  renderPrice();update();reportContact();if(focus){place.focus({preventScroll:true});panel.scrollIntoView({block:'start',behavior:'auto'});}
+  renderPrice();update();if(!form.dataset.choiceWizard)reportContact();if(focus&&!form.dataset.choiceWizard){place.focus({preventScroll:true});panel.scrollIntoView({block:'start',behavior:'auto'});}
  }
  form.querySelectorAll('[data-service]').forEach(button=>button.addEventListener('click',()=>showService(button.dataset.service)));
  $('change-service').addEventListener('click',()=>{panel.hidden=true;choice.hidden=false;const previous=Array.from(form.querySelectorAll('[data-service]')).find(button=>button.dataset.service===service.value);if(previous){previous.focus({preventScroll:true});previous.scrollIntoView({block:'nearest',behavior:'auto'});}});
@@ -141,3 +141,4 @@
  if(ctx.service){perService.set(ctx.service,{pkg:ctx.pkg,tier:ctx.tier,condition:'',handover:'discuss'});showService(ctx.service,false);if(ctx.pkg!=='custom'||ctx.tier)$('request-price').open=true;}
  else{packageList();update();}
 })();
+
