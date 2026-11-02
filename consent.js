@@ -112,11 +112,25 @@
    observer.observe(form);
    document.addEventListener('dgs:measurement-ready',reportView);
   }
-  let started=false;form.addEventListener('input',()=>{if(!started&&consent?.analytics){started=true;event('inquiry_start',{form_kind:form.id==='quote-form'?'quote':'contact'});}});
+  let started=false;
+  const reportStart=()=>{
+   if(started||testMode||!consent?.analytics||!loaded)return;
+   started=true;event('inquiry_start',{form_kind:form.id==='quote-form'?'quote':'contact'});
+  };
+  form.addEventListener('input',e=>{
+   // Search alone and the controller's synthetic form-level validation input are not an enquiry start.
+   if(form.id==='quote-form'&&(e.target===form||e.target.id==='service-search'))return;
+   reportStart();
+  });
+  if(form.id==='quote-form')form.addEventListener('click',e=>{
+   if(!e.isTrusted)return;
+   const choice=e.target.closest('button[data-service],button[data-question]');
+   if(choice&&form.contains(choice))reportStart();
+  });
   // Diagnose fixed field groups only: never field values or customer details.
   if(form.matches('[data-dgs-backend="basin"]')){
    const invalidSeen=new Set();
-   const groups={'service':'service','package':'service','customer-place':'location','customer-name':'contact','customer-email':'contact','customer-phone':'contact','date-1':'date','date-2':'date','date-3':'date','budget':'budget'};
+   const groups={'service':'service','package':'service','customer-place':'location','customer-name':'contact','customer-email':'contact','customer-phone':'contact','customer-contact':'contact','date-1':'date','date-2':'date','date-3':'date','budget':'budget'};
    form.addEventListener('invalid',e=>{
     const target=e.target;
     const group=groups[target.id]||(target.matches('[data-photo]')?'photo':target.matches('input[name="Datenschutz"]')?'privacy':null);
@@ -171,3 +185,4 @@
  document.addEventListener('dgs:measurement-ready',capture);
  capture();
 })();
+
