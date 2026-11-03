@@ -92,7 +92,7 @@
  document.getElementById('cookie-reject').addEventListener('click',()=>save(false,false));
  document.getElementById('cookie-save').addEventListener('click',()=>save(toggle.checked,adsToggle.checked));
  dialog.addEventListener('cancel',e=>{e.preventDefault();save(false,false);});
- document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(href.startsWith('tel:'))event('click_call');else if(/^https:\/\/(?:wa.me|api.whatsapp.com)\//.test(href))event('click_whatsapp');else if(href.startsWith('mailto:'))event('click_email');});
+ document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(href.startsWith('tel:'))event('click_call');else if(/^https:\/\/(?:wa.me|api.whatsapp.com)\//.test(href))event('click_whatsapp');else if(href.startsWith('mailto:'))event('click_email');else if(e.isTrusted){try{const destination=new URL(href,location.href);if(destination.origin===location.origin&&/^\/offerte\/?$/.test(destination.pathname))event('click_quote');}catch{}}});
  document.querySelectorAll('form').forEach(form=>{
   // A visible form is diagnostic only, never an enquiry or an Ads conversion.
   // Record no field values. Existing analytics consent and test exclusions apply.
