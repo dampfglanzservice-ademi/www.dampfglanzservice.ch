@@ -10,8 +10,8 @@
  }
  function contextFromQuery(search,catalog){
   const params=new URLSearchParams(search),candidate=params.get('leistung'),service=Object.hasOwn(catalog,candidate)?candidate:'';
-  const requested=params.get('paket'),pkg=service&&(catalog[service]||[]).some(item=>item[0]===requested)?requested:'custom';
-  const tier=service==='auto'&&['basis','intensiv'].includes(params.get('umfang'))?params.get('umfang'):'';
+  const requested=params.get('preis'),pkg=service&&(catalog[service]||[]).some(item=>item[0]===requested)?requested:'custom';
+  const tier='';
   const region=Object.hasOwn(regionNames,params.get('region'))?params.get('region'):'';
   return {service,pkg,tier,region,place:cityRegions.includes(region)?regionNames[region]:'',combination:service==='polsterreinigung'&&params.get('kombi')==='ja'};
  }
@@ -20,7 +20,7 @@
   return files.reduce((sum,file)=>sum+file.size,0)>6*1024*1024?'Die Fotos dürfen zusammen höchstens 6 MB gross sein.':'';
  }
  function requestSummary(m){
-  return ['Unverbindliche Reinigungsanfrage – Dampfglanzservice-Ademi','Leistung: '+m.serviceLabel,'Gewünschter Leistungsumfang: '+m.scope,'Angezeigter Preisrahmen der Hauptleistung: '+m.orientation,'Ort: '+m.place,'Keine Buchung. Persönliche Fixpreis-Offerte mit vereinbartem Umfang, Anfahrt, Material und Termin abwarten. Für den vereinbarten Umfang keine Zusatzkosten.'].join('\n');
+  return ['Unverbindliche Reinigungsanfrage – Dampfglanzservice-Ademi','Leistung: '+m.serviceLabel,'Gewünschter Leistungsumfang: '+m.scope,'Angezeigter Preisrahmen der Hauptleistung: '+String(m.orientation).split('\n').filter(line=>!['Ihre Übersicht','Preisübersicht'].includes(line)).join(' · '),'Ort: '+m.place,'Keine Buchung. Persönliche Fixpreis-Offerte mit vereinbartem Umfang, Anfahrt, Material und Termin abwarten. Für den vereinbarten Umfang keine Zusatzkosten.'].join('\n');
  }
  function submissionLocked(form){
   return ['sending','success'].includes(form.dataset.dgsSubmitState);
@@ -68,48 +68,22 @@
  function validatePhotos(){
   const files=fileInputs.flatMap(input=>Array.from(input.files||[])),message=photoError(files);fileInputs.forEach(input=>input.setCustomValidity(message));$('photo-error').textContent=message;$('clear-photos').hidden=files.length===0;return !message;
  }
- function selectedScope(){
-  if(service.value==='auto'){
-   if(tier.value==='basis')return 'Innen Basis: Innenraum und Kofferraum saugen, Fussmatten, zugängliche Oberflächen und Scheiben innen. Keine Sitz-Shampoonierung oder Aussenwäsche. Extras und Zustand persönlich klären.';
-   if(tier.value==='intensiv')return 'Innen Intensiv: Basis plus gründliche Detailreinigung und materialgerechte Reinigung der vereinbarten Sitzflächen. Keine Aussenwäsche. Material, Zustand, Extras und Gesamtpreis persönlich bestätigen.';
-   return 'Auto-Innenreinigung: Umfang, Fahrzeuggrösse, Zustand, Übergabe und Gesamtpreis noch gemeinsam klären.';
-  }
-  const item=(catalog[service.value]||[]).find(value=>value[0]===pack.value);
-  return pack.value!=='custom'&&item?item[1]+': '+item[2]+' Genauen Umfang und Gesamtpreis persönlich bestätigen.':'Gewünschte Reinigung und genauer Umfang werden noch persönlich geklärt; keine Paket- oder Zustandsannahme.';
- }
- function orientation(){
-  const meaningful=pack.value!=='custom'&&(service.value==='polsterreinigung'||service.value==='auto'&&['basis','intensiv'].includes(tier.value));
-  if(!meaningful)return 'Persönliche Fixpreis-Offerte nach Klärung des Umfangs; kein Preis ausgewählt.';
-  const estimate=window.DGSPrice.estimate(service.value,pack.value,tier.value||'basis','normal','unknown');
-  return estimate.available?'Unverbindliche Orientierung bei normaler Verschmutzung: ca. CHF '+estimate.min+'–'+estimate.max+' inkl. Standardmaterial und allfälliger MwSt.; allfällige Fahrtkosten über 15 km vorab vereinbaren. Zustand noch persönlich prüfen.':'Persönliche Fixpreis-Offerte; kein berechenbarer Preisrahmen ausgewählt.';
- }
+ function selectedScope(){const r=window.DGSFixedPrice.row(pack.value),e=fixedEstimate();const scope=r?window.DGSFixedPrice.data.groups[r.group].scope+' Ausgewähltes Paket: '+r.label+'. Menge gleicher Pakete: '+(e.quantity||1)+'. Zusätze: '+(e.additional||[]).join('; ')+'.':'Gewünschte Reinigung und genauer Umfang werden persönlich geklärt; kein Paket angenommen.';return scope+(condition.value?' Zustand: '+condition.selectedOptions[0].textContent+'.':'')+($('fixed-zone')?.value&&$('fixed-zone').value!=='unknown'?' Anfahrt / Übergabe: '+$('fixed-zone').selectedOptions[0].textContent+'.':'');}
+ function selectedInclusions(){const r=window.DGSFixedPrice.row(pack.value),box=$('selected-package-inclusions'),headboard=$('fixed-headboard');if(headboard){const eligible=r&&r.index>=10&&r.index<=14&&Number($('fixed-quantity')?.value||1)===1;headboard.closest('.field').hidden=!eligible;if(!eligible)headboard.value='';}if(!box)return;box.hidden=!r;if(!r)return;let scope=window.DGSFixedPrice.data.groups[r.group].scope;if(r.group==='auto'){scope=['Innenraum saugen und zugängliche Oberflächen. Ohne Kofferraum und Innenscheiben.','Saugen und zugängliche Oberflächen, Kofferraum und Innenscheiben.','Intensiv-Reinigung, zusätzlich Textilsitze schamponieren und extrahieren oder Leder reinigen und pflegen (nach Materialprüfung).'][r.index%3];if(r.index>=6)scope+=' Bis sieben Sitze.';} $('selected-package-scope').textContent=scope;}
+ function fixedEstimate(){return window.DGSFixedPrice.quote({service:service.value,rowID:pack.value,quantity:Number($('fixed-quantity')?.value||1),condition:condition.value||'unknown',zone:$('fixed-zone')?.value||'unknown',petHair:$('fixed-pets')?.checked||false,additionalRow:$('fixed-headboard')?.value||'',stores:Number($('fixed-stores')?.value||0)});}
+ function orientation(){const e=fixedEstimate(),r=window.DGSFixedPrice.row(pack.value);if(!e.available)return 'Preisübersicht\nGesamtpreis nach persönlicher Bestätigung.';const unit=r.unit==='je Termin'?' pro Reinigung':'';const lines=['Ihre Übersicht',r.label+(e.quantity>1?' · '+e.quantity+' Pakete':''),...e.additional];if(e.minimumApplied)lines.push('Mindestauftrag ersetzt den tieferen Betrag: CHF 150');if(e.total!==null&&service.value!=='teppichreinigung')lines.push('Gesamtpreis: CHF '+e.total+unit+' inkl. MwSt.');else {lines.push('Paket und Zusätze: CHF '+e.min+unit+' inkl. MwSt.');lines.push('Gesamtpreis nach persönlicher Bestätigung.');}if(service.value==='auto')lines.push('Selbstanlieferung in Rorschach.');else if(service.value==='matratzenreinigung')lines.push('Eine Liegefläche und zugängliche Seiten.');else if(service.value==='teppichreinigung')lines.push('Material und Abholtermin noch bestätigen.');else if(!e.travelConfirmed)lines.push('Anfahrt noch klären.');return lines.join('\n');}
  function summary(){return requestSummary({serviceLabel:label(),scope:selectedScope()+(window.DGSQuoteWizard?.scope()?' Auswahl: '+window.DGSQuoteWizard.scope():''),orientation:orientation(),place:place.value.trim()});}
- function renderPrice(){
-  const area=$('price-orientation');area.replaceChildren();const auto=service.value==='auto',sofa=service.value==='polsterreinigung';
-  $('price-orientation-note').textContent=auto||sofa?'Veröffentlichte unverbindliche Preisrahmen bei normaler Verschmutzung. Standardmaterial und allfällige MwSt. sind enthalten.':'Für diese Reinigung erhalten Sie eine persönliche Fixpreis-Offerte. Es ist kein eigener Preisvorschlag nötig.';
-  if(auto||sofa){
-   for(const level of auto?['basis','intensiv']:['basis']){
-    if(auto){const heading=document.createElement('h3');heading.textContent=level==='basis'?'Innen Basis':'Innen Intensiv';area.append(heading);}
-    const dl=document.createElement('dl');
-    for(const [key,text]of catalog[service.value]||[]){if(key==='custom')continue;const estimate=window.DGSPrice.estimate(service.value,key,level,'normal','unknown');if(!estimate.available)continue;const row=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=text;dd.textContent='CHF '+estimate.min+'–'+estimate.max;row.append(dt,dd);dl.append(row);}area.append(dl);
-   }
-  }else{const text=document.createElement('p');text.textContent='Preis nach persönlicher Fixpreis-Offerte';area.append(text);}
-  $('price-options').hidden=!['auto','polsterreinigung','endreinigung-abnahmegarantie'].includes(service.value);
-  $('package-field').hidden=!['auto','polsterreinigung','endreinigung-abnahmegarantie'].includes(service.value);
-  $('cleaning-tier-field').hidden=!auto;$('auto-handover-field').hidden=!auto;
-  $('price-scope').textContent=auto?'Basis: Saugen, Fussmatten, zugängliche Oberflächen und Scheiben innen. Intensiv zusätzlich mit Detail- und vereinbarter Sitzreinigung. Keine Aussenwäsche; starke Tierhaare, Flecken und Geruchsbehandlung separat besprechen.':sofa?'Vereinbarte textile Sitzflächen, Rücken- und Armlehnen nach Materialprüfung. Empfindliche Bezüge, Sonderformen und starke Verschmutzung persönlich klären. Keine garantierte vollständige Fleckenentfernung.':'Objekt, Zustand, gewünschte Arbeiten und Zugang werden vor dem Gesamtpreis persönlich geklärt.';
-  $('price-travel').textContent=auto?'Reinigung stationär in Rorschach. Abholung und Rückgabe bis 15 km Fahrstrecke nach Vereinbarung kostenlos; weitere Fahrtkosten vorab bestätigen.':service.value==='autopolsterreinigung'?'Autopolster reinigen wir stationär in Rorschach. Ort und Übergabe stimmen wir persönlich ab.':'Bis 15 km Fahrstrecke ab Rorschach keine Anfahrtskosten. Weitere Fahrtkosten werden vor dem Auftrag im Gesamtpreis vereinbart.';
- }
+ function renderPrice(){const F=window.DGSFixedPrice;F.render(document.getElementById('price-orientation'),service.value,false);$('price-orientation-note').textContent='';$('price-options').hidden=false;$('package-field').hidden=F.options(service.value).length===0;$('cleaning-tier-field').hidden=true;$('auto-handover-field').hidden=true;$('price-scope').textContent='Vereinbarter Umfang zum Fixpreis. Extras nur nach Absprache.';$('price-travel').textContent=service.value==='auto'||service.value==='autopolsterreinigung'?'Selbstanlieferung in Rorschach.':'Anfahrt bis 15 km ab Rorschach inklusive; darüber auf Anfrage.';window.DGSFixedPreviewForm?.sync(service.value);}
  function update(){
   syncContact();validateDates();const auto=service.value==='auto',withScope=['auto','polsterreinigung','endreinigung-abnahmegarantie'].includes(service.value);
-  setName(pack,'Paket',Object.hasOwn(catalog,service.value)&&pack.value!=='custom');setName(tier,'Autoreinigung_Umfang',auto&&['basis','intensiv'].includes(tier.value));setName(condition,'Zustand',withScope&&['normal','special'].includes(condition.value));setName(handover,'Auto_Uebergabe',auto&&handover.value!=='discuss');
+  setName(pack,'Paket',Object.hasOwn(catalog,service.value)&&pack.value!=='custom');setName(tier,'Autoreinigung_Umfang',auto&&['basis','intensiv'].includes(tier.value));setName(condition,'Zustand',['normal','special'].includes(condition.value));setName(handover,'Auto_Uebergabe',auto&&handover.value!=='discuss');
   $('quote-location').value=auto&&handover.value==='bring'?'rorschach':'unknown';
   const limit=Boolean(form.querySelector('[data-budget-mode="limit"]:checked'));budget.disabled=!limit;$('budget-field').hidden=!limit;
   const parts=Object.hasOwn(catalog,service.value)?[label()]:[];if(pack.value!=='custom'&&pack.selectedOptions.length)parts.push(pack.selectedOptions[0].text);if(auto&&tier.value)parts.push(tier.selectedOptions[0].text);
   const regionalContext=ctx.region?' Region: '+regionNames[ctx.region]+'. PLZ / Ort: __.':'';
   const message=(parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen.')+regionalContext+' Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
   document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{link.href='https://wa.me/41765024998?text='+encodeURIComponent(message);link.setAttribute('aria-label',parts.length?parts.join(' · ')+' per WhatsApp anfragen':'Per WhatsApp anfragen');});
-  $('quote-combination-note').hidden=!$('combine-services').value.trim();$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
+  selectedInclusions();$('quote-combination-note').hidden=!$('combine-services').value.trim();{const r=window.DGSFixedPrice.row(pack.value),caption=pack.selectedOptions[0]?.textContent||'',detail=$('selected-package-detail');detail.textContent=r?.label||'';const norm=x=>x.toLowerCase().replace(/[^a-z0-9äöü]/g,'');detail.hidden=!r||norm(caption)===norm(r.label);}$('fixed-selection-summary').replaceChildren(...orientation().split('\n').flatMap((line,i)=>{const n=document.createElement(line==='Ihre Übersicht'||line.startsWith('Gesamtpreis:')?'strong':'span');n.textContent=line;return i?[document.createElement('br'),n]:[n];}));$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
  }
  function reportContact(){if(!isTest&&!panel.hidden){try{window.DGSMeasurement?.step('quote','contact',false);}catch{}}}
  function showService(value,focus=true){
@@ -118,7 +92,7 @@
   service.value=value;packageList();const stored=perService.get(value)||{pkg:'custom',tier:'',condition:'',handover:'discuss'};
   if(Array.from(pack.options).some(option=>option.value===stored.pkg))pack.value=stored.pkg;tier.value=stored.tier;condition.value=stored.condition;handover.value=stored.handover;previousService=value;
   $('selected-service').textContent=label();$('selected-service-row').hidden=false;choice.hidden=true;panel.hidden=false;
-  const auto=['auto','autopolsterreinigung'].includes(value);$('customer-place-label').textContent=auto?'Ihre PLZ / Ihr Ort *':'PLZ / Ort der Reinigung *';$('request-context').textContent=auto?'Reinigung stationär in Rorschach. Übergabe, Wünsche und Gesamtpreis klären wir persönlich.':'Nur Ihren Ort und einen Kontaktweg. Alles Weitere klären wir persönlich.';
+  const auto=['auto','autopolsterreinigung'].includes(value);$('customer-place-label').textContent=auto?'Ihre PLZ / Ihr Ort *':'PLZ / Ort der Reinigung *';
   renderPrice();update();if(!form.dataset.choiceWizard)reportContact();if(focus&&!form.dataset.choiceWizard){place.focus({preventScroll:true});panel.scrollIntoView({block:'start',behavior:'auto'});}
  }
  form.querySelectorAll('[data-service]').forEach(button=>button.addEventListener('click',()=>showService(button.dataset.service)));

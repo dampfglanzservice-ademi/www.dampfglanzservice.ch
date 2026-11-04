@@ -1,0 +1,50 @@
+.fixed-prices{scroll-margin-top:100px}.fixed-prices h2{max-width:24ch}.fixed-tax{font-weight:650;color:#355b50}.fixed-group{border:1px solid #deded8;border-radius:14px;padding:clamp(16px,3vw,28px);background:#fff;margin:22px 0}.fixed-group h3{margin-top:0}.fixed-group p{max-width:78ch;line-height:1.65}.fixed-price-list{margin:20px 0 0}.fixed-price-list>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:15px 0;border-top:1px solid #e7e6e1}.fixed-price-list dt{font-weight:550;line-height:1.45;min-width:0}.fixed-price-list dt>a{display:block;font-size:14px;font-weight:450;text-decoration:underline;margin-top:5px;text-underline-offset:3px}.fixed-price-list dd{margin:0;font-size:20px;font-weight:700;white-space:nowrap;color:#763f36}.fixed-conditions{margin:20px 0;line-height:1.7}.fixed-conditions summary{font-weight:650;cursor:pointer}.fixed-selection,.fixed-review{padding:16px;border-left:3px solid #8e5146;background:#f8f5f0;border-radius:7px;font-size:15px;line-height:1.65}.fixed-controls{display:grid;gap:14px}.fixed-controls input[type=number],.fixed-controls select{width:100%;min-height:46px}.fixed-controls label{font-size:15px!important;line-height:1.5}.fixed-controls .check{display:flex;align-items:flex-start;gap:10px}.fixed-controls input[type=checkbox]{width:20px;height:20px;flex:0 0 20px}.fixed-controls small{display:block;color:#5e605e}.qw .nav{flex-wrap:wrap}.qw #direct-contact{flex-basis:100%;background:#f5f5f1;border:1px solid #d8d9d1;color:#353c38}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}#request-price{margin:18px 0 24px}#request-price>.sq-option-body{padding:16px}#request-price .fixed-group h3{font-size:20px}#request-price .fixed-group{padding:15px}#request-price .fixed-price-list dd{font-size:18px}@media(max-width:430px){.fixed-price-list>div{gap:10px}.fixed-price-list dd{font-size:19px}.fixed-group h3{font-size:22px}.fixed-group p{font-size:15px}.fixed-conditions{font-size:15px}}
+
+#fixed-selection-summary{white-space:pre-line} .fixed-group>ul{padding-left:20px;line-height:1.5}.fixed-group>ul li{margin:5px 0}
+
+#fixed-selection-summary{line-height:1.55}#fixed-selection-summary::first-line{font-weight:700}
+
+#fixed-selection-summary strong{display:inline-block;margin:7px 0;font-size:20px;color:#343c37}
+
+#selected-package-detail{overflow-wrap:anywhere;margin-top:6px}#request-price select{min-width:0;max-width:100%;font-size:15px}#request-contact{padding-bottom:110px}#request-contact input,#request-contact select,#request-contact textarea,#request-contact .consent{scroll-margin-bottom:120px}
+
+/* Navigation follows the form instead of covering content while scrolling. */
+#request-contact .qw-contact-nav,#quote-wizard .nav{position:static;inset:auto;z-index:auto;box-shadow:none}#request-contact{padding-bottom:20px}#request-price,#fixed-selection-summary{scroll-margin-top:100px}
+
+.fixed-review{white-space:pre-line}
+
+#fixed-selection-summary strong:first-child,.fixed-review .fixed-summary-title{font-size:15px;font-weight:700;display:inline;margin:0;color:inherit}.fixed-review .fixed-summary-total{font-weight:700}
+
+/* Only one compact part of the existing quote form is visible at a time. */
+.guided-quote-active .sq-heading,.guided-quote-active .faq-section,.guided-quote-active footer,.guided-quote-active #request-contact-heading{display:none}
+#guided-package[hidden],#guided-overview[hidden]{display:none!important}
+#guided-package,#guided-overview{scroll-margin-top:100px}
+#guided-overview #fixed-selection-summary{margin:0 0 20px}
+#guided-overview>h3{margin:20px 0 16px}
+#guided-package .qw-contact-nav{margin:20px 0 0}
+#guided-overview .guided-overview-nav{position:static;inset:auto;box-shadow:none;margin:20px 0 16px}
+.guided-quote-active .sq-section{padding-top:20px}
+
+/* Compact original vehicle cards, with a clear heading gap. */
+#guided-package #guided-vehicle h2{font-size:24px;line-height:1.25;margin:0 0 16px}
+#guided-package #guided-vehicle .vehicle-options{gap:10px}
+#guided-package #guided-vehicle .vehicle-option{min-height:112px;padding:10px 12px;gap:3px}
+#guided-package #guided-vehicle .vehicle-option[aria-pressed=true]{padding:9px 11px}
+#guided-package #guided-vehicle .vehicle-title{font-size:16px;line-height:1.3}
+#guided-package #guided-vehicle .vehicle-shape{height:60px;max-width:220px}
+#guided-package #guided-vehicle .vehicle-examples{font-size:13px;line-height:1.35}
+#guided-package #guided-vehicle>button{margin:12px 8px 0 0;min-height:44px;padding:10px 12px;font-size:14px}
+
+.vehicle-options{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#guided-vehicle .vehicle-options .vehicle-option{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:6px;text-align:center;min-height:172px;padding:16px 10px 13px;overflow-wrap:anywhere}
+#guided-vehicle .vehicle-options .vehicle-title{font-size:16px;line-height:1.3;color:#263e49}
+#guided-vehicle .vehicle-options .vehicle-shape{display:block;width:100%;max-width:300px;height:88px;pointer-events:none}
+#guided-vehicle .vehicle-options .vehicle-examples{font-size:13px;line-height:1.45;color:#52676e}
+#guided-vehicle .vehicle-options .vehicle-option[aria-pressed=true]{padding:15px 9px 12px;background:#edf6f4;box-shadow:0 0 0 2px #32666c18}
+#guided-vehicle .vehicle-options .vehicle-option[aria-pressed=true]::before{position:absolute;right:8px;top:5px;content:'✓';font-size:16px}
+#guided-vehicle .vehicle-options>.option:last-child{grid-column:1/-1;text-align:center;min-height:48px}@media(max-width:600px){#guided-vehicle .vehicle-options{grid-template-columns:minmax(0,1fr);gap:10px}#guided-vehicle .vehicle-options .vehicle-option{min-height:146px;padding:13px 12px 11px;gap:3px}#guided-vehicle .vehicle-options .vehicle-shape{width:100%;max-width:270px;height:82px}#guided-vehicle .vehicle-options .vehicle-option[aria-pressed=true]{padding:12px 11px 10px}}
+#guided-vehicle .vehicle-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}#guided-vehicle button{font:inherit;border:1px solid #cdd6d7;border-radius:10px;background:#fff;color:inherit;cursor:pointer}#guided-vehicle>button{margin:16px 10px 0 0;min-height:44px}#guided-vehicle .vehicle-options>.vehicle-option:last-child{grid-column:auto}@media(max-width:600px){#guided-vehicle .vehicle-options{grid-template-columns:1fr}}
+
+#guided-package[data-active-service="auto"] .fixed-catalog{display:none}
+
+.guided-benefit{font-size:15px;font-weight:600;margin:0 0 14px;color:#3b4740}.guided-quote-active .fixed-catalog{display:none}#selected-package-inclusions{margin:12px 0 0;font-size:15px}#selected-package-inclusions summary{cursor:pointer;min-height:44px;padding:10px 0}#selected-package-scope{margin:8px 0 0;line-height:1.5}

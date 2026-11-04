@@ -22,6 +22,18 @@
   const add=(name,value)=>{if(value)ordered.append(name,value);};
   const summary=text('Angebotsübersicht').split('\n');
   const summaryValue=label=>summary.find(line=>line.startsWith(label+': '))?.slice(label.length+2).trim()||'';
+  const priceSummary=()=>{
+   let start=-1;
+   for(const label of ['Ausgewähltes Fixpreis-Paket','Angezeigter Preisrahmen der Hauptleistung']){start=summary.findIndex(line=>line.startsWith(label+': '));if(start>=0)break;}
+   if(start<0)return '';
+   const lines=[summary[start].slice(summary[start].indexOf(': ')+2).trim()];
+   for(let i=start+1;i<summary.length;i++){
+    if(/^(?:Ort: |Leistung: |Gewünschter Leistungsumfang: |Keine Buchung\.)/.test(summary[i]))break;
+    if(summary[i].trim())lines.push(summary[i].trim());
+   }
+   return lines.filter(Boolean).join('\n');
+  };
+
   for(const name of ['Name','email','Telefon','Ort'])add(name,text(name));
   add('Leistung',selected('Leistung'));
   const service=text('Leistung');
@@ -29,7 +41,7 @@
   if(service==='auto')add('Autoreinigung_Umfang',selected('Autoreinigung_Umfang'));
   add('Leistungsumfang',summaryValue('Gewünschter Leistungsumfang'));
   add('Zustand',selected('Zustand'));
-  add('Preisrahmen',summaryValue('Angezeigter Preisrahmen der Hauptleistung'));
+  add('Preisrahmen',priceSummary());
   add('Auftragsdetails',text('Auftragsdetails')||text('Nachricht'));
   add('Weitere_Reinigungswuensche',text('Weitere_Reinigungswuensche'));
   add('Guenstigere_Alternative',text('Guenstigere_Alternative'));
