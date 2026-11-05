@@ -14,14 +14,17 @@
  const pageRegion=location.pathname.split('/').filter(Boolean).join('/');
  const queryRegion=new URLSearchParams(location.search).get('region');
  const linkRegion=Object.hasOwn(regionNames,pageRegion)?pageRegion:Object.hasOwn(regionNames,queryRegion)?queryRegion:null;
- if(linkRegion)document.querySelectorAll('a[href]').forEach(anchor=>{
-  try{
-   const target=new URL(anchor.getAttribute('href'),location.origin);
-   if(target.origin!==location.origin||!contextRoutes.has(target.pathname)||target.searchParams.has('region'))return;
-   target.searchParams.set('region',linkRegion);
-   anchor.setAttribute('href',target.pathname+target.search+target.hash);
-  }catch{}
- });
+ // Deferred package scripts replace their links before DOMContentLoaded.
+ if(linkRegion)document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('a[href]').forEach(anchor=>{
+   try{
+    const target=new URL(anchor.getAttribute('href'),location.origin);
+    if(target.origin!==location.origin||!contextRoutes.has(target.pathname)||target.searchParams.has('region'))return;
+    target.searchParams.set('region',linkRegion);
+    anchor.setAttribute('href',target.pathname+target.search+target.hash);
+   }catch{}
+  });
+ },{once:true});
  const form=document.getElementById('quote-form');
  document.querySelectorAll('[data-contact-form]').forEach(f=>{
   const email=f.querySelector('[name="email"]'),phone=f.querySelector('[name="Telefon"]');
