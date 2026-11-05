@@ -14,7 +14,7 @@ for(const child of [...panel.children])if(![selectedRow,oldHeading,priceBlock,co
 packagePart.append(priceBlock,contactNav);panel.append(packagePart,overviewPart);
 const overviewBack=document.createElement('nav');overviewBack.className='nav guided-overview-nav';overviewBack.innerHTML='<button type="button" class="secondary" id="guided-back">Zurück</button>';
 overviewPart.append(overviewBack,sendSlot);
-contactNav.querySelector('#wizard-review').textContent='Preisübersicht ansehen';
+contactNav.querySelector('#wizard-review').textContent='Weiter zu Kontakt und Übersicht';
 document.body.classList.add('guided-quote-active');
 overviewBack.addEventListener('click',e=>{if(e.target.closest('#guided-back')&&!lock()){stage=window.DGSFixedPrice.options(model.service).length?service().groups.length+1:0;render();}});
 
@@ -99,5 +99,14 @@ window.addEventListener('pagehide',cancelAdvance);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAdvance();});
 app.addEventListener('keydown',e=>{if(e.target.id==='service-search'&&e.key==='Enter'){e.preventDefault();cancelAdvance();}});
 // Existing inquiry-tracking.js remains the sole sender. No fetch or submit trigger here.
-const initial=document.getElementById('service').value;if(initial&&M.services.some(s=>s.id===initial)){chooseService(initial);const requestedPrice=new URLSearchParams(location.search).get('preis');if(window.DGSFixedPrice.options(initial).length){directContact=true;stage=service().groups.length+1;}else{directContact=true;stage=service().groups.length+2;}}render(false);
+const initial=document.getElementById('service').value;
+if(initial&&M.services.some(s=>s.id===initial)){
+ chooseService(initial);
+ const requestedPrice=new URLSearchParams(location.search).get('preis');
+ const packages=window.DGSFixedPrice.options(initial);
+ const hasSelectedPackage=packages.some(item=>item.id===requestedPrice);
+ directContact=true;
+ stage=service().groups.length+(packages.length&&!hasSelectedPackage?1:2);
+}
+render(false);
 })();
