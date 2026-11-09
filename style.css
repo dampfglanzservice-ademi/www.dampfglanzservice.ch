@@ -602,3 +602,9 @@ body.consent-open{overflow:hidden;}
 
 /* Keep mobile form entries comfortably readable despite the base field selector. */
 @media(max-width:600px){input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]),select,textarea{font-size:16px;}}
+
+/* Let text-only regional cards use their full width on phones. */
+@media (max-width: 600px) {
+  #regional-service-selection .service-card { grid-template-columns: minmax(0, 1fr); }
+  .hero-copy h1 .long-service-title { font-size: clamp(24px, 8vw, 1em); }
+}
