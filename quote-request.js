@@ -81,7 +81,7 @@
    $('fixed-selection-summary').replaceChildren(...orientation().split('\n').flatMap((line,i)=>{const n=document.createElement(line==='Ihre Übersicht'||line.startsWith('Gesamtpreis:')?'strong':'span');n.textContent=line;return i?[document.createElement('br'),n]:[n];}));
    return;
   }
-  const estimate=fixedEstimate(),row=window.DGSFixedPrice.row(pack.value),zone=$('fixed-zone')?.value;
+  const prices=window.DGSFixedPrice,estimate=fixedEstimate(),row=prices.row(pack.value),zone=$('fixed-zone')?.value;
   const auto=service.value==='auto',rug=service.value==='teppichreinigung';
   const extraRequest=Boolean($('combine-services').value.trim());
   const complete=estimate.available&&estimate.total!==null&&!rug&&!extraRequest;
@@ -93,12 +93,20 @@
    if(estimate.minimumApplied)notes.push('Mindestauftrag berücksichtigt.');
    if(estimate.additional.length)notes.push('Gewählte Zusätze eingerechnet.');
    if(!estimate.scopeConfirmed)notes.push('Zustand und Umfang noch klären.');
-   if(rug)notes.push('Material und Abholtermin noch bestätigen.');
-   if(!auto)notes.push(estimate.travelConfirmed?(rug?'Gebündelte Abholung und Rückgabe bis 15 km.':'Anfahrt bis 15 km ab Rorschach inklusive.'):(rug?'Abholung und Rückgabe noch klären.':'Anfahrt noch klären.'));
+   if(service.value==='moebelreinigung')notes.push('Für die ausgewählten Textilpolster.');
+   if(rug){
+    notes.push('Material und Abholtermin noch bestätigen.');
+    notes.push(estimate.travelConfirmed?'Gebündelte Abholung und Rückgabe bis 15 km ab Rorschach.':zone==='outside15'?'Abholung ausserhalb von 15 km persönlich klären.':'Abholung und Rückgabe noch klären.');
+   }else if(!auto){
+    notes.push(estimate.travelConfirmed?'Anfahrt bis 15 km ab Rorschach inklusive.':zone==='outside15'?'Anfahrt über 15 km persönlich klären.':'Anfahrt noch klären.');
+   }
   }else if(estimate.reason){
    notes.push(estimate.reason);
   }
-  if(auto)notes.push(autoHandover(zone).label);
+  if(auto){
+   const handover=autoHandover(zone);
+   notes.push(handover.value==='discuss'?'Übergabe noch klären.':handover.value==='outside15'?'Abholung weiter als 15 km persönlich klären.':handover.label);
+  }
   if(extraRequest)notes.push('Weitere Wünsche werden separat geprüft.');
   if(complete)notes.push('Preis und Umfang vor Auftrag bestätigen.');
   else if(estimate.available)notes.push('Gesamtpreis folgt mit der Offerte.');
@@ -112,8 +120,16 @@
 
   $('quote-price-details').hidden=!row;
   setText('quote-price-package',row?row.label+(estimate.quantity>1?' · '+estimate.quantity+' Pakete':''):'');
-  $('quote-price-extras').hidden=!estimate.additional?.length;
-  setText('quote-price-extras',estimate.additional?.join(' · ')||'');
+  const headboard=prices.row($('fixed-headboard')?.value);
+  const storePrice=prices.row('fp-060')?.grossCHF;
+  const stores=Number($('fixed-stores')?.value||0);
+  const extras=(estimate.additional||[]).map(detail=>{
+   if(headboard&&detail===headboard.label)return detail+': CHF '+headboard.grossCHF;
+   if(row?.group==='fenster'&&stores&&storePrice!=null)return detail+': CHF '+stores*storePrice;
+   return detail;
+  });
+  $('quote-price-extras').hidden=!extras.length;
+  setText('quote-price-extras',extras.join(' · '));
   setText('quote-price-scope',row?$('selected-package-scope').textContent:'');
  }
  function summary(){return requestSummary({serviceLabel:label(),scope:selectedScope()+(window.DGSQuoteWizard?.scope()?' Auswahl: '+window.DGSQuoteWizard.scope():''),orientation:orientation(),place:place.value.trim()});}
