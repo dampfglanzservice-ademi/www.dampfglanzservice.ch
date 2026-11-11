@@ -76,6 +76,46 @@
  function selectedInclusions(){const r=window.DGSFixedPrice.row(pack.value),box=$('selected-package-inclusions'),headboard=$('fixed-headboard');if(headboard){const eligible=r&&r.index>=10&&r.index<=14&&Number($('fixed-quantity')?.value||1)===1;headboard.closest('.field').hidden=!eligible;if(!eligible)headboard.value='';}if(!box)return;box.hidden=!r;if(!r)return;let scope=window.DGSFixedPrice.data.groups[r.group].scope;if(r.group==='auto'){scope=['Innenraum saugen und zugängliche Oberflächen. Ohne Kofferraum und Innenscheiben.','Saugen und zugängliche Oberflächen, Kofferraum und Innenscheiben.','Intensiv-Reinigung, zusätzlich Textilsitze schamponieren und extrahieren oder Leder reinigen und pflegen (nach Materialprüfung).'][r.index%3];if(r.index>=6)scope+=' Bis sieben Sitze.';} $('selected-package-scope').textContent=scope;}
  function fixedEstimate(){return window.DGSFixedPrice.quote({service:service.value,rowID:pack.value,quantity:Number($('fixed-quantity')?.value||1),condition:condition.value||'unknown',zone:$('fixed-zone')?.value||'unknown',petHair:$('fixed-pets')?.checked||false,additionalRow:$('fixed-headboard')?.value||'',stores:Number($('fixed-stores')?.value||0)});}
  function orientation(){const e=fixedEstimate(),r=window.DGSFixedPrice.row(pack.value);if(!e.available)return 'Preisübersicht\nGesamtpreis nach persönlicher Bestätigung.'+(service.value==='auto'?'\n'+autoHandover($('fixed-zone')?.value).label:'');const unit=r.unit==='je Termin'?' pro Reinigung':'';const lines=['Ihre Übersicht',r.label+(e.quantity>1?' · '+e.quantity+' Pakete':''),...e.additional];if(e.minimumApplied)lines.push('Mindestauftrag ersetzt den tieferen Betrag: CHF 150');if(e.total!==null&&service.value!=='teppichreinigung')lines.push('Gesamtpreis: CHF '+e.total+unit+' inkl. MwSt.');else {lines.push('Paket und Zusätze: CHF '+e.min+unit+' inkl. MwSt.');lines.push('Gesamtpreis nach persönlicher Bestätigung.');}if(service.value==='auto')lines.push(autoHandover($('fixed-zone')?.value).label);else if(service.value==='matratzenreinigung')lines.push('Eine Liegefläche und zugängliche Seiten.');else if(service.value==='teppichreinigung')lines.push('Material und Abholtermin noch bestätigen.');else if(!e.travelConfirmed)lines.push('Anfahrt noch klären.');return lines.join('\n');}
+ function renderOverview(){
+  if(!$('quote-price-label')){
+   $('fixed-selection-summary').replaceChildren(...orientation().split('\n').flatMap((line,i)=>{const n=document.createElement(line==='Ihre Übersicht'||line.startsWith('Gesamtpreis:')?'strong':'span');n.textContent=line;return i?[document.createElement('br'),n]:[n];}));
+   return;
+  }
+  const estimate=fixedEstimate(),row=window.DGSFixedPrice.row(pack.value),zone=$('fixed-zone')?.value;
+  const auto=service.value==='auto',rug=service.value==='teppichreinigung';
+  const extraRequest=Boolean($('combine-services').value.trim());
+  const complete=estimate.available&&estimate.total!==null&&!rug&&!extraRequest;
+  const amount=estimate.available?(complete?estimate.total:estimate.min):null;
+  const notes=[];
+  if(estimate.available){
+   const unit=row.unit==='je Termin'?'Pro Reinigung, inkl. MwSt.':'Inkl. MwSt.';
+   notes.push(unit);
+   if(estimate.minimumApplied)notes.push('Mindestauftrag berücksichtigt.');
+   if(estimate.additional.length)notes.push('Gewählte Zusätze eingerechnet.');
+   if(!estimate.scopeConfirmed)notes.push('Zustand und Umfang noch klären.');
+   if(rug)notes.push('Material und Abholtermin noch bestätigen.');
+   if(!auto)notes.push(estimate.travelConfirmed?(rug?'Gebündelte Abholung und Rückgabe bis 15 km.':'Anfahrt bis 15 km ab Rorschach inklusive.'):(rug?'Abholung und Rückgabe noch klären.':'Anfahrt noch klären.'));
+  }else if(estimate.reason){
+   notes.push(estimate.reason);
+  }
+  if(auto)notes.push(autoHandover(zone).label);
+  if(extraRequest)notes.push('Weitere Wünsche werden separat geprüft.');
+  if(complete)notes.push('Preis und Umfang vor Auftrag bestätigen.');
+  else if(estimate.available)notes.push('Gesamtpreis folgt mit der Offerte.');
+
+  const setText=(id,value)=>{const element=$(id);if(element.textContent!==value)element.textContent=value;};
+  const amountElement=$('quote-price-amount');
+  setText('quote-price-label',complete?'Gesamtpreis':amount!==null?'Paketpreis':'Gesamtpreis folgt mit der Offerte');
+  amountElement.hidden=amount===null;
+  setText('quote-price-amount',amount===null?'':new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF',minimumFractionDigits:0,maximumFractionDigits:2}).format(amount));
+  setText('quote-price-note',notes.join(' '));
+
+  $('quote-price-details').hidden=!row;
+  setText('quote-price-package',row?row.label+(estimate.quantity>1?' · '+estimate.quantity+' Pakete':''):'');
+  $('quote-price-extras').hidden=!estimate.additional?.length;
+  setText('quote-price-extras',estimate.additional?.join(' · ')||'');
+  setText('quote-price-scope',row?$('selected-package-scope').textContent:'');
+ }
  function summary(){return requestSummary({serviceLabel:label(),scope:selectedScope()+(window.DGSQuoteWizard?.scope()?' Auswahl: '+window.DGSQuoteWizard.scope():''),orientation:orientation(),place:place.value.trim()});}
  function renderPrice(){const F=window.DGSFixedPrice;F.render(document.getElementById('price-orientation'),service.value,false);$('price-orientation-note').textContent='';$('price-options').hidden=false;$('package-field').hidden=F.options(service.value).length===0;$('cleaning-tier-field').hidden=true;$('auto-handover-field').hidden=true;$('price-scope').textContent='Vereinbarter Umfang zum Fixpreis. Extras nur nach Absprache.';$('price-travel').textContent=service.value==='auto'||service.value==='autopolsterreinigung'?'Stationäre Reinigung in Rorschach. Abholung und Rückgabe bis 15 km nach Vereinbarung kostenlos; weitere Strecken persönlich klären.':'Anfahrt bis 15 km ab Rorschach inklusive; darüber auf Anfrage.';window.DGSFixedPreviewForm?.sync(service.value);}
  function update(){
@@ -88,7 +128,7 @@
   const regionalContext=ctx.region?' Region: '+regionNames[ctx.region]+'. PLZ / Ort: __.':'';
   const message=(parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen.')+regionalContext+' Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
   document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{link.href='https://wa.me/41765024998?text='+encodeURIComponent(message);link.setAttribute('aria-label',parts.length?parts.join(' · ')+' per WhatsApp anfragen':'Per WhatsApp anfragen');});
-  selectedInclusions();$('quote-combination-note').hidden=!$('combine-services').value.trim();{const r=window.DGSFixedPrice.row(pack.value),caption=pack.selectedOptions[0]?.textContent||'',detail=$('selected-package-detail');detail.textContent=r?.label||'';const norm=x=>x.toLowerCase().replace(/[^a-z0-9äöü]/g,'');detail.hidden=!r||norm(caption)===norm(r.label);}$('fixed-selection-summary').replaceChildren(...orientation().split('\n').flatMap((line,i)=>{const n=document.createElement(line==='Ihre Übersicht'||line.startsWith('Gesamtpreis:')?'strong':'span');n.textContent=line;return i?[document.createElement('br'),n]:[n];}));$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
+  selectedInclusions();$('quote-combination-note').hidden=!$('combine-services').value.trim();{const r=window.DGSFixedPrice.row(pack.value),caption=pack.selectedOptions[0]?.textContent||'',detail=$('selected-package-detail');detail.textContent=r?.label||'';const norm=x=>x.toLowerCase().replace(/[^a-z0-9äöü]/g,'');detail.hidden=!r||norm(caption)===norm(r.label);}renderOverview();$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
  }
  function reportContact(){if(!isTest&&!panel.hidden){try{window.DGSMeasurement?.step('quote','contact',false);}catch{}}}
  function showService(value,focus=true){
