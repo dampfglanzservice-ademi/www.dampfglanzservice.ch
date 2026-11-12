@@ -611,8 +611,7 @@ body.consent-open{overflow:hidden;}
 
 /* Keep long service headings readable on very narrow phones. */
 @media (max-width: 340px) {
-  main.landing-overview .overview-choice-grid,
-  main .landing-overview .overview-choice-grid {
+  .landing-overview main .overview-choice-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -625,7 +624,7 @@ body.consent-open{overflow:hidden;}
   }
 
   #treppenhausreinigung .content-split h2,
-  #regional-service-access .content-split h2 {
+  main:has(#treppenhausreinigung) #regional-service-access .content-split h2 {
     font-size: 25px;
   }
 }
