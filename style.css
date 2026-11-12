@@ -608,3 +608,24 @@ body.consent-open{overflow:hidden;}
   #regional-service-selection .service-card { grid-template-columns: minmax(0, 1fr); }
   .hero-copy h1 .long-service-title { font-size: clamp(24px, 8vw, 1em); }
 }
+
+/* Keep long service headings readable on very narrow phones. */
+@media (max-width: 340px) {
+  main.landing-overview .overview-choice-grid,
+  main .landing-overview .overview-choice-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-card:has(.service-image) {
+    grid-template-columns: 66px minmax(0, 1fr);
+  }
+
+  .service-card h3 {
+    gap: 6px;
+  }
+
+  #treppenhausreinigung .content-split h2,
+  #regional-service-access .content-split h2 {
+    font-size: 25px;
+  }
+}
