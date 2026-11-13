@@ -153,7 +153,8 @@
   '24407255482':'Reinigung Ostschweiz',
   '24407267470':'Auto-Innenreinigung Ostschweiz',
   '24415776164':'Grundreinigung Ostschweiz',
-  '24457117427':'Sofa- und Polsterreinigung'
+  '24457117427':'Sofa- und Polsterreinigung',
+  '24464010908':'Endreinigung mit Abgabegarantie – Suchtest'
  };
  const isTest=()=>new URL(location.href).searchParams.get('dgs_test')==='1';
  const allowed=()=>{
