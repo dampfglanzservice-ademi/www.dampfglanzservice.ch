@@ -1,15 +1,22 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const source=fs.readFileSync(__dirname+'/../consent.js','utf8');
 const NOW=1791972000000;
-function run({href='https://www.dampfglanzservice-ademi.ch/offerte/',ref='',saved={version:1,analytics:true,at:NOW-1000},blocked=false}={}){
+function run({href='https://www.dampfglanzservice-ademi.ch/offerte/',ref='',saved={version:1,analytics:true,ads:false,at:NOW-1000},blocked=false}={}){
  const nodes={},listeners={},appended=[];
- for(const id of ['cookie-dialog','cookie-analytics','cookie-accept','cookie-reject','cookie-save'])nodes[id]={addEventListener:(name,fn)=>listeners[id+':'+name]=fn,showModal(){},close(){},checked:false};
- const u=new URL(href),w={};
- const doc={referrer:ref,cookie:'',activeElement:null,getElementById:id=>nodes[id],querySelectorAll:()=>[],addEventListener(){},createElement:()=>({}),head:{append:x=>appended.push(x)},body:{classList:{add(){},remove(){}}},documentElement:{scrollHeight:1000}};
- const context={window:w,document:doc,location:{href,origin:u.origin,pathname:u.pathname,hostname:u.hostname,reload(){}},localStorage:{getItem(){if(blocked)throw Error('blocked');return JSON.stringify(saved)},setItem(){}},Date:{now:()=>NOW},URL,Number,JSON,innerHeight:500,queueMicrotask:fn=>fn()};
+ for(const id of ['cookie-dialog','cookie-analytics','cookie-accept','cookie-reject','cookie-save','cookie-title','cookie-description'])nodes[id]={addEventListener:(name,fn)=>listeners[id+':'+name]=fn,showModal(){},close(){},checked:false};
+ const adsToggle={checked:false};
+ const adsLabel={querySelector:selector=>selector==='input'?adsToggle:null,nextElementSibling:{}};
+ nodes['cookie-analytics'].closest=selector=>{
+  assert.equal(selector,'label');
+  return {after:label=>assert.equal(label,adsLabel)};
+ };
+ const u=new URL(href),w={},session=new Map();
+ const doc={referrer:ref,cookie:'',activeElement:null,getElementById:id=>nodes[id],querySelectorAll:()=>[],addEventListener(){},dispatchEvent(){},createElement:tag=>tag==='label'?adsLabel:{},head:{append:x=>appended.push(x)},body:{classList:{add(){},remove(){}}},documentElement:{scrollHeight:1000}};
+ const context={window:w,document:doc,location:{href,origin:u.origin,pathname:u.pathname,hostname:u.hostname,reload(){}},localStorage:{getItem(){if(blocked)throw Error('blocked');return JSON.stringify(saved)},setItem(){}},sessionStorage:{getItem:key=>session.get(key)??null,setItem:(key,value)=>session.set(key,value),removeItem:key=>session.delete(key)},Event,Date:{now:()=>NOW},URL,Number,JSON,innerHeight:500,queueMicrotask:fn=>fn()};
  context.Date=function(){return new Date(NOW)};context.Date.now=()=>NOW;w.addEventListener=()=>{};w.scrollY=0;
  vm.runInNewContext(source,context);
- return {config:w.dataLayer?.map(x=>Array.from(x)).find(x=>x[0]==='config')?.[2],appended};
+ const configs=w.dataLayer?.map(x=>Array.from(x)).filter(x=>x[0]==='config')??[];
+ return {config:configs.find(x=>x[1].startsWith('G-'))?.[2],adsConfig:configs.find(x=>x[1].startsWith('AW-'))?.[2],appended,attribution:w.DGSCampaignAttribution.get(),session:[...session.values()]};
 }
 const campaign='?leistung=auto&utm_source=google&utm_medium=organic&utm_campaign=gbp_autoinnenreinigung';
 let r=run({href:'https://www.dampfglanzservice-ademi.ch/offerte/'+campaign+'&email=private@example.test&name=PRIVATE#SECRET'});
@@ -22,4 +29,16 @@ for(const bad of ['?utm_source=google&utm_medium=organic&utm_campaign=private_na
 for(const saved of [{version:1,analytics:false,at:NOW},{version:1,analytics:true,at:NOW-181*86400000},{version:1,analytics:true,at:NOW+1000},null])assert.equal(run({saved}).config,undefined);
 assert.equal(run({blocked:true}).config,undefined);
 assert.equal(run().appended.length,1);assert.equal(run().config.allow_google_signals,false);assert.equal(run().config.allow_ad_personalization_signals,false);
+const paid='https://www.dampfglanzservice-ademi.ch/offerte/?dgs_campaign=24457117427&gclid=local-click&email=local@example.invalid';
+assert.equal(run({href:paid}).attribution,null);
+assert.equal(run({href:paid}).config.page_location,'https://www.dampfglanzservice-ademi.ch/offerte/');
+const adsOnly=run({href:paid,saved:{version:1,analytics:false,ads:true,at:NOW}});
+assert.equal(adsOnly.config,undefined);
+assert.equal(adsOnly.adsConfig.page_location,'https://www.dampfglanzservice-ademi.ch/offerte/?gclid=local-click');
+assert.equal(adsOnly.attribution.campaignId,'24457117427');
+assert.ok(!adsOnly.session.join('').includes('local-click'));
+assert.ok(!adsOnly.session.join('').includes('local@example'));
+const testMode=run({href:paid+'&dgs_test=1',saved:{version:1,analytics:true,ads:true,at:NOW}});
+assert.equal(testMode.appended.length,0);
+assert.equal(testMode.attribution,null);
 console.log('PASS: known campaign, no arbitrary URL data, provider-only referral exclusion, consent and expiry respected.');
