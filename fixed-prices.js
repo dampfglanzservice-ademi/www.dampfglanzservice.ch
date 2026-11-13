@@ -5,6 +5,7 @@ const data={"version":"2026-11-04-preview","vatIncluded":true,"vatRate":0.081,"c
 const byID=new Map(data.rows.map(r=>[r.id,r]));
 const row=id=>byID.get(id)||null;
 const options=service=>data.rows.filter(r=>data.services[service]?.includes(r.group)&&r.kind==='package');
+const minimumOrder = row => row.group === 'polster' ? 150 : 0;
 function quote({service,rowID,quantity=1,condition='unknown',zone='unknown',petHair=false,additionalRow='',stores=0}={}){
  const r=row(rowID),fail=reason=>({available:false,reason,binding:false});
  if(!r||r.kind!=='package'||!data.services[service]?.includes(r.group))return fail('Paket und Umfang gemeinsam klären.');
@@ -17,7 +18,7 @@ function quote({service,rowID,quantity=1,condition='unknown',zone='unknown',petH
  if(additionalRow){const extra=row(additionalRow);if(!extra||![21,22].includes(extra.index)||r.index<10||r.index>14||quantity!==1)return fail('Bettpolster-Zusatz nur zu einem ausgewählten Sofaauftrag; sonst Einzelpaket persönlich klären.');subtotal+=extra.grossCHF;additions.push(extra.label);}
  if(petHair){const amount=r.group==='auto'?50:50*quantity*r.objectCount;subtotal+=amount;additions.push('Tierhaare: CHF '+amount);}
  if(stores){subtotal+=stores*30;additions.push(stores+' Storen zusätzlich zum Fenstertermin');}
- const minimum=r.group==='polster'?150:0,minApplied=subtotal<minimum,total=Math.max(subtotal,minimum);
+ const minimum=minimumOrder(r),minApplied=subtotal<minimum,total=Math.max(subtotal,minimum);
  const eligibleZone=r.group==='auto'?['self','pickup15'].includes(zone):zone==='within15';
  const notes=[];if(condition!=='normal')notes.push('Material, Zustand und Umfang persönlich bestätigen.');
  if(!eligibleZone)notes.push(r.group==='auto'?'Übergabe oder Abholung ausserhalb 15 km noch klären; Gesamtpreis persönlich bestätigen.':'Anfahrt ausserhalb 15 km oder noch unbekannt: Gesamtpreis persönlich bestätigen.');
@@ -54,7 +55,25 @@ function render(host,service,links=true){
  if(!groups.length){host.innerHTML='<h2>Ihr persönlicher Fixpreis</h2><p>Umfang kurz beschreiben. Sie erhalten eine unverbindliche Offerte.</p>';return;}
  let html='<h2>Pakete und Preise</h2><p class="fixed-tax">Inklusive MwSt. · Für normalen Zustand.</p>';
  if(service==='moebelreinigung')html+='<p><strong>Für Textilpolster.</strong> Andere Möbel auf Anfrage.</p>';
- for(const groupID of groups){const g=data.groups[groupID];html+='<div class="fixed-group"><h3>'+escape(g.label)+'</h3><ul>'+ (shortScopes[groupID]||[]).map(x=>'<li>'+escape(x)+'</li>').join('')+'</ul><dl class="fixed-price-list">';for(const id of g.rowIDs){const r=row(id);html+='<div><dt>'+escape(r.label)+(links&&r.kind==='package'?'<a href="/offerte/?leistung='+encodeURIComponent(service)+'&amp;preis='+r.id+'">Paket anfragen<span class="sr-only">: '+escape(r.label)+'</span> ↗</a>':'')+'</dt><dd>CHF '+r.grossCHF+'</dd></div>';}html+='</dl><details><summary>Was ist genau enthalten?</summary><p>'+escape(g.scope)+'</p></details></div>';}
+ for (const groupID of groups) {
+  const group = data.groups[groupID];
+  html += '<div class="fixed-group"><h3>'+escape(group.label)+'</h3><ul>'
+   +(shortScopes[groupID]||[]).map(text=>'<li>'+escape(text)+'</li>').join('')
+   +'</ul><dl class="fixed-price-list">';
+  for (const id of group.rowIDs) {
+   const priceRow = row(id);
+   const minimum = minimumOrder(priceRow);
+   const hasPackageLink = links && priceRow.kind === 'package';
+   const minimumHint = hasPackageLink && priceRow.grossCHF < minimum
+    ? ' <small>(Mindestauftrag CHF '+minimum+')</small>'
+    : '';
+   const packageLink = hasPackageLink
+    ? '<a href="/offerte/?leistung='+encodeURIComponent(service)+'&amp;preis='+priceRow.id+'">Paket anfragen<span class="sr-only">: '+escape(priceRow.label)+'</span> ↗</a>'
+    : '';
+   html += '<div><dt>'+escape(priceRow.label)+minimumHint+packageLink+'</dt><dd>CHF '+priceRow.grossCHF+'</dd></div>';
+  }
+  html += '</dl><details><summary>Was ist genau enthalten?</summary><p>'+escape(group.scope)+'</p></details></div>';
+ }
  html+='<p>Unverbindlich anfragen. Preis und Termin bestätigen wir vor dem Auftrag.</p><details class="fixed-conditions"><summary>Preisbedingungen</summary><p>'+escape(data.conditions)+'</p><p>Zusatzwünsche und empfindliche Materialien vorab klären. Kein garantierter Flecken-, Geruchs- oder Hygieneerfolg.</p></details>';
  if(links)html+='<a class="button primary" href="/offerte/?leistung='+encodeURIComponent(service)+'">Unsicher? Offerte anfragen</a>';
  host.innerHTML=html;
