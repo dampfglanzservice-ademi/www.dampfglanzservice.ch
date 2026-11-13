@@ -23,11 +23,6 @@ if (quoteParams.get('leistung') === 'polsterreinigung') {
       const contact = originalContact.cloneNode(true);
       contact.classList.add('sofa-quote-contact');
       contact.setAttribute('aria-label', 'Sofa-Reinigung direkt anfragen');
-      const whatsapp = contact.querySelector('[data-quote-whatsapp]');
-      const url = new URL(whatsapp.href);
-      url.searchParams.set('text', 'Guten Tag, ich möchte eine Offerte für die Reinigung meines Sofas oder meiner Polstermöbel. Mein Ort: ');
-      whatsapp.href = url.href;
-      whatsapp.removeAttribute('data-quote-whatsapp');
       contact.hidden = true;
       sofaContactLinks.push(contact);
       if (section === packagePart) section.prepend(contact);
