@@ -1,3 +1,12 @@
+import argparse
+
+if __name__ == '__main__':
+ parser = argparse.ArgumentParser(description='Regenerate the static website in a separate working copy.')
+ parser.add_argument('--rebuild-static-site', action='store_true', help='Explicitly allow replacing the generated static files.')
+ args = parser.parse_args()
+ if not args.rebuild_static_site:
+  parser.error('This legacy generator can overwrite published HTML. Use a separate working copy and pass --rebuild-static-site explicitly.')
+
 from landing_contacts import enhance_landing_contacts
 from service_overview import enhance_service_overview
 from regional_services import enhance_regional_services

@@ -4,7 +4,7 @@ Mehrseitige statische GitHub-Pages-Website auf www.dampfglanzservice-ademi.ch. A
 
 ## Quellen und Bearbeitung
 
-`tools/build_site.py` erzeugt alle Seiten. `tools/quote.template` enthält das Anfrageformular. `tools/additional_services.json` enthält die neuen, eigenständig beschriebenen Leistungsbereiche. `tools/profile_services.json` dokumentiert die 31 verschiedenen Leistungsbezeichnungen aus dem Google-Unternehmensprofil, am 10. Oktober 2026 im angemeldeten Profil geprüft. Verwandte Leistungen teilen sich eine passende Detailseite; es gibt keine duplizierten Seiten für Synonyme.
+GitHub Pages veröffentlicht die eingecheckten HTML-Dateien. `tools/build_site.py` ist der ältere Generator und kann beim Neuaufbau später direkt im HTML gepflegte Inhalte überschreiben. Führen Sie ihn für Vergleiche in einer separaten Kopie aus und prüfen Sie vor einer Übernahme den Diff. `tools/quote.template` enthält das Anfrageformular. `tools/additional_services.json` enthält die neuen, eigenständig beschriebenen Leistungsbereiche. `tools/profile_services.json` dokumentiert die 31 verschiedenen Leistungsbezeichnungen aus dem Google-Unternehmensprofil, am 10. Oktober 2026 im angemeldeten Profil geprüft. Verwandte Leistungen teilen sich eine passende Detailseite; es gibt keine duplizierten Seiten für Synonyme.
 
 Die Hauptgestaltung, Farben, vier Hauptkarten auf Start- und Regionalseiten und die festen Kontaktbuttons bleiben erhalten. Die Online-Offerte steht direkt unter dem Startseiten-Hero und ist bereits im Hero verlinkt.
 
@@ -12,7 +12,7 @@ Vom Betreiber bereitgestellte Medien: Die optimierten Porträts `assets/ferki-ad
 
 ```sh
 python3 -m pip install -r tools/requirements.txt
-python3 tools/build_site.py
+python3 tools/build_site.py --rebuild-static-site
 python3 tools/check_site.py
 node tools/test_pricing.cjs
 node --check script.js
