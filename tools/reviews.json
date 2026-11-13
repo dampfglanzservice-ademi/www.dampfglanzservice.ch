@@ -27,70 +27,80 @@
       "date": "vor einem Monat",
       "checked": "09.10.2026",
       "excerpt": "Absolut top Service!",
-      "author": "106282295958847443940"
+      "author": "106282295958847443940",
+      "multiline": true
     },
     {
       "name": "alessio Colacchio",
       "date": "vor 9 Monaten",
       "checked": "09.10.2026",
       "excerpt": "Service war top",
-      "author": "104036348325078620284"
+      "author": "104036348325078620284",
+      "multiline": true
     },
     {
       "name": "Rolf Güttinger",
       "date": "vor 2 Monaten",
       "checked": "09.10.2026",
       "excerpt": "Bin sehr zufrieden.",
-      "author": "106138906568806893654"
+      "author": "106138906568806893654",
+      "multiline": true
     },
     {
       "name": "Armin Sejmenovic",
       "date": "vor 4 Monaten",
       "checked": "09.10.2026",
       "excerpt": "Riesen Dankeschön",
-      "author": "116151521346925633381"
+      "author": "116151521346925633381",
+      "multiline": true
     },
     {
       "name": "Hamza Asad",
       "date": "vor 5 Monaten",
       "checked": "09.10.2026",
       "excerpt": "hat super geklappt",
-      "author": "112444442979926687094"
+      "author": "112444442979926687094",
+      "multiline": true
     },
     {
       "name": "Andrit Muji",
       "date": "vor 9 Monaten",
       "checked": "09.10.2026",
       "excerpt": "Sehr empfehlenswert",
-      "author": "110008726257077958159"
+      "author": "110008726257077958159",
+      "multiline": true
     },
     {
       "name": "Jassin schild",
       "date": "vor 9 Monaten",
       "checked": "09.10.2026",
       "excerpt": "Sehr gute Arbeit!!!",
-      "author": "102678963210999202901"
+      "author": "102678963210999202901",
+      "multiline": true
     },
     {
       "name": "omer nuhija",
       "date": "vor 9 Monaten",
       "checked": "09.10.2026",
       "excerpt": "hochwertigem Service",
-      "author": "101002514733010928389"
+      "author": "101002514733010928389",
+      "multiline": true
     },
     {
       "name": "Adnann fnbr",
       "date": "vor 9 Monaten",
       "checked": "09.10.2026",
       "excerpt": "Mega empfehlenswert",
-      "author": "113147922476667703766"
+      "author": "113147922476667703766",
+      "multiline": true
     },
     {
       "name": "Artan Rudhani",
       "date": "vor 3 Monaten",
       "checked": "09.10.2026",
       "excerpt": "super geklappt",
-      "author": "116482459368052433426"
+      "author": "116482459368052433426",
+      "multiline": true
     }
   ]
 }

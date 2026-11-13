@@ -18,6 +18,31 @@ REGIONS = [
  ('Graubünden', 'reinigung-graubuenden'), ('Schaffhausen', 'reinigung-schaffhausen'),
 ]
 
+REGIONAL_OFFER_SERVICES = [
+ ('badreinigung', 'Badreinigung'),
+ ('bueroreinigung', 'Büro- und Arbeitsplatzreinigung'),
+ ('endreinigung-abnahmegarantie', 'Endreinigung'),
+ ('autopolsterreinigung', 'Autopolsterreinigung in Rorschach'),
+ ('autoreinigung', 'Auto-Innenreinigung in Rorschach'),
+ ('balkonreinigung', 'Balkonreinigung'),
+ ('kalkentfernung', 'Kalkentfernung'),
+ ('grundreinigung', 'Grundreinigung'),
+ ('hochdruckreinigung', 'Hochdruckreinigung'),
+ ('fruehlingsreinigung', 'Frühjahrsputz / Frühlingsreinigung'),
+ ('fensterreinigung', 'Fenster- und Glasreinigung'),
+ ('kombireinigung', 'Kombireinigung'),
+ ('matratzenreinigung', 'Matratzenreinigung'),
+ ('kuechenreinigung', 'Küchenreinigung'),
+ ('moebelreinigung', 'Möbelreinigung'),
+ ('ladenreinigung', 'Ladenreinigung'),
+ ('praxisreinigung', 'Praxisreinigung'),
+ ('polsterreinigung', 'Polsterreinigung'),
+ ('teppichreinigung', 'Teppichreinigung'),
+ ('terrassenreinigung', 'Terrassenreinigung'),
+ ('wintergartenreinigung', 'Wintergartenreinigung'),
+ ('wohnungsreinigung', 'Wohnungsreinigung'),
+]
+
 def enhance_regional_visibility(document, path, services):
  tree = html.fromstring(document)
  main = tree.xpath('//main')[0]
@@ -33,7 +58,13 @@ def enhance_regional_visibility(document, path, services):
  if is_region:
   heading = 'Alle Reinigungsleistungen für Ihren Standort'
   text = 'Wohnung und Haus, Büro, Praxis oder Laden, Fenster und Aussenflächen, Auto, Sofa und weitere Textilien: Wählen Sie die passende Leistung und beschreiben Sie Ihren Auftrag. Wir planen den Einsatz von Rorschach aus und bestätigen Verfügbarkeit, Umfang und Gesamtpreis vor Ihrer Buchung.'
-  details = '<details><summary>Alle Leistungen ansehen</summary>'+links([(label,key) for key,label in services.items()])+'</details>'
+  rows = []
+  for route, label in REGIONAL_OFFER_SERVICES:
+   service = {'autoreinigung': 'auto', 'kombireinigung': 'other'}.get(route, route)
+   href = escape('/offerte/?'+urlencode({'leistung': service, 'region': slug}), quote=True)
+   offer_label = escape(f'Offerte für {label} anfragen', quote=True)
+   rows.append(f'<li><a href="/{route}/">{escape(label)}</a> <span aria-hidden="true">·</span> <a class="text-link" href="{href}" aria-label="{offer_label}">Offerte anfragen</a></li>')
+  details = '<p>Auto-Innen- und Autopolsterreinigung führen wir stationär in Rorschach durch.</p><details open><summary>Alle Leistungen ansehen</summary><ul>'+''.join(rows)+'</ul></details>'
  elif is_service:
   label = services[slug]
   heading = label+' in der Ostschweiz anfragen'
@@ -46,7 +77,7 @@ def enhance_regional_visibility(document, path, services):
   if path == '/regionen/':
    details += '<details><summary>Alle Reinigungsleistungen ansehen</summary>'+links([(label,key) for key,label in services.items()])+'</details>'
  message = 'Guten Tag, ich möchte '+(services[slug] if is_service else 'eine Reinigung')+' anfragen. PLZ / Ort: __. Gewünschte Arbeiten: __. Fotos sende ich mit. Bitte bestätigen Sie Gesamtpreis und einen möglichen Termin.'
- offer = '/offerte/?'+urlencode({'leistung':slug}) if is_service else '/offerte/'
+ offer = '/offerte/?'+urlencode({'leistung':slug}) if is_service else '/offerte/?'+urlencode({'region':slug}) if is_region else '/offerte/'
  block = html.fragment_fromstring('<section class="section muted" id="regional-service-access"><div class="container content-split"><div><span class="eyebrow">Leistungen und Einsatzgebiete</span><h2>'+escape(heading)+'</h2><p>'+escape(text)+'</p>'+details+'</div><div class="note-card"><h3>Ihre Reinigung persönlich anfragen</h3><p>Bitte nennen Sie PLZ, Ort, Reinigungsumfang und Wunschtermin. Bis 15 km Fahrstrecke ab Rorschach ist die Anfahrt kostenlos; darüber hinaus werden Fahrtkosten vor dem Auftrag vereinbart.</p><div class="hero-actions"><a class="button primary" href="'+escape(offer,quote=True)+'">Offerte für meinen Standort ↗</a><a class="button secondary" href="https://wa.me/41765024998?'+escape(urlencode({'text':message}),quote=True)+'" target="_blank" rel="noopener">Fotos per WhatsApp senden ↗</a></div></div></div></section>')
  cta = main.xpath('./section[contains(concat(" ", normalize-space(@class), " "), " cta-section ")]')
  if cta:
