@@ -56,6 +56,10 @@ vehiclePart.addEventListener('click',e=>{
  if(button.id==='vehicle-unsure'){document.getElementById('package').value='custom';form.dispatchEvent(new Event('input',{bubbles:true}));stage=service().groups.length+2;render();return;}
  if(button.dataset.guidedVehicle!==undefined){const next=Number(button.dataset.guidedVehicle),pack=document.getElementById('package'),r=window.DGSFixedPrice.row(pack.value);guidedVehicle=next;guidedAutoMode='package';if(!r||r.index>=9||Math.floor(r.index/3)!==next)pack.value='custom';const q=service().groups.flatMap(g=>g.questions).find(q=>q.id==='vehicle');if(q)M.selectAnswer(model,'auto','vehicle',q.options[next],false);render();form.dispatchEvent(new Event('input',{bubbles:true}));}
 });
+const regionalIntro = document.createElement('p');
+regionalIntro.className = 'fine-print';
+regionalIntro.hidden = true;
+app.before(regionalIntro);
 const guideBenefit=document.createElement('p');guideBenefit.className='guided-benefit';guideBenefit.textContent='Klare Leistung. Fester Preis.';app.before(guideBenefit);
 const extraFields=document.createElement('div');extraFields.hidden=true;form.append(extraFields);
 const lock=()=>['sending','success'].includes(form.dataset.dgsSubmitState);
@@ -146,6 +150,10 @@ function render(focus=true){cancelAdvance();if(lock())return;overviewPart.append
 vehicleLocation.hidden = !['auto','autopolsterreinigung'].includes(s?.id);
 for (const contact of directContactLinks) contact.hidden = !s;
 guideBenefit.hidden=!!s&&stage===last&&stage>0;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
+const regionField = form.elements.namedItem('DGS_Anfrageregion');
+const regionName = regionField?.value;
+regionalIntro.hidden = stage !== 0 || !regionName;
+regionalIntro.textContent = regionName ? 'Ihre Offerte für die Region ' + regionName + '. Wählen Sie die gewünschte Reinigung.' : '';
 if(stage===0){body='<h2 id="stage-heading" tabindex="-1">Was soll wieder sauber werden?</h2>'+searchMarkup();}
 else if(stage<=s.groups.length){const g=s.groups[stage-1];body='<p class="service-label">'+esc(s.label)+'</p><h2 id="stage-heading" tabindex="-1">'+esc(g.title)+'</h2><p class="note">'+esc(s.note)+'</p>'+g.questions.filter(q=>M.questionVisible(s,q,model.answers[s.id]||{})).map(questionMarkup).join('');}
 else if(stage===last){body='';}
