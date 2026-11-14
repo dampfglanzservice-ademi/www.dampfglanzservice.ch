@@ -155,7 +155,10 @@
   $('quote-location').value=auto?'rorschach':'unknown';
   const limit=Boolean(form.querySelector('[data-budget-mode="limit"]:checked'));budget.disabled=!limit;$('budget-field').hidden=!limit;
   const parts=Object.hasOwn(catalog,service.value)?[label()]:[];if(pack.value!=='custom'&&pack.selectedOptions.length)parts.push(pack.selectedOptions[0].text);if(auto&&tier.value)parts.push(tier.selectedOptions[0].text);
-  const regionalContext=ctx.region?' Region: '+regionNames[ctx.region]+'. PLZ / Ort: __.':service.value==='polsterreinigung'?' PLZ / Ort: __.':'';
+  const vehicleService = ['auto','autopolsterreinigung'].includes(service.value);
+  const regionalContext = vehicleService
+    ? ' Reinigung in Rorschach.'+(ctx.region?' Ich komme aus der Region '+regionNames[ctx.region]+'.':'')+' Meine PLZ / mein Ort: __.'
+    : ctx.region?' Region: '+regionNames[ctx.region]+'. PLZ / Ort: __.':service.value==='polsterreinigung'?' PLZ / Ort: __.':'';
   const message=(parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen.')+regionalContext+' Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
   document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{link.href='https://wa.me/41765024998?text='+encodeURIComponent(message);link.setAttribute('aria-label',parts.length?parts.join(' · ')+' per WhatsApp anfragen':'Per WhatsApp anfragen');});
   selectedInclusions();$('quote-combination-note').hidden=!$('combine-services').value.trim();{const r=window.DGSFixedPrice.row(pack.value),caption=pack.selectedOptions[0]?.textContent||'',detail=$('selected-package-detail');detail.textContent=r?.label||'';const norm=x=>x.toLowerCase().replace(/[^a-z0-9äöü]/g,'');detail.hidden=!r||norm(caption)===norm(r.label);}renderOverview();$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
@@ -168,6 +171,9 @@
   if(Array.from(pack.options).some(option=>option.value===stored.pkg))pack.value=stored.pkg;tier.value=stored.tier;condition.value=stored.condition;handover.value=stored.handover;previousService=value;
   $('selected-service').textContent=label();$('selected-service-row').hidden=false;choice.hidden=true;panel.hidden=false;
   const auto=['auto','autopolsterreinigung'].includes(value);$('customer-place-label').textContent=auto?'Ihre PLZ / Ihr Ort *':'PLZ / Ort der Reinigung *';
+  if(ctx.region) $('regional-request-context').textContent = 'Ihre Anfrage für '+regionNames[ctx.region]+'. '+(auto
+    ? 'Bitte geben Sie Ihre eigene PLZ oder Ihren Wohnort an.'
+    : 'Bitte ergänzen oder korrigieren Sie bei Bedarf den genauen Einsatzort.');
   renderPrice();update();if(!form.dataset.choiceWizard)reportContact();if(focus&&!form.dataset.choiceWizard){place.focus({preventScroll:true});panel.scrollIntoView({block:'start',behavior:'auto'});}
  }
  form.querySelectorAll('[data-service]').forEach(button=>button.addEventListener('click',()=>showService(button.dataset.service)));
