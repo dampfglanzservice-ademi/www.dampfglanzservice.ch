@@ -77,10 +77,43 @@ const searchActionWords = new Set(['reinigen', 'putzen', 'lassen']);
 function matchingServices(query){
   const terms = normaliseSearch(query).split(' ').filter(term => term && !searchActionWords.has(term));
   if (!terms.length && query.trim()) return [];
+  const direct = servicesMatchingTerms(terms);
+  if (direct.length || !terms.length) return direct;
+
+  const serviceTerms = withoutSearchPlace(terms);
+  return serviceTerms.length && serviceTerms.length < terms.length ? servicesMatchingTerms(serviceTerms) : [];
+}
+
+function servicesMatchingTerms(terms){
   return M.services.filter(s => {
     const text = normaliseSearch(s.label+' '+s.id+' '+(serviceAliases[s.id]||''));
     return terms.every(term => text.includes(term));
   });
+}
+
+// A place can help the search without setting the address or promising coverage.
+const searchPlaces = [
+  'Kanton St. Gallen', 'Kanton Zürich', 'St. Gallen', 'Sankt Gallen', 'St. Margrethen',
+  'Appenzell Ausserrhoden', 'Appenzell Innerrhoden', 'Wil SG', 'Werdenberg Sarganserland',
+  'Rorschacherberg', 'Rorschach', 'Wil', 'Winterthur', 'Zürich', 'Herisau', 'Widnau',
+  'Heerbrugg', 'Goldach', 'Arbon', 'Steinach', 'Horn', 'Thal', 'Staad', 'Rheineck',
+  'Thurgau', 'Rheintal', 'Toggenburg', 'Werdenberg', 'Sarganserland', 'Glarus',
+  'Graubünden', 'Schaffhausen', 'Ostschweiz', 'Appenzell', 'Sennwald', 'Amriswil',
+  'Gossau', 'Altstätten', 'Buchs', 'Sargans', 'Rapperswil-Jona'
+].map(place => normaliseSearch(place).split(' ')).sort((a, b) => b.length - a.length);
+
+function withoutSearchPlace(terms){
+  for (const place of searchPlaces) {
+    if (place.every((word, i) => terms[terms.length - place.length + i] === word)) {
+      const remaining = terms.slice(0, -place.length);
+      if (/^\d{4}$/.test(remaining.at(-1))) remaining.pop();
+      if (remaining.at(-1) === 'in') remaining.pop();
+      return remaining;
+    }
+    const start = /^\d{4}$/.test(terms[0]) ? 1 : 0;
+    if (place.every((word, i) => terms[start + i] === word)) return terms.slice(start + place.length);
+  }
+  return terms;
 }
 function requestedServiceLabel(id, query){
   if (id !== 'bueroreinigung') return '';
