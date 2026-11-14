@@ -174,8 +174,12 @@ app.addEventListener('keydown',e=>{if(e.target.id==='service-search'&&e.key==='E
 // Existing inquiry-tracking.js remains the sole sender. No fetch or submit trigger here.
 const initial=document.getElementById('service').value;
 if(initial&&M.services.some(s=>s.id===initial)){
- chooseService(initial);
- const requestedPrice=new URLSearchParams(location.search).get('preis');
+ const params = new URLSearchParams(location.search);
+ const detail = params.get('bereich');
+ const officeDetails = ['treppenhausreinigung', 'unterhaltsreinigung'];
+ const officeDetail = officeDetails.includes(detail) ? detail : '';
+ chooseService(initial, requestedServiceLabel(initial, officeDetail));
+ const requestedPrice=params.get('preis');
  const packages=window.DGSFixedPrice.options(initial);
  const hasSelectedPackage=packages.some(item=>item.id===requestedPrice);
  directContact=true;
