@@ -14,20 +14,17 @@ for(const child of [...panel.children])if(![selectedRow,oldHeading,priceBlock,co
 packagePart.append(priceBlock,contactNav);panel.append(packagePart,overviewPart);
 const overviewBack=document.createElement('nav');overviewBack.className='nav guided-overview-nav';overviewBack.innerHTML='<button type="button" class="secondary" id="guided-back">Zurück</button>';
 overviewPart.append(overviewBack,sendSlot);
-const sofaContactLinks = [];
-const quoteParams = new URLSearchParams(location.search);
-if (quoteParams.get('leistung') === 'polsterreinigung') {
-  const originalContact = document.querySelector('.sq-direct nav');
-  if (originalContact) {
-    for (const section of [packagePart, overviewPart]) {
-      const contact = originalContact.cloneNode(true);
-      contact.classList.add('sofa-quote-contact');
-      contact.setAttribute('aria-label', 'Sofa-Reinigung direkt anfragen');
-      contact.hidden = true;
-      sofaContactLinks.push(contact);
-      if (section === packagePart) section.prepend(contact);
-      else sendSlot.before(contact);
-    }
+const directContactLinks = [];
+const originalContact = document.querySelector('.sq-direct nav');
+if (originalContact) {
+  for (const section of [packagePart, overviewPart]) {
+    const contact = originalContact.cloneNode(true);
+    contact.classList.add('sofa-quote-contact');
+    contact.setAttribute('aria-label', 'Reinigung direkt anfragen');
+    contact.hidden = true;
+    directContactLinks.push(contact);
+    if (section === packagePart) section.prepend(contact);
+    else sendSlot.before(contact);
   }
 }
 contactNav.querySelector('#wizard-review').textContent='Weiter zu Kontakt und Übersicht';
@@ -90,7 +87,7 @@ const illustratedQuestions={"wohnungsreinigung":{"question":"rooms","icons":["ap
 function objectOption(option,key){const hints={"sofa":"z. B. 2- oder 3-Sitzer","sofaL":"Eine Ecke / eine lange Seite","sofaU":"Zwei lange Seiten","armchair":"Einzelsessel oder gepolsterter Stuhl","headboard":"Gepolstertes Kopfteil oder Bettseiten"};return '<strong class="object-title">'+esc(option)+'</strong>'+objectIllustrations[key]+ (hints[key]?'<span class="object-example">'+esc(hints[key])+'</span>':'');}
 function questionMarkup(q){const value=(model.answers[model.service]||{})[q.id],vehicle=q.id==='vehicle'&&['auto','autopolsterreinigung'].includes(model.service),mapping=illustratedQuestions[model.service],illustrated=!vehicle&&mapping?.question===q.id;return `<fieldset id="question-${q.id}"><legend tabindex="-1">${esc(q.label)}</legend><p class="hint">${esc(q.multi?(q.hint||'').replace(/^Mehrfachwahl[.;]?\s*/,''):q.hint||'')}${q.multi?' Mehrfachauswahl; danach «Weiter».':''}</p><div class="options${vehicle?' vehicle-options':illustrated?' object-options':''}">${q.options.map((o,index)=>{const imageKey=illustrated?mapping.icons[index]:null;return `<button type="button" class="option${vehicle&&index<3?' vehicle-option':imageKey?' object-option':''}" data-question="${q.id}" data-value="${esc(o)}" ${vehicle||imageKey?`aria-label="${esc(o)}"`:''} aria-pressed="${Array.isArray(value)?value.includes(o):value===o}">${vehicle?vehicleOption(o,index):imageKey?objectOption(o,imageKey):esc(o)}</button>`;}).join('')}</div></fieldset>`;}
 function render(focus=true){cancelAdvance();if(lock())return;overviewPart.append(sendSlot);const headerHeight=document.querySelector('.header')?.getBoundingClientRect().height||72;form.style.setProperty('--qw-header',Math.max(0,Math.ceil(headerHeight)+16-(parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0))+'px');legacyChoice.hidden=true;const s=service(),last=s?s.groups.length+2:0,contactStage=s?s.groups.length+1:-1;
-for (const contact of sofaContactLinks) contact.hidden = s?.id !== 'polsterreinigung';
+for (const contact of directContactLinks) contact.hidden = !s;
 guideBenefit.hidden=!!s&&stage===last&&stage>0;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
 if(stage===0){body='<h2 id="stage-heading" tabindex="-1">Was soll wieder sauber werden?</h2>'+searchMarkup();}
 else if(stage<=s.groups.length){const g=s.groups[stage-1];body='<p class="service-label">'+esc(s.label)+'</p><h2 id="stage-heading" tabindex="-1">'+esc(g.title)+'</h2><p class="note">'+esc(s.note)+'</p>'+g.questions.filter(q=>M.questionVisible(s,q,model.answers[s.id]||{})).map(questionMarkup).join('');}
