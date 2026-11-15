@@ -79,7 +79,7 @@
     say(message);
     uiState('error');
     if(!status)return;
-    for(const [label,href] of [['Jetzt anrufen','tel:+41765024998'],['E-Mail schreiben','mailto:info@dampfglanzservice-ademi.ch']]){
+    for(const [label,href] of [['Jetzt anrufen','tel:+41765024998'],['E-Mail schreiben','mailto:info@dampfglanzservice-ademi.ch'],['Per WhatsApp schreiben','https://wa.me/41765024998']]){
      status.append(document.createTextNode(' · '));
      const link=document.createElement('a');link.href=href;link.textContent=label;status.append(link);
     }

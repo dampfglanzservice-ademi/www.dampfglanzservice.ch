@@ -28,10 +28,28 @@
  const form=document.getElementById('quote-form');
  document.querySelectorAll('[data-contact-form]').forEach(f=>{
   const email=f.querySelector('[name="email"]'),phone=f.querySelector('[name="Telefon"]');
-  // One reply channel is sufficient; keep native email syntax validation.
-  const contactChoice=()=>{if(email&&phone)email.required=!phone.value.trim();};
-  if(email&&phone){for(const field of [email,phone]){field.addEventListener('input',contactChoice);field.addEventListener('change',contactChoice);}contactChoice();}
-  f.addEventListener('submit',()=>{contactChoice();f.querySelector('.form-status').textContent='Ihre Anfrage wird übermittelt.';});
+  // A valid phone number can replace the email address.
+  if(!email||!phone)return;
+  const contactChoice=()=>{
+   const number=phone.value.trim(),digits=number.replace(/\D/g,'');
+   const validPhone=/^[+0-9 ()/.-]+$/.test(number)&&digits.length>=6&&digits.length<=18&&number.length<=40;
+   email.required=!validPhone;
+   email.setCustomValidity(!validPhone&&!email.value.trim()?'Bitte geben Sie eine gültige E-Mail-Adresse oder eine vollständige Telefonnummer ein.':'');
+  };
+  for(const field of [email,phone]){
+   field.addEventListener('input',contactChoice);
+   field.addEventListener('change',contactChoice);
+  }
+  contactChoice();
+  f.addEventListener('submit',event=>{
+   contactChoice();
+   if(!f.checkValidity()){
+    event.preventDefault();
+    f.reportValidity();
+    return;
+   }
+   f.querySelector('.form-status').textContent='Ihre Anfrage wird übermittelt.';
+  });
  });
  if(!form||form.dataset.shortRequest==='true')return;
  const $=id=>document.getElementById(id),money=n=>n===null?'Bitte Preis empfehlen':new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(n);

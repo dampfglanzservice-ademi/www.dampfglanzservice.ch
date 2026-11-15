@@ -158,7 +158,7 @@
   const vehicleService = ['auto','autopolsterreinigung'].includes(service.value);
   const regionalContext = vehicleService
     ? ' Reinigung in Rorschach.'+(ctx.region?' Ich komme aus der Region '+regionNames[ctx.region]+'.':'')+' Meine PLZ / mein Ort: __.'
-    : ctx.region?' Region: '+regionNames[ctx.region]+'. PLZ / Ort: __.':service.value==='polsterreinigung'?' PLZ / Ort: __.':'';
+    : (ctx.region?' Region: '+regionNames[ctx.region]+'.':'')+' PLZ / Ort: __.';
   const message=(parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen.')+regionalContext+' Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
   document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{link.href='https://wa.me/41765024998?text='+encodeURIComponent(message);link.setAttribute('aria-label',parts.length?parts.join(' · ')+' per WhatsApp anfragen':'Per WhatsApp anfragen');});
   selectedInclusions();$('quote-combination-note').hidden=!$('combine-services').value.trim();{const r=window.DGSFixedPrice.row(pack.value),caption=pack.selectedOptions[0]?.textContent||'',detail=$('selected-package-detail');detail.textContent=r?.label||'';const norm=x=>x.toLowerCase().replace(/[^a-z0-9äöü]/g,'');detail.hidden=!r||norm(caption)===norm(r.label);}renderOverview();$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
