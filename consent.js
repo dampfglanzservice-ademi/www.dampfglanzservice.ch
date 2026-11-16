@@ -9,7 +9,7 @@
  const adsToggle=adsLabel.querySelector('input');
  document.getElementById('cookie-title').textContent='Cookies & Anfragenmessung';
  document.getElementById('cookie-description').textContent='Wir speichern Ihre Cookie-Auswahl. Optional verwenden wir Google Analytics für Statistik und Google Ads zur Zuordnung erfolgreicher Formularanfragen zu Anzeigenklicks. Dabei werden Nutzungs- und Gerätedaten an Google übermittelt, möglicherweise auch in die USA. Alle Formulare funktionieren auch ohne Messung.';
- adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Keine Werbepersonalisierung. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt.';
+ adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Keine Werbepersonalisierung. Mit Anzeigenmessung können Kampagnen- und Keyword-Kennung die Formularanfrage begleiten. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt.';
  try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';consent={...saved,ads:saved.ads===true};}}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
  // Preserve Google click IDs only with explicit Ads consent. Other query fields
@@ -145,6 +145,7 @@
 })();
 
 // Keep only a recognised campaign reference, after explicit Ads-measurement consent.
+// For Sofa and Endreinigung, optionally retain the targeted Google Ads keyword ID.
 // No click IDs, search terms, full URLs or customer details are stored here.
 ;(()=>{
  'use strict';
@@ -156,13 +157,20 @@
   '24457117427':'Sofa- und Polsterreinigung',
   '24464010908':'Endreinigung mit Abgabegarantie – Suchtest'
  };
+ const KEYWORD_CAMPAIGNS=new Set(['24457117427','24464010908']);
+ const pageAt=Date.now();
+ const validKeyword=(id,value)=>KEYWORD_CAMPAIGNS.has(id)&&typeof value==='string'&&/^[1-9]\d{0,19}$/.test(value);
  const isTest=()=>new URL(location.href).searchParams.get('dgs_test')==='1';
  const allowed=()=>{
   try{const c=JSON.parse(localStorage.getItem(CONSENT));return c?.version===1&&c.ads===true&&typeof c.at==='number'&&c.at<=Date.now()&&Date.now()-c.at<180*86400000;}catch{return false;}
  };
  const clear=()=>{try{sessionStorage.removeItem(KEY);}catch{}};
  const campaignFrom=raw=>{
-  try{const u=new URL(raw);if(u.origin!==location.origin)return null;const id=u.searchParams.get('dgs_campaign');return Object.hasOwn(CAMPAIGNS,id)?id:null;}catch{return null;}
+  try{const u=new URL(raw);if(u.origin!==location.origin)return null;const id=u.searchParams.get('dgs_campaign');if(!Object.hasOwn(CAMPAIGNS,id))return null;
+   const targets=u.searchParams.getAll('dgs_target');
+   const keywords=targets.length===1?targets[0].split(':').filter(part=>part.startsWith('kwd-')):[];
+   const keywordId=keywords.length===1?keywords[0].slice(4):'';
+   return {id,entryPath:u.pathname,keywordId:validKeyword(id,keywordId)?keywordId:''};}catch{return null;}
  };
  const saved=()=>{
   try{const x=JSON.parse(sessionStorage.getItem(KEY));if(x?.version===1&&Object.hasOwn(CAMPAIGNS,x.id)&&typeof x.at==='number'&&x.at<=Date.now()&&Date.now()-x.at<TTL)return x;}catch{}
@@ -174,14 +182,18 @@
   let x=saved();
   const current=campaignFrom(location.href);
   const previous=campaignFrom(document.referrer);
-  if(current||(previous&&!x)){
-   x={version:1,id:current||previous,at:Date.now(),entryPath:current?location.pathname:new URL(document.referrer).pathname};
+  const source=current||(!x?previous:null);
+  if(source){
+   const sameClick=x?.id===source.id&&x?.keywordId===source.keywordId&&x?.entryPath===source.entryPath;
+   const keywordAt=sameClick&&Number.isFinite(x.keywordAt)?x.keywordAt:pageAt;
+   x={version:1,...source,at:Date.now(),keywordAt};
+   if(Date.now()-keywordAt>=TTL)x.keywordId='';
    try{sessionStorage.setItem(KEY,JSON.stringify(x));}catch{}
   }
   return x;
  };
  window.DGSCampaignAttribution={
-  get:()=>{const x=capture();return x?{campaignId:x.id,campaignName:CAMPAIGNS[x.id],method:'campaign_parameter',entryPath:typeof x.entryPath==='string'&&/^\/[a-z0-9\/-]{0,160}$/i.test(x.entryPath)?x.entryPath:''}:null;},
+  get:()=>{const x=capture();return x?{campaignId:x.id,campaignName:CAMPAIGNS[x.id],method:'campaign_parameter',keywordId:validKeyword(x.id,x.keywordId)&&Number.isFinite(x.keywordAt)&&x.keywordAt<=Date.now()&&Date.now()-x.keywordAt<TTL?x.keywordId:'',entryPath:typeof x.entryPath==='string'&&/^\/[a-z0-9\/-]{0,160}$/i.test(x.entryPath)?x.entryPath:''}:null;},
   clear
  };
  document.addEventListener('dgs:measurement-ready',capture);
