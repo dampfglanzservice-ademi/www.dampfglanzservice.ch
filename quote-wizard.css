@@ -28,3 +28,10 @@
 
 /* Review has its own visible sender: Back must never overlay it or the status card. */
 #quote-wizard:has(.review-core)>.nav{position:static;box-shadow:none;border:0;padding:0;margin-top:12px}
+
+#quote-form .guided-offer-title {
+  margin: 0 0 .35rem;
+  font-size: clamp(1.55rem, 4vw, 2.1rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}

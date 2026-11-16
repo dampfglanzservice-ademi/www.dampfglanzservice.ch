@@ -57,13 +57,15 @@ const scopeExamples = {
 };
 const priceEntryCopy = {
   polsterreinigung: {
-    intro: 'Wählen Sie die Sofagrösse oder beschreiben Sie kurz, was wir reinigen sollen. Danach sehen Sie die Preisübersicht.',
+    title: 'Sofareinigung bei Ihnen zu Hause',
+    intro: 'Wählen Sie die Sofagrösse oder beschreiben Sie Ihr Sofa. Den Gesamtpreis kennen Sie vor dem Auftrag.',
     summary: 'Sofa oder Polster angeben',
     scopeLabel: 'Was sollen wir reinigen? *',
     scopeExample: 'z. B. Ecksofa mit 5 Sitzplätzen, Stoff, Flecken auf der Sitzfläche',
   },
   'endreinigung-abnahmegarantie': {
-    intro: 'Wählen Sie ein Paket oder geben Sie Wohnfläche oder Zimmerzahl und Bäder an. Danach sehen Sie die Preisübersicht.',
+    title: 'Umzugsreinigung zur Wohnungsabgabe',
+    intro: 'Wir stimmen die Reinigung auf Ihre Übergabe ab. Umfang und Abnahmegarantie vereinbaren wir schriftlich.',
     summary: 'Wohnungsgrösse und Umfang angeben',
     scopeLabel: 'Wie gross ist die Wohnung? *',
     scopeExample: 'z. B. 4,5 Zimmer, ca. 95 m² und 2 Bäder',
@@ -153,7 +155,12 @@ const regionalIntro = document.createElement('p');
 regionalIntro.className = 'fine-print';
 regionalIntro.hidden = true;
 app.before(regionalIntro);
-const guideBenefit=document.createElement('p');guideBenefit.className='guided-benefit';guideBenefit.textContent='Klare Leistung. Fester Preis.';app.before(guideBenefit);
+const offerTitle = document.createElement('h1');
+offerTitle.className = 'guided-offer-title';
+offerTitle.hidden = true;
+const guideBenefit = document.createElement('p');
+guideBenefit.className = 'guided-benefit';
+app.before(offerTitle, guideBenefit);
 const extraFields=document.createElement('div');extraFields.hidden=true;form.append(extraFields);
 const lock=()=>['sending','success'].includes(form.dataset.dgsSubmitState);
 function detailRows(){return M.summary(model).slice(2).filter(([label])=>service()?.groups.some(g=>g.questions.some(q=>q.label===label)));}
@@ -245,9 +252,11 @@ function questionMarkup(q){const value=(model.answers[model.service]||{})[q.id],
 function render(focus=true){cancelAdvance();if(lock())return;overviewPart.append(sendSlot);const headerHeight=document.querySelector('.header')?.getBoundingClientRect().height||72;form.style.setProperty('--qw-header',Math.max(0,Math.ceil(headerHeight)+16-(parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0))+'px');legacyChoice.hidden=true;const s=service(),last=s?s.groups.length+2:0,contactStage=s?s.groups.length+1:-1;
 vehicleLocation.hidden = !['auto','autopolsterreinigung'].includes(s?.id);
 for (const contact of directContactLinks) contact.hidden = !s;
-const priceCopy = priceEntryCopy[s?.id];
+const priceCopy = stage > 0 ? priceEntryCopy[s?.id] : undefined;
+offerTitle.textContent = priceCopy?.title || '';
+offerTitle.hidden = !priceCopy || stage === last;
 const hasPackages = Boolean(s && window.DGSFixedPrice.options(s.id).length);
-guideBenefit.textContent = priceCopy?.intro || (hasPackages ? 'Wählen Sie ein Paket oder beschreiben Sie den gewünschten Umfang.' : 'Beschreiben Sie kurz, was und wie viel wir reinigen sollen. Ungefähre Angaben genügen.');
+guideBenefit.textContent = stage === 0 ? 'Wählen Sie die gewünschte Reinigung.' : priceCopy?.intro || (hasPackages ? 'Wählen Sie ein Paket oder beschreiben Sie den gewünschten Umfang.' : 'Beschreiben Sie kurz, was und wie viel wir reinigen sollen. Ungefähre Angaben genügen.');
 priceSummary.textContent = priceCopy?.summary || 'Reinigungsumfang angeben';
 priceContinue.textContent = priceCopy ? 'Weiter zur Preisübersicht' : 'Weiter zu Kontakt und Übersicht';
 guideBenefit.hidden=!!s&&stage===last&&stage>0;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
