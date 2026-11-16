@@ -149,6 +149,9 @@ function questionMarkup(q){const value=(model.answers[model.service]||{})[q.id],
 function render(focus=true){cancelAdvance();if(lock())return;overviewPart.append(sendSlot);const headerHeight=document.querySelector('.header')?.getBoundingClientRect().height||72;form.style.setProperty('--qw-header',Math.max(0,Math.ceil(headerHeight)+16-(parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0))+'px');legacyChoice.hidden=true;const s=service(),last=s?s.groups.length+2:0,contactStage=s?s.groups.length+1:-1;
 vehicleLocation.hidden = !['auto','autopolsterreinigung'].includes(s?.id);
 for (const contact of directContactLinks) contact.hidden = !s;
+guideBenefit.textContent = s?.id === 'polsterreinigung'
+  ? 'Sofa vor Ort reinigen lassen. Preis und Termin unverbindlich anfragen.'
+  : 'Klare Leistung. Fester Preis.';
 guideBenefit.hidden=!!s&&stage===last&&stage>0;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
 const regionField = form.elements.namedItem('DGS_Anfrageregion');
 const regionName = regionField?.value;
