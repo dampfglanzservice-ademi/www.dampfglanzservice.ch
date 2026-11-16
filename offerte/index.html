@@ -62,6 +62,9 @@
 @keyframes sq-point-down{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
 @media(prefers-reduced-motion:reduce){.sq-choice-hint [aria-hidden]{animation:none}}
 @media(max-width:600px){.quote-heading{padding-top:22px}.quote-heading p{font-size:15px;line-height:1.65}.quote-progress{padding-top:18px}.quote-section{padding-top:22px}}
+#quote-form .sq-handover-only{display:none}
+#quote-form:has(#service option[value="endreinigung-abnahmegarantie"]:checked) .sq-handover-only{display:block}
+#quote-form:has(#service option[value="endreinigung-abnahmegarantie"]:checked) .sq-wishes-general{display:none}
 </style>
 <link rel="stylesheet" href="/fixed-prices.css?v=20261104fixpreise"></head>
 <body id="top">
@@ -166,9 +169,9 @@
 
 
 <div class="sq-optionals" aria-label="Freiwillige Ergänzungen">
-<details class="sq-option" id="request-wishes"><summary><strong>Wünsche ergänzen</strong><span>Name, Hinweise, Fotos oder Termin · freiwillig</span></summary><div class="sq-option-body">
+<details class="sq-option" id="request-wishes"><summary><strong>Wünsche ergänzen</strong><span class="sq-wishes-general">Name, Hinweise, Fotos oder Termin · freiwillig</span><span class="sq-handover-only">Abgabetermin, Hinweise oder Fotos · freiwillig</span></summary><div class="sq-option-body">
 <div class="field"><label for="customer-name">Ihr Name · freiwillig</label><input id="customer-name" name="Name" autocomplete="name" maxlength="100"></div>
-<div class="field"><label for="quote-message">Was ist Ihnen wichtig? · freiwillig</label><textarea id="quote-message" name="Auftragsdetails" rows="3" maxlength="5000" placeholder="Ihre Wünsche oder Fragen …"></textarea></div>
+<div class="field"><label for="quote-message">Was ist Ihnen wichtig? · freiwillig</label><textarea id="quote-message" name="Auftragsdetails" rows="3" maxlength="5000" placeholder="Ihre Wünsche oder Fragen …"></textarea><p class="fine-print sq-handover-only">Falls bekannt, tragen Sie hier das Datum der Wohnungsübergabe ein. Die Wunschtermin-Felder unten sind für die Reinigung.</p></div>
 <div class="field"><label for="combine-services">Weitere Reinigungswünsche · freiwillig</label><textarea id="combine-services" name="Weitere_Reinigungswuensche" rows="2" maxlength="2000" placeholder="Zum Beispiel zusätzlich eine Matratze reinigen lassen"></textarea></div>
 <p id="quote-combination-note" class="fine-print" hidden>Ein zusätzlicher Wunsch ist vorgemerkt. Der Paketpreis gilt nur für die ausgewählte Hauptleistung; den gemeinsamen Gesamtpreis bestätigen wir persönlich.</p>
 <div class="sq-dates"><div class="field"><label for="date-1">Wunschtermin 1 · freiwillig</label><input id="date-1" type="date" name="Terminvorschlag_1"></div><div class="field"><label for="date-2">Wunschtermin 2 · freiwillig</label><input id="date-2" type="date" name="Terminvorschlag_2"></div><div class="field"><label for="date-3">Wunschtermin 3 · freiwillig</label><input id="date-3" type="date" name="Terminvorschlag_3"></div><div class="field"><label for="time-window">Mögliche Uhrzeiten · freiwillig</label><input id="time-window" name="Zeitfenster" maxlength="200" placeholder="z. B. vormittags"></div></div>
