@@ -36,14 +36,67 @@ const priceContinue = contactNav.querySelector('#wizard-review');
 const priceSummary = priceBlock.querySelector('summary strong');
 const priceEntryCopy = {
   polsterreinigung: {
-    intro: 'Sofa vor Ort reinigen lassen. Sie sehen die Preisübersicht vor den Kontaktdaten.',
-    summary: 'Sofagrösse wählen · freiwillig',
+    intro: 'Wählen Sie die Sofagrösse oder beschreiben Sie kurz, was wir reinigen sollen. Danach sehen Sie die Preisübersicht.',
+    summary: 'Sofa oder Polster angeben',
+    scopeLabel: 'Was sollen wir reinigen? *',
+    scopeExample: 'z. B. Ecksofa mit 5 Sitzplätzen und Flecken auf der Sitzfläche',
   },
   'endreinigung-abnahmegarantie': {
-    intro: 'Wählen Sie die Wohnungsgrösse. Sie sehen die Preisübersicht vor den Kontaktdaten.',
-    summary: 'Wohnungsgrösse wählen · freiwillig',
+    intro: 'Wählen Sie ein Paket oder geben Sie Wohnfläche oder Zimmerzahl und Bäder an. Danach sehen Sie die Preisübersicht.',
+    summary: 'Wohnungsgrösse und Umfang angeben',
+    scopeLabel: 'Wie gross ist die Wohnung? *',
+    scopeExample: 'z. B. 4,5 Zimmer, ca. 95 m² und 2 Bäder',
   },
 };
+const scopePackage = document.getElementById('package');
+const scopePackageField = document.getElementById('package-field');
+const scopePackageLabel = scopePackageField.querySelector('label');
+const scopePackageDefaultLabel = scopePackageLabel.textContent;
+const customScope = document.createElement('div');
+customScope.className = 'field';
+customScope.hidden = true;
+const scopeLabel = document.createElement('label');
+scopeLabel.htmlFor = 'guided-custom-scope';
+const scopeInput = document.createElement('input');
+scopeInput.id = 'guided-custom-scope';
+scopeInput.name = 'Auftragsumfang';
+scopeInput.maxLength = 300;
+scopeInput.disabled = true;
+customScope.append(scopeLabel, scopeInput);
+scopePackageField.after(customScope);
+let scopeService = null;
+
+function syncPriceScope() {
+  const id = service()?.id;
+  const copy = priceEntryCopy[id];
+  if (scopeService !== id) {
+    scopeInput.value = '';
+    scopeService = id;
+  }
+  const describe = Boolean(copy && scopePackage.value === 'custom');
+  scopePackageLabel.textContent = copy ? 'Paket oder Umfang *' : scopePackageDefaultLabel;
+  const customOption = scopePackage.querySelector('option[value="custom"]');
+  if (customOption) customOption.textContent = copy ? 'Umfang selbst beschreiben' : 'Noch gemeinsam klären';
+  if (copy) {
+    scopeLabel.textContent = copy.scopeLabel;
+    scopeInput.placeholder = copy.scopeExample;
+  }
+  customScope.hidden = !describe;
+  scopeInput.disabled = !describe;
+  scopeInput.required = describe;
+  scopeInput.setCustomValidity('');
+}
+
+function priceScopeReady() {
+  if (scopeInput.disabled || scopeInput.value.trim()) return true;
+  priceBlock.open = true;
+  scopeInput.setCustomValidity('Bitte wählen Sie ein Paket oder beschreiben Sie den Umfang kurz.');
+  scopeInput.reportValidity();
+  return false;
+}
+
+scopePackage.addEventListener('change', syncPriceScope);
+scopeInput.addEventListener('input', () => scopeInput.setCustomValidity(''));
 document.body.classList.add('guided-quote-active');
 overviewBack.addEventListener('click',e=>{if(e.target.closest('#guided-back')&&!lock()){stage=window.DGSFixedPrice.options(model.service).length?service().groups.length+1:0;render();}});
 
@@ -76,12 +129,15 @@ const extraFields=document.createElement('div');extraFields.hidden=true;form.app
 const lock=()=>['sending','success'].includes(form.dataset.dgsSubmitState);
 function detailRows(){return M.summary(model).slice(2).filter(([label])=>service()?.groups.some(g=>g.questions.some(q=>q.label===label)));}
 function syncFields(){extraFields.replaceChildren();for(const [label,value]of detailRows()){const input=document.createElement('input');input.type='hidden';input.name='Auswahl – '+label;input.value=value;extraFields.append(input);}}
-window.DGSQuoteWizard={scope:()=>detailRows().map(([k,v])=>k+' '+v).join('; ')};
+window.DGSQuoteWizard={scope:()=>[
+  ...detailRows().map(([label,value])=>label+' '+value),
+  scopeInput.disabled ? '' : scopeInput.value.trim(),
+].filter(Boolean).join('; ')};
 function chooseService(id, specificLabel){directContact=false;guidedVehicle=null;guidedAutoMode='vehicle';if(!M.services.some(s=>s.id===id))return;model.service=id;const select=document.getElementById('service');select.value=id;select.selectedOptions[0].textContent=specificLabel||service().label;select.dispatchEvent(new Event('change',{bubbles:true}));
 // The wizard owns scope choices; stale URL packages must not contradict them.
 const oldPackage=document.getElementById('package'),oldTier=document.getElementById('cleaning-tier');
 if(oldPackage){const price=new URLSearchParams(location.search).get('preis');oldPackage.value=window.DGSFixedPrice?.options(id).some(r=>r.id===price)?price:window.DGSFixedPrice?.options(id).some(r=>r.id===oldPackage.value)?oldPackage.value:'custom';}if(oldTier)oldTier.value='';
-priceBlock.open=id==='auto'||oldPackage?.value!=='custom';
+priceBlock.open=id==='auto'||Boolean(priceEntryCopy[id])||oldPackage?.value!=='custom';
 legacyChoice.hidden=true;panel.hidden=true;syncFields();form.dispatchEvent(new Event('input',{bubbles:true}));}
 function actualSummary(){const rows=M.summary(model).slice(0,2).concat(detailRows());const selected=document.getElementById('service');for(const control of form.querySelectorAll('input[name],select[name],textarea[name]')){if(control.disabled||['hidden','submit'].includes(control.type)||control.name.startsWith('_')||control.closest('#quote-wizard')||control.parentElement===extraFields||control===selected||['email','Telefon'].includes(control.name)||(['checkbox','radio'].includes(control.type)&&!control.checked))continue;if(control.type==='file'){for(const file of control.files||[])rows.push(['Foto',file.name]);}else if(control.value.trim())rows.push([control.labels?.[0]?.textContent.trim()||control.name,control.tagName==='SELECT'?control.selectedOptions[0]?.textContent:control.value]);}return rows;}
 function validContact(){syncFields();form.dispatchEvent(new Event('input',{bubbles:true}));return form.reportValidity();}
@@ -164,6 +220,7 @@ const priceCopy = priceEntryCopy[s?.id];
 guideBenefit.textContent = priceCopy?.intro || 'Klare Leistung. Fester Preis.';
 priceSummary.textContent = priceCopy?.summary || 'Paket wählen · freiwillig';
 priceContinue.textContent = priceCopy ? 'Weiter zur Preisübersicht' : 'Weiter zu Kontakt und Übersicht';
+syncPriceScope();
 guideBenefit.hidden=!!s&&stage===last&&stage>0;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
 const regionField = form.elements.namedItem('DGS_Anfrageregion');
 const regionName = regionField?.value;
@@ -180,10 +237,10 @@ function tile(s){return `<button type="button" class="tile" data-service="${s.id
 function validate(){const s=service();if(!s)return 'Bitte eine Reinigung wählen.';if(stage>=1&&stage<=s.groups.length){for(const q of s.groups[stage-1].questions){if(!M.questionVisible(s,q,model.answers[s.id]||{}))continue;const value=(model.answers[s.id]||{})[q.id];if(!value||Array.isArray(value)&&!value.length)return 'Bitte wählen Sie eine Antwort – «Ich bin unsicher» genügt.';}}return '';}
 app.addEventListener('click',e=>{cancelAdvance();if(lock())return;const button=e.target.closest('button');if(!button)return;if(button.id==='clear-search'){serviceSearch='';document.getElementById('service-search').value='';updateServiceResults();document.getElementById('service-search').focus();}else if(button.dataset.service){chooseService(button.dataset.service, requestedServiceLabel(button.dataset.service, serviceSearch));if(window.DGSFixedPrice.options(model.service).length){directContact=true;stage=service().groups.length+1;render();return;}else{directContact=true;stage=service().groups.length+2;render();return;}for(const tile of app.querySelectorAll('[data-service]'))tile.setAttribute('aria-pressed',String(tile.dataset.service===model.service));planAdvance('');}else if(button.dataset.question){const q=service().groups.flatMap(g=>g.questions).find(q=>q.id===button.dataset.question);M.selectAnswer(model,model.service,q.id,button.dataset.value,q.multi);syncFields();const field=button.closest('fieldset');for(const option of field.querySelectorAll('button')){const value=model.answers[model.service][q.id];option.setAttribute('aria-pressed',String(Array.isArray(value)?value.includes(option.dataset.value):value===option.dataset.value));}document.getElementById('error').textContent='';if(!q.multi)planAdvance(q.id);}else if(button.id==='direct-contact'){directContact=true;stage=service().groups.length+1;render();}else if(button.id==='back'){stage--;render();}else if(button.id==='next'){const error=validate();if(error){document.getElementById('error').textContent=error;}else{stage++;render();}}});
 app.addEventListener('input',e=>{cancelAdvance();if(e.target.id==='service-search'){serviceSearch=e.target.value;updateServiceResults();}});
-contactNav.addEventListener('click',e=>{cancelAdvance();if(lock())return;const b=e.target.closest('button');if(b?.id==='wizard-contact-back'){if(model.service==='auto'&&guidedAutoMode==='package'){guidedAutoMode='vehicle';render();}else{stage=directContact?0:stage-1;render();}}else if(b?.id==='wizard-review'){stage++;render();}});
+contactNav.addEventListener('click',e=>{cancelAdvance();if(lock())return;const b=e.target.closest('button');if(b?.id==='wizard-contact-back'){if(model.service==='auto'&&guidedAutoMode==='package'){guidedAutoMode='vehicle';render();}else{stage=directContact?0:stage-1;render();}}else if(b?.id==='wizard-review'&&priceScopeReady()){stage++;render();}});
 document.getElementById('change-service').addEventListener('click',()=>{cancelAdvance();if(!lock()){stage=0;render();}});
 form.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();cancelAdvance();}});
-form.addEventListener('submit',e=>{cancelAdvance();const s=service();if(!s||stage!==s.groups.length+2||lock()){e.preventDefault();return;}for(let page=1;!directContact&&page<=s.groups.length;page++){const old=stage;stage=page;const error=validate();stage=old;if(error){e.preventDefault();stage=page;render();return;}}syncFields();});
+form.addEventListener('submit',e=>{cancelAdvance();const s=service();if(!s||stage!==s.groups.length+2||lock()){e.preventDefault();return;}if(!scopeInput.disabled&&!scopeInput.value.trim()){e.preventDefault();stage=s.groups.length+1;render();priceScopeReady();return;}for(let page=1;!directContact&&page<=s.groups.length;page++){const old=stage;stage=page;const error=validate();stage=old;if(error){e.preventDefault();stage=page;render();return;}}syncFields();});
 form.addEventListener('dgs:submission-ui',e=>{cancelAdvance();const locked=['sending','success'].includes(e.detail.state);for(const b of form.querySelectorAll('button:not([type=submit])'))b.disabled=locked;});
 // Cancel pending navigation on fresh interaction or leaving the page. Never schedule from focus, input, render or arrow keys.
 app.addEventListener('pointerdown',cancelAdvance);
