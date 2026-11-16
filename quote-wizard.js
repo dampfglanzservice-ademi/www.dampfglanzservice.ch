@@ -34,12 +34,33 @@ if (originalContact) {
 }
 const priceContinue = contactNav.querySelector('#wizard-review');
 const priceSummary = priceBlock.querySelector('summary strong');
+const scopeExamples = {
+  auto: 'z. B. VW Golf, Innenraum mit Sitzen und Kofferraum',
+  autopolsterreinigung: 'z. B. Kombi, fünf Stoffsitze, Flecken auf der Rückbank',
+  wohnungsreinigung: 'z. B. 3,5 Zimmer, 80 m², alle zwei Wochen',
+  fensterreinigung: 'z. B. acht Fensterflügel, innen und aussen, mit Rahmen',
+  bueroreinigung: 'z. B. 120 m², sechs Arbeitsplätze, WC und Teeküche, wöchentlich',
+  grundreinigung: 'z. B. 80 m², Küche, Bad und Böden gründlich reinigen',
+  matratzenreinigung: 'z. B. zwei Matratzen, 90 × 200 cm, beidseitig',
+  teppichreinigung: 'z. B. zwei lose Synthetikteppiche, je 2 × 3 m',
+  fruehlingsreinigung: 'z. B. 4 Zimmer, 100 m², Küche, Bad und Fenster',
+  wintergartenreinigung: 'z. B. 15 m², Seitenfenster, Rahmen und Glasdach',
+  praxisreinigung: 'z. B. 90 m², zwei Behandlungsräume, Empfang und WC',
+  ladenreinigung: 'z. B. 75 m² Verkaufsfläche, Boden und Schaufenster',
+  kalkentfernung: 'z. B. eine Glasdusche und zwei Armaturen mit starken Kalkspuren',
+  terrassenreinigung: 'z. B. 25 m² Steinplatten mit Grünbelag',
+  balkonreinigung: 'z. B. 8 m² Fliesen, Boden und Geländer',
+  hochdruckreinigung: 'z. B. 20 m² gepflasterter Weg mit Moos',
+  kuechenreinigung: 'z. B. Küchenzeile, Backofen und Schränke innen',
+  badreinigung: 'z. B. ein Bad mit Dusche, WC und Lavabo',
+  moebelreinigung: 'z. B. Tisch und zwei Schränke, betroffene Flächen beschreiben',
+};
 const priceEntryCopy = {
   polsterreinigung: {
     intro: 'Wählen Sie die Sofagrösse oder beschreiben Sie kurz, was wir reinigen sollen. Danach sehen Sie die Preisübersicht.',
     summary: 'Sofa oder Polster angeben',
     scopeLabel: 'Was sollen wir reinigen? *',
-    scopeExample: 'z. B. Ecksofa mit 5 Sitzplätzen und Flecken auf der Sitzfläche',
+    scopeExample: 'z. B. Ecksofa mit 5 Sitzplätzen, Stoff, Flecken auf der Sitzfläche',
   },
   'endreinigung-abnahmegarantie': {
     intro: 'Wählen Sie ein Paket oder geben Sie Wohnfläche oder Zimmerzahl und Bäder an. Danach sehen Sie die Preisübersicht.',
@@ -69,18 +90,19 @@ let scopeService = null;
 function syncPriceScope() {
   const id = service()?.id;
   const copy = priceEntryCopy[id];
+  const hasPackage = Boolean(id && window.DGSFixedPrice.options(id).some(row => row.id === scopePackage.value));
   if (scopeService !== id) {
     scopeInput.value = '';
     scopeService = id;
   }
-  const describe = Boolean(copy && scopePackage.value === 'custom');
-  scopePackageLabel.textContent = copy ? 'Paket oder Umfang *' : scopePackageDefaultLabel;
+  const describe = Boolean(id && !hasPackage);
+  scopePackageLabel.textContent = id ? 'Paket oder Umfang *' : scopePackageDefaultLabel;
   const customOption = scopePackage.querySelector('option[value="custom"]');
-  if (customOption) customOption.textContent = copy ? 'Umfang selbst beschreiben' : 'Noch gemeinsam klären';
-  if (copy) {
-    scopeLabel.textContent = copy.scopeLabel;
-    scopeInput.placeholder = copy.scopeExample;
-  }
+  if (customOption) customOption.textContent = 'Umfang selbst beschreiben';
+  scopeLabel.textContent = copy?.scopeLabel || 'Was soll gereinigt werden und wie viel? *';
+  scopeInput.placeholder = id === 'bueroreinigung' && new URLSearchParams(location.search).get('bereich') === 'treppenhausreinigung'
+    ? 'z. B. Treppenhaus mit 4 Etagen, Eingang und Geländer'
+    : copy?.scopeExample || scopeExamples[id] || 'z. B. welche Reinigungen, welche Räume und ungefähr wie viel';
   customScope.hidden = !describe;
   scopeInput.disabled = !describe;
   scopeInput.required = describe;
@@ -98,7 +120,7 @@ function priceScopeReady() {
 scopePackage.addEventListener('change', syncPriceScope);
 scopeInput.addEventListener('input', () => scopeInput.setCustomValidity(''));
 document.body.classList.add('guided-quote-active');
-overviewBack.addEventListener('click',e=>{if(e.target.closest('#guided-back')&&!lock()){stage=window.DGSFixedPrice.options(model.service).length?service().groups.length+1:0;render();}});
+overviewBack.addEventListener('click',e=>{if(e.target.closest('#guided-back')&&!lock()){stage=service().groups.length+1;render();}});
 
 
 let guidedVehicle=null,guidedAutoMode='vehicle';
@@ -110,14 +132,21 @@ function syncGuidedVehicle(){
  if(guidedVehicle===null&&current?.group==='auto'&&current.index<9){guidedVehicle=Math.floor(current.index/3);guidedAutoMode='package';}
  const choosing=guidedAutoMode==='vehicle';vehiclePart.hidden=!choosing;priceBlock.hidden=choosing;contactNav.hidden=choosing;
  if(choosing){const names=['Kleinwagen','Limousine / Kombi','SUV / Van bis 7 Sitze'];vehiclePart.innerHTML='<h2>Ihr Fahrzeug</h2><div class="vehicle-options">'+names.map((name,i)=>'<button type="button" class="option vehicle-option" data-guided-vehicle="'+i+'" aria-label="'+name+'" aria-pressed="'+(guidedVehicle===i)+'">'+vehicleOption(name,i).replace('Mittelklasse / Kombi','Limousine / Kombi')+'</button>').join('')+'</div><button type="button" class="button secondary" id="vehicle-unsure">Unsicher? Persönlich klären</button><button type="button" class="button secondary" id="vehicle-service-back">Zurück</button>';return;}
- const selected=pack.value;pack.replaceChildren(new Option('Noch gemeinsam klären','custom'));
+ const selected=pack.value;pack.replaceChildren(new Option('Umfang selbst beschreiben','custom'));
  for(const r of F.options('auto').filter(r=>r.index<9&&Math.floor(r.index/3)===guidedVehicle))pack.add(new Option(['Schnell','Intensiv','Komplett'][r.index%3],r.id));
  pack.value=[...pack.options].some(o=>o.value===selected)?selected:'custom';
 }
 vehiclePart.addEventListener('click',e=>{
  if(lock())return;const button=e.target.closest('button');if(!button)return;
  if(button.id==='vehicle-service-back'){stage=0;render();return;}
- if(button.id==='vehicle-unsure'){document.getElementById('package').value='custom';form.dispatchEvent(new Event('input',{bubbles:true}));stage=service().groups.length+2;render();return;}
+ if(button.id==='vehicle-unsure'){
+   guidedAutoMode='package';
+   scopePackage.value='custom';
+   render();
+   form.dispatchEvent(new Event('input',{bubbles:true}));
+   scopeInput.focus();
+   return;
+ }
  if(button.dataset.guidedVehicle!==undefined){const next=Number(button.dataset.guidedVehicle),pack=document.getElementById('package'),r=window.DGSFixedPrice.row(pack.value);guidedVehicle=next;guidedAutoMode='package';if(!r||r.index>=9||Math.floor(r.index/3)!==next)pack.value='custom';const q=service().groups.flatMap(g=>g.questions).find(q=>q.id==='vehicle');if(q)M.selectAnswer(model,'auto','vehicle',q.options[next],false);render();form.dispatchEvent(new Event('input',{bubbles:true}));}
 });
 const regionalIntro = document.createElement('p');
@@ -137,7 +166,7 @@ function chooseService(id, specificLabel){directContact=false;guidedVehicle=null
 // The wizard owns scope choices; stale URL packages must not contradict them.
 const oldPackage=document.getElementById('package'),oldTier=document.getElementById('cleaning-tier');
 if(oldPackage){const price=new URLSearchParams(location.search).get('preis');oldPackage.value=window.DGSFixedPrice?.options(id).some(r=>r.id===price)?price:window.DGSFixedPrice?.options(id).some(r=>r.id===oldPackage.value)?oldPackage.value:'custom';}if(oldTier)oldTier.value='';
-priceBlock.open=id==='auto'||Boolean(priceEntryCopy[id])||oldPackage?.value!=='custom';
+priceBlock.open=true;
 legacyChoice.hidden=true;panel.hidden=true;syncFields();form.dispatchEvent(new Event('input',{bubbles:true}));}
 function actualSummary(){const rows=M.summary(model).slice(0,2).concat(detailRows());const selected=document.getElementById('service');for(const control of form.querySelectorAll('input[name],select[name],textarea[name]')){if(control.disabled||['hidden','submit'].includes(control.type)||control.name.startsWith('_')||control.closest('#quote-wizard')||control.parentElement===extraFields||control===selected||['email','Telefon'].includes(control.name)||(['checkbox','radio'].includes(control.type)&&!control.checked))continue;if(control.type==='file'){for(const file of control.files||[])rows.push(['Foto',file.name]);}else if(control.value.trim())rows.push([control.labels?.[0]?.textContent.trim()||control.name,control.tagName==='SELECT'?control.selectedOptions[0]?.textContent:control.value]);}return rows;}
 function validContact(){syncFields();form.dispatchEvent(new Event('input',{bubbles:true}));return form.reportValidity();}
@@ -217,10 +246,10 @@ function render(focus=true){cancelAdvance();if(lock())return;overviewPart.append
 vehicleLocation.hidden = !['auto','autopolsterreinigung'].includes(s?.id);
 for (const contact of directContactLinks) contact.hidden = !s;
 const priceCopy = priceEntryCopy[s?.id];
-guideBenefit.textContent = priceCopy?.intro || 'Klare Leistung. Fester Preis.';
-priceSummary.textContent = priceCopy?.summary || 'Paket wählen · freiwillig';
+const hasPackages = Boolean(s && window.DGSFixedPrice.options(s.id).length);
+guideBenefit.textContent = priceCopy?.intro || (hasPackages ? 'Wählen Sie ein Paket oder beschreiben Sie den gewünschten Umfang.' : 'Beschreiben Sie kurz, was und wie viel wir reinigen sollen. Ungefähre Angaben genügen.');
+priceSummary.textContent = priceCopy?.summary || 'Reinigungsumfang angeben';
 priceContinue.textContent = priceCopy ? 'Weiter zur Preisübersicht' : 'Weiter zu Kontakt und Übersicht';
-syncPriceScope();
 guideBenefit.hidden=!!s&&stage===last&&stage>0;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
 const regionField = form.elements.namedItem('DGS_Anfrageregion');
 const regionName = regionField?.value;
@@ -230,12 +259,12 @@ if(stage===0){body='<h2 id="stage-heading" tabindex="-1">Was soll wieder sauber 
 else if(stage<=s.groups.length){const g=s.groups[stage-1];body='<p class="service-label">'+esc(s.label)+'</p><h2 id="stage-heading" tabindex="-1">'+esc(g.title)+'</h2><p class="note">'+esc(s.note)+'</p>'+g.questions.filter(q=>M.questionVisible(s,q,model.answers[s.id]||{})).map(questionMarkup).join('');}
 else if(stage===last){body='';}
 if(stage===last){try{window.DGSMeasurement?.step('quote','contact',new URLSearchParams(location.search).get('dgs_test')==='1');}catch{}}app.hidden=!!s&&stage>0&&(stage===contactStage||stage===last);app.innerHTML=body+'<p id="auto-status" class="hint" role="status" aria-live="polite"></p><p class="error" id="error" role="alert"></p>'+(stage&&stage!==contactStage?'<nav class="nav" aria-label="Formularschritte">'+(stage<=s.groups.length?'<button type="button" class="secondary" id="direct-contact">Details später klären · direkt zum Kontakt</button>':'')+'<button type="button" class="secondary" id="back">Zurück</button>'+(stage<last?'<button type="button" class="primary" id="next">Weiter</button>':'')+'</nav>':'');
-syncFields();syncGuidedVehicle();if(stage===0)updateServiceResults();if(s&&stage>0&&stage===last){overviewPart.append(sendSlot);send.disabled=false;}
+syncFields();syncGuidedVehicle();syncPriceScope();if(stage===0)updateServiceResults();if(s&&stage>0&&stage===last){overviewPart.append(sendSlot);send.disabled=false;}
 if(focus){const heading=stage===last?overviewPart:stage===contactStage?packagePart:document.getElementById('stage-heading');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});heading.scrollIntoView({block:'start',behavior:'instant'});}}
 }
 function tile(s){return `<button type="button" class="tile" data-service="${s.id}" aria-pressed="${model.service===s.id}"><strong>${esc(s.label)}</strong><small>${s.id==='auto'||s.id==='autopolsterreinigung'?'Stationär in Rorschach':s.id==='bueroreinigung'?'Auch Treppenhaus und Unterhaltsreinigung':s.id==='other'?'Kombireinigung und weitere Wünsche':'Vor Ort nach Vereinbarung'}</small></button>`;}
 function validate(){const s=service();if(!s)return 'Bitte eine Reinigung wählen.';if(stage>=1&&stage<=s.groups.length){for(const q of s.groups[stage-1].questions){if(!M.questionVisible(s,q,model.answers[s.id]||{}))continue;const value=(model.answers[s.id]||{})[q.id];if(!value||Array.isArray(value)&&!value.length)return 'Bitte wählen Sie eine Antwort – «Ich bin unsicher» genügt.';}}return '';}
-app.addEventListener('click',e=>{cancelAdvance();if(lock())return;const button=e.target.closest('button');if(!button)return;if(button.id==='clear-search'){serviceSearch='';document.getElementById('service-search').value='';updateServiceResults();document.getElementById('service-search').focus();}else if(button.dataset.service){chooseService(button.dataset.service, requestedServiceLabel(button.dataset.service, serviceSearch));if(window.DGSFixedPrice.options(model.service).length){directContact=true;stage=service().groups.length+1;render();return;}else{directContact=true;stage=service().groups.length+2;render();return;}for(const tile of app.querySelectorAll('[data-service]'))tile.setAttribute('aria-pressed',String(tile.dataset.service===model.service));planAdvance('');}else if(button.dataset.question){const q=service().groups.flatMap(g=>g.questions).find(q=>q.id===button.dataset.question);M.selectAnswer(model,model.service,q.id,button.dataset.value,q.multi);syncFields();const field=button.closest('fieldset');for(const option of field.querySelectorAll('button')){const value=model.answers[model.service][q.id];option.setAttribute('aria-pressed',String(Array.isArray(value)?value.includes(option.dataset.value):value===option.dataset.value));}document.getElementById('error').textContent='';if(!q.multi)planAdvance(q.id);}else if(button.id==='direct-contact'){directContact=true;stage=service().groups.length+1;render();}else if(button.id==='back'){stage--;render();}else if(button.id==='next'){const error=validate();if(error){document.getElementById('error').textContent=error;}else{stage++;render();}}});
+app.addEventListener('click',e=>{cancelAdvance();if(lock())return;const button=e.target.closest('button');if(!button)return;if(button.id==='clear-search'){serviceSearch='';document.getElementById('service-search').value='';updateServiceResults();document.getElementById('service-search').focus();}else if(button.dataset.service){chooseService(button.dataset.service, requestedServiceLabel(button.dataset.service, serviceSearch));directContact=true;stage=service().groups.length+1;render();}else if(button.dataset.question){const q=service().groups.flatMap(g=>g.questions).find(q=>q.id===button.dataset.question);M.selectAnswer(model,model.service,q.id,button.dataset.value,q.multi);syncFields();const field=button.closest('fieldset');for(const option of field.querySelectorAll('button')){const value=model.answers[model.service][q.id];option.setAttribute('aria-pressed',String(Array.isArray(value)?value.includes(option.dataset.value):value===option.dataset.value));}document.getElementById('error').textContent='';if(!q.multi)planAdvance(q.id);}else if(button.id==='direct-contact'){directContact=true;stage=service().groups.length+1;render();}else if(button.id==='back'){stage--;render();}else if(button.id==='next'){const error=validate();if(error){document.getElementById('error').textContent=error;}else{stage++;render();}}});
 app.addEventListener('input',e=>{cancelAdvance();if(e.target.id==='service-search'){serviceSearch=e.target.value;updateServiceResults();}});
 contactNav.addEventListener('click',e=>{cancelAdvance();if(lock())return;const b=e.target.closest('button');if(b?.id==='wizard-contact-back'){if(model.service==='auto'&&guidedAutoMode==='package'){guidedAutoMode='vehicle';render();}else{stage=directContact?0:stage-1;render();}}else if(b?.id==='wizard-review'&&priceScopeReady()){stage++;render();}});
 document.getElementById('change-service').addEventListener('click',()=>{cancelAdvance();if(!lock()){stage=0;render();}});
@@ -263,7 +292,7 @@ if(initial&&M.services.some(s=>s.id===initial)){
  const packages=window.DGSFixedPrice.options(initial);
  const hasSelectedPackage=packages.some(item=>item.id===requestedPrice);
  directContact=true;
- stage=service().groups.length+(packages.length&&!hasSelectedPackage?1:2);
+ stage=service().groups.length+(hasSelectedPackage?2:1);
 }
 render(false);
 })();
