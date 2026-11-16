@@ -32,7 +32,18 @@ if (originalContact) {
     else sendSlot.before(contact);
   }
 }
-contactNav.querySelector('#wizard-review').textContent='Weiter zu Kontakt und Übersicht';
+const priceContinue = contactNav.querySelector('#wizard-review');
+const priceSummary = priceBlock.querySelector('summary strong');
+const priceEntryCopy = {
+  polsterreinigung: {
+    intro: 'Sofa vor Ort reinigen lassen. Sie sehen die Preisübersicht vor den Kontaktdaten.',
+    summary: 'Sofagrösse wählen · freiwillig',
+  },
+  'endreinigung-abnahmegarantie': {
+    intro: 'Wählen Sie die Wohnungsgrösse. Sie sehen die Preisübersicht vor den Kontaktdaten.',
+    summary: 'Wohnungsgrösse wählen · freiwillig',
+  },
+};
 document.body.classList.add('guided-quote-active');
 overviewBack.addEventListener('click',e=>{if(e.target.closest('#guided-back')&&!lock()){stage=window.DGSFixedPrice.options(model.service).length?service().groups.length+1:0;render();}});
 
@@ -149,9 +160,10 @@ function questionMarkup(q){const value=(model.answers[model.service]||{})[q.id],
 function render(focus=true){cancelAdvance();if(lock())return;overviewPart.append(sendSlot);const headerHeight=document.querySelector('.header')?.getBoundingClientRect().height||72;form.style.setProperty('--qw-header',Math.max(0,Math.ceil(headerHeight)+16-(parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0))+'px');legacyChoice.hidden=true;const s=service(),last=s?s.groups.length+2:0,contactStage=s?s.groups.length+1:-1;
 vehicleLocation.hidden = !['auto','autopolsterreinigung'].includes(s?.id);
 for (const contact of directContactLinks) contact.hidden = !s;
-guideBenefit.textContent = s?.id === 'polsterreinigung'
-  ? 'Sofa vor Ort reinigen lassen. Preis und Termin unverbindlich anfragen.'
-  : 'Klare Leistung. Fester Preis.';
+const priceCopy = priceEntryCopy[s?.id];
+guideBenefit.textContent = priceCopy?.intro || 'Klare Leistung. Fester Preis.';
+priceSummary.textContent = priceCopy?.summary || 'Paket wählen · freiwillig';
+priceContinue.textContent = priceCopy ? 'Weiter zur Preisübersicht' : 'Weiter zu Kontakt und Übersicht';
 guideBenefit.hidden=!!s&&stage===last&&stage>0;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
 const regionField = form.elements.namedItem('DGS_Anfrageregion');
 const regionName = regionField?.value;
