@@ -7,10 +7,14 @@
  const testMode=new URL(location.href).searchParams.get('dgs_test')==='1';
  const adsLabel=document.createElement('label');adsLabel.className='cookie-option';adsLabel.innerHTML='<input type="checkbox" id="cookie-ads"> Anfragenmessung mit Google Ads erlauben';toggle.closest('label').after(adsLabel);
  const adsToggle=adsLabel.querySelector('input');
+ const offlineLabel=document.createElement('label');offlineLabel.className='cookie-option';offlineLabel.innerHTML='<input type="checkbox" id="cookie-ads-offline"> Anfragen bis zu Offerte und Auftrag Google Ads zuordnen';adsLabel.after(offlineLabel);
+ const offlineToggle=offlineLabel.querySelector('input');
+ const syncOfflineChoice=()=>{offlineToggle.disabled=!adsToggle.checked;if(!adsToggle.checked)offlineToggle.checked=false;};
+ adsToggle.addEventListener('change',syncOfflineChoice);
  document.getElementById('cookie-title').textContent='Cookies & Anfragenmessung';
  document.getElementById('cookie-description').textContent='Wir speichern Ihre Cookie-Auswahl. Optional verwenden wir Google Analytics für Statistik und Google Ads zur Zuordnung erfolgreicher Formularanfragen zu Anzeigenklicks. Dabei werden Nutzungs- und Gerätedaten an Google übermittelt, möglicherweise auch in die USA. Alle Formulare funktionieren auch ohne Messung.';
- adsLabel.nextElementSibling.textContent='Statistik und Anzeigenmessung sind getrennt wählbar. Keine Werbepersonalisierung. Mit Anzeigenmessung können Kampagnen- und Keyword-Kennung die Formularanfrage begleiten. Namen, E-Mail-Adressen, Fotos und Nachrichten aus Formularen werden nicht an Google übermittelt.';
- try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';consent={...saved,ads:saved.ads===true};}}catch{}
+ offlineLabel.nextElementSibling.textContent='Die zusätzliche Offerten- und Auftragszuordnung ist freiwillig und setzt Anzeigenmessung voraus: Nur dann begleitet die Google-Klickkennung Ihre abgesendete Anfrage an Basin. Später können Klickkennung, zufällige Vorgangskennung, Bearbeitungsstufe, Zeitpunkt und bei einem Auftrag dessen Betrag in CHF an Google Ads übermittelt werden. Keine Namen, Kontaktdaten, Fotos oder Nachrichten an Google; keine Werbepersonalisierung. Die Anfrage funktioniert auch ohne diese Zuordnung.';
+ try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';consent={...saved,ads:saved.ads===true,adsOffline:saved.ads===true&&saved.adsOffline===true&&saved.offlineVersion===1};}}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
  // Preserve Google click IDs only with explicit Ads consent. Other query fields
  // (including form details and arbitrary URL values) are never sent as page URLs.
@@ -80,17 +84,17 @@
   const domains=['',location.hostname,'.'+location.hostname,'.'+location.hostname.split('.').slice(-2).join('.')];
   for(const name of names)for(const domain of domains)document.cookie=name+'=; Max-Age=0; path=/'+(domain?'; domain='+domain:'')+'; SameSite=Lax; Secure';
  }
- function save(analytics,ads){
-  const wasLoaded=loaded,previous=consent;consent={version:1,analytics,ads,at:Date.now()};
+ function save(analytics,ads,adsOffline=false){
+  const wasLoaded=loaded,previous=consent;consent={version:1,analytics,ads,adsOffline:ads&&adsOffline,offlineVersion:1,offlineAt:ads&&adsOffline?Date.now():null,at:Date.now()};
   try{localStorage.setItem(KEY,JSON.stringify(consent));}catch{}
   dialog.close();document.body.classList.remove('consent-open');previousFocus?.focus();
   if(wasLoaded){clearAnalytics(previous?.analytics===true&&!analytics,previous?.ads===true&&!ads);location.reload();}else start();
  }
- function open(){previousFocus=document.activeElement;toggle.checked=consent?.analytics===true;adsToggle.checked=consent?.ads===true;document.body.classList.add('consent-open');dialog.showModal();}
+ function open(){previousFocus=document.activeElement;toggle.checked=consent?.analytics===true;adsToggle.checked=consent?.ads===true;offlineToggle.checked=consent?.adsOffline===true;syncOfflineChoice();document.body.classList.add('consent-open');dialog.showModal();}
  document.querySelectorAll('[data-cookie-settings]').forEach(button=>button.addEventListener('click',open));
- document.getElementById('cookie-accept').addEventListener('click',()=>save(true,true));
+ document.getElementById('cookie-accept').addEventListener('click',()=>save(true,true,true));
  document.getElementById('cookie-reject').addEventListener('click',()=>save(false,false));
- document.getElementById('cookie-save').addEventListener('click',()=>save(toggle.checked,adsToggle.checked));
+ document.getElementById('cookie-save').addEventListener('click',()=>save(toggle.checked,adsToggle.checked,offlineToggle.checked));
  dialog.addEventListener('cancel',e=>{e.preventDefault();save(false,false);});
  document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link)return;const href=link.getAttribute('href');if(href.startsWith('tel:'))event('click_call');else if(/^https:\/\/(?:wa.me|api.whatsapp.com)\//.test(href))event('click_whatsapp');else if(href.startsWith('mailto:'))event('click_email');else if(e.isTrusted){try{const destination=new URL(href,location.href);if(destination.origin===location.origin&&/^\/offerte\/?$/.test(destination.pathname))event('click_quote');}catch{}}});
  document.querySelectorAll('form').forEach(form=>{
@@ -200,3 +204,45 @@
  capture();
 })();
 
+
+// Optional offline attribution. Legacy Ads consent never enables this purpose.
+// Keep only one GCLID for 30 minutes in this browser tab; no names or URLs.
+;(()=>{
+ 'use strict';
+ const KEY='dgs-offline-click-session-v1',CONSENT='dampfglanz-consent-v1',TTL=30*60*1000;
+ const CAMPAIGNS=new Set(['24457117427','24464010908']);
+ const clear=()=>{try{sessionStorage.removeItem(KEY);}catch{}};
+ const allowed=()=>{
+  try{const c=JSON.parse(localStorage.getItem(CONSENT));return c?.version===1&&c.ads===true&&c.adsOffline===true&&c.offlineVersion===1&&Number.isFinite(c.offlineAt)&&c.offlineAt<=Date.now()&&Date.now()-c.offlineAt<180*86400000?c:null;}catch{return null;}
+ };
+ let expiredOnPage=false;
+ const capture=()=>{
+  const consent=allowed(),url=new URL(location.href);
+  if(!consent||url.searchParams.get('dgs_test')==='1'){clear();return null;}
+  if(expiredOnPage)return null;
+  let saved=null;
+  try{saved=JSON.parse(sessionStorage.getItem(KEY));}catch{}
+  if(saved?.version!==1||!CAMPAIGNS.has(saved?.campaignId)||typeof saved?.gclid!=='string'||!/^[A-Za-z0-9._~-]{1,512}$/.test(saved.gclid)||!Number.isFinite(saved?.at)||saved.at>Date.now()||Date.now()-saved.at>=TTL||saved.consentAt!==consent.offlineAt)saved=null;
+  const incoming=url.searchParams.getAll('gclid');
+  if(incoming.length){
+   const campaignId=url.searchParams.get('dgs_campaign'),gclid=incoming[0];
+   if(incoming.length!==1||!CAMPAIGNS.has(campaignId)||!/^[A-Za-z0-9._~-]{1,512}$/.test(gclid)){clear();return null;}
+   if(saved&&(saved.gclid!==gclid||saved.campaignId!==campaignId))saved=null;
+   // Refreshing the same page never extends an old click's 30-minute lifetime.
+   if(!saved){
+    const c=JSON.parse(sessionStorage.getItem(KEY)||'null');
+    if(c?.gclid===gclid&&c?.campaignId===campaignId&&Number.isFinite(c.at)&&Date.now()-c.at>=TTL){expiredOnPage=true;clear();return null;}
+    saved={version:1,gclid,campaignId,at:Date.now(),consentAt:consent.offlineAt};
+   }
+  }
+  const currentCampaign=url.searchParams.get('dgs_campaign');
+  if(currentCampaign&&saved&&currentCampaign!==saved.campaignId){clear();return null;}
+  if(saved){try{sessionStorage.setItem(KEY,JSON.stringify(saved));}catch{return null;}}
+  else clear();
+  return saved;
+ };
+ const safeCapture=()=>{try{return capture();}catch{clear();return null;}};
+ window.DGSOfflineAttribution={get:()=>{const x=safeCapture();return x?{gclid:x.gclid,campaignId:x.campaignId,capturedAt:new Date(x.at).toISOString(),consentAt:new Date(x.consentAt).toISOString(),consentVersion:'offline-v1'}:null;},clear};
+ document.addEventListener('dgs:measurement-ready',safeCapture);
+ safeCapture();
+})();

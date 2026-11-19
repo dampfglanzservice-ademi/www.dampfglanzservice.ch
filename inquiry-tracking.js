@@ -97,7 +97,7 @@
    data.set('DGS_Anfragekennung',id);data.set('DGS_Formular',kind);
    if(test)data.set('DGS_Funktionstest','Ja – nicht als Kundenanfrage zählen');
    // This is a first-party campaign reference, not a Google-confirmed conversion.
-   for(const name of ['DGS_Herkunft','DGS_Kampagne_ID','DGS_Kampagne','DGS_Keyword_ID','DGS_Zuordnung','DGS_Einstiegsseite'])data.delete(name);
+   for(const name of ['DGS_Herkunft','DGS_Kampagne_ID','DGS_Kampagne','DGS_Keyword_ID','DGS_Zuordnung','DGS_Einstiegsseite','DGS_GCLID','DGS_Klick_erfasst_am','DGS_Offline_Einwilligung_am','DGS_Offline_Einwilligung_Version'])data.delete(name);
    if(!test){
     const origin=window.DGSCampaignAttribution?.get();
     if(origin){
@@ -107,6 +107,13 @@
      if(kind==='quote'&&origin.keywordId)data.set('DGS_Keyword_ID',origin.keywordId);
      if(origin.entryPath)data.set('DGS_Einstiegsseite',origin.entryPath);
      data.set('DGS_Zuordnung','Kampagnenparameter dieser Sitzung; Google-Conversion nicht bestätigt');
+     const offline=window.DGSOfflineAttribution?.get();
+     if(offline&&offline.campaignId===origin.campaignId){
+      data.set('DGS_GCLID',offline.gclid);
+      data.set('DGS_Klick_erfasst_am',offline.capturedAt);
+      data.set('DGS_Offline_Einwilligung_am',offline.consentAt);
+      data.set('DGS_Offline_Einwilligung_Version',offline.consentVersion);
+     }
     }
    }
    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),30000);
