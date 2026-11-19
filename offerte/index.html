@@ -62,6 +62,8 @@
 @keyframes sq-point-down{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
 @media(prefers-reduced-motion:reduce){.sq-choice-hint [aria-hidden]{animation:none}}
 @media(max-width:600px){.quote-heading{padding-top:22px}.quote-heading p{font-size:15px;line-height:1.65}.quote-progress{padding-top:18px}.quote-section{padding-top:22px}}
+#quote-form .quote-selected-package{margin:0 0 10px;font-size:17px;font-weight:700;line-height:1.4;overflow-wrap:anywhere}
+#quote-form .quote-selected-package:empty{display:none}
 #quote-form .sq-handover-only{display:none}
 #quote-form:has(#service option[value="endreinigung-abnahmegarantie"]:checked) .sq-handover-only{display:block}
 #quote-form:has(#service option[value="endreinigung-abnahmegarantie"]:checked) .sq-wishes-general{display:none}
@@ -149,13 +151,13 @@
 <button hidden id="print-quote" class="button secondary" type="button">Anfrageübersicht speichern / drucken ↓</button>
 </div></details><a class="button primary" href="#fixed-selection-summary">Preisübersicht ansehen ↓</a><div id="fixed-selection-summary" class="fixed-selection quote-price-card">
 <div role="status" aria-atomic="true">
+<p id="quote-price-package" class="quote-selected-package"></p>
 <p id="quote-price-label" class="quote-price-label"></p>
 <p id="quote-price-amount" class="quote-price-amount" hidden></p>
 <p id="quote-price-note" class="quote-price-note"></p>
 </div>
 <details id="quote-price-details" hidden>
 <summary>Paket und Leistungsumfang</summary>
-<p id="quote-price-package"></p>
 <p id="quote-price-extras" hidden></p>
 <p id="quote-price-scope"></p>
 </details>
