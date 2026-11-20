@@ -74,7 +74,7 @@ function render(host,service,links=true){
   }
   html += '</dl><details><summary>Was ist genau enthalten?</summary><p>'+escape(group.scope)+'</p></details></div>';
  }
- html+='<p>Unverbindlich anfragen. Preis und Termin bestätigen wir vor dem Auftrag.</p><details class="fixed-conditions"><summary>Preisbedingungen</summary><p>'+escape(service==='endreinigung-abnahmegarantie'?data.conditions.replace("Auto: stationäre Reinigung in Rorschach; Selbstanlieferung oder kostenlose Abholung und Rückgabe bis 15 km Fahrstrecke nach Vereinbarung. Weiter entfernte Abholung persönlich klären. ",''):data.conditions)+'</p><p>Zusatzwünsche und empfindliche Materialien vorab klären. Kein garantierter Flecken-, Geruchs- oder Hygieneerfolg.</p></details>';
+ html+='<p>Unverbindlich anfragen. Preis und Termin bestätigen wir vor dem Auftrag.</p><details class="fixed-conditions"><summary>Preisbedingungen</summary><p>'+escape(['endreinigung-abnahmegarantie','polsterreinigung'].includes(service)?data.conditions.replace("Auto: stationäre Reinigung in Rorschach; Selbstanlieferung oder kostenlose Abholung und Rückgabe bis 15 km Fahrstrecke nach Vereinbarung. Weiter entfernte Abholung persönlich klären. ",''):data.conditions)+'</p><p>Zusatzwünsche und empfindliche Materialien vorab klären. Kein garantierter Flecken-, Geruchs- oder Hygieneerfolg.</p></details>';
  if(links)html+='<a class="button primary" href="/offerte/?leistung='+encodeURIComponent(service)+'">Unsicher? Offerte anfragen</a>';
  host.innerHTML=html;
 }
