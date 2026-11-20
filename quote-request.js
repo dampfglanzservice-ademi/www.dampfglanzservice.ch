@@ -20,7 +20,7 @@
   return files.reduce((sum,file)=>sum+file.size,0)>6*1024*1024?'Die Fotos dürfen zusammen höchstens 6 MB gross sein.':'';
  }
  function autoHandover(zone){
-  const choices={self:{value:'bring',label:'Selbst bringen und abholen in Rorschach.'},pickup15:{value:'pickup15',label:'Kostenlose Abholung und Rückgabe bis 15 km Fahrstrecke ab Rorschach, nach Vereinbarung.'},outside15:{value:'outside15',label:'Abholung weiter als 15 km: Übergabe und Gesamtpreis persönlich klären.'}};
+  const choices={self:{value:'bring',label:'Selbst bringen und abholen im Silberturm in St. Gallen.'},pickup15:{value:'pickup15',label:'Kostenlose Abholung und Rückgabe bis 15 km Fahrstrecke ab Silberturm in St. Gallen, nach Vereinbarung.'},outside15:{value:'outside15',label:'Abholung weiter als 15 km: Übergabe und Gesamtpreis persönlich klären.'}};
   return choices[zone]||{value:'discuss',label:'Übergabe noch gemeinsam klären; Gesamtpreis persönlich bestätigen.'};
  }
  function requestSummary(m){
@@ -147,7 +147,7 @@
   setText('quote-price-scope',row?$('selected-package-scope').textContent:'');
  }
  function summary(){return requestSummary({serviceLabel:label(),scope:selectedScope()+(window.DGSQuoteWizard?.scope()?' Auswahl: '+window.DGSQuoteWizard.scope():''),orientation:orientation(),place:place.value.trim()});}
- function renderPrice(){const F=window.DGSFixedPrice;F.render(document.getElementById('price-orientation'),service.value,false);$('price-orientation-note').textContent='';$('price-options').hidden=false;$('package-field').hidden=F.options(service.value).length===0;$('cleaning-tier-field').hidden=true;$('auto-handover-field').hidden=true;$('price-scope').textContent='Vereinbarter Umfang zum Fixpreis. Extras nur nach Absprache.';$('price-travel').textContent=service.value==='auto'||service.value==='autopolsterreinigung'?'Stationäre Reinigung in Rorschach. Abholung und Rückgabe bis 15 km nach Vereinbarung kostenlos; weitere Strecken persönlich klären.':'Anfahrt bis 15 km ab Rorschach inklusive; darüber auf Anfrage.';window.DGSFixedPreviewForm?.sync(service.value);}
+ function renderPrice(){const F=window.DGSFixedPrice;F.render(document.getElementById('price-orientation'),service.value,false);$('price-orientation-note').textContent='';$('price-options').hidden=false;$('package-field').hidden=F.options(service.value).length===0;$('cleaning-tier-field').hidden=true;$('auto-handover-field').hidden=true;$('price-scope').textContent='Vereinbarter Umfang zum Fixpreis. Extras nur nach Absprache.';$('price-travel').textContent=service.value==='auto'||service.value==='autopolsterreinigung'?'Stationäre Reinigung im Silberturm in St. Gallen. Abholung und Rückgabe bis 15 km nach Vereinbarung kostenlos; weitere Strecken persönlich klären.':'Anfahrt bis 15 km ab Rorschach inklusive; darüber auf Anfrage.';window.DGSFixedPreviewForm?.sync(service.value);}
  function update(){
   syncContact();validateDates();const auto=service.value==='auto',withScope=['auto','polsterreinigung','endreinigung-abnahmegarantie'].includes(service.value);
   if(auto)handover.value=autoHandover($('fixed-zone')?.value).value;
@@ -157,7 +157,7 @@
   const parts=Object.hasOwn(catalog,service.value)?[label()]:[];if(pack.value!=='custom'&&pack.selectedOptions.length)parts.push(pack.selectedOptions[0].text);if(auto&&tier.value)parts.push(tier.selectedOptions[0].text);
   const vehicleService = ['auto','autopolsterreinigung'].includes(service.value);
   const regionalContext = vehicleService
-    ? ' Reinigung in Rorschach.'+(ctx.region?' Ich komme aus der Region '+regionNames[ctx.region]+'.':'')+' Meine PLZ / mein Ort: __.'
+    ? ' Reinigung im Silberturm in St. Gallen.'+(ctx.region?' Ich komme aus der Region '+regionNames[ctx.region]+'.':'')+' Meine PLZ / mein Ort: __.'
     : (ctx.region?' Region: '+regionNames[ctx.region]+'.':'')+' PLZ / Ort: __.';
   const message=(parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen.')+regionalContext+' Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
   document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{link.href='https://wa.me/41765024998?text='+encodeURIComponent(message);link.setAttribute('aria-label',parts.length?parts.join(' · ')+' per WhatsApp anfragen':'Per WhatsApp anfragen');});
