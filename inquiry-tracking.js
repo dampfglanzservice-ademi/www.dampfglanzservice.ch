@@ -104,7 +104,7 @@
      data.set('DGS_Herkunft','Google Ads – Kampagnenparameter');
      data.set('DGS_Kampagne_ID',origin.campaignId);
      data.set('DGS_Kampagne',origin.campaignName);
-     if(kind==='quote'&&origin.keywordId)data.set('DGS_Keyword_ID',origin.keywordId);
+     if(origin.keywordId)data.set('DGS_Keyword_ID',origin.keywordId);
      if(origin.entryPath)data.set('DGS_Einstiegsseite',origin.entryPath);
      data.set('DGS_Zuordnung','Kampagnenparameter dieser Sitzung; Google-Conversion nicht bestätigt');
      const offline=window.DGSOfflineAttribution?.get();
