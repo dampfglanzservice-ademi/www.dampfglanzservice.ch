@@ -65,7 +65,7 @@ const priceEntryCopy = {
   },
   'endreinigung-abnahmegarantie': {
     title: 'Umzugsreinigung zur Wohnungsabgabe',
-    intro: 'Wir stimmen die Reinigung auf Ihre Übergabe ab. Umfang und Abnahmegarantie vereinbaren wir schriftlich.',
+    intro: 'Die Abnahmegarantie ist inklusive. Wir stimmen die Reinigung auf Ihre Wohnungsabgabe ab und bestätigen Umfang und Fixpreis schriftlich.',
     summary: 'Wohnungsgrösse und Umfang angeben',
     scopeLabel: 'Wie gross ist die Wohnung? *',
     scopeExample: 'z. B. 4,5 Zimmer, ca. 95 m² und 2 Bäder',
