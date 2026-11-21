@@ -23,6 +23,7 @@
   const choices={self:{value:'bring',label:'Selbst bringen und abholen im Silberturm in St. Gallen.'},pickup15:{value:'pickup15',label:'Kostenlose Abholung und Rückgabe bis 15 km Fahrstrecke ab Silberturm in St. Gallen, nach Vereinbarung.'},outside15:{value:'outside15',label:'Abholung weiter als 15 km: Übergabe und Gesamtpreis persönlich klären.'}};
   return choices[zone]||{value:'discuss',label:'Übergabe noch gemeinsam klären; Gesamtpreis persönlich bestätigen.'};
  }
+ function endScopeSelection(stores=true,cellar=true){return {stores,cellar,reduced:!stores||!cellar,scope:'Endreinigung der Wohnung mit Küche, Bad, Böden, Fenstern mit Rahmen und Geräten. Storen: '+(stores?'mitreinigen':'nicht gewünscht – nicht mitreinigen')+'. Keller: '+(cellar?'mitreinigen':'nicht gewünscht – nicht mitreinigen')+'. Abnahmegarantie inklusive: Reinigungsmängel an den beauftragten Flächen reinigen wir kostenlos nach. Der vollständige Gesamtpreis wird vor Auftrag bestätigt.'};}
  function requestSummary(m){
   return ['Unverbindliche Reinigungsanfrage – Dampfglanzservice-Ademi','Leistung: '+m.serviceLabel,'Gewünschter Leistungsumfang: '+m.scope,'Angezeigter Preisrahmen der Hauptleistung: '+String(m.orientation).split('\n').filter(line=>!['Ihre Übersicht','Preisübersicht'].includes(line)).join(' · '),'Ort: '+m.place,'Keine Buchung. Persönliche Fixpreis-Offerte mit vereinbartem Umfang, Anfahrt, Material und Termin abwarten. Für den vereinbarten Umfang keine Zusatzkosten.'].join('\n');
  }
@@ -44,7 +45,7 @@
   body.append(heading,message);status.replaceChildren(mark,body);status.setAttribute('aria-labelledby',heading.id);
   status.focus({preventScroll:true});status.scrollIntoView({block:'center',behavior:'instant'});
  }
- if(typeof module==='object'&&module.exports)module.exports={classifyContact,contextFromQuery,photoError,requestSummary,autoHandover,submissionLocked,renderSubmissionUI};
+ if(typeof module==='object'&&module.exports)module.exports={endScopeSelection,classifyContact,contextFromQuery,photoError,requestSummary,autoHandover,submissionLocked,renderSubmissionUI};
  if(typeof document==='undefined')return;
  const form=document.getElementById('quote-form');
  if(!form||form.dataset.shortRequest!=='true'||!window.DGSPrice)return;
@@ -72,8 +73,9 @@
  function validatePhotos(){
   const files=fileInputs.flatMap(input=>Array.from(input.files||[])),message=photoError(files);fileInputs.forEach(input=>input.setCustomValidity(message));$('photo-error').textContent=message;$('clear-photos').hidden=files.length===0;return !message;
  }
- function selectedScope(){const r=window.DGSFixedPrice.row(pack.value),e=fixedEstimate();const scope=r?window.DGSFixedPrice.data.groups[r.group].scope+' Ausgewähltes Paket: '+r.label+'. Menge gleicher Pakete: '+(e.quantity||1)+'. Zusätze: '+(e.additional||[]).join('; ')+'.':'Gewünschte Reinigung und genauer Umfang werden persönlich geklärt; kein Paket angenommen.';return scope+(condition.value?' Zustand: '+condition.selectedOptions[0].textContent+'.':'')+($('fixed-zone')?.value&&$('fixed-zone').value!=='unknown'?' Anfahrt / Übergabe: '+$('fixed-zone').selectedOptions[0].textContent+'.':'');}
- function selectedInclusions(){const r=window.DGSFixedPrice.row(pack.value),box=$('selected-package-inclusions'),headboard=$('fixed-headboard');if(headboard){const eligible=r&&r.index>=10&&r.index<=14&&Number($('fixed-quantity')?.value||1)===1;headboard.closest('.field').hidden=!eligible;if(!eligible)headboard.value='';}if(!box)return;box.hidden=!r;if(!r)return;let scope=window.DGSFixedPrice.data.groups[r.group].scope;if(r.group==='auto'){scope=['Innenraum saugen und zugängliche Oberflächen. Ohne Kofferraum und Innenscheiben.','Saugen und zugängliche Oberflächen, Kofferraum und Innenscheiben.','Intensiv-Reinigung, zusätzlich Textilsitze schamponieren und extrahieren oder Leder reinigen und pflegen (nach Materialprüfung).'][r.index%3];if(r.index>=6)scope+=' Bis sieben Sitze.';}
+ function selectedEndScope(){const choice=endScopeSelection($('fixed-end-stores')?.checked!==false,$('fixed-end-cellar')?.checked!==false);const stores=$('end-stores-value'),cellar=$('end-cellar-value');if(stores)stores.value=choice.stores?'Ja – mitreinigen':'Nein – ausdrücklich abgewählt';if(cellar)cellar.value=choice.cellar?'Ja – mitreinigen':'Nein – ausdrücklich abgewählt';return choice;}
+ function selectedScope(){const r=window.DGSFixedPrice.row(pack.value),e=fixedEstimate();const scope=r?(r.group==='end'?selectedEndScope().scope:window.DGSFixedPrice.data.groups[r.group].scope)+' Ausgewähltes Paket: '+r.label+'. Menge gleicher Pakete: '+(e.quantity||1)+'. Zusätze: '+(e.additional||[]).join('; ')+'.':(service.value==='endreinigung-abnahmegarantie'?selectedEndScope().scope:'Gewünschte Reinigung und genauer Umfang werden persönlich geklärt; kein Paket angenommen.');return scope+(condition.value?' Zustand: '+condition.selectedOptions[0].textContent+'.':'')+($('fixed-zone')?.value&&$('fixed-zone').value!=='unknown'?' Anfahrt / Übergabe: '+$('fixed-zone').selectedOptions[0].textContent+'.':'');}
+ function selectedInclusions(){const r=window.DGSFixedPrice.row(pack.value),box=$('selected-package-inclusions'),headboard=$('fixed-headboard');if(headboard){const eligible=r&&r.index>=10&&r.index<=14&&Number($('fixed-quantity')?.value||1)===1;headboard.closest('.field').hidden=!eligible;if(!eligible)headboard.value='';}if(!box)return;box.hidden=!r;if(!r)return;let scope=r.group==='end'?selectedEndScope().scope:window.DGSFixedPrice.data.groups[r.group].scope;if(r.group==='auto'){scope=['Innenraum saugen und zugängliche Oberflächen. Ohne Kofferraum und Innenscheiben.','Saugen und zugängliche Oberflächen, Kofferraum und Innenscheiben.','Intensiv-Reinigung, zusätzlich Textilsitze schamponieren und extrahieren oder Leder reinigen und pflegen (nach Materialprüfung).'][r.index%3];if(r.index>=6)scope+=' Bis sieben Sitze.';}
   if(r.group==='polster'&&r.index>=15&&r.index<=20){
    const packageScopes={
     'fp-015':'Komplettreinigung eines Textilsessels.',
@@ -89,7 +91,7 @@
   $('selected-package-scope').textContent=scope;
  }
  function fixedEstimate(){return window.DGSFixedPrice.quote({service:service.value,rowID:pack.value,quantity:Number($('fixed-quantity')?.value||1),condition:condition.value||'unknown',zone:$('fixed-zone')?.value||'unknown',petHair:$('fixed-pets')?.checked||false,additionalRow:$('fixed-headboard')?.value||'',stores:Number($('fixed-stores')?.value||0)});}
- function orientation(){const e=fixedEstimate(),r=window.DGSFixedPrice.row(pack.value);if(!e.available)return 'Preisübersicht\nGesamtpreis nach persönlicher Bestätigung.'+(service.value==='auto'?'\n'+autoHandover($('fixed-zone')?.value).label:'');const unit=r.unit==='je Termin'?' pro Reinigung':'';const lines=['Ihre Übersicht',r.label+(e.quantity>1?' · '+e.quantity+' Pakete':''),...e.additional];if(e.minimumApplied)lines.push('Mindestauftrag ersetzt den tieferen Betrag: CHF 150');if(e.total!==null&&service.value!=='teppichreinigung')lines.push('Gesamtpreis: CHF '+e.total+unit+' inkl. MwSt.');else {lines.push('Paket und Zusätze: CHF '+e.min+unit+' inkl. MwSt.');lines.push('Gesamtpreis nach persönlicher Bestätigung.');}if(service.value==='auto')lines.push(autoHandover($('fixed-zone')?.value).label);else if(service.value==='matratzenreinigung')lines.push('Eine Liegefläche und zugängliche Seiten.');else if(service.value==='teppichreinigung')lines.push('Material und Abholtermin noch bestätigen.');else if(!e.travelConfirmed)lines.push('Anfahrt noch klären.');return lines.join('\n');}
+ function orientation(){if(service.value==='endreinigung-abnahmegarantie'&&selectedEndScope().reduced)return 'Preisübersicht\nStoren oder Keller abgewählt: angepasster Gesamtpreis folgt mit der persönlichen Offerte.';const e=fixedEstimate(),r=window.DGSFixedPrice.row(pack.value);if(!e.available)return 'Preisübersicht\nGesamtpreis nach persönlicher Bestätigung.'+(service.value==='auto'?'\n'+autoHandover($('fixed-zone')?.value).label:'');const unit=r.unit==='je Termin'?' pro Reinigung':'';const lines=['Ihre Übersicht',r.label+(e.quantity>1?' · '+e.quantity+' Pakete':''),...e.additional];if(e.minimumApplied)lines.push('Mindestauftrag ersetzt den tieferen Betrag: CHF 150');if(e.total!==null&&service.value!=='teppichreinigung')lines.push('Gesamtpreis: CHF '+e.total+unit+' inkl. MwSt.');else {lines.push('Paket und Zusätze: CHF '+e.min+unit+' inkl. MwSt.');lines.push('Gesamtpreis nach persönlicher Bestätigung.');}if(service.value==='auto')lines.push(autoHandover($('fixed-zone')?.value).label);else if(service.value==='matratzenreinigung')lines.push('Eine Liegefläche und zugängliche Seiten.');else if(service.value==='teppichreinigung')lines.push('Material und Abholtermin noch bestätigen.');else if(!e.travelConfirmed)lines.push('Anfahrt noch klären.');return lines.join('\n');}
  function renderOverview(){
   if(!$('quote-price-label')){
    $('fixed-selection-summary').replaceChildren(...orientation().split('\n').flatMap((line,i)=>{const n=document.createElement(line==='Ihre Übersicht'||line.startsWith('Gesamtpreis:')?'strong':'span');n.textContent=line;return i?[document.createElement('br'),n]:[n];}));
@@ -98,9 +100,11 @@
   const prices=window.DGSFixedPrice,estimate=fixedEstimate(),row=prices.row(pack.value),zone=$('fixed-zone')?.value;
   const auto=service.value==='auto',rug=service.value==='teppichreinigung';
   const extraRequest=Boolean($('combine-services').value.trim());
-  const complete=estimate.available&&estimate.total!==null&&!rug&&!extraRequest;
-  const amount=estimate.available?(complete?estimate.total:estimate.min):null;
+  const endReduced=service.value==='endreinigung-abnahmegarantie'&&selectedEndScope().reduced;
+  const complete=estimate.available&&estimate.total!==null&&!rug&&!extraRequest&&!endReduced;
+  const amount=estimate.available&&!endReduced?(complete?estimate.total:estimate.min):null;
   const notes=[];
+  if(endReduced)notes.push('Storen oder Keller abgewählt. Wir bestätigen den angepassten Gesamtpreis vor Auftrag.');
   if(estimate.available){
    const unit=row.unit==='je Termin'?'Pro Reinigung, inkl. MwSt.':'Inkl. MwSt.';
    notes.push(unit);
@@ -159,9 +163,9 @@
   const regionalContext = vehicleService
     ? ' Reinigung im Silberturm in St. Gallen.'+(ctx.region?' Ich komme aus der Region '+regionNames[ctx.region]+'.':'')+' Meine PLZ / mein Ort: __.'
     : (ctx.region?' Region: '+regionNames[ctx.region]+'.':'')+' PLZ / Ort: __.';
-  const message=(parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen.')+regionalContext+' Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
+  const message=(parts.length?'Guten Tag, ich möchte '+parts.join(' · ')+' anfragen.':'Guten Tag, ich möchte eine Reinigung unverbindlich anfragen.')+regionalContext+(service.value==='endreinigung-abnahmegarantie'?' Storen: '+(selectedEndScope().stores?'mitreinigen':'nicht gewünscht')+'. Keller: '+(selectedEndScope().cellar?'mitreinigen':'nicht gewünscht')+'.':'')+' Bitte nennen Sie mir den Gesamtpreis und einen möglichen Termin.';
   document.querySelectorAll('[data-quote-whatsapp]').forEach(link=>{link.href='https://wa.me/41765024998?text='+encodeURIComponent(message);link.setAttribute('aria-label',parts.length?parts.join(' · ')+' per WhatsApp anfragen':'Per WhatsApp anfragen');});
-  selectedInclusions();$('quote-combination-note').hidden=!$('combine-services').value.trim();{const r=window.DGSFixedPrice.row(pack.value),caption=pack.selectedOptions[0]?.textContent||'',detail=$('selected-package-detail');detail.textContent=r?.label||'';const norm=x=>x.toLowerCase().replace(/[^a-z0-9äöü]/g,'');detail.hidden=!r||norm(caption)===norm(r.label);}renderOverview();$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
+  if(service.value==='endreinigung-abnahmegarantie')selectedEndScope();selectedInclusions();$('quote-combination-note').hidden=!$('combine-services').value.trim();{const r=window.DGSFixedPrice.row(pack.value),caption=pack.selectedOptions[0]?.textContent||'',detail=$('selected-package-detail');detail.textContent=r?.label||'';const norm=x=>x.toLowerCase().replace(/[^a-z0-9äöü]/g,'');detail.hidden=!r||norm(caption)===norm(r.label);}renderOverview();$('quote-summary').value=summary();send.disabled=submissionLocked(form)||!Object.hasOwn(catalog,service.value);
  }
  function reportContact(){if(!isTest&&!panel.hidden){try{window.DGSMeasurement?.step('quote','contact',false);}catch{}}}
  function showService(value,focus=true){
