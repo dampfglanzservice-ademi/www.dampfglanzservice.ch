@@ -3,7 +3,7 @@
  const ID='G-479RC4GH7F',ADS='AW-17797086557',KEY='dampfglanz-consent-v1',MAX_AGE=180*86400000;
  const dialog=document.getElementById('cookie-dialog'),toggle=document.getElementById('cookie-analytics');
  if(!dialog||!toggle)return;
- let consent=null,loaded=false,analyticsStarted=false,adsStarted=false,previousFocus=null,needsAdsChoice=false;
+ let consent=null,loaded=false,analyticsStarted=false,adsStarted=false,previousFocus=null,needsAdsChoice=false,needsOfflineChoice=false;
  const testMode=new URL(location.href).searchParams.get('dgs_test')==='1';
  const adsLabel=document.createElement('label');adsLabel.className='cookie-option';adsLabel.innerHTML='<input type="checkbox" id="cookie-ads"> Anfragenmessung mit Google Ads erlauben';toggle.closest('label').after(adsLabel);
  const adsToggle=adsLabel.querySelector('input');
@@ -13,11 +13,11 @@
  adsToggle.addEventListener('change',syncOfflineChoice);
  document.getElementById('cookie-title').textContent='Cookies & Anfragenmessung';
  document.getElementById('cookie-description').textContent='Wir speichern Ihre Cookie-Auswahl. Optional verwenden wir Google Analytics für Statistik und Google Ads zur Zuordnung erfolgreicher Formularanfragen zu Anzeigenklicks. Dabei werden Nutzungs- und Gerätedaten an Google übermittelt, möglicherweise auch in die USA. Alle Formulare funktionieren auch ohne Messung.';
- offlineLabel.nextElementSibling.textContent='Die zusätzliche Offerten- und Auftragszuordnung ist freiwillig und setzt Anzeigenmessung voraus: Nur dann begleitet die Google-Klickkennung Ihre abgesendete Anfrage an Basin. Später können Klickkennung, zufällige Vorgangskennung, Bearbeitungsstufe, Zeitpunkt und bei einem Auftrag dessen Betrag in CHF an Google Ads übermittelt werden. Keine Namen, Kontaktdaten, Fotos oder Nachrichten an Google; keine Werbepersonalisierung. Die Anfrage funktioniert auch ohne diese Zuordnung.';
+ offlineLabel.nextElementSibling.textContent='Die zusätzliche Offerten- und Auftragszuordnung ist freiwillig und setzt Anzeigenmessung voraus: Nur dann begleitet eine vorhandene Google-Klickkennung (GCLID, GBRAID oder WBRAID) Ihre abgesendete Anfrage an Basin. Später können Klickkennung, zufällige Vorgangskennung, Bearbeitungsstufe, Zeitpunkt und bei einem Auftrag dessen Betrag in CHF an Google Ads übermittelt werden. Keine Namen, Kontaktdaten, Fotos oder Nachrichten an Google; keine Werbepersonalisierung. Beim Öffnen von WhatsApp kann eine kurze Referenz mit Kampagnen- und Keyword-Kennung im vorbereiteten Nachrichtentext an WhatsApp übergeben werden. Die Google-Klickkennung bleibt dabei auf der Website. Erst eine tatsächlich eingegangene Nachricht wird als Anfrage geprüft. Alle Kontaktwege funktionieren auch ohne diese Zuordnung.';
 
  // Keep the first visit usable while all optional measurement stays off.
  const shortDescription=document.createElement('p');shortDescription.id='cookie-compact-description';shortDescription.className='cookie-compact-description';
- shortDescription.textContent='Statistik und Zuordnung von Anfragen, Offerten und Aufträgen mit Google sind freiwillig (Daten ggf. in die USA). Ohne Zustimmung bleibt die Messung aus.';
+ shortDescription.textContent='Statistik und Anzeigenzuordnung mit Google sowie Herkunftsreferenzen für WhatsApp sind freiwillig (Daten ggf. in die USA). Ohne Zustimmung bleibt die Messung aus.';
  document.getElementById('cookie-description').before(shortDescription);
  const configureButton=document.createElement('button');configureButton.type='button';configureButton.id='cookie-configure';configureButton.className='button secondary cookie-configure';configureButton.textContent='Einstellungen';configureButton.addEventListener('click',()=>open(false));document.getElementById('cookie-accept').before(configureButton);
  const noticeStyle=document.createElement('style');noticeStyle.textContent=`
@@ -33,7 +33,7 @@
 @media(max-width:600px){#cookie-dialog.dgs-consent-compact[open]{inset:auto 12px 12px;width:calc(100% - 24px);max-height:calc(100dvh - 24px)}}
 `;document.head.append(noticeStyle);
  const details=dialog.querySelector('details');
- try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';consent={...saved,ads:saved.ads===true,adsOffline:saved.ads===true&&saved.adsOffline===true&&saved.offlineVersion===1};}}catch{}
+ try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';needsOfflineChoice=saved.ads===true&&saved.adsOffline===true&&saved.offlineVersion!==2;consent={...saved,ads:saved.ads===true,adsOffline:saved.ads===true&&saved.adsOffline===true&&saved.offlineVersion===2};}}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
  // Preserve Google click IDs only with explicit Ads consent. Other query fields
  // (including form details and arbitrary URL values) are never sent as page URLs.
@@ -104,7 +104,7 @@
   for(const name of names)for(const domain of domains)document.cookie=name+'=; Max-Age=0; path=/'+(domain?'; domain='+domain:'')+'; SameSite=Lax; Secure';
  }
  function save(analytics,ads,adsOffline=false){
-  const wasLoaded=loaded,previous=consent;consent={version:1,analytics,ads,adsOffline:ads&&adsOffline,offlineVersion:1,offlineAt:ads&&adsOffline?Date.now():null,at:Date.now()};
+  const wasLoaded=loaded,previous=consent;consent={version:1,analytics,ads,adsOffline:ads&&adsOffline,offlineVersion:2,offlineAt:ads&&adsOffline?Date.now():null,at:Date.now()};
   try{localStorage.setItem(KEY,JSON.stringify(consent));}catch{}
   dialog.close();document.body.classList.remove('consent-open');previousFocus?.focus();
   if(wasLoaded){clearAnalytics(previous?.analytics===true&&!analytics,previous?.ads===true&&!ads);location.reload();}else start();
@@ -165,7 +165,7 @@
   // Basin submit attempts are measured by its validated handler, not defaultPrevented.
  });
  let scrolled=false;window.addEventListener('scroll',()=>{if(!scrolled&&consent?.analytics&&window.scrollY+innerHeight>=document.documentElement.scrollHeight*.75){scrolled=true;event('scroll_75');}},{passive:true});
- if(consent?.analytics||consent?.ads)start();if((!consent||needsAdsChoice)&&location.pathname!=='/datenschutz/')open(true);
+ if(consent?.analytics||consent?.ads)start();if((!consent||needsAdsChoice||needsOfflineChoice)&&location.pathname!=='/datenschutz/')open(true);
 })();
 
 // Keep only a recognised campaign reference, after explicit Ads-measurement consent.
@@ -225,44 +225,84 @@
 })();
 
 
-// Optional offline attribution. Legacy Ads consent never enables this purpose.
-// Keep only one GCLID for 30 minutes in this browser tab; no names or URLs.
+// Optional offline attribution v2. Requires a new, explicit purpose choice.
+// Store one recognised identifier for 30 minutes in this tab, never customer data.
 ;(()=>{
  'use strict';
- const KEY='dgs-offline-click-session-v1',CONSENT='dampfglanz-consent-v1',TTL=30*60*1000;
- const CAMPAIGNS=new Set(['24457117427','24464010908']);
- const clear=()=>{try{sessionStorage.removeItem(KEY);}catch{}};
+ const KEY='dgs-offline-click-session-v2',OLD='dgs-offline-click-session-v1',CONSENT='dampfglanz-consent-v1',TTL=30*60*1000;
+ const CAMPAIGNS=new Set(['24457117427','24464010908']),TYPES=['gclid','wbraid','gbraid'];
+ const valid=x=>typeof x==='string'&&/^[A-Za-z0-9._~-]{1,512}$/.test(x);
+ const clear=()=>{try{sessionStorage.removeItem(KEY);sessionStorage.removeItem(OLD);sessionStorage.removeItem('dgs-whatsapp-ref-v2');}catch{}};
  const allowed=()=>{
-  try{const c=JSON.parse(localStorage.getItem(CONSENT));return c?.version===1&&c.ads===true&&c.adsOffline===true&&c.offlineVersion===1&&Number.isFinite(c.offlineAt)&&c.offlineAt<=Date.now()&&Date.now()-c.offlineAt<180*86400000?c:null;}catch{return null;}
+  try{const c=JSON.parse(localStorage.getItem(CONSENT));return c?.version===1&&c.ads===true&&c.adsOffline===true&&c.offlineVersion===2&&Number.isFinite(c.at)&&c.at<=Date.now()&&Date.now()-c.at<180*86400000&&Number.isFinite(c.offlineAt)&&c.offlineAt<=Date.now()&&Date.now()-c.offlineAt<180*86400000?c:null;}catch{return null;}
  };
  let expiredOnPage=false;
  const capture=()=>{
   const consent=allowed(),url=new URL(location.href);
   if(!consent||url.searchParams.get('dgs_test')==='1'){clear();return null;}
   if(expiredOnPage)return null;
-  let saved=null;
-  try{saved=JSON.parse(sessionStorage.getItem(KEY));}catch{}
-  if(saved?.version!==1||!CAMPAIGNS.has(saved?.campaignId)||typeof saved?.gclid!=='string'||!/^[A-Za-z0-9._~-]{1,512}$/.test(saved.gclid)||!Number.isFinite(saved?.at)||saved.at>Date.now()||Date.now()-saved.at>=TTL||saved.consentAt!==consent.offlineAt)saved=null;
-  const incoming=url.searchParams.getAll('gclid');
-  if(incoming.length){
-   const campaignId=url.searchParams.get('dgs_campaign'),gclid=incoming[0];
-   if(incoming.length!==1||!CAMPAIGNS.has(campaignId)||!/^[A-Za-z0-9._~-]{1,512}$/.test(gclid)){clear();return null;}
-   if(saved&&(saved.gclid!==gclid||saved.campaignId!==campaignId))saved=null;
-   // Refreshing the same page never extends an old click's 30-minute lifetime.
-   if(!saved){
-    const c=JSON.parse(sessionStorage.getItem(KEY)||'null');
-    if(c?.gclid===gclid&&c?.campaignId===campaignId&&Number.isFinite(c.at)&&Date.now()-c.at>=TTL){expiredOnPage=true;clear();return null;}
-    saved={version:1,gclid,campaignId,at:Date.now(),consentAt:consent.offlineAt};
+  let raw=null;
+  try{raw=JSON.parse(sessionStorage.getItem(KEY));}catch{}
+  const validStored=raw?.version===2&&CAMPAIGNS.has(raw.campaignId)&&TYPES.includes(raw.clickType)&&valid(raw.clickId)&&Number.isFinite(raw.at)&&raw.at<=Date.now()&&Date.now()-raw.at<TTL&&raw.consentAt===consent.offlineAt;
+  let saved=validStored?raw:null;
+  const present=TYPES.filter(type=>url.searchParams.has(type));
+  if(present.length){
+   const campaignId=url.searchParams.get('dgs_campaign');
+   if(!CAMPAIGNS.has(campaignId)||url.searchParams.getAll('dgs_campaign').length!==1||present.some(type=>url.searchParams.getAll(type).length!==1||!valid(url.searchParams.get(type)))){clear();return null;}
+   // Keep case and identifier type. Never rename a BRAID into GCLID.
+   const clickType=present[0],clickId=url.searchParams.get(clickType);
+   const same=x=>x?.campaignId===campaignId&&x?.clickType===clickType&&x?.clickId===clickId;
+   const stamps=url.searchParams.getAll('dgs_capture_at');
+   if(stamps.length>1||(stamps.length&&!/^\d{13}$/.test(stamps[0]))){clear();return null;}
+   let capturedAt=stamps.length?Number(stamps[0]):Date.now();
+   if(same(raw)&&Number.isFinite(raw.at))capturedAt=Math.min(capturedAt,raw.at);
+   if(capturedAt>Date.now()||capturedAt<consent.offlineAt||Date.now()-capturedAt>=TTL){expiredOnPage=true;clear();return null;}
+   // Persist the capture TIME in this history entry so repeated reloads cannot
+   // renew an expired click after session data is deleted. Google IDs stay intact.
+   if(!stamps.length){
+    try{url.searchParams.set('dgs_capture_at',String(capturedAt));window.history.replaceState(window.history.state,'',url.href);}catch{clear();return null;}
    }
+   if(!same(saved))saved={version:2,clickType,clickId,campaignId,at:capturedAt,consentAt:consent.offlineAt};
   }
   const currentCampaign=url.searchParams.get('dgs_campaign');
   if(currentCampaign&&saved&&currentCampaign!==saved.campaignId){clear();return null;}
-  if(saved){try{sessionStorage.setItem(KEY,JSON.stringify(saved));}catch{return null;}}
+  if(saved){try{sessionStorage.setItem(KEY,JSON.stringify(saved));sessionStorage.removeItem(OLD);}catch{return null;}}
   else clear();
   return saved;
  };
- const safeCapture=()=>{try{return capture();}catch{clear();return null;}};
- window.DGSOfflineAttribution={get:()=>{const x=safeCapture();return x?{gclid:x.gclid,campaignId:x.campaignId,capturedAt:new Date(x.at).toISOString(),consentAt:new Date(x.consentAt).toISOString(),consentVersion:'offline-v1'}:null;},clear};
- document.addEventListener('dgs:measurement-ready',safeCapture);
- safeCapture();
+ const safe=()=>{try{return capture();}catch{clear();return null;}};
+ window.DGSOfflineAttribution={get:()=>{const x=safe();return x?{clickType:x.clickType,clickId:x.clickId,campaignId:x.campaignId,capturedAt:new Date(x.at).toISOString(),consentAt:new Date(x.consentAt).toISOString(),consentVersion:'offline-v2'}:null;},clear};
+ document.addEventListener('dgs:measurement-ready',safe);
+ safe();
+
+ // A WhatsApp reference identifies campaign/keyword only. It contains NO click ID.
+ // No request, conversion or customer enquiry is created by opening WhatsApp.
+ const reference=()=>{
+  const click=window.DGSOfflineAttribution.get(),origin=window.DGSCampaignAttribution?.get();
+  if(!click||!origin||origin.campaignId!==click.campaignId)return '';
+  const keyword=/^[1-9]\d{0,19}$/.test(origin.keywordId||'')?origin.keywordId:'0';
+  let r=null;try{r=JSON.parse(sessionStorage.getItem('dgs-whatsapp-ref-v2'));}catch{}
+  if(!(r&&r.capturedAt===click.capturedAt&&r.campaignId===origin.campaignId&&r.keywordId===keyword&&/^[a-f0-9]{12}$/.test(r.nonce||''))){
+   const bytes=new Uint8Array(6);if(!window.crypto?.getRandomValues)return '';
+   window.crypto.getRandomValues(bytes);
+   r={capturedAt:click.capturedAt,campaignId:origin.campaignId,keywordId:keyword,nonce:Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('')};
+   try{sessionStorage.setItem('dgs-whatsapp-ref-v2',JSON.stringify(r));}catch{return '';}
+  }
+  return 'DGS-'+(r.campaignId==='24457117427'?'S':'E')+'-'+r.keywordId+'-'+r.nonce;
+ };
+ document.addEventListener('click',e=>{
+  if(!e.isTrusted||e.defaultPrevented)return;
+  const a=e.target.closest('a[href]');if(!a)return;
+  try{
+   const u=new URL(a.href);
+   if(u.protocol!=='https:')return;
+   if(!((u.hostname==='wa.me'&&u.pathname==='/41765024998')||(u.hostname==='api.whatsapp.com'&&u.pathname==='/send'&&u.searchParams.get('phone')==='41765024998')))return;
+   const text=(u.searchParams.get('text')||'').replace(/\nReferenz: DGS-[SE]-(?:0|[1-9]\d{0,19})-[a-f0-9]{12}$/,'');
+   const ref=reference();
+   if(ref)u.searchParams.set('text',text+'\nReferenz: '+ref);
+   else if(text)u.searchParams.set('text',text);
+   else u.searchParams.delete('text');
+   a.href=u.href;
+  }catch{}
+ });
 })();
