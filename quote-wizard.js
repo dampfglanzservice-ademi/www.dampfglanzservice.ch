@@ -319,10 +319,4 @@ if(initial&&M.services.some(s=>s.id===initial)){
  stage=service().groups.length+(hasSelectedPackage?2:1);
 }
 render(false);
-// A visitor can explicitly open the existing optional price discussion.
-// No budget choice, amount, tracking consent or submission is set automatically.
-if(location.hash==='#request-budget'){
- const priceWish=document.getElementById('request-budget');
- if(priceWish){priceWish.open=true;priceWish.scrollIntoView({block:'center'});}
-}
 })();
