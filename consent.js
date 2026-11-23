@@ -30,8 +30,11 @@
 #cookie-dialog.dgs-consent-compact .cookie-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;gap:6px}
 #cookie-dialog.dgs-consent-compact .cookie-actions .button{min-height:44px;padding:8px;font-size:12px}
 #cookie-dialog.dgs-consent-compact .cookie-configure{display:flex}
+body:has(form[data-dgs-backend="basin"]):has(#cookie-dialog.dgs-consent-compact[open])::after{content:"";display:block;height:var(--dgs-consent-clearance,240px);pointer-events:none}
 @media(max-width:600px){#cookie-dialog.dgs-consent-compact[open]{inset:auto 12px 12px;width:calc(100% - 24px);max-height:calc(100dvh - 24px)}}
 `;document.head.append(noticeStyle);
+ // Leave enough real scroll room for the last form controls behind the notice.
+ try{if('ResizeObserver' in window)new ResizeObserver(()=>{document.documentElement.style.setProperty('--dgs-consent-clearance',Math.ceil(dialog.getBoundingClientRect().height+32)+'px');}).observe(dialog);}catch{}
  const details=dialog.querySelector('details');
  try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.version===1&&typeof saved.analytics==='boolean'&&typeof saved.at==='number'&&Date.now()-saved.at<MAX_AGE&&saved.at<=Date.now()){needsAdsChoice=typeof saved.ads!=='boolean';needsOfflineChoice=saved.ads===true&&saved.adsOffline===true&&saved.offlineVersion!==2;consent={...saved,ads:saved.ads===true,adsOffline:saved.ads===true&&saved.adsOffline===true&&saved.offlineVersion===2};}}catch{}
  const cleanURL=value=>{try{const u=new URL(value);return u.origin+u.pathname;}catch{return '';}};
