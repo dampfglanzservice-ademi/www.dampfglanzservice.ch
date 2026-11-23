@@ -32,7 +32,7 @@ if (originalContact) {
     else sendSlot.before(contact);
   }
 }
-// Keep Sofa scope and contact together; optional details retain their original controls.
+// Keep Sofa and end-cleaning scope and contact together; retain all original controls.
 const sofaOptional = document.createElement('details');
 sofaOptional.className = 'sq-option sofa-extra-details';
 const sofaOptionalSummary = document.createElement('summary');
@@ -259,21 +259,22 @@ const illustratedQuestions={"wohnungsreinigung":{"question":"rooms","icons":["ap
 function objectOption(option,key){const hints={"sofa":"z. B. 2- oder 3-Sitzer","sofaL":"Eine Ecke / eine lange Seite","sofaU":"Zwei lange Seiten","armchair":"Einzelsessel oder gepolsterter Stuhl","headboard":"Gepolstertes Kopfteil oder Bettseiten"};return '<strong class="object-title">'+esc(option)+'</strong>'+objectIllustrations[key]+ (hints[key]?'<span class="object-example">'+esc(hints[key])+'</span>':'');}
 function questionMarkup(q){const value=(model.answers[model.service]||{})[q.id],vehicle=q.id==='vehicle'&&['auto','autopolsterreinigung'].includes(model.service),mapping=illustratedQuestions[model.service],illustrated=!vehicle&&mapping?.question===q.id;return `<fieldset id="question-${q.id}"><legend tabindex="-1">${esc(q.label)}</legend><p class="hint">${esc(q.multi?(q.hint||'').replace(/^Mehrfachwahl[.;]?\s*/,''):q.hint||'')}${q.multi?' Mehrfachauswahl; danach «Weiter».':''}</p><div class="options${vehicle?' vehicle-options':illustrated?' object-options':''}">${q.options.map((o,index)=>{const imageKey=illustrated?mapping.icons[index]:null;return `<button type="button" class="option${vehicle&&index<3?' vehicle-option':imageKey?' object-option':''}" data-question="${q.id}" data-value="${esc(o)}" ${vehicle||imageKey?`aria-label="${esc(o)}"`:''} aria-pressed="${Array.isArray(value)?value.includes(o):value===o}">${vehicle?vehicleOption(o,index):imageKey?objectOption(o,imageKey):esc(o)}</button>`;}).join('')}</div></fieldset>`;}
 function render(focus=true){cancelAdvance();if(lock())return;overviewPart.append(sendSlot);const headerHeight=document.querySelector('.header')?.getBoundingClientRect().height||72;form.style.setProperty('--qw-header',Math.max(0,Math.ceil(headerHeight)+16-(parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0))+'px');legacyChoice.hidden=true;const s=service(),last=s?s.groups.length+2:0,contactStage=s?s.groups.length+1:-1;
-const singlePageSofa = s?.id === 'polsterreinigung' && stage > 0;
-if (singlePageSofa) stage = last;
-sofaOptional.open = !singlePageSofa;
-sofaOptionalSummary.hidden = !singlePageSofa;
-sofaOptional.style.display = singlePageSofa ? '' : 'contents';
+const singlePageInquiry = ['polsterreinigung', 'endreinigung-abnahmegarantie'].includes(s?.id) && stage > 0;
+sofaOptionalSummary.textContent = s?.id === 'endreinigung-abnahmegarantie' ? 'Anfahrt ergänzen · freiwillig' : 'Zusätze und Anfahrt ergänzen · freiwillig';
+if (singlePageInquiry) stage = last;
+sofaOptional.open = !singlePageInquiry;
+sofaOptionalSummary.hidden = !singlePageInquiry;
+sofaOptional.style.display = singlePageInquiry ? '' : 'contents';
 vehicleLocation.hidden = !['auto','autopolsterreinigung'].includes(s?.id);
-for (const contact of directContactLinks) contact.hidden = !s || (singlePageSofa && contact.parentElement === overviewPart);
+for (const contact of directContactLinks) contact.hidden = !s || (singlePageInquiry && contact.parentElement === overviewPart);
 const priceCopy = stage > 0 ? priceEntryCopy[s?.id] : undefined;
 offerTitle.textContent = priceCopy?.title || '';
-offerTitle.hidden = !priceCopy || (stage === last && !singlePageSofa);
+offerTitle.hidden = !priceCopy || (stage === last && !singlePageInquiry);
 const hasPackages = Boolean(s && window.DGSFixedPrice.options(s.id).length);
 guideBenefit.textContent = stage === 0 ? 'Wählen Sie die gewünschte Reinigung.' : priceCopy?.intro || (hasPackages ? 'Wählen Sie ein Paket oder beschreiben Sie den gewünschten Umfang.' : 'Beschreiben Sie kurz, was und wie viel wir reinigen sollen. Ungefähre Angaben genügen.');
 priceSummary.textContent = priceCopy?.summary || 'Reinigungsumfang angeben';
 priceContinue.textContent = priceCopy ? 'Weiter zur Preisübersicht' : 'Weiter zu Kontakt und Übersicht';
-guideBenefit.hidden=!!s&&stage===last&&stage>0&&!singlePageSofa;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
+guideBenefit.hidden=!!s&&stage===last&&stage>0&&!singlePageInquiry;panel.hidden=!s||stage===0||(stage!==contactStage&&stage!==last);packagePart.hidden=!s||stage===0||stage!==contactStage;overviewPart.hidden=!s||stage===0||stage!==last;sendSlot.hidden=stage!==last||stage===0;let body='';
 const regionField = form.elements.namedItem('DGS_Anfrageregion');
 const regionName = regionField?.value;
 regionalIntro.hidden = stage !== 0 || !regionName;
@@ -282,8 +283,8 @@ if(stage===0){body='<h2 id="stage-heading" tabindex="-1">Was soll wieder sauber 
 else if(stage<=s.groups.length){const g=s.groups[stage-1];body='<p class="service-label">'+esc(s.label)+'</p><h2 id="stage-heading" tabindex="-1">'+esc(g.title)+'</h2><p class="note">'+esc(s.note)+'</p>'+g.questions.filter(q=>M.questionVisible(s,q,model.answers[s.id]||{})).map(questionMarkup).join('');}
 else if(stage===last){body='';}
 if(stage===last){try{window.DGSMeasurement?.step('quote','contact',new URLSearchParams(location.search).get('dgs_test')==='1');}catch{}}app.hidden=!!s&&stage>0&&(stage===contactStage||stage===last);app.innerHTML=body+'<p id="auto-status" class="hint" role="status" aria-live="polite"></p><p class="error" id="error" role="alert"></p>'+(stage&&stage!==contactStage?'<nav class="nav" aria-label="Formularschritte">'+(stage<=s.groups.length?'<button type="button" class="secondary" id="direct-contact">Details später klären · direkt zum Kontakt</button>':'')+'<button type="button" class="secondary" id="back">Zurück</button>'+(stage<last?'<button type="button" class="primary" id="next">Weiter</button>':'')+'</nav>':'');
-syncFields();syncGuidedVehicle();syncPriceScope();overviewBack.hidden=singlePageSofa;if(singlePageSofa){packagePart.hidden=false;overviewPart.hidden=false;contactNav.hidden=true;}if(stage===0)updateServiceResults();if(s&&stage>0&&stage===last){overviewPart.append(sendSlot);send.disabled=false;}
-if(focus){const heading=singlePageSofa?packagePart:stage===last?overviewPart:stage===contactStage?packagePart:document.getElementById('stage-heading');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});heading.scrollIntoView({block:'start',behavior:'instant'});}}
+syncFields();syncGuidedVehicle();syncPriceScope();overviewBack.hidden=singlePageInquiry;if(singlePageInquiry){packagePart.hidden=false;overviewPart.hidden=false;contactNav.hidden=true;}if(stage===0)updateServiceResults();if(s&&stage>0&&stage===last){overviewPart.append(sendSlot);send.disabled=false;}
+if(focus){const heading=singlePageInquiry?packagePart:stage===last?overviewPart:stage===contactStage?packagePart:document.getElementById('stage-heading');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});heading.scrollIntoView({block:'start',behavior:'instant'});}}
 }
 function tile(s){return `<button type="button" class="tile" data-service="${s.id}" aria-pressed="${model.service===s.id}"><strong>${esc(s.label)}</strong><small>${s.id==='auto'||s.id==='autopolsterreinigung'?'Stationär im Silberturm St. Gallen':s.id==='bueroreinigung'?'Auch Treppenhaus und Unterhaltsreinigung':s.id==='other'?'Kombireinigung und weitere Wünsche':'Vor Ort nach Vereinbarung'}</small></button>`;}
 function validate(){const s=service();if(!s)return 'Bitte eine Reinigung wählen.';if(stage>=1&&stage<=s.groups.length){for(const q of s.groups[stage-1].questions){if(!M.questionVisible(s,q,model.answers[s.id]||{}))continue;const value=(model.answers[s.id]||{})[q.id];if(!value||Array.isArray(value)&&!value.length)return 'Bitte wählen Sie eine Antwort – «Ich bin unsicher» genügt.';}}return '';}
