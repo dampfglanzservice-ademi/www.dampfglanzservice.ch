@@ -1,5 +1,5 @@
 {
-  "/reinigungsfirma-st-gallen/": "2026-11-13",
+  "/reinigungsfirma-st-gallen/": "2026-11-25",
   "/reinigungsfirma-thurgau/": "2026-10-23",
   "/reinigungsfirma-zuerich/": "2026-10-23",
   "/reinigung-appenzell-ausserrhoden/": "2026-11-13",
@@ -23,6 +23,8 @@
   "/bewertungen/": "2026-11-13",
   "/autoreinigung/": "2026-10-23",
   "/bueroreinigung/": "2026-10-23",
-  "/endreinigung-abnahmegarantie/": "2026-10-23",
-  "/wohnungsreinigung/": "2026-10-23"
+  "/endreinigung-abnahmegarantie/": "2026-11-23",
+  "/wohnungsreinigung/": "2026-10-23",
+  "/polsterreinigung/": "2026-11-23",
+  "/offerte/": "2026-11-23"
 }
