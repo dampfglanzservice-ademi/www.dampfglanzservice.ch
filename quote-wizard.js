@@ -19,6 +19,20 @@ vehicleLocation.hidden = true;
 selectedRow.after(vehicleLocation);
 const overviewBack=document.createElement('nav');overviewBack.className='nav guided-overview-nav';overviewBack.innerHTML='<button type="button" class="secondary" id="guided-back">Zurück</button>';
 overviewPart.append(overviewBack,sendSlot);
+const sofaServiceInfo = document.createElement('p');
+sofaServiceInfo.className = 'fine-print';
+sofaServiceInfo.hidden = true;
+const sofaServiceLink = document.createElement('a');
+sofaServiceLink.href = '/polsterreinigung/';
+sofaServiceLink.target = '_blank';
+sofaServiceLink.rel = 'noopener';
+sofaServiceLink.textContent = 'Leistung und Arbeitsbeispiel ansehen ↗';
+sofaServiceLink.setAttribute('aria-label', 'Sofareinigung: Leistung und Arbeitsbeispiel ansehen (neuer Tab)');
+sofaServiceInfo.append(sofaServiceLink);
+overviewPart.querySelector('h3').before(sofaServiceInfo);
+const customerPlaceInput = document.getElementById('customer-place');
+const originalPlacePlaceholder = customerPlaceInput.placeholder;
+
 const directContactLinks = [];
 const originalContact = document.querySelector('.sq-direct nav');
 if (originalContact) {
@@ -67,7 +81,7 @@ const scopeExamples = {
 const priceEntryCopy = {
   polsterreinigung: {
     title: 'Sofareinigung bei Ihnen zu Hause',
-    intro: 'Wählen Sie die Sofagrösse oder beschreiben Sie Ihr Sofa. Den Gesamtpreis kennen Sie vor dem Auftrag.',
+    intro: 'Vor Ort in der Ostschweiz und im Kanton Zürich, auch Winterthur. Sofagrösse angeben – Gesamtpreis inklusive vereinbarter Anfahrt vor Auftrag.',
     summary: 'Sofa oder Polster angeben',
     scopeLabel: 'Was sollen wir reinigen? *',
     scopeExample: 'z. B. Ecksofa mit 5 Sitzplätzen, Stoff, Flecken auf der Sitzfläche',
@@ -266,6 +280,8 @@ sofaOptional.open = !singlePageInquiry;
 sofaOptionalSummary.hidden = !singlePageInquiry;
 sofaOptional.style.display = singlePageInquiry ? '' : 'contents';
 vehicleLocation.hidden = !['auto','autopolsterreinigung'].includes(s?.id);
+sofaServiceInfo.hidden = s?.id !== 'polsterreinigung' || stage === 0;
+customerPlaceInput.placeholder = s?.id === 'polsterreinigung' ? 'PLZ und Ort' : originalPlacePlaceholder;
 for (const contact of directContactLinks) contact.hidden = !s || (singlePageInquiry && contact.parentElement === overviewPart);
 const priceCopy = stage > 0 ? priceEntryCopy[s?.id] : undefined;
 offerTitle.textContent = priceCopy?.title || '';
